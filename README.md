@@ -25,7 +25,6 @@ Repeat the above command to start more clients.
 *Please replace the _x_ above with your team number*
 
 ## Team Members
-*Please complete your team information:*
 - Chen Zhang / cz112
 - Toby Tao / yt190
 - Huidan Tan / ht175
