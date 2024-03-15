@@ -1,6 +1,6 @@
 # ECE 651 - Spring 24 - Team Project - Evolution 1
-![pipeline](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/master/pipeline.svg)
-![coverage](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/master/coverage.svg?job=test)
+![pipeline](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/main/pipeline.svg)
+![coverage](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/main/coverage.svg?job=test)
 
  ## Coverage
 [Detailed coverage](https://kits.pages.oit.duke.edu/project-000-000-01-test/project-team-1/dashboard.html)
