@@ -32,7 +32,7 @@ Repeat the above command to start more clients.
 - Wenzhuo Wu / ww202
 
 ## LEAD TA
-- **Your Project LEAD TA is**: *TA's name here*
+- **Your Project LEAD TA is**: Xinmeng
 - Your team will have one lead TA, to which you can reach out for clarification on the specifications.
 - You can ask for help from any TA, but regarding specifications, the LEAD TA definitions will have precedence over all other TAs. 
 
