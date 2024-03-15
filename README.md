@@ -1,14 +1,35 @@
 # ECE 651 - Spring 24 - Team Project - Evolution 1
+![pipeline](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/master/pipeline.svg)
+![coverage](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/badges/master/coverage.svg?job=test)
 
-## Team #X
+ ## Coverage
+[Detailed coverage](https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1/dashboard.html)
+
+
+## How to run
+---
+### Start the server
+In a terminal, run the following command:
+```bash
+$ ./gradlew run-server
+```
+
+### Start a client (player)
+In a new terminal, run the following command:
+```bash
+$ ./gradlew run-client
+```
+Repeat the above command to start more clients.
+======================================
+## Team #1
 *Please replace the _x_ above with your team number*
 
 ## Team Members
 *Please complete your team information:*
-- *student name / netid*
-- *student name / netid*
-- *student name / netid*
-- *student name / netid*
+- Chen Zhang / cz112
+- Toby Tao / yt190
+- Huidan Tan / ht175
+- Wenzhuo Wu / ww202
 
 ## LEAD TA
 - **Your Project LEAD TA is**: *TA's name here*
