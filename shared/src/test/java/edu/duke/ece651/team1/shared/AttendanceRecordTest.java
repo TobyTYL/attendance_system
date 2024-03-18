@@ -51,7 +51,7 @@ public class AttendanceRecordTest {
         record.initializeFromRoaster(roaster);
         huidan.updateDisplayName("Rachel");
         record.markPresent(huidan);
-        String expected = "Attendance Record for "+LocalDate.now()+"\n"
+        String expected = "Attendance Record for "+LocalDate.now()+"\n"+
                         "----------------------------\n"+
                         "Rachel: Present\n"+
                         "zhecheng: Absent\n"+

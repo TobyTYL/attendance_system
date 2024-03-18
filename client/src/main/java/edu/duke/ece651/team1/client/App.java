@@ -16,6 +16,7 @@ import edu.duke.ece651.team1.shared.MyName;
 import edu.duke.ece651.team1.shared.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,11 @@ import org.springframework.web.client.RestTemplate;
 
 public class App {
   final private AttendanceClient attendanceClient;
-  final private Iterable<Student> students;
+  // final private Iterable<Student> students;
 
-  public App(AttendanceClient attendanceClient, Iterable<Student> students) {
+  public App(AttendanceClient attendanceClient) {
     this.attendanceClient = attendanceClient;
-    this.students = students;
+    // this.students = students;
   }
 
   
@@ -71,7 +72,7 @@ public class App {
           // loadStudentRoster();
           break;
         case 2:
-          attendanceClient.startAttendance(students);
+          attendanceClient.startAttendance();
           break;
         case 3:
           // modifyAttendanceRecord();
@@ -97,26 +98,11 @@ public class App {
     }
   }
 
+  
   public static void main(String[] args) throws IOException{
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
     AttendanceClient client = new AttendanceClient(inputReader, System.out);
-    Student huidan = new Student("huidan");
-    // huidan.updateDisplayName("rachel");
-    Student zhecheng = new Student("zhecheng");
-    // List<Student> students = new ArrayList<>();
-    // students.add(huidan);
-    // students.add(zhecheng);
-    RestTemplate restTemplate = new RestTemplate();
-      ParameterizedTypeReference<List<Student>> responseType = new ParameterizedTypeReference<List<Student>>() {
-        };
-    
-    ResponseEntity<List<Student>> responseEntity =restTemplate.exchange(
-                "http://vcm-37154.vm.duke.edu:8080/api/students/allStudents",
-                HttpMethod.GET,
-                null,
-                responseType);
-    List<Student> students = responseEntity.getBody();
-    App a = new App(client,students);
+    App a = new App(client);
     a.start(System.out, inputReader);
     
   }

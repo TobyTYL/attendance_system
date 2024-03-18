@@ -10,6 +10,8 @@ import com.google.common.collect.Iterables;;
 public class AttendanceRecord {
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
+   
+   
     public AttendanceRecord(LocalDate sessionDate) {
         this.sessionDate = sessionDate;
         this.entries = new HashMap<>();
@@ -17,6 +19,7 @@ public class AttendanceRecord {
     public AttendanceRecord(){
         this(LocalDate.now());
     }
+    
 
     public void initializeAttendanceEntry(Student student){
         // checkStudentRepetition(student);
