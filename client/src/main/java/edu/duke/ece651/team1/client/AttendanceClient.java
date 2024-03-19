@@ -16,9 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import edu.duke.ece651.team1.shared.AttendanceRecord;
-import edu.duke.ece651.team1.shared.AttendanceSerializer;
-import edu.duke.ece651.team1.shared.AttendanceSerializerFactory;
+
 import edu.duke.ece651.team1.shared.AttendanceStatus;
+import edu.duke.ece651.team1.shared.JsonAttendanceSerializer;
 import edu.duke.ece651.team1.shared.Student;
 
 public class AttendanceClient {
@@ -68,7 +68,7 @@ public class AttendanceClient {
          String url = "http://vcm-37154.vm.duke.edu:8080/api/attendance/";
          ParameterizedTypeReference<AttendanceRecord> responseType = new ParameterizedTypeReference<AttendanceRecord>() {
         };
-        AttendanceSerializer serializer = AttendanceSerializerFactory.createSerializer("json");
+        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String recordToJsonString = serializer.serialize(record);
          HttpEntity<String> requestEntity = new HttpEntity<>(recordToJsonString);
          ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);

@@ -25,13 +25,13 @@ import org.springframework.web.client.RestTemplate;
 // @SpringBootApplication
 
 public class App {
-  final private AttendanceClient attendanceClient;
+  // final private AttendanceClient attendanceClient;
   // final private Iterable<Student> students;
 
-  public App(AttendanceClient attendanceClient) {
-    this.attendanceClient = attendanceClient;
-    // this.students = students;
-  }
+  // public App(AttendanceClient attendanceClient) {
+  //   this.attendanceClient = attendanceClient;
+  //   // this.students = students;
+  // }
 
   
 
@@ -72,6 +72,7 @@ public class App {
           // loadStudentRoster();
           break;
         case 2:
+          AttendanceClient attendanceClient = new AttendanceClient(inputReader, out);
           attendanceClient.startAttendance();
           break;
         case 3:
@@ -101,8 +102,8 @@ public class App {
   
   public static void main(String[] args) throws IOException{
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-    AttendanceClient client = new AttendanceClient(inputReader, System.out);
-    App a = new App(client);
+ 
+    App a = new App();
     a.start(System.out, inputReader);
     
   }

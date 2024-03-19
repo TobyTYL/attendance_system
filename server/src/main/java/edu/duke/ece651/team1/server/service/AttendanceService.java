@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 public class AttendanceService {
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
+    
     public void saveAttendanceRecord(String record) throws IOException{
-        AttendanceSerializer serializer = AttendanceSerializerFactory.createSerializer("json");
+        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         AttendanceRecord attendanceRecord =serializer.deserialize(record);
         String fileName = "Attendance-"+attendanceRecord.getSessionDate();
-        serializer.exportToFile(attendanceRecord, fileName,attendanceRecordsPath);
+        AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
+        exporter.exportToFile(attendanceRecord, fileName,attendanceRecordsPath);
 
     }
 }
