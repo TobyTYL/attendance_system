@@ -11,9 +11,12 @@ public class AttendanceRecord {
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
    
-   
+   /**
+    * for each session, record the session date and the student and the corresponding status.
+    * @param sessionDate
+    */
     public AttendanceRecord(LocalDate sessionDate) {
-        this.sessionDate = sessionDate;
+         this.sessionDate = sessionDate;
         this.entries = new HashMap<>();
     }
     public AttendanceRecord(){
