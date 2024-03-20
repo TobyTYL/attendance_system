@@ -1,0 +1,332 @@
+2024-03-20 00:00:29.155  INFO 133535 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 133535 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:00:29.178  INFO 133535 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:00:30.245  INFO 133535 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:00:30.256  INFO 133535 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:00:30.258  INFO 133535 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:00:30.391  INFO 133535 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:00:30.392  INFO 133535 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1135 ms
+2024-03-20 00:00:30.576  INFO 133535 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:00:30.713  INFO 133535 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6cff61fc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6e0c6a7a, org.springframework.security.web.context.SecurityContextPersistenceFilter@de8039f, org.springframework.security.web.header.HeaderWriterFilter@78e22d35, org.springframework.security.web.authentication.logout.LogoutFilter@2819c460, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2924f1d8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5d5c04f9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@467b684d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@582a764a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64984b0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7baf1f5a, org.springframework.security.web.session.SessionManagementFilter@59f93db8, org.springframework.security.web.access.ExceptionTranslationFilter@4c777e7b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@337bbfdf]
+2024-03-20 00:00:30.993  INFO 133535 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:00:31.001  INFO 133535 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.354 seconds (JVM running for 2.622)
+2024-03-20 00:00:55.388  INFO 133535 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:00:55.388  INFO 133535 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:00:55.390  INFO 133535 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-20 00:00:55.424  INFO 133535 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:01:52.051  INFO 134241 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 134241 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:01:52.055  INFO 134241 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:01:53.126  INFO 134241 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:01:53.134  INFO 134241 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:01:53.134  INFO 134241 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:01:53.219  INFO 134241 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:01:53.219  INFO 134241 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1099 ms
+2024-03-20 00:01:53.375  INFO 134241 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:01:53.480  INFO 134241 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@53e800f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@337bbfdf, org.springframework.security.web.context.SecurityContextPersistenceFilter@2436ea2f, org.springframework.security.web.header.HeaderWriterFilter@4110765e, org.springframework.security.web.authentication.logout.LogoutFilter@52e04737, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7bc44ce8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1aabf50d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@52d97ab6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20cece0b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c777e7b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4da6d664, org.springframework.security.web.session.SessionManagementFilter@62e93c3a, org.springframework.security.web.access.ExceptionTranslationFilter@e9ef5b6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f94a5a5]
+2024-03-20 00:01:53.697  INFO 134241 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:01:53.706  INFO 134241 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.069 seconds (JVM running for 2.474)
+2024-03-20 00:02:08.705  INFO 134241 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:02:08.706  INFO 134241 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:02:08.709  INFO 134241 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-20 00:02:08.742  INFO 134241 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:02:23.092  INFO 134241 --- [http-nio-8080-exec-3] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:04:15.376  INFO 135367 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 135367 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:04:15.380  INFO 135367 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:04:16.260  INFO 135367 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:04:16.267  INFO 135367 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:04:16.268  INFO 135367 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:04:16.350  INFO 135367 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:04:16.350  INFO 135367 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 919 ms
+2024-03-20 00:04:16.506  INFO 135367 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:04:16.646  INFO 135367 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@53e800f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@337bbfdf, org.springframework.security.web.context.SecurityContextPersistenceFilter@2436ea2f, org.springframework.security.web.header.HeaderWriterFilter@4110765e, org.springframework.security.web.authentication.logout.LogoutFilter@52e04737, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7bc44ce8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1aabf50d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@52d97ab6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20cece0b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c777e7b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4da6d664, org.springframework.security.web.session.SessionManagementFilter@62e93c3a, org.springframework.security.web.access.ExceptionTranslationFilter@e9ef5b6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f94a5a5]
+2024-03-20 00:04:16.892  INFO 135367 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:04:16.903  INFO 135367 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.897 seconds (JVM running for 2.281)
+2024-03-20 00:04:20.219  INFO 135367 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:04:20.220  INFO 135367 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:04:20.221  INFO 135367 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-20 00:04:20.252  INFO 135367 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:04:24.619  INFO 135367 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-20 00:04:24.620  INFO 135367 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-03-20 00:04:24.627  INFO 135367 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:0
+2024-03-20 00:08:48.862  INFO 137112 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 137112 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:08:48.864  INFO 137112 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:08:49.604  INFO 137112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:08:49.612  INFO 137112 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:08:49.612  INFO 137112 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:08:49.685  INFO 137112 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:08:49.686  INFO 137112 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 784 ms
+2024-03-20 00:08:49.829  INFO 137112 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:08:49.934  INFO 137112 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c87e6b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77bbadc, org.springframework.security.web.context.SecurityContextPersistenceFilter@6726cc69, org.springframework.security.web.header.HeaderWriterFilter@fd9ebde, org.springframework.security.web.authentication.logout.LogoutFilter@1deceb67, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@56a4f272, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@13d9261f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3c3a0032, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33899f7a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7899de11, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ceb4478, org.springframework.security.web.session.SessionManagementFilter@4ee5b2d9, org.springframework.security.web.access.ExceptionTranslationFilter@1e0895f5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@12fcc71f]
+2024-03-20 00:08:50.151  INFO 137112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:08:50.160  INFO 137112 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.608 seconds (JVM running for 1.874)
+2024-03-20 00:08:57.575  INFO 137112 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:08:57.576  INFO 137112 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:08:57.579  INFO 137112 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-20 00:08:57.611  INFO 137112 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:09:02.430  INFO 137112 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:2
+2024-03-20 00:09:13.854  INFO 137405 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 137405 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:09:13.856  INFO 137405 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:09:14.575  INFO 137405 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:09:14.584  INFO 137405 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:09:14.584  INFO 137405 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:09:14.672  INFO 137405 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:09:14.673  INFO 137405 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 781 ms
+2024-03-20 00:09:14.852  INFO 137405 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:09:14.865  WARN 137405 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'inMemoryUserRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inMemoryUserRepository': Invocation of init method failed; nested exception is java.lang.IllegalStateException: User: admin already exists
+2024-03-20 00:09:14.870  INFO 137405 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-20 00:09:14.882  INFO 137405 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2024-03-20 00:09:14.903 ERROR 137405 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'inMemoryUserRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inMemoryUserRepository': Invocation of init method failed; nested exception is java.lang.IllegalStateException: User: admin already exists
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920) ~[spring-context-5.3.26.jar:5.3.26]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.26.jar:5.3.26]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.10.jar:2.7.10]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.10.jar:2.7.10]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.10.jar:2.7.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.10.jar:2.7.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.10.jar:2.7.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.10.jar:2.7.10]
+	at edu.duke.ece651.team1.server.App.main(App.java:26) ~[main/:na]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'inMemoryUserRepository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inMemoryUserRepository': Invocation of init method failed; nested exception is java.lang.IllegalStateException: User: admin already exists
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657) ~[spring-beans-5.3.26.jar:5.3.26]
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inMemoryUserRepository': Invocation of init method failed; nested exception is java.lang.IllegalStateException: User: admin already exists
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657) ~[spring-beans-5.3.26.jar:5.3.26]
+	... 34 common frames omitted
+Caused by: java.lang.IllegalStateException: User: admin already exists
+	at edu.duke.ece651.team1.server.repository.InMemoryUserRepository.createUser(InMemoryUserRepository.java:102) ~[main/:na]
+	at edu.duke.ece651.team1.server.repository.InMemoryUserRepository.init(InMemoryUserRepository.java:53) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333) ~[spring-beans-5.3.26.jar:5.3.26]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157) ~[spring-beans-5.3.26.jar:5.3.26]
+	... 46 common frames omitted
+
+2024-03-20 00:09:57.277  INFO 137720 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 137720 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:09:57.281  INFO 137720 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:09:58.037  INFO 137720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:09:58.044  INFO 137720 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:09:58.045  INFO 137720 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:09:58.114  INFO 137720 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:09:58.115  INFO 137720 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 777 ms
+2024-03-20 00:09:58.258  INFO 137720 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:09:58.270  INFO 137720 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-20 00:09:58.364  INFO 137720 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ed7821, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3bbf841e, org.springframework.security.web.context.SecurityContextPersistenceFilter@1e0895f5, org.springframework.security.web.header.HeaderWriterFilter@dc79225, org.springframework.security.web.authentication.logout.LogoutFilter@5f038248, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@68d7a2df, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4b6d92e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4f0f7849, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@fd9ebde, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@14982a82, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56a4f272, org.springframework.security.web.session.SessionManagementFilter@46185a1b, org.springframework.security.web.access.ExceptionTranslationFilter@2b8bb184, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5460b754]
+2024-03-20 00:09:58.586  INFO 137720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:09:58.602  INFO 137720 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.737 seconds (JVM running for 2.073)
+2024-03-20 00:10:07.907  INFO 137720 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:10:07.908  INFO 137720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:10:07.909  INFO 137720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-20 00:13:14.066  INFO 137720 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:2
+2024-03-20 00:13:46.982  INFO 140068 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 140068 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:13:46.984  INFO 140068 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:13:47.682  INFO 140068 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:13:47.690  INFO 140068 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:13:47.691  INFO 140068 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:13:47.784  INFO 140068 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:13:47.785  INFO 140068 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 750 ms
+2024-03-20 00:13:47.970  INFO 140068 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:13:47.983  INFO 140068 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-20 00:13:48.106  INFO 140068 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@337bbfdf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52d97ab6, org.springframework.security.web.context.SecurityContextPersistenceFilter@f951a7f, org.springframework.security.web.header.HeaderWriterFilter@1ba359bd, org.springframework.security.web.authentication.logout.LogoutFilter@5bc7e78e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59072e9d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@73c9e8e8, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4da6d664, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c777e7b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f038248, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e5af8e1, org.springframework.security.web.session.SessionManagementFilter@673919a7, org.springframework.security.web.access.ExceptionTranslationFilter@5300cac, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@455c1d8c]
+2024-03-20 00:13:48.392  INFO 140068 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:13:48.409  INFO 140068 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.705 seconds (JVM running for 2.157)
+2024-03-20 00:13:51.718  INFO 140068 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:1
+2024-03-20 00:14:05.903  INFO 140319 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 140319 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:14:05.905  INFO 140319 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:14:06.626  INFO 140319 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:14:06.634  INFO 140319 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:14:06.634  INFO 140319 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:14:06.715  INFO 140319 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:14:06.716  INFO 140319 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 751 ms
+2024-03-20 00:14:06.867  INFO 140319 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:14:06.880  INFO 140319 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-20 00:14:06.974  INFO 140319 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1422ac7f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e519ad3, org.springframework.security.web.context.SecurityContextPersistenceFilter@5300cac, org.springframework.security.web.header.HeaderWriterFilter@1bc0d349, org.springframework.security.web.authentication.logout.LogoutFilter@7e7f0216, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@49faf066, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@20cece0b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7bc44ce8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ba359bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62e93c3a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@59072e9d, org.springframework.security.web.session.SessionManagementFilter@5292ceca, org.springframework.security.web.access.ExceptionTranslationFilter@7899de11, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77bbadc]
+2024-03-20 00:14:07.249  INFO 140319 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:14:07.258  INFO 140319 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.773 seconds (JVM running for 2.154)
+2024-03-20 00:14:58.472  INFO 140319 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:14:58.473  INFO 140319 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:14:58.474  INFO 140319 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-20 00:14:58.512  INFO 140319 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:15:34.757  INFO 140319 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-20 00:15:34.758  INFO 140319 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-03-20 00:15:34.764  INFO 140319 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:2
+2024-03-20 00:32:36.849  INFO 145205 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 145205 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-20 00:32:36.853  INFO 145205 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-20 00:32:37.609  INFO 145205 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-20 00:32:37.617  INFO 145205 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-20 00:32:37.618  INFO 145205 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-20 00:32:37.706  INFO 145205 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-20 00:32:37.707  INFO 145205 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 803 ms
+2024-03-20 00:32:37.871  INFO 145205 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-20 00:32:37.883  INFO 145205 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-20 00:32:37.884  INFO 145205 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-20 00:32:37.999  INFO 145205 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e5af8e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30b131b2, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f038248, org.springframework.security.web.header.HeaderWriterFilter@25d93198, org.springframework.security.web.authentication.logout.LogoutFilter@4674d90, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@53e800f9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@582a764a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2924f1d8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e8a1ab4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@59f93db8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@524a076e, org.springframework.security.web.session.SessionManagementFilter@f951a7f, org.springframework.security.web.access.ExceptionTranslationFilter@62e93c3a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5e519ad3]
+2024-03-20 00:32:38.317  INFO 145205 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-20 00:32:38.327  INFO 145205 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.9 seconds (JVM running for 2.256)
+2024-03-20 00:32:48.385  INFO 145205 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-20 00:32:48.389  INFO 145205 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-20 00:32:48.392  INFO 145205 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-20 00:32:48.427  INFO 145205 --- [http-nio-8080-exec-2] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:48:11.018  INFO 145205 --- [http-nio-8080-exec-2] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x01z0x010x000x01v0x030x03Y0xab0x7f0xad&0x15>0xcb0xd80xa40xc69XqQ5N0xe20xbc|0xab0x0bxI0x0b0x0e0xda0x0b0xab/e0x87 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:262) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-03-20 00:48:18.828  INFO 145205 --- [http-nio-8080-exec-1] e.d.e.t.s.controller.SecurityController  : test
+2024-03-20 00:48:18.919 ERROR 145205 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: User: yitiao,hi already exists] with root cause
+
+java.lang.IllegalStateException: User: yitiao,hi already exists
+	at edu.duke.ece651.team1.server.repository.InMemoryUserRepository.createUser(InMemoryUserRepository.java:102) ~[main/:na]
+	at edu.duke.ece651.team1.server.service.UserService.createUser(UserService.java:38) ~[main/:na]
+	at edu.duke.ece651.team1.server.controller.SecurityController.postMethodName(SecurityController.java:25) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:528) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:58) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:237) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:223) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:223) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:217) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-03-20 03:00:46.724  INFO 145205 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:3

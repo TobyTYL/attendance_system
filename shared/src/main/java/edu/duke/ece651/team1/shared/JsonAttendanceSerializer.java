@@ -14,15 +14,15 @@ public class JsonAttendanceSerializer {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
-    public void exportToFile(AttendanceRecord record, String filename,String filePath) throws IOException {
-        // TODO Auto-generated method stub
-        String content = serialize(record);
-        filePath = filePath+filename+".json";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(content);
-        }
+    // public void exportToFile(AttendanceRecord record, String filename,String filePath) throws IOException {
+    //     // TODO Auto-generated method stub
+    //     String content = serialize(record);
+    //     filePath = filePath+filename+".json";
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+    //         writer.write(content);
+    //     }
         
-    }
+    // }
 
     
     public String serialize(AttendanceRecord record) {

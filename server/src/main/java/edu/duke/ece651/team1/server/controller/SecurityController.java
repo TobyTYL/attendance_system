@@ -17,8 +17,8 @@ public class SecurityController {
      private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
     @Autowired
     UserService userService;
-    @PostMapping("/signUp")
-    public ResponseEntity<String> postMethodName(@RequestParam(value = "userName") String userName,
+    @PostMapping("/signup")
+    public ResponseEntity<String> postMethodName(@RequestParam(value = "username") String userName,
             @RequestParam(value = "password") String password) {
         //TODO: process POST request
         logger.info("test");
@@ -37,7 +37,7 @@ public class SecurityController {
     }
     // @GetMapping("/login")
     // public String login() {
-    //     return "Welcome to admin page!"; 
+    //     return "login"; // 返回Spring Security默认的登录表单视图
     // }
    
    

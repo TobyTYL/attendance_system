@@ -13,18 +13,19 @@ import org.springframework.context.annotation.Configuration;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/", "/api/signUp").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            .and()
-            .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
-            .and()
-            .formLogin().loginPage("/api/login").permitAll()
-            .and()
-            .build();
+        http
+        .csrf().disable()
+        .authorizeRequests()
+            .antMatchers("/" , "/api/signup").permitAll() 
+            .antMatchers("/admin/**").hasRole("ADMIN") // Only allow users with the "ADMIN" role to access "/admin/**"
+            .anyRequest().authenticated() // Require authentication for any other request
+        .and()
+        .formLogin()
+            .permitAll() 
+       ; 
+
+    return http.build();
+
     }
 
     @Bean
