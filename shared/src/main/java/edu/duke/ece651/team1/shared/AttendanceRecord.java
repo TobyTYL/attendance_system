@@ -66,20 +66,20 @@ public class AttendanceRecord {
         Collections.sort(entryList, (entry1, entry2) -> entry1.getKey().getDisPlayName().compareTo(entry2.getKey().getDisPlayName()));
         return entryList;
     }
-    public String displayAttendance() {
-        StringBuilder ans = new StringBuilder();
-        String newLine = "\n";
-        Iterable<Map.Entry<Student, AttendanceStatus>> entryList = getSortedEntries();
-        ans.append("Attendance Record for " +sessionDate).append(newLine);
-        ans.append("----------------------------").append(newLine);
-        for (Map.Entry<Student, AttendanceStatus> entry :entryList) {
-            Student student = entry.getKey();
-            AttendanceStatus status = entry.getValue();
-            ans.append(student.getDisPlayName() + ": " + status.getStatus()).append(newLine);
-        }
-        ans.append("----------------------------");
-        return ans.toString();
-    }
+    // public String displayAttendance() {
+    //     StringBuilder ans = new StringBuilder();
+    //     String newLine = "\n";
+    //     Iterable<Map.Entry<Student, AttendanceStatus>> entryList = getSortedEntries();
+    //     ans.append("Attendance Record for " +sessionDate).append(newLine);
+    //     ans.append("----------------------------").append(newLine);
+    //     for (Map.Entry<Student, AttendanceStatus> entry :entryList) {
+    //         Student student = entry.getKey();
+    //         AttendanceStatus status = entry.getValue();
+    //         ans.append(student.getDisPlayName() + ": " + status.getStatus()).append(newLine);
+    //     }
+    //     ans.append("----------------------------");
+    //     return ans.toString();
+    // }
 
     public LocalDate getSessionDate() {
         return sessionDate;

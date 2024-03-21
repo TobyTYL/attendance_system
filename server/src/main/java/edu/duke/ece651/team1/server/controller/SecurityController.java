@@ -20,10 +20,11 @@ public class SecurityController {
     @PostMapping("/signup")
     public ResponseEntity<String> postMethodName(@RequestParam(value = "username") String userName,
             @RequestParam(value = "password") String password) {
-        //TODO: process POST request
-        logger.info("test");
-        userService.createUser(userName, password);
-       
+        try{
+            userService.createUser(userName, password);
+        }catch(Exception e){
+            return new ResponseEntity<String>("username has already been registered", HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
     }
     @GetMapping("/admin")
@@ -35,10 +36,7 @@ public class SecurityController {
     public String test() {
         return "Welcome to admin page!"; 
     }
-    // @GetMapping("/login")
-    // public String login() {
-    //     return "login"; // 返回Spring Security默认的登录表单视图
-    // }
+ 
    
    
     

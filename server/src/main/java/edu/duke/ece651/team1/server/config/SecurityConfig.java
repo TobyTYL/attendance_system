@@ -8,6 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -21,7 +22,15 @@ public class SecurityConfig {
             .anyRequest().authenticated() // Require authentication for any other request
         .and()
         .formLogin()
-            .permitAll() 
+            .permitAll().loginProcessingUrl("/api/login").successHandler((request, response, authentication) -> {
+                
+                response.setStatus(HttpStatus.FOUND.value()); 
+                // response.setHeader("Location", "/home"); 
+            })
+             .failureHandler((request, response, exception) -> {
+                response.setStatus(HttpStatus.UNAUTHORIZED.value()); // Set status to 401 on failure
+                response.getWriter().write("Login failed: " + exception.getMessage());
+            })
        ; 
 
     return http.build();

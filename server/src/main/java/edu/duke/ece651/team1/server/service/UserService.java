@@ -26,9 +26,7 @@ public class UserService {
     private InMemoryUserRepository inMemoryUserRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Value("${userDetails.path}")
-    private String userDetailsPath;
-    // private Map<String, UserDetails> users = new HashMap<>();
+   
 
     public void createUser(String username, String password) {
         UserDetails user = User.withUsername(username)
@@ -36,23 +34,8 @@ public class UserService {
                 .roles("USER")
                 .build();
         inMemoryUserRepository.createUser(user);
-    //     addUserToMap(username, user);
    }
 
-    // public void addUserToMap(String userName, UserDetails user){
-    //     users.put(userName, user);
-    // }
-
-    // @PreDestroy
-    // private void exportUserDetailsToFile() throws IOException{
-    //     Map<String, UserDetails> users =getUsers();
-    //     ObjectMapper objectMapper = new ObjectMapper();
-    //     objectMapper.writeValue(new File(userDetailsPath), users);
-    // }
-
-    // public Map<String, UserDetails> getUsers() {
-    //     return Collections.unmodifiableMap(users);
-    // }
    
 
 
