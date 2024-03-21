@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.shared;
+package edu.duke.ece651.team1.server.service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +14,11 @@ import org.json.JSONObject;
 import edu.duke.ece651.team1.shared.AttendanceRecord;
 
 public class FetchAttendanceService{
-
+    /**
+     * Displays the JSON content of the specified file with indentation.
+     *
+     * @param filePath The path to the JSON file to display.
+     */
     public void displayJsonFile(String filePath){
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -27,11 +31,18 @@ public class FetchAttendanceService{
             
             JSONObject jsonObject = new JSONObject(content);
             System.out.println(jsonObject.toString(4)); // Print with indentation for readability
-        } catch (IOException e) {
+        } catch (IOException e) {//cannot find file
           //e.printStackTrace();
         }
         
     }
+    /**
+     * Taking ipnut from user, constructs a file path based on the input,
+     * and displays the content of the corresponding file if it exists.
+     *
+     * @param in  The BufferedReader to read user input from.
+     * @param out The PrintStream to write output to.
+     */
     public void promptDateAndDisplayAttendance(BufferedReader in, PrintStream out) {
         out.println("Enter the date (YYYY-MM-DD):");
         try {

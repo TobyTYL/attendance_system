@@ -10,7 +10,7 @@ import java.io.StringReader;
 
 import org.junit.jupiter.api.Test;
 
-import edu.duke.ece651.team1.shared.FetchAttendanceService;
+//import edu.duke.ece651.team1.shared.FetchAttendanceService;
 
 public class FetchAttendanceServiceTest {  
   @Test
@@ -40,5 +40,6 @@ public class FetchAttendanceServiceTest {
         assertTrue(output.contains("Enter the date (YYYY-MM-DD):"));
         // Further assertions can be made based on the expected output
         // Note: This test might need to be adjusted based on the actual implementation of displayJsonFile
-    }  
+    }
+  
 }
