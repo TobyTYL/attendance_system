@@ -88,7 +88,7 @@ public class AttendanceController {
 
 
     private void sendAttendanceRecord(AttendanceRecord record){
-         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()+"/api/attendance/";
+         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()+"/api/attendance/record";
          ParameterizedTypeReference<AttendanceRecord> responseType = new ParameterizedTypeReference<AttendanceRecord>() {
         };
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
