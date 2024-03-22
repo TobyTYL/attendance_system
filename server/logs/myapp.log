@@ -1,0 +1,624 @@
+2024-03-21 00:10:50.518 DEBUG 221885 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 00:10:50.524 DEBUG 221885 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 00:10:50.620 DEBUG 221885 --- [http-nio-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 00:10:50.621 DEBUG 221885 --- [http-nio-8080-exec-1] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=a, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 00:10:50.622 DEBUG 221885 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 00:10:50.622 DEBUG 221885 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=a, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@252403d8]
+2024-03-21 00:10:50.623 DEBUG 221885 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 00:11:07.355 DEBUG 221885 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 00:11:07.355 DEBUG 221885 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 00:11:07.355 DEBUG 221885 --- [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 00:11:07.356 DEBUG 221885 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 00:11:07.356 DEBUG 221885 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 00:11:07.447 DEBUG 221885 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 00:11:07.450 DEBUG 221885 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 00:11:07.450 DEBUG 221885 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 00:11:16.301 DEBUG 221885 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 00:11:16.301 DEBUG 221885 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 00:11:16.301 DEBUG 221885 --- [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 00:11:16.301 DEBUG 221885 --- [http-nio-8080-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 00:11:16.301 DEBUG 221885 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 00:11:16.394 DEBUG 221885 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 00:11:16.396 DEBUG 221885 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 00:11:16.396 DEBUG 221885 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 00:11:16.404 DEBUG 221885 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 00:11:16.405 DEBUG 221885 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 00:11:16.490 DEBUG 221885 --- [http-nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 00:11:16.490 DEBUG 221885 --- [http-nio-8080-exec-4] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=c, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 00:11:16.492 DEBUG 221885 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 00:11:16.492 DEBUG 221885 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=c, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@30604b7d]
+2024-03-21 00:11:16.492 DEBUG 221885 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:23.995 DEBUG 221885 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 01:17:23.997 DEBUG 221885 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:17:24.127 DEBUG 221885 --- [http-nio-8080-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user 'ab'
+2024-03-21 01:17:24.128 DEBUG 221885 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:24.128 DEBUG 221885 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:29.769 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/test
+2024-03-21 01:17:29.769 DEBUG 221885 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:17:29.769 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:17:29.769 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 59360696FA0F9F7450A11E082D4BF2D6
+2024-03-21 01:17:29.770 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:17:29.772 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:17:29.773 DEBUG 221885 --- [http-nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:17:29.773 DEBUG 221885 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:29.773 DEBUG 221885 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:29.773 DEBUG 221885 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:29.992 DEBUG 221885 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:17:29.993 DEBUG 221885 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:17:29.993 DEBUG 221885 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:29.993 DEBUG 221885 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:29.993 DEBUG 221885 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:49.100 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/test
+2024-03-21 01:17:49.101 DEBUG 221885 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:17:49.101 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.s.w.s.HttpSessionRequestCache        : Loaded matching saved request http://vcm-37154.vm.duke.edu:8080/api/test
+2024-03-21 01:17:49.102 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:17:49.103 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:17:49.104 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:17:49.104 DEBUG 221885 --- [http-nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:17:49.104 DEBUG 221885 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:49.104 DEBUG 221885 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:49.104 DEBUG 221885 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:49.251 DEBUG 221885 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:17:49.251 DEBUG 221885 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:17:49.252 DEBUG 221885 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:49.252 DEBUG 221885 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:17:49.252 DEBUG 221885 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:17:56.702  INFO 221885 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-21 01:17:56.712  INFO 221885 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:7
+2024-03-21 01:17:59.290  INFO 293790 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 293790 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-21 01:17:59.293  INFO 293790 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-21 01:18:00.213  INFO 293790 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-21 01:18:00.221  INFO 293790 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-21 01:18:00.222  INFO 293790 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-21 01:18:00.303  INFO 293790 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-21 01:18:00.303  INFO 293790 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 974 ms
+2024-03-21 01:18:00.446  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-21 01:18:00.458  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-21 01:18:00.459  INFO 293790 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-21 01:18:00.551 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-21 01:18:00.571 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-21 01:18:00.571 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-21 01:18:00.571 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-21 01:18:00.572 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-21 01:18:00.573 DEBUG 293790 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-21 01:18:00.579  INFO 293790 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@53e800f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@337bbfdf, org.springframework.security.web.context.SecurityContextPersistenceFilter@20cece0b, org.springframework.security.web.header.HeaderWriterFilter@62e93c3a, org.springframework.security.web.authentication.logout.LogoutFilter@1a4d1ab7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7bc44ce8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@de8039f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@52d97ab6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f038248, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78e22d35, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4da6d664, org.springframework.security.web.session.SessionManagementFilter@25d93198, org.springframework.security.web.access.ExceptionTranslationFilter@4110765e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f94a5a5]
+2024-03-21 01:18:00.868  INFO 293790 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-21 01:18:00.877  INFO 293790 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.96 seconds (JVM running for 2.333)
+2024-03-21 01:18:01.970  INFO 293790 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-21 01:18:01.971  INFO 293790 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-21 01:18:01.974  INFO 293790 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-21 01:18:01.981 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/test
+2024-03-21 01:18:01.984 DEBUG 293790 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:01.986 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:18:01.986 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 00C67F79CCCB1B164DBCE0E88C3AAA99
+2024-03-21 01:18:01.991 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:18:02.003 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:18:02.004 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:18:02.005 DEBUG 293790 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:02.006 DEBUG 293790 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:02.006 DEBUG 293790 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:02.135 DEBUG 293790 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:18:02.135 DEBUG 293790 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:02.137 DEBUG 293790 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:02.137 DEBUG 293790 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:02.137 DEBUG 293790 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:09.510 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/test
+2024-03-21 01:18:09.510 DEBUG 293790 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:09.511 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Loaded matching saved request http://vcm-37154.vm.duke.edu:8080/api/test
+2024-03-21 01:18:09.512 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:18:09.512 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:18:09.513 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:18:09.514 DEBUG 293790 --- [http-nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:18:09.514 DEBUG 293790 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:09.514 DEBUG 293790 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:09.514 DEBUG 293790 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:09.616 DEBUG 293790 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:18:09.616 DEBUG 293790 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:09.617 DEBUG 293790 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:09.617 DEBUG 293790 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:09.617 DEBUG 293790 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:23.298 DEBUG 293790 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/students/allstudent
+2024-03-21 01:18:23.298 DEBUG 293790 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:23.299 DEBUG 293790 --- [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:18:23.299 DEBUG 293790 --- [http-nio-8080-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/students/allstudent] with attributes [authenticated]
+2024-03-21 01:18:23.301 DEBUG 293790 --- [http-nio-8080-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/students/allstudent to session
+2024-03-21 01:18:23.301 DEBUG 293790 --- [http-nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:18:23.302 DEBUG 293790 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:23.302 DEBUG 293790 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:23.302 DEBUG 293790 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:23.398 DEBUG 293790 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:18:23.399 DEBUG 293790 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:23.400 DEBUG 293790 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:23.401 DEBUG 293790 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:23.401 DEBUG 293790 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:43.290 DEBUG 293790 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/test
+2024-03-21 01:18:43.290 DEBUG 293790 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:43.291 DEBUG 293790 --- [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:18:43.294 DEBUG 293790 --- [http-nio-8080-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:18:43.297 DEBUG 293790 --- [http-nio-8080-exec-9] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:18:43.298 DEBUG 293790 --- [http-nio-8080-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:18:43.299 DEBUG 293790 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:43.299 DEBUG 293790 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:43.299 DEBUG 293790 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:43.417 DEBUG 293790 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:18:43.418 DEBUG 293790 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:43.419 DEBUG 293790 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:43.419 DEBUG 293790 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:43.419 DEBUG 293790 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:48.369 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/test
+2024-03-21 01:18:48.370 DEBUG 293790 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:48.370 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Loaded matching saved request http://vcm-37154.vm.duke.edu:8080/api/test
+2024-03-21 01:18:48.371 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:18:48.372 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [POST /api/test] with attributes [authenticated]
+2024-03-21 01:18:48.373 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/test to session
+2024-03-21 01:18:48.373 DEBUG 293790 --- [http-nio-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 01:18:48.373 DEBUG 293790 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:48.373 DEBUG 293790 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:48.374 DEBUG 293790 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:18:48.462 DEBUG 293790 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 01:18:48.462 DEBUG 293790 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:18:48.463 DEBUG 293790 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:48.463 DEBUG 293790 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 01:18:48.463 DEBUG 293790 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:57:28.724  INFO 293790 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:7
+2024-03-21 01:57:33.162  INFO 316175 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 316175 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-21 01:57:33.166  INFO 316175 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-21 01:57:33.862  INFO 316175 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-21 01:57:33.870  INFO 316175 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-21 01:57:33.870  INFO 316175 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-21 01:57:33.943  INFO 316175 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-21 01:57:33.943  INFO 316175 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 725 ms
+2024-03-21 01:57:34.089  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-21 01:57:34.103  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-21 01:57:34.104  INFO 316175 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-21 01:57:34.190 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-21 01:57:34.201 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-21 01:57:34.201 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-21 01:57:34.201 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-21 01:57:34.201 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-21 01:57:34.202 DEBUG 316175 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-21 01:57:34.207  INFO 316175 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2924f1d8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@524a076e, org.springframework.security.web.context.SecurityContextPersistenceFilter@1aabf50d, org.springframework.security.web.header.HeaderWriterFilter@4c777e7b, org.springframework.security.web.authentication.logout.LogoutFilter@b606cb6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@52d97ab6, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@58ff8d79, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5b5e7036, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@de8039f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1deceb67, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62dbe64e, org.springframework.security.web.session.SessionManagementFilter@78e22d35, org.springframework.security.web.access.ExceptionTranslationFilter@f951a7f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59072e9d]
+2024-03-21 01:57:34.433  INFO 316175 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-21 01:57:34.442  INFO 316175 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.706 seconds (JVM running for 1.994)
+2024-03-21 01:59:52.159  INFO 316175 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-21 01:59:52.160  INFO 316175 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-21 01:59:52.161  INFO 316175 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-21 01:59:52.167 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 01:59:52.170 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:59:52.171 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 01:59:52.178 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 01:59:52.178 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 01:59:52.291 DEBUG 316175 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 01:59:52.296 DEBUG 316175 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 01:59:52.296 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 01:59:52.304 DEBUG 316175 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 01:59:52.305 DEBUG 316175 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 01:59:52.505 DEBUG 316175 --- [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 01:59:52.506 DEBUG 316175 --- [http-nio-8080-exec-3] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=ab, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 01:59:52.518 DEBUG 316175 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 01:59:52.518 DEBUG 316175 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=ab, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@571af27c]
+2024-03-21 01:59:52.519 DEBUG 316175 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:01:30.986 DEBUG 316175 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:01:30.986 DEBUG 316175 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:01:31.078 DEBUG 316175 --- [http-nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
+2024-03-21 02:01:31.084 DEBUG 316175 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 02:01:31.084 DEBUG 316175 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:01:47.918 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:01:47.918 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:01:47.919 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:01:47.919 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:01:47.919 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:01:48.027 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:01:48.028 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:01:48.028 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:02:01.923 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:02:01.923 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:02:02.021 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
+2024-03-21 02:02:02.022 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 02:02:02.022 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:02:12.920 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:02:12.920 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:02:12.921 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:02:12.921 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:02:12.921 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:02:13.007 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:02:13.014 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:02:13.014 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:02:13.017 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:02:13.017 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:02:13.102 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 02:02:13.102 DEBUG 316175 --- [http-nio-8080-exec-9] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 02:02:13.103 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 02:02:13.103 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@32b675fd]
+2024-03-21 02:02:13.103 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:02:30.938 DEBUG 316175 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/students/allStudents
+2024-03-21 02:02:30.939 DEBUG 316175 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:02:30.940 DEBUG 316175 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:02:30.940 DEBUG 316175 --- [http-nio-8080-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/students/allStudents] with attributes [authenticated]
+2024-03-21 02:02:30.941 DEBUG 316175 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/students/allStudents
+2024-03-21 02:02:30.973 DEBUG 316175 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:02:39.952 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/attendance/
+2024-03-21 02:02:39.952 DEBUG 316175 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:02:39.953 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:02:39.953 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/attendance/] with attributes [authenticated]
+2024-03-21 02:02:39.953 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/attendance/
+2024-03-21 02:02:39.969 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:03:10.809 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:03:10.810 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:03:10.894 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user 'aabc'
+2024-03-21 02:03:10.896 DEBUG 316175 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 02:03:10.896 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:03:33.651 DEBUG 316175 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:03:33.651 DEBUG 316175 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:03:33.741 DEBUG 316175 --- [http-nio-8080-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user ''
+2024-03-21 02:03:33.742 DEBUG 316175 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 02:03:33.742 DEBUG 316175 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:03:47.109 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:03:47.109 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:03:47.109 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:03:47.109 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 7DB7EABB132DFC93B1569475028F0EE3
+2024-03-21 02:03:47.110 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:03:47.110 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:03:47.112 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:03:47.113  WARN 316175 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'username' for method parameter type String is not present]
+2024-03-21 02:03:47.113 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:03:47.113 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:03:47.115 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /error
+2024-03-21 02:03:47.115 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:03:47.115 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:03:47.115 DEBUG 316175 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /error
+2024-03-21 02:03:47.125 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:03:47.126 DEBUG 316175 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:03:47.126 DEBUG 316175 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:04:42.421 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:04:42.421 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:04:42.422 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:04:42.422 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 7DB7EABB132DFC93B1569475028F0EE3
+2024-03-21 02:04:42.422 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:04:42.423 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:04:42.424 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:42.424  WARN 316175 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'username' for method parameter type String is not present]
+2024-03-21 02:04:42.424 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:42.424 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:04:42.425 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /error
+2024-03-21 02:04:42.425 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:04:42.425 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:04:42.425 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /error
+2024-03-21 02:04:42.426 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:42.427 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:42.427 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:04:58.468 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:04:58.468 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:04:58.468 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:04:58.469 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 7DB7EABB132DFC93B1569475028F0EE3
+2024-03-21 02:04:58.469 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:04:58.469 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:04:58.470 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:58.470  WARN 316175 --- [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'username' for method parameter type String is not present]
+2024-03-21 02:04:58.470 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:58.471 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:04:58.471 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /error
+2024-03-21 02:04:58.471 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:04:58.471 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:04:58.472 DEBUG 316175 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /error
+2024-03-21 02:04:58.473 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:58.474 DEBUG 316175 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:04:58.474 DEBUG 316175 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:05:14.521 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:05:14.522 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:05:14.522 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:05:14.522 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 7DB7EABB132DFC93B1569475028F0EE3
+2024-03-21 02:05:14.523 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:05:14.523 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:05:14.617 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:05:14.618 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:05:14.618 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:05:26.129 DEBUG 316175 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:05:26.130 DEBUG 316175 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:05:26.235 DEBUG 316175 --- [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 02:05:26.235 DEBUG 316175 --- [http-nio-8080-exec-10] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abcdf, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 02:05:26.236 DEBUG 316175 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 02:05:26.236 DEBUG 316175 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abcdf, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@27b6031]
+2024-03-21 02:05:26.236 DEBUG 316175 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:05:57.367 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-03-21 02:05:57.368 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:05:57.368 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:05:57.369 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-03-21 02:05:57.369 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-03-21 02:05:57.374 DEBUG 316175 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:05:57.375 DEBUG 316175 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:05:57.375 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:05:58.040 DEBUG 316175 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:05:58.040 DEBUG 316175 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abcdf, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:05:58.040 DEBUG 316175 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abcdf, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:05:58.148 DEBUG 316175 --- [http-nio-8080-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 02:05:58.152 DEBUG 316175 --- [http-nio-8080-exec-6] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 5B4CAD72198147AAD1D15BAD71EC5C71
+2024-03-21 02:05:58.153 DEBUG 316175 --- [http-nio-8080-exec-6] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=5B4CAD72198147AAD1D15BAD71EC5C71], Granted Authorities=[ROLE_USER]]
+2024-03-21 02:05:58.153 DEBUG 316175 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=5B4CAD72198147AAD1D15BAD71EC5C71], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@27b6031]
+2024-03-21 02:05:58.153 DEBUG 316175 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:07:49.773 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:07:49.774 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:07:49.875 DEBUG 316175 --- [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
+2024-03-21 02:07:49.877 DEBUG 316175 --- [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 02:07:49.877 DEBUG 316175 --- [http-nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:08:03.767 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:08:03.768 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:08:03.855 DEBUG 316175 --- [http-nio-8080-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 02:08:03.856 DEBUG 316175 --- [http-nio-8080-exec-9] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 02:08:03.856 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 02:08:03.857 DEBUG 316175 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=abc, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@6e811e65]
+2024-03-21 02:08:03.857 DEBUG 316175 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:11:04.710 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-21 02:11:04.712 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:11:04.716 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 02:11:04.717 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-21 02:11:04.717 DEBUG 316175 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-21 02:11:04.845 DEBUG 316175 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:11:04.849 DEBUG 316175 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 02:11:04.851 DEBUG 316175 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:11:04.874 DEBUG 316175 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 02:11:04.874 DEBUG 316175 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 02:11:04.996 DEBUG 316175 --- [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 02:11:04.996 DEBUG 316175 --- [http-nio-8080-exec-3] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 02:11:04.997 DEBUG 316175 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 02:11:04.997 DEBUG 316175 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@18d61469]
+2024-03-21 02:11:04.997 DEBUG 316175 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:11:12.570 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/students/allStudents
+2024-03-21 02:11:12.571 DEBUG 316175 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:11:12.571 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:11:12.571 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/students/allStudents] with attributes [authenticated]
+2024-03-21 02:11:12.572 DEBUG 316175 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/students/allStudents
+2024-03-21 02:11:12.579 DEBUG 316175 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:11:17.582 DEBUG 316175 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/attendance/
+2024-03-21 02:11:17.583 DEBUG 316175 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:11:17.583 DEBUG 316175 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-21 02:11:17.583 DEBUG 316175 --- [http-nio-8080-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/attendance/] with attributes [authenticated]
+2024-03-21 02:11:17.583 DEBUG 316175 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/attendance/
+2024-03-21 02:11:17.587 DEBUG 316175 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 02:20:48.480  INFO 316175 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:11
+2024-03-21 21:51:10.025  INFO 143441 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 143441 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-21 21:51:10.032  INFO 143441 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-21 21:51:10.919  INFO 143441 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-21 21:51:10.929  INFO 143441 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-21 21:51:10.930  INFO 143441 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-21 21:51:11.025  INFO 143441 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-21 21:51:11.026  INFO 143441 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 937 ms
+2024-03-21 21:51:11.187  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-21 21:51:11.203  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abcdf
+2024-03-21 21:51:11.204  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-21 21:51:11.205  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: ab
+2024-03-21 21:51:11.206  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-21 21:51:11.206  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-21 21:51:11.207  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abc
+2024-03-21 21:51:11.207  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: duke
+2024-03-21 21:51:11.208  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-21 21:51:11.209  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-21 21:51:11.209  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-21 21:51:11.209  INFO 143441 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-21 21:51:11.335 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-21 21:51:11.348 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-21 21:51:11.349 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-21 21:51:11.350 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-21 21:51:11.350 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-21 21:51:11.351 DEBUG 143441 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-21 21:51:11.357  INFO 143441 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4da6d664, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e5af8e1, org.springframework.security.web.context.SecurityContextPersistenceFilter@78e22d35, org.springframework.security.web.header.HeaderWriterFilter@2436ea2f, org.springframework.security.web.authentication.logout.LogoutFilter@60783105, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@a92be4f, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@64984b0f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@30b131b2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59f93db8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1aabf50d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2924f1d8, org.springframework.security.web.session.SessionManagementFilter@20cece0b, org.springframework.security.web.access.ExceptionTranslationFilter@673919a7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1422ac7f]
+2024-03-21 21:51:11.698  INFO 143441 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-21 21:51:11.710  INFO 143441 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.14 seconds (JVM running for 2.53)
+2024-03-21 21:51:27.227  INFO 143441 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-21 21:51:27.228  INFO 143441 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-21 21:51:27.230  INFO 143441 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-21 21:51:27.237 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-03-21 21:51:27.240 DEBUG 143441 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:51:27.242 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:51:27.249 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-03-21 21:51:27.250 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-03-21 21:51:27.288 DEBUG 143441 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:51:27.293 DEBUG 143441 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:51:27.293 DEBUG 143441 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:51:27.480 DEBUG 143441 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-03-21 21:51:27.480 DEBUG 143441 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:51:27.480 DEBUG 143441 --- [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:51:27.481 DEBUG 143441 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [GET /favicon.ico] with attributes [authenticated]
+2024-03-21 21:51:27.482 DEBUG 143441 --- [http-nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 21:51:27.483 DEBUG 143441 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:27.483 DEBUG 143441 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:27.483 DEBUG 143441 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:51:27.530 DEBUG 143441 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 21:51:27.531 DEBUG 143441 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:51:27.532 DEBUG 143441 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:27.532 DEBUG 143441 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:27.532 DEBUG 143441 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:51:39.193 DEBUG 143441 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api
+2024-03-21 21:51:39.194 DEBUG 143441 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:51:39.194 DEBUG 143441 --- [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:51:39.200 DEBUG 143441 --- [http-nio-8080-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [GET /api] with attributes [authenticated]
+2024-03-21 21:51:39.217 DEBUG 143441 --- [http-nio-8080-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api to session
+2024-03-21 21:51:39.218 DEBUG 143441 --- [http-nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 21:51:39.218 DEBUG 143441 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:39.218 DEBUG 143441 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:39.218 DEBUG 143441 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:51:39.402 DEBUG 143441 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 21:51:39.403 DEBUG 143441 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:51:39.404 DEBUG 143441 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:39.404 DEBUG 143441 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:51:39.405 DEBUG 143441 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:04.297 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/login
+2024-03-21 21:52:04.298 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:52:04.298 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:52:04.299 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/login] with attributes [permitAll]
+2024-03-21 21:52:04.299 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/login
+2024-03-21 21:52:04.307 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:52:04.307 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:52:04.308 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:04.311 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-03-21 21:52:04.311 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:52:04.311 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:52:04.312 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-03-21 21:52:04.347 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:52:04.348 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-21 21:52:04.350 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:14.374 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/login/
+2024-03-21 21:52:14.375 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:52:14.376 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:52:14.377 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [GET /api/login/] with attributes [authenticated]
+2024-03-21 21:52:14.380 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/login/ to session
+2024-03-21 21:52:14.380 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 21:52:14.381 DEBUG 143441 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:52:14.381 DEBUG 143441 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:52:14.381 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:14.524 DEBUG 143441 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 21:52:14.525 DEBUG 143441 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:52:14.525 DEBUG 143441 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:52:14.526 DEBUG 143441 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:52:14.526 DEBUG 143441 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:24.834 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 21:52:24.834 DEBUG 143441 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:52:25.008 DEBUG 143441 --- [http-nio-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 21:52:25.010 DEBUG 143441 --- [http-nio-8080-exec-1] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 35EFA18709CCA841CE8DB713070768C1
+2024-03-21 21:52:25.011 DEBUG 143441 --- [http-nio-8080-exec-1] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]
+2024-03-21 21:52:25.013 DEBUG 143441 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@360df95]
+2024-03-21 21:52:25.013 DEBUG 143441 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:45.374 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/attendance/record-dates
+2024-03-21 21:52:45.375 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:52:45.375 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:52:45.376 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/attendance/record-dates] with attributes [authenticated]
+2024-03-21 21:52:45.376 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/attendance/record-dates
+2024-03-21 21:52:45.381  WARN 143441 --- [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2024-03-21 21:52:45.382 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:52:45.382 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /error
+2024-03-21 21:52:45.383 DEBUG 143441 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:52:45.383 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:52:45.384 DEBUG 143441 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /error
+2024-03-21 21:52:45.394 DEBUG 143441 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:53:21.420 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/attendance/record-dates
+2024-03-21 21:53:21.420 DEBUG 143441 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:21.421 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:21.421 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/attendance/record-dates] with attributes [authenticated]
+2024-03-21 21:53:21.421 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/attendance/record-dates
+2024-03-21 21:53:21.422  WARN 143441 --- [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2024-03-21 21:53:21.422 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:53:21.423 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /error
+2024-03-21 21:53:21.423 DEBUG 143441 --- [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:21.423 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:21.423 DEBUG 143441 --- [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /error
+2024-03-21 21:53:21.428 DEBUG 143441 --- [http-nio-8080-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:53:32.489 DEBUG 143441 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/attendance/record-dates
+2024-03-21 21:53:32.489 DEBUG 143441 --- [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:32.489 DEBUG 143441 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=35EFA18709CCA841CE8DB713070768C1], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:53:32.490 DEBUG 143441 --- [http-nio-8080-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/attendance/record-dates] with attributes [authenticated]
+2024-03-21 21:53:32.490 DEBUG 143441 --- [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/attendance/record-dates
+2024-03-21 21:53:32.497 DEBUG 143441 --- [http-nio-8080-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:54:00.073  INFO 143441 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-21 21:54:00.074  INFO 143441 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-03-21 21:54:00.090  INFO 143441 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:11
+2024-03-21 21:54:16.069  INFO 145299 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 145299 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-21 21:54:16.071  INFO 145299 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-21 21:54:16.706  INFO 145299 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-21 21:54:16.714  INFO 145299 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-21 21:54:16.714  INFO 145299 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-21 21:54:16.789  INFO 145299 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-21 21:54:16.791  INFO 145299 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 682 ms
+2024-03-21 21:54:16.945  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-21 21:54:16.960  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abcdf
+2024-03-21 21:54:16.960  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-21 21:54:16.961  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: ab
+2024-03-21 21:54:16.961  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-21 21:54:16.961  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-21 21:54:16.963  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abc
+2024-03-21 21:54:16.963  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: duke
+2024-03-21 21:54:16.963  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-21 21:54:16.964  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-21 21:54:16.965  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-21 21:54:16.965  INFO 145299 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-21 21:54:17.047 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-21 21:54:17.058 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-21 21:54:17.058 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-21 21:54:17.059 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-21 21:54:17.059 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-21 21:54:17.060 DEBUG 145299 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-21 21:54:17.065  INFO 145299 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2924f1d8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@524a076e, org.springframework.security.web.context.SecurityContextPersistenceFilter@1aabf50d, org.springframework.security.web.header.HeaderWriterFilter@4c777e7b, org.springframework.security.web.authentication.logout.LogoutFilter@b606cb6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@52d97ab6, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@58ff8d79, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5b5e7036, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@de8039f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1deceb67, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62dbe64e, org.springframework.security.web.session.SessionManagementFilter@78e22d35, org.springframework.security.web.access.ExceptionTranslationFilter@f951a7f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59072e9d]
+2024-03-21 21:54:17.287  INFO 145299 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-21 21:54:17.299  INFO 145299 --- [main] edu.duke.ece651.team1.server.App         : Started App in 1.517 seconds (JVM running for 1.814)
+2024-03-21 21:54:20.063  INFO 145299 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-21 21:54:20.064  INFO 145299 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-21 21:54:20.066  INFO 145299 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-21 21:54:20.072 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/attendance/record-dates
+2024-03-21 21:54:20.075 DEBUG 145299 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:54:20.077 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-21 21:54:20.077 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id A4B611028764E6F31967E06D75FAA005
+2024-03-21 21:54:20.082 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [GET /api/attendance/record-dates] with attributes [authenticated]
+2024-03-21 21:54:20.095 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://vcm-37154.vm.duke.edu:8080/api/attendance/record-dates to session
+2024-03-21 21:54:20.097 DEBUG 145299 --- [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://vcm-37154.vm.duke.edu:8080/login
+2024-03-21 21:54:20.098 DEBUG 145299 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:54:20.100 DEBUG 145299 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:54:20.101 DEBUG 145299 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:54:20.185 DEBUG 145299 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-03-21 21:54:20.186 DEBUG 145299 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:54:20.187 DEBUG 145299 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:54:20.187 DEBUG 145299 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-03-21 21:54:20.188 DEBUG 145299 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:54:56.709 DEBUG 145299 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 21:54:56.710 DEBUG 145299 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 21:54:56.892 DEBUG 145299 --- [http-nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 21:54:56.893 DEBUG 145299 --- [http-nio-8080-exec-4] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 1EE7B65BC751E845D1B68B8B8A28026D
+2024-03-21 21:54:56.894 DEBUG 145299 --- [http-nio-8080-exec-4] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=1EE7B65BC751E845D1B68B8B8A28026D], Granted Authorities=[ROLE_USER]]
+2024-03-21 21:54:56.894 DEBUG 145299 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=1EE7B65BC751E845D1B68B8B8A28026D], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@306bc4d7]
+2024-03-21 21:54:56.894 DEBUG 145299 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:55:04.855 DEBUG 145299 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/attendance/record-dates
+2024-03-21 21:55:04.857 DEBUG 145299 --- [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=1EE7B65BC751E845D1B68B8B8A28026D], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:55:04.858 DEBUG 145299 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=54.86.50.139, SessionId=1EE7B65BC751E845D1B68B8B8A28026D], Granted Authorities=[ROLE_USER]]]
+2024-03-21 21:55:04.860 DEBUG 145299 --- [http-nio-8080-exec-5] o.s.s.w.s.HttpSessionRequestCache        : Loaded matching saved request http://vcm-37154.vm.duke.edu:8080/api/attendance/record-dates
+2024-03-21 21:55:04.862 DEBUG 145299 --- [http-nio-8080-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/attendance/record-dates] with attributes [authenticated]
+2024-03-21 21:55:04.863 DEBUG 145299 --- [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/attendance/record-dates
+2024-03-21 21:55:04.890 DEBUG 145299 --- [http-nio-8080-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-21 21:55:14.401  INFO 145299 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-21 21:55:14.402  INFO 145299 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-03-21 21:55:14.411  INFO 145299 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:11
+2024-03-21 22:46:26.072  INFO 159781 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 159781 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-21 22:46:26.075  INFO 159781 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-21 22:46:27.052  INFO 159781 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-21 22:46:27.061  INFO 159781 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-21 22:46:27.061  INFO 159781 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-21 22:46:27.154  INFO 159781 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-21 22:46:27.155  INFO 159781 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1018 ms
+2024-03-21 22:46:27.337  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-21 22:46:27.350  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abcdf
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: ab
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abc
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: duke
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-21 22:46:27.351  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-21 22:46:27.352  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-21 22:46:27.355  INFO 159781 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-21 22:46:27.558 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-21 22:46:27.569 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-21 22:46:27.570 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-21 22:46:27.574 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-21 22:46:27.574 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-21 22:46:27.576 DEBUG 159781 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-21 22:46:27.580  INFO 159781 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2924f1d8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@524a076e, org.springframework.security.web.context.SecurityContextPersistenceFilter@1aabf50d, org.springframework.security.web.header.HeaderWriterFilter@4c777e7b, org.springframework.security.web.authentication.logout.LogoutFilter@b606cb6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@52d97ab6, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@58ff8d79, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5b5e7036, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@de8039f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1deceb67, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62dbe64e, org.springframework.security.web.session.SessionManagementFilter@78e22d35, org.springframework.security.web.access.ExceptionTranslationFilter@f951a7f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59072e9d]
+2024-03-21 22:46:27.884  INFO 159781 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-21 22:46:27.894  INFO 159781 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.238 seconds (JVM running for 2.638)
+2024-03-21 22:46:56.861  INFO 159781 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-21 22:46:56.861  INFO 159781 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-21 22:46:56.862  INFO 159781 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-21 22:46:56.869 DEBUG 159781 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-21 22:46:56.871 DEBUG 159781 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-21 22:46:57.048 DEBUG 159781 --- [http-nio-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-21 22:46:57.049 DEBUG 159781 --- [http-nio-8080-exec-1] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-21 22:46:57.058 DEBUG 159781 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-21 22:46:57.059 DEBUG 159781 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=duke, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@46219976]
+2024-03-21 22:46:57.059 DEBUG 159781 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request

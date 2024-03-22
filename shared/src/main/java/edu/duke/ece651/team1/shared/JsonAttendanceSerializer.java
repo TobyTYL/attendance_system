@@ -9,22 +9,22 @@ import java.util.Map;
 import com.google.gson.*;
 
 
-public class JsonAttendanceSerializer implements AttendanceSerializer{
+public class JsonAttendanceSerializer {
     // private final Gson gson;
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    @Override
-    public void exportToFile(AttendanceRecord record, String filename,String filePath) throws IOException {
-        // TODO Auto-generated method stub
-        String content = serialize(record);
-        filePath = filePath+filename+".json";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(content);
-        }
+    
+    // public void exportToFile(AttendanceRecord record, String filename,String filePath) throws IOException {
+    //     // TODO Auto-generated method stub
+    //     String content = serialize(record);
+    //     filePath = filePath+filename+".json";
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+    //         writer.write(content);
+    //     }
         
-    }
+    // }
 
-    @Override
+    
     public String serialize(AttendanceRecord record) {
         // TODO Auto-generated method stub
         JsonObject jsonObject = new JsonObject();
@@ -45,7 +45,7 @@ public class JsonAttendanceSerializer implements AttendanceSerializer{
        
     }
 
-    @Override
+   
     public AttendanceRecord deserialize(String record) {
         // TODO Auto-generated method stub
         JsonObject jsonObject = JsonParser.parseString(record).getAsJsonObject();
@@ -64,8 +64,6 @@ public class JsonAttendanceSerializer implements AttendanceSerializer{
             attendanceRecord.initializeAttendanceEntry(student);
             attendanceRecord.updateStudentStatus(student, attendanceStatus);
         }
-
-
         return attendanceRecord;
     }
     
