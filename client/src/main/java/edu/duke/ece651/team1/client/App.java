@@ -25,6 +25,8 @@ import org.springframework.web.client.RestTemplate;
 import edu.duke.ece651.team1.client.controller.*;
 // @SpringBootApplication
 import edu.duke.ece651.team1.client.model.UserSession;
+import java.net.InetAddress;
+
 
 public class App {
   // final private ApplicationController controller;
@@ -110,7 +112,8 @@ public class App {
   public static void main(String[] args) throws IOException{
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
     ApplicationController controller = new ApplicationController(inputReader, System.out);
-    UserSession.getInstance().setHost("vcm-37154.vm.duke.edu");
+    InetAddress inetAddress = InetAddress.getLocalHost();
+    UserSession.getInstance().setHost(inetAddress.getHostName());
     UserSession.getInstance().setPort("8080");
     controller.startApplication();
   }
