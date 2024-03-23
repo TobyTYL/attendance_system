@@ -52,23 +52,23 @@ public class ViewUtils {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        Set<String> validOptions = Set.of("option1", "option2", "option3");
-        Predicate<String> isInSet = validOptions::contains;
+    // public static void main(String[] args) throws IOException {
+    //     Set<String> validOptions = Set.of("option1", "option2", "option3");
+    //     Predicate<String> isInSet = validOptions::contains;
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        PrintStream out = System.out;
+    //     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    //     PrintStream out = System.out;
 
-        String userChoice = ViewUtils.getUserInput(
-                "Enter an option: ",
-                "Option not valid, please try again: ",
-                reader,
-                out,
-                isInSet // Passing the predicate as a method reference
-        );
+    //     String userChoice = ViewUtils.getUserInput(
+    //             "Enter an option: ",
+    //             "Option not valid, please try again: ",
+    //             reader,
+    //             out,
+    //             isInSet // Passing the predicate as a method reference
+    //     );
 
-        out.println("Your choice was: " + userChoice);
-    }
+    //     out.println("Your choice was: " + userChoice);
+    // }
 
 
 }

@@ -30,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import edu.duke.ece651.team1.shared.*;
 import java.util.List;
 import java.util.Map;
 
@@ -200,35 +201,35 @@ public class AttendanceController {
         }
     }
 
-    public void modifyAttendance(){
-        try {
-        out.println("Enter the student name you want to modify attendance:");
-        String studentName = inputReader.readLine();
-        out.println("Enter the new attendance status (Present/Absent/Tardy):");
-        String statusInput = inputReader.readLine();
-        AttendanceStatus status = AttendanceStatus.valueOf(statusInput.toUpperCase());
+    // public void modifyAttendance(){
+    //     try {
+    //     out.println("Enter the student name you want to modify attendance:");
+    //     String studentName = inputReader.readLine();
+    //     out.println("Enter the new attendance status (Present/Absent/Tardy):");
+    //     String statusInput = inputReader.readLine();
+    //     AttendanceStatus status = AttendanceStatus.valueOf(statusInput.toUpperCase());
 
-        HttpHeaders headers = getSessionTokenHeaders();
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("studentName", studentName);
-        map.add("status", status.toString());
+    //     HttpHeaders headers = getSessionTokenHeaders();
+    //     MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+    //     map.add("studentName", studentName);
+    //     map.add("status", status.toString());
 
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(map, headers);
+    //     HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(map, headers);
 
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/modify";
+    //     String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
+    //             + "/api/attendance/modify";
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+    //     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
-        if (response.getStatusCode() == HttpStatus.OK) {
-            out.println("Attendance updated successfully.");
-        } else {
-            out.println("Failed to update attendance.");
-        }
-    } catch (Exception e) {
-        out.println("Error modifying attendance: " + e.getMessage());
-    }
-    }    
+    //     if (response.getStatusCode() == HttpStatus.OK) {
+    //         out.println("Attendance updated successfully.");
+    //     } else {
+    //         out.println("Failed to update attendance.");
+    //     }
+    // } catch (Exception e) {
+    //     out.println("Error modifying attendance: " + e.getMessage());
+    // }
+    // }    
     
     public void startExport() throws IOException {
         while (true) {
