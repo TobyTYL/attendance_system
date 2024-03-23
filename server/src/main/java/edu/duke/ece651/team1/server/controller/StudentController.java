@@ -19,8 +19,5 @@ public class StudentController {
         students.add(zhecheng);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
-    @GetMapping("/test")
-    public String test() {
-        return "Welcome to admin page!"; 
-    }
+   
 }

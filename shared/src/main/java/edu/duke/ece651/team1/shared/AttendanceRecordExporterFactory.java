@@ -9,6 +9,8 @@ public class AttendanceRecordExporterFactory {
     static {
     
         exporters.put("json", new JsonAttendanceRecordExporter());
+        exporters.put("xml", new XmlAttendanceRecordExporter());
+        exporters.put("csv", new CsvAttendanceRecordExporter());
     }
 
     public static AttendanceRecordExporter createExporter(String format) {

@@ -67,6 +67,7 @@ public class InMemoryUserRepositoryTest {
         userRepository.createUser(admin);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.valueToTree(map);
+        
         Map<String, UserDetails> result = userRepository.parseUserJson(jsonNode);
         assertNotNull(result, "Resulting map should not be null.");
         assertEquals(2, result.size(), "Map should contain exactly two entry.");
