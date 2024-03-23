@@ -10,12 +10,13 @@ public class MainMenuController {
     final PrintStream out;
     MainMenuView mainMenuView;
     AttendanceController attendanceController;
+    StudentController studentController;
     public MainMenuController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.mainMenuView = new MainMenuView(inputReader, out);
         this.attendanceController = new AttendanceController(inputReader, out);
-
+        this.studentController = new StudentController(inputReader, out);
     }
 
     public void startMainMenu() {
@@ -29,6 +30,7 @@ public class MainMenuController {
                 }
                 else if (option.equals("students")) {
 //                    attendanceController.startStudentManager();
+                    studentController.startStudentMenu();
                 }
                 else{
                     break;

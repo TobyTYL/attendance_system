@@ -32,13 +32,17 @@ public class StudentController {
 
     public void startStudentMenu() {
         try {
+
             studentView.showStudentMenu();
             String option = studentView.readStudentOption();
+            // returns: ["add","remove","import","change"]
             if (option.equals("add")) {
                 addStudent();
             } else if (option.equals("remove")) {
                 removeStudent();
-            } else if (option.equals("add_display_name")) {
+            } else if (option.equals("import")) {
+                loadFromCSV();
+            } else if (option.equals("change")) {
                 addStudentDisplayName();
             }
         } catch (IOException e) {
@@ -53,7 +57,7 @@ public class StudentController {
 
     private void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
-        //todo cz
+        //todo
 
     }
 
