@@ -13,4 +13,6 @@ plugins {
 dependencies {
    
     implementation 'com.google.code.gson:gson:2.8.8'
+    testImplementation 'org.xmlunit:xmlunit-core:2.8.2'
+    testImplementation 'org.xmlunit:xmlunit-assertj:2.8.2'
 }

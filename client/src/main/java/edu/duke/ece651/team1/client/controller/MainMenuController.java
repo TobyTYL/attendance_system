@@ -25,7 +25,11 @@ public class MainMenuController {
                 if(option.equals("attendance")){
                     attendanceController.startAttendanceMenue();
                     
-                }else{
+                }
+                else if (option.equals("students")) {
+                    attendanceController.startStudentManager();
+                }
+                else{
                     break;
                 }
             }catch(Exception e){

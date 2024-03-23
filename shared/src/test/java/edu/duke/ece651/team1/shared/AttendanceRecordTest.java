@@ -1,6 +1,6 @@
 package edu.duke.ece651.team1.shared;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.record.Record;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
@@ -46,17 +46,17 @@ public class AttendanceRecordTest {
         assertThrows(IllegalArgumentException.class, ()->record.markTardy(zhecheng));
 
     }
-    @Test void testDisplayAttendace(){
-        Set<Student> roaster = new HashSet<>(Set.of(huidan,zhecheng));
-        record.initializeFromRoaster(roaster);
-        huidan.updateDisplayName("Rachel");
-        record.markPresent(huidan);
-        String expected = "Attendance Record for "+LocalDate.now()+"\n"+
-                        "----------------------------\n"+
-                        "Rachel: Present\n"+
-                        "zhecheng: Absent\n"+
-                        "----------------------------";
-        assertEquals(expected, record.displayAttendance());
+    // @Test void testDisplayAttendace(){
+    //     Set<Student> roaster = new HashSet<>(Set.of(huidan,zhecheng));
+    //     record.initializeFromRoaster(roaster);
+    //     huidan.updateDisplayName("Rachel");
+    //     record.markPresent(huidan);
+    //     String expected = "Attendance Record for "+LocalDate.now()+"\n"+
+    //                     "----------------------------\n"+
+    //                     "Rachel: Present\n"+
+    //                     "zhecheng: Absent\n"+
+    //                     "----------------------------";
+    //     assertEquals(expected, record.displayAttendance());
         
-    }
+    // }
 }

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/attendance")
 public class AttendanceController {
@@ -41,8 +42,18 @@ public class AttendanceController {
         catch(Exception e){
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
     }
+    @GetMapping("/record/{sessionDate}")
+    public ResponseEntity<String> getMethodName(@PathVariable String sessionDate) {
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       try{
+            String record =attendanceService.getRecord(auth.getName(), sessionDate);
+            return new ResponseEntity<>(record, HttpStatus.OK);
+       }catch(IOException e){
+            return new ResponseEntity<>("Failed to fetch record because "+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+    }
+    
     
 
    

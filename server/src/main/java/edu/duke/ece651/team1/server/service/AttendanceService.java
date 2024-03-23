@@ -44,4 +44,9 @@ public class AttendanceService {
             return Collections.emptyList();
         }
     }
+
+    public String getRecord(String userName, String sessionDate) throws IOException{
+        String filePath = attendanceRecordsPath+userName+"/"+"Attendance-"+sessionDate+".json";
+        return new String(Files.readAllBytes(Paths.get(filePath)));
+    }
 }
