@@ -27,13 +27,16 @@ public class ModifyAttendanceServiceTest {
         // Instance of the service to test
         ModifyAttendanceService service = new ModifyAttendanceService(tempFile.toString());
         // Update the attendance status of "yitiao"
-        service.updateAttendance("yitiao", AttendanceStatus.ABSENT);
+        boolean updateResult = service.updateAttendance("yitiao", AttendanceStatus.ABSENT);
 
         // Read back the content of the file to verify the update
         String updatedContent = Files.readString(tempFile);
         JSONObject updatedJson = new JSONObject(updatedContent);
+
         String updatedStatus = updatedJson.getJSONObject("Entries").getJSONObject("yitiao").getString("Attendance status");
 
+        // Assert that the status of "yitiao" was updated successfully and the method returned true
+        assertTrue(updateResult);
         // Assert that the status of "yitiao" was updated to "Absent"
         assertEquals("ABSENT", updatedStatus);
     }
