@@ -30,6 +30,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 public class AttendanceController {
     BufferedReader inputReader;
     final PrintStream out;
@@ -62,6 +64,23 @@ public class AttendanceController {
         }
            
        }
+    }
+
+    public void startStudentManager() {
+        // import or manage students
+
+        // first, ask if the user wants to
+        Set<String> validOptions = Set.of("0");
+        String userOption = ViewUtils.getUserInput("insert your option (0: import from csv)",
+                "invalid input",
+                inputReader,
+                out,
+                validOptions::contains);
+
+        if (userOption.equals("0")) {
+            // ask the user to give an input file
+
+        }
     }
 
     private Iterable<Student> getRoaster() {
