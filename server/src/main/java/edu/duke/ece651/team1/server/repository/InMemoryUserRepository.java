@@ -107,7 +107,6 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
                 addUserToMap(user.getUsername(), user);
             }
            
-            // }
 
         }
     }

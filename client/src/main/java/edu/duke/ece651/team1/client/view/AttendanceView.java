@@ -9,6 +9,7 @@ import edu.duke.ece651.team1.shared.Student;
 
 import java.io.BufferedReader;
 import java.io.EOFException;
+import java.util.List;
 import java.io.IOError;
 import java.io.IOException;
 import java.util.Map;
@@ -85,4 +86,75 @@ public class AttendanceView {
         out.println("3. Export attendance records");
         out.println("4. Back to Main Menu");
     }
+
+    public void showExportOption(){
+        out.println("Please select an export format:");
+        out.println("1. Export as JSON");
+        out.println("2. Export as XML");
+        out.println("3. Export as CSV");
+        out.println("4. Back to attendance Record List");
+    }
+
+    public void showExportSuccessMessage(String fileName){
+        out.println("Export successful. Your file has been saved to client/src/data directory/"+fileName);
+    }
+
+    public void showEmptyDatesMessage(){
+         out.println("No Attendance record available. Please try to take attendance first");
+    }
+    
+    public void showAttendanceDateList(List<String> dates){
+        for(int i=0;i<dates.size();i++){
+            int index = i+1;
+            out.println(index+". "+dates.get(i));
+        }
+        
+    }
+
+    public String readExportDateFromPrompt(List<String> dates) throws IOException{
+        while (true) {
+            try{
+                if(dates.isEmpty()){
+                    out.println("No Attendance record available. Please try to take attendance first");
+                    out.println("press 1 to Go back to the previous menu.");
+                }else{
+                    showAttendanceDateList(dates);
+                    out.println("Which record do you want to export? Please press 1-" + dates.size() + " to specify a specific date record.");
+                    out.println("Or press "+(dates.size()+1)+" to Go back to the previous menu.");
+                }
+                int option = ViewUtils.getUserOption(inputReader, out, dates.size()+1);
+                if(option==dates.size()+1){
+                    return "back";
+                }
+                return dates.get(option-1);
+            }catch(IllegalArgumentException e){
+                out.println("Invalid option for Export Menue.");
+            }
+        }
+        
+    }
+
+    public String readFormtFromPrompt() throws IOException{
+        while (true) {
+            try{
+                showExportOption();
+                int option = ViewUtils.getUserOption(inputReader, out, 4);
+                if(option==1){
+                    return "json";
+                }else if(option==2){
+                    return "xml";
+                }else if(option==3){
+                    return "csv";
+                }else{
+                    return "back";
+                }
+            }catch(IllegalArgumentException e){
+                out.println("Invalid option for Export format");
+            }
+        }
+      
+
+    }
+
+    
 }
