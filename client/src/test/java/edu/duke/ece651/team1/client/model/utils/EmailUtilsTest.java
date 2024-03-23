@@ -1,8 +1,11 @@
 package edu.duke.ece651.team1.client.model.utils;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailUtilsTest {
+    @Test
     public void checkEmailTest() {
         assertTrue(EmailUtils.checkEmail("test@duke.edu"));
         assertTrue(EmailUtils.checkEmail(" test@duke.edu"));

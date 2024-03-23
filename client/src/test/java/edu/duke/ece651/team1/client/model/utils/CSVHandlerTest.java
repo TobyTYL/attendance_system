@@ -65,6 +65,22 @@ class CSVHandlerTest {
     }
 
     @Test
+    public void readCSVtest3() throws IOException {
+        InputStream inputStream = getClass().getResourceAsStream("/student1.csv");
+
+        // Check if the resource file was found
+        if (inputStream == null) {
+            throw new AssertionError("sample_student.csv resource not found");
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        // Read each line from the file and print it to System.out
+        Relation r = CSVHandler.readFromCSVwithoutHeader(Tuple.of("col1", "col2"), Tuple.of(Tuple.STRING, Tuple.STRING),  reader);
+        System.out.println("read csv was successful, result: ");
+        System.out.println(r);
+        System.out.println("above: read from csv w/o header");
+    }
+
+    @Test
     public void writeTestFile() throws IOException {
         String data = "Line 1" + System.lineSeparator() +"Line 2";
 

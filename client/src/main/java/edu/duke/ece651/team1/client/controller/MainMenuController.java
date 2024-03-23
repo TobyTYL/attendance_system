@@ -15,6 +15,7 @@ public class MainMenuController {
         this.out = out;
         this.mainMenuView = new MainMenuView(inputReader, out);
         this.attendanceController = new AttendanceController(inputReader, out);
+
     }
 
     public void startMainMenu() {
@@ -27,7 +28,7 @@ public class MainMenuController {
                     
                 }
                 else if (option.equals("students")) {
-                    attendanceController.startStudentManager();
+//                    attendanceController.startStudentManager();
                 }
                 else{
                     break;

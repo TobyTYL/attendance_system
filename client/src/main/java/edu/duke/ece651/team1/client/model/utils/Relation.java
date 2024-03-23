@@ -20,14 +20,21 @@ public class Relation implements Iterable<Tuple>{
 
         this.columnNames = columnNames;
         this.template = template;
-        this.tuples = new TreeSet<>(new TupleComparator());
+//        this.tuples = new TreeSet<>(new TupleComparator());
+        this.tuples = new LinkedHashSet<>();
     }
+
+
 
     public void add(Tuple tuple) {
         if (!tuple.looksLike(this.template)) {
             throw new IllegalArgumentException("Tuple structure does not match the template");
         }
         tuples.add(tuple);
+    }
+
+    public int size() {
+        return tuples.size();
     }
 
     private static class TupleComparator implements Comparator<Tuple> {
