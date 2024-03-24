@@ -1,3 +1,0 @@
-<{"sessionDate":"2024-03-20",
-"Entries":{"John":{"Display Name":"Doe","Attendance status":"Present"},
-"Alice":{"Display Name":"Smith","Attendance status":"Absent"}}}> 
