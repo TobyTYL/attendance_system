@@ -27,7 +27,7 @@ public class MainMenuController {
                     
                 }
                 else if (option.equals("students")) {
-                  //attendanceController.startStudentManager();
+                    // attendanceController.startStudentManager();
                 }
                 else{
                     break;
