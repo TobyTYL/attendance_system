@@ -88,6 +88,8 @@ public class AttendanceRecord {
         return sessionDate;
     }
 
-    
+    public Map<Student, AttendanceStatus> getEntries() {
+        return Collections.unmodifiableMap(entries);
+    }
     
 }

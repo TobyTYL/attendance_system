@@ -2,9 +2,9 @@ package edu.duke.ece651.team1.client.controller;
 
 import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.view.*;
-import edu.duke.ece651.team1.shared.AttendanceRecord;
-import edu.duke.ece651.team1.shared.JsonAttendanceSerializer;
-import edu.duke.ece651.team1.shared.Student;
+import edu.duke.ece651.team1.client.model.UserSession;
+import edu.duke.ece651.team1.shared.*;
+
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
@@ -28,7 +28,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,7 @@ public class AttendanceController {
                 if (option.equals("take")) {
                     startAttendance();
                 } else if (option.equals("modify")) {
-
+                    startModify();
                 } else if (option.equals("export")) {
                     startExport();
                 } else {
@@ -68,7 +67,6 @@ public class AttendanceController {
 
         }
     }
-
     private Iterable<Student> getRoaster() {
         // RestTemplate restTemplate = new RestTemplate();
         ParameterizedTypeReference<List<Student>> responseType = new ParameterizedTypeReference<List<Student>>() {
@@ -174,61 +172,61 @@ public class AttendanceController {
 
     }
 
-    public void fetchAttendance(){
-        try{
-            out.println("Enter the date for which you want to fetch attendance records (YYYY-MM-DD):");
-            String dateInput = inputReader.readLine();
-            LocalDate date = LocalDate.parse(dateInput, DateTimeFormatter.ISO_LOCAL_DATE);
-            String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/fetch?date=" + date;
-            HttpHeaders headers = getSessionTokenHeaders();
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-            
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-            
-            if(response.getStatusCode() == HttpStatus.OK) {
-                // the server sends back a JSON string of attendance records
-                String attendanceData = response.getBody();
-                out.println("Attendance records for " + dateInput + ":");
-                out.println(attendanceData); // You may want to format this or deserialize it to show in a user-friendly manner
-            } else {
-                out.println("Failed to get previous attendance records.");
-            }
+    public void startModify() throws IOException{
+        List<String> dates = getRecordDates();
+        if (dates.isEmpty()) {
+            out.println("No attendance records available. Please take attendance first.");
+            return;
         }
-        catch(Exception e){
-            out.println("Error getting previous attendance records: " + e.getMessage());
+        String selectedDate = attendanceView.promptForDateSelection(dates); 
+        if ("back".equals(selectedDate)) {
+            return; // Exit if user wants to go back
         }
-    }
-
-    public void modifyAttendance(){
+            // Fetch the attendance record for the selected date
+        AttendanceRecord record = getAttendanceRecord(selectedDate);
+        if (record == null || record.getEntries().isEmpty()) {
+            out.println("No attendance record available for this date.");
+            return;
+        }
+        String selectedStudentName = attendanceView.promptForStudentName(record);
+        if ("back".equals(selectedStudentName)) {
+            return; // Exit if user wants to go back
+        }
+        // Prompt for new attendance status
+        AttendanceStatus newStatus = attendanceView.promptForAttendanceStatus();
         try {
-        out.println("Enter the student name you want to modify attendance:");
-        String studentName = inputReader.readLine();
-        out.println("Enter the new attendance status (Present/Absent/Tardy):");
-        String statusInput = inputReader.readLine();
-        AttendanceStatus status = AttendanceStatus.valueOf(statusInput.toUpperCase());
-
-        HttpHeaders headers = getSessionTokenHeaders();
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("studentName", studentName);
-        map.add("status", status.toString());
-
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(map, headers);
-
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/modify";
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
-
-        if (response.getStatusCode() == HttpStatus.OK) {
-            out.println("Attendance updated successfully.");
-        } else {
-            out.println("Failed to update attendance.");
+            String modifyResult = modifyAttendanceRecord(selectedDate, selectedStudentName, newStatus);
+            attendanceView.showModifySuccessMessage(selectedStudentName, newStatus.toString());
+            out.println(modifyResult); // Show success or error message from the server
+        } catch (Exception e) {
+            out.println("Failed to modify attendance record: " + e.getMessage());
         }
-    } catch (Exception e) {
-        out.println("Error modifying attendance: " + e.getMessage());
+        // String modificationResult = modifyAttendanceRecord(selectedDate, selectedStudentName, newStatus);
+        // // Display the result to the user
+        // out.println(modificationResult);
     }
-    }    
+    
+    private String modifyAttendanceRecord(String sessionDate, String studentName, AttendanceStatus newStatus) {
+        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
+                + "/api/attendance/modification/" + sessionDate;
+    
+        // Construct the attendance entry JSON
+        String attendanceEntryJson = String.format("{\"Legal Name\":\"%s\", \"Attendance Status\":\"%s\"}",
+                                                    studentName, newStatus.name());
+    
+        HttpHeaders headers = getSessionTokenHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> requestEntity = new HttpEntity<>(attendanceEntryJson, headers);
+    
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+    
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return "Attendance record successfully modified.";
+        } else {
+            throw new RuntimeException("Failed to modify attendance record: " + response.getBody());
+        }
+    }
+
     
     public void startExport() throws IOException {
         while (true) {

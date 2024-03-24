@@ -23,11 +23,11 @@ public class MainMenuController {
                 mainMenuView.showMainMenu();
                 String option =mainMenuView.readMainOption();
                 if(option.equals("attendance")){
-                    attendanceController.startAttendanceMenue();
+                  attendanceController.startAttendanceMenue();
                     
                 }
                 else if (option.equals("students")) {
-                    attendanceController.startStudentManager();
+                  //attendanceController.startStudentManager();
                 }
                 else{
                     break;

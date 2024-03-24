@@ -40,7 +40,14 @@ public class AttendanceView {
         out.println("Attendance records List blow:");
         showFinalAttendanceRecord(records);
     }
-
+    /**
+     * show the successful modification message
+     * @param student
+     * @param status
+     */
+    public void showModifySuccessMessage(String student, String status){
+        out.println("You sucessfully marked " + student + " to "+status);
+    }
     public String promptForStudentAttendance(String studentName) throws  IOException{
         out.println("Student Name: " + studentName);
         out.println("Press 'P' to mark Present, 'A' to mark Absent:");
@@ -54,6 +61,108 @@ public class AttendanceView {
         }
         return s;
     }
+    /**
+     * promp message for which date attendance user want to modify
+     * @param dates
+     * @return
+     * @throws IOException
+     */
+    public String promptForDateSelection(List<String> dates) throws IOException{
+        if(dates.isEmpty()){
+            out.println("No Attendance record available. Please try to take attendance first");
+            return "back";
+            //out.println("press 1 to Go back to the previous menu.");
+        }
+        while(true){
+            out.println("Please select the date of the attendance record you want to modify:");
+            for(int i = 0; i < dates.size(); ++i){
+                out.println((i + 1) + ". " + dates.get(i));
+            }
+            out.println("Enter the number corresponding to the date, or type 'back' to go back:");
+            String input = inputReader.readLine();
+            if ("back".equalsIgnoreCase(input)) {
+                return "back";
+            }
+            try {
+                int choice = Integer.parseInt(input) - 1;
+                if (choice >= 0 && choice < dates.size()) {
+                    return dates.get(choice);
+                } else {
+                    out.println("Invalid selection. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                out.println("Please enter a valid number.");
+            }
+            // if (dates.contains(input)) {
+            //     return input;
+            // } else {
+            //     out.println("Invalid date or date not available. Please try again.");
+            // }
+                
+            // catch(IllegalArgumentException e){
+            //         out.println("Invalid option for Modify Attendance.");
+            // }
+        }
+    }
+    /**
+     * prompt for user to input the student name they want to modify
+     * check if it is valid
+     * @param record
+     * @return
+     * @throws IOException
+     */
+    public String promptForStudentName(AttendanceRecord record) throws IOException{
+        if (record == null || record.getEntries().isEmpty()) {
+            out.println("No students available for attendance modification.");
+            return "back";
+        }
+        out.println("Please select a student to modify their attendance status:");
+        record.getSortedEntries().forEach(entry -> out.println(entry.getKey().getDisPlayName() + " - " + entry.getValue()));
+        while (true) {
+            out.println("Enter the display name of the student (or type 'back' to return):");
+            String inputName = inputReader.readLine().trim();
+    
+            if ("back".equalsIgnoreCase(inputName)) {
+                return "back";
+            }
+    
+            // Check if the student name exists in the record
+            boolean studentExists = record.getEntries().keySet().stream()
+                                          .anyMatch(student -> student.getDisPlayName().equals(inputName));
+    
+            if (studentExists) {
+                return inputName;
+            } else {
+                out.println("Student name not found in the record. Please try again.");
+            }
+        }
+    }
+    /**
+     * prompt the user to input attendance status they want
+     * @return
+     * @throws IOException
+     */
+    public AttendanceStatus promptForAttendanceStatus() throws IOException {
+        while (true) {
+            out.println("Enter the new attendance status (P for Present, T for Tardy):");
+            String statusInput = inputReader.readLine();
+            
+            if (statusInput != null) {
+                switch (statusInput.trim().toUpperCase()) {
+                    case "P":
+                        return AttendanceStatus.PRESENT;
+                    case "T":
+                        return AttendanceStatus.TARDY;
+                    default:
+                        out.println("Invalid status. Please enter P for Present or T for Tardy.");
+                        break;
+                }
+            } else {
+                throw new IllegalArgumentException("Attendance status cannot be empty.");
+            }
+        }
+    }
+
     public void showFinalAttendanceRecord(AttendanceRecord record){
         Iterable<Map.Entry<Student, AttendanceStatus>> entryList = record.getSortedEntries();
         out.println("Attendance Record for " +record.getSessionDate());
