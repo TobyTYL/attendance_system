@@ -12,6 +12,7 @@ public class ApplicationController {
     final PrintStream out;
     LoginSignupController loginSignupController;
     MainMenuController mainMenuController;
+    StudentController studentController;
     
     // LoginSignUpView loginSignUpView;
     // MainMenuView mainMenuView;
@@ -21,7 +22,7 @@ public class ApplicationController {
         this.out = out;
         this.loginSignupController = new LoginSignupController(inputReader, out);
         this.mainMenuController = new MainMenuController(inputReader, out);
-        
+        this.studentController = new StudentController(inputReader, out);
     }
     public void startApplication(){
        boolean authenticated = false;
