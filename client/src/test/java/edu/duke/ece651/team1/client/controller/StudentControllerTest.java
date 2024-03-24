@@ -80,4 +80,19 @@ class StudentControllerTest {
         }
     }
 
+    @Test
+    public void testReadCSV7() throws IOException {
+        // C:\Users\Chen\Desktop\ECE 651\project restructured\project-team-1\client\src\main\java\edu\duke\ece651\team1\client\resources
+        System.out.println("testing new csv loading methods, doing test 7");
+        Path defaultPath = Paths.get("src","main","java","edu","duke","ece651","team1","client","resources");
+        String userInput = "student7.csv";
+        Path fullPath = defaultPath.resolve(userInput);
+        System.out.println("full path: " + fullPath);
+        Iterable<Student> res = StudentController.readCSV(fullPath.toString());
+        for (Student s: res) {
+            System.out.println(parseStudent(s));
+        }
+
+    }
+
 }
