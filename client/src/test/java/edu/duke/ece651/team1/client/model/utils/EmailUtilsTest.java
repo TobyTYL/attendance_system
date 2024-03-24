@@ -2,7 +2,7 @@ package edu.duke.ece651.team1.client.model.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+// import static org.junit.jupiter.api.Assertions.*;
 
 class EmailUtilsTest {
     @Test
