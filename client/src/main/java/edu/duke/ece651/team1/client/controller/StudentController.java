@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -100,8 +101,12 @@ public class StudentController {
                 out,
                 s -> true);
         try {
-            Iterable<Student> students = readCSV(fileName);
-            // TODO
+
+            Path defaultPath = Paths.get("src","main","java","edu","duke","ece651","team1","client","resources");
+            Path fullPath = defaultPath.resolve(fileName);
+
+            Iterable<Student> students = readCSV(fullPath.toString());
+            
         }
         catch (Exception e) {
             out.println("import from csv failed: " + e.getMessage());
