@@ -107,26 +107,45 @@ public class StudentController {
 
     public void loadFromCSV() throws IOException {
         // todo cz
-        String fileName = ViewUtils.getUserInput("input a file name (including .csv extension)",
-                "",
-                inputReader,
-                out,
-                s -> true);
-        try {
 
-            Path defaultPath = Paths.get("src","main","java","edu","duke","ece651","team1","client","resources");
-            Path fullPath = defaultPath.resolve(fileName);
+        // String fileName = ViewUtils.getUserInput("please put your file under src/input folder and input a file name (including .csv extension)",
+        //         "",
+        //         inputReader,
+        //         out,
+        //         s -> true);
+        Iterable<Student> students;
+        String filedirectory = "src/input/";
+        String fileName = studentView.getFileName();
+        String fullPath = filedirectory+fileName;
+        while (true) {
+            try {
 
-            Iterable<Student> students = readCSV(fullPath.toString());
-            int count = 0;
-            for (Student student: students) {
-                addSingleStudent(student);
-                count++;
+                // Path defaultPath = Paths.get("src","main","java","edu","duke","ece651","team1","client","resources");
+                // Path path = defaultPath.resolve(fileName);
+    
+                students = readCSV(fullPath);
+                break;
+            
+                // out.println(count + " of records from csv imported successfully");
+                
             }
-            out.println(count + " of records from csv imported successfully");
+            catch (Exception e) {
+                out.println("import from csv failed: " + e.getMessage());
+            }
+            
         }
-        catch (Exception e) {
-            out.println("import from csv failed: " + e.getMessage());
+        sendRoster(students);
+       
+       
+    }
+
+    public void sendRoster(Iterable<Student> students){
+        // int count = 0;
+        studentView.showLoadSuccessMessage();
+        studentView.displayStudentList(students);
+        for (Student student: students) {
+            addSingleStudent(student);
+            // count++;
         }
     }
 
