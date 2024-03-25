@@ -118,9 +118,12 @@ public class StudentController {
             Path fullPath = defaultPath.resolve(fileName);
 
             Iterable<Student> students = readCSV(fullPath.toString());
+            int count = 0;
             for (Student student: students) {
                 addSingleStudent(student);
+                count++;
             }
+            out.println(count + " of records from csv imported successfully");
         }
         catch (Exception e) {
             out.println("import from csv failed: " + e.getMessage());
