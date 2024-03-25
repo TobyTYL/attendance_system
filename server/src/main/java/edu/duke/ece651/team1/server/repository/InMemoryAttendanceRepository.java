@@ -54,9 +54,11 @@ public class InMemoryAttendanceRepository {
         }
     }
 
-    public String getRecord(String userName, String sessionDate) throws IOException {
+    public AttendanceRecord getRecord(String userName, String sessionDate) throws IOException {
         String filePath = attendanceRecordsPath + userName + "/" + "Attendance-" + sessionDate + ".json";
-        return new String(Files.readAllBytes(Paths.get(filePath)));
+        String recordString = new String(Files.readAllBytes(Paths.get(filePath)));
+        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
+        return serializer.deserialize(recordString);
     }
 
     public List<AttendanceRecord> getRecords(String userName) throws IOException {

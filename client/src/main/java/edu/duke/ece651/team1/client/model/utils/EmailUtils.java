@@ -4,31 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailUtils {
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    // Regex for common email validation
-    private static final String EMAIL_REGEX = "^(.+)@(.+)$";
-
-    // Precompiled Pattern is efficient for repeated use
-    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
-
-    /**
-     * Checks if the provided email address is valid.
-     *
-     * @param email the email address to check
-     * @return true if the email address is valid, false otherwise
-     */
-    public static boolean checkEmail(String email) {
-        if (email == null) {
-            return false;
-        }
-
-        // Trim the email input to remove any leading or trailing whitespace
-        String trimmedEmail = email.trim();
-
-        // Create a matcher for the trimmed email
-        Matcher matcher = EMAIL_PATTERN.matcher(trimmedEmail);
-
-        // Return true if the matcher finds a match, which means it is a valid email
+    public static boolean checkEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr.trim());
         return matcher.matches();
     }
 }

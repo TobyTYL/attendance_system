@@ -1,12 +1,20 @@
 package edu.duke.ece651.team1.shared;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-
+import java.time.LocalDate;
 public class StudentTest {
-    @Test
+  @Test
+  public void test_Student_Constructor() {
+    Student student = new Student("Jimmy", "Jim", "jimmy@duke.edu");
+    assertEquals("Jimmy", student.getLegalName());
+    assertEquals("Jim", student.getDisPlayName());
+    assertEquals("jimmy@duke.edu", student.getEmail());
+  }
+  @Test
     public void testEqual(){
         Student s1 = new Student("ABC","ABC","ABC@email.com");
         Student s2 = new Student("ABC","ABC","ABC@email.com");
@@ -21,3 +29,4 @@ public class StudentTest {
 
     }
 }
+
