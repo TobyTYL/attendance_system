@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.model.utils.CSVHandler;
 import edu.duke.ece651.team1.client.model.utils.EmailUtils;
 import edu.duke.ece651.team1.client.model.utils.Relation;
@@ -17,48 +18,78 @@ import edu.duke.ece651.team1.client.model.utils.Tuple;
 import edu.duke.ece651.team1.client.view.StudentView;
 import edu.duke.ece651.team1.client.view.ViewUtils;
 import edu.duke.ece651.team1.shared.Student;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 public class StudentController {
     // legal name, email, display name
     BufferedReader inputReader;
     final PrintStream out;
     StudentView studentView;
+    RestTemplate restTemplate;
 
     public StudentController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.studentView = new StudentView(inputReader, out);
+        this.restTemplate = new RestTemplate();
     }
 
     public void startStudentMenu() {
-        try {
-
-            studentView.showStudentMenu();
-            String option = studentView.readStudentOption();
-            // returns: ["add","remove","import","change"]
-            if (option.equals("add")) {
-                addStudent();
-            } else if (option.equals("remove")) {
-                removeStudent();
-            } else if (option.equals("import")) {
-                loadFromCSV();
-            } else if (option.equals("change")) {
-                addStudentDisplayName();
+        while (true) {
+            try {
+                studentView.showStudentMenu();
+                String option = studentView.readStudentOption();
+                if (option.equals("add")) {
+                    addStudent();
+                } else if (option.equals("remove")) {
+                    removeStudent();
+                } else if (option.equals("load")) {
+                    loadFromCSV();
+                } else if (option.equals("exit")) {
+                    return;
+                } else {
+                    out.println("Invalid option. Please select a valid option.");
+                }
+            } catch (IOException e) {
+                out.println("Student Menu error because " + e.getMessage());
             }
-        } catch (IOException e) {
-            out.println("Student Menu error because " + e.getMessage());
         }
     }
 
     private void addStudent() throws IOException {
         String studentName = studentView.readStudentName();
-        //todo
+        String displayName = studentView.readStudentDisplayName();
+        String email = studentView.readStudentEmail();
+        Student newStudent = new Student(studentName, displayName, email);
+        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/students/addStudent";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cookie", UserSession.getInstance().getSessionToken());
+        HttpEntity<Student> requestEntity = new HttpEntity<>(newStudent, headers);
+        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                Void.class);
+        out.println("Student added successfully.");
     }
 
     private void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
-        //todo
-
+        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/students/removeStudent/" + studentName;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cookie", UserSession.getInstance().getSessionToken());
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers); // 不需要发送任何请求主体
+        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+        out.println("Student removed successfully.");
     }
 
     public void loadFromCSV() throws IOException {
@@ -75,6 +106,19 @@ public class StudentController {
         catch (Exception e) {
             out.println("import from csv failed: " + e.getMessage());
         }
+    }
+
+    private List<Student> getStudentsFromServer() {
+        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/students/allStudents";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cookie", UserSession.getInstance().getSessionToken());
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<List<Student>> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<List<Student>>() {});
+        return responseEntity.getBody();
     }
 
     public static Iterable<Student> readCSV(String fileName) throws IOException {
