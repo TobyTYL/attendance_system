@@ -79,6 +79,18 @@ public class StudentController {
         out.println("Student added successfully.");
     }
 
+    private void addSingleStudent(Student newStudent) {
+        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/students/addStudent";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cookie", UserSession.getInstance().getSessionToken());
+        HttpEntity<Student> requestEntity = new HttpEntity<>(newStudent, headers);
+        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                Void.class);
+    }
+
     private void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/students/removeStudent/" + studentName;
@@ -106,7 +118,9 @@ public class StudentController {
             Path fullPath = defaultPath.resolve(fileName);
 
             Iterable<Student> students = readCSV(fullPath.toString());
-            
+            for (Student student: students) {
+                addSingleStudent(student);
+            }
         }
         catch (Exception e) {
             out.println("import from csv failed: " + e.getMessage());
@@ -143,11 +157,11 @@ public class StudentController {
         catch (IllegalArgumentException iae) {
             try {
                 reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-                System.out.println("testing case 2");
+//                System.out.println("testing case 2");
                 r = CSVHandler.readFromCSVwithoutHeader(Tuple.of("column1", "column2"),
                         Tuple.of(Tuple.STRING, Tuple.STRING),
                         reader);
-                System.out.println("case 2 was successful");
+//                System.out.println("case 2 was successful");
             }
 
             catch(IllegalArgumentException iae2) {
@@ -156,7 +170,7 @@ public class StudentController {
 
         }
 
-        System.out.println("read " + r.size() + " lines");
+//        System.out.println("read " + r.size() + " lines");
 
         List<Student> res = new ArrayList<>();
         // empty relation
@@ -167,11 +181,11 @@ public class StudentController {
         int displayNameIdx, emailIdx;
         boolean containsHeader;
         if (t.size() == 2) {
-            System.out.println("trying to understand header contents");
+//            System.out.println("trying to understand header contents");
             displayNameIdx = 2;
             emailIdx = 1;
             containsHeader =((String) t.get(1) ).toLowerCase().contains("email");
-            System.out.println("t[1]: " +t.get(1));
+//            System.out.println("t[1]: " +t.get(1));
         } else {
             // t.size() == 3
             // check if contains header first
@@ -196,7 +210,7 @@ public class StudentController {
             }
         }
 
-        System.out.println("contains header: " + containsHeader);
+//        System.out.println("contains header: " + containsHeader);
 
             // now parse each row
             boolean usedHeader = false;
