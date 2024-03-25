@@ -13,8 +13,8 @@ public class StudentController {
     @GetMapping("/allStudents")
     public ResponseEntity<List<Student>> getAllStudent(){
         List<Student> students = new ArrayList<>();
-        Student huidan = new Student("yitiao");
-        Student zhecheng = new Student("zhecheng");
+        Student huidan = new Student("yitiao","huidan_tan18@163.com");
+        Student zhecheng = new Student("zhecheng","huidan_tan18@163.com");
         students.add(huidan);
         students.add(zhecheng);
         return new ResponseEntity<>(students, HttpStatus.OK);

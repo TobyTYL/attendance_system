@@ -11,11 +11,16 @@ public class Student {
     }
     
     public Student(String legalName) {
-        this.legalName = legalName;
-        this.disPlayName = legalName;
-        this.email = "";
-
+        // this.legalName = legalName;
+        // this.disPlayName = legalName;
+        // this.email = "";
+        this(legalName,legalName,"");
     }
+
+    public Student(String legalName, String email){
+        this(legalName,legalName,email);
+    }
+
     public Student(){
         this("","","");
     }
@@ -32,5 +37,24 @@ public class Student {
 
     public void updateDisplayName(String dispalyName){
         this.disPlayName = dispalyName;
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass().equals(getClass())) {
+            Student s = (Student) obj;
+            return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email);
+          }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
     }
 }

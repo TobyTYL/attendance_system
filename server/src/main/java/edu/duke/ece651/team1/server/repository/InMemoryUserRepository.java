@@ -127,4 +127,8 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
         return Collections.unmodifiableMap(users);
     }
 
+    public List<String> getUserNames(){
+        return new ArrayList<>(users.keySet()); 
+    }
+
 }

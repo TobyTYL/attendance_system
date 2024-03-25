@@ -1,4 +1,5 @@
 package edu.duke.ece651.team1.server.service;
+import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
 import edu.duke.ece651.team1.shared.*;
 // import java.io.*;
 
@@ -21,32 +22,22 @@ import java.nio.file.NoSuchFileException;
 public class AttendanceService {
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
+    @Autowired
+    private InMemoryAttendanceRepository inMemoryAttendanceRepository;
     
     public void saveAttendanceRecord(String record,String userName) throws IOException{
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         AttendanceRecord attendanceRecord =serializer.deserialize(record);
-        String fileName = "Attendance-"+attendanceRecord.getSessionDate();
-        AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
-        String filePath = attendanceRecordsPath+userName+"/";
-        exporter.exportToFile(attendanceRecord, fileName,filePath);
+        inMemoryAttendanceRepository.saveAttendanceRecord(attendanceRecord, userName);
     }
 
+   
+
     public List<String> getRecordDates(String userName) throws IOException {
-        String path = attendanceRecordsPath+userName+"/";
-        try(Stream<Path>  stream = Files.list(Paths.get(path))){
-            int attendance_length = "attendance".length();
-            int date_length = "YYYY-MM-DD".length();
-            int start = attendance_length+1;
-            int end = start+date_length;
-            List<String> dates = stream.map(Path::getFileName).map(Path::toString).map(filename->filename.substring(start,end)).collect(Collectors.toList()); 
-            return dates;
-        }catch(NoSuchFileException e ){
-            return Collections.emptyList();
-        }
+        return inMemoryAttendanceRepository.getRecordDates(userName);
     }
 
     public String getRecord(String userName, String sessionDate) throws IOException{
-        String filePath = attendanceRecordsPath+userName+"/"+"Attendance-"+sessionDate+".json";
-        return new String(Files.readAllBytes(Paths.get(filePath)));
+        return inMemoryAttendanceRepository.getRecord(userName, sessionDate);
     }
 }

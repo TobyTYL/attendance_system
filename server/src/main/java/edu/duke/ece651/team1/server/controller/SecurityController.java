@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class SecurityController {
-     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
+     
     @Autowired
     UserService userService;
     @PostMapping("/signup")
