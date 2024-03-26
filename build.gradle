@@ -80,7 +80,7 @@ clover {
 }
 
 tasks.register("run-server") {
-    dependsOn project('server').getTasksByName('run',false)
+    dependsOn project('server').getTasksByName('bootRun',false)
     group = 'Run Client/Server'
     description = 'Run the Server'
 }

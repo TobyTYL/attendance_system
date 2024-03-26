@@ -327,3 +327,120 @@
 2024-03-26 00:47:00.753 DEBUG 2643 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/attendance/modification/2024-03-26] with attributes [authenticated]
 2024-03-26 00:47:00.753 DEBUG 2643 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/attendance/modification/2024-03-26
 2024-03-26 00:47:01.137 DEBUG 2643 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 00:50:17.683  INFO 2643 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:17
+2024-03-26 01:01:15.979  INFO 34595 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 34595 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-26 01:01:15.983  INFO 34595 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-26 01:01:16.877  INFO 34595 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-26 01:01:16.885  INFO 34595 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-26 01:01:16.885  INFO 34595 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-26 01:01:16.964  INFO 34595 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-26 01:01:16.965  INFO 34595 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 924 ms
+2024-03-26 01:01:17.416  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-26 01:01:17.441  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abcdf
+2024-03-26 01:01:17.441  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: kk
+2024-03-26 01:01:17.441  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-26 01:01:17.442  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: ab
+2024-03-26 01:01:17.442  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-26 01:01:17.442  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: meng
+2024-03-26 01:01:17.443  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-26 01:01:17.443  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abc
+2024-03-26 01:01:17.443  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: duke
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-save-roster
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: main
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-26 01:01:17.448  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-26 01:01:17.449  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-all
+2024-03-26 01:01:17.449  INFO 34595 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-add-student
+2024-03-26 01:01:17.461  INFO 34595 --- [main] e.d.e.t.s.controller.SecurityController  : add notification successful
+2024-03-26 01:01:17.578 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-26 01:01:17.593 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-26 01:01:17.594 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-26 01:01:17.594 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-26 01:01:17.594 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-26 01:01:17.595 DEBUG 34595 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-26 01:01:17.601  INFO 34595 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@590adb41, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42aae04d, org.springframework.security.web.context.SecurityContextPersistenceFilter@1386313f, org.springframework.security.web.header.HeaderWriterFilter@58a2b917, org.springframework.security.web.authentication.logout.LogoutFilter@459b6c53, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3d19d85, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@29fa6b65, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@43bf5397, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@433c6abb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@288f173f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@575e572f, org.springframework.security.web.session.SessionManagementFilter@12bbfc54, org.springframework.security.web.access.ExceptionTranslationFilter@5fbe155, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ed043d3]
+2024-03-26 01:01:17.894  INFO 34595 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-26 01:01:17.906  INFO 34595 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.361 seconds (JVM running for 2.838)
+2024-03-26 01:02:38.066  INFO 34595 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-26 01:02:38.066  INFO 34595 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-26 01:02:38.067  INFO 34595 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-26 01:02:38.074 DEBUG 34595 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/signup
+2024-03-26 01:02:38.077 DEBUG 34595 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-26 01:02:38.079 DEBUG 34595 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-03-26 01:02:38.084 DEBUG 34595 --- [http-nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/signup] with attributes [permitAll]
+2024-03-26 01:02:38.084 DEBUG 34595 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/signup
+2024-03-26 01:02:38.210 DEBUG 34595 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-26 01:02:38.215 DEBUG 34595 --- [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-03-26 01:02:38.217 DEBUG 34595 --- [http-nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:02:38.235 DEBUG 34595 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2024-03-26 01:02:38.236 DEBUG 34595 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-03-26 01:02:38.409 DEBUG 34595 --- [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-03-26 01:02:38.410 DEBUG 34595 --- [http-nio-8080-exec-3] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-03-26 01:02:38.417 DEBUG 34595 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Created HttpSession as SecurityContext is non-default
+2024-03-26 01:02:38.418 DEBUG 34595 --- [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@37c42522]
+2024-03-26 01:02:38.418 DEBUG 34595 --- [http-nio-8080-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:02:50.079 DEBUG 34595 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/students/roster
+2024-03-26 01:02:50.080 DEBUG 34595 --- [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:02:50.080 DEBUG 34595 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:02:50.081 DEBUG 34595 --- [http-nio-8080-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/students/roster] with attributes [authenticated]
+2024-03-26 01:02:50.081 DEBUG 34595 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/students/roster
+2024-03-26 01:02:50.123 DEBUG 34595 --- [http-nio-8080-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:04:03.986 DEBUG 34595 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/students/roster
+2024-03-26 01:04:03.986 DEBUG 34595 --- [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:04:03.986 DEBUG 34595 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:04:03.987 DEBUG 34595 --- [http-nio-8080-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/students/roster] with attributes [authenticated]
+2024-03-26 01:04:03.987 DEBUG 34595 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/students/roster
+2024-03-26 01:04:03.990 DEBUG 34595 --- [http-nio-8080-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:05:25.994 DEBUG 34595 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/students/roster
+2024-03-26 01:05:25.994 DEBUG 34595 --- [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:05:25.994 DEBUG 34595 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:05:25.995 DEBUG 34595 --- [http-nio-8080-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/students/roster] with attributes [authenticated]
+2024-03-26 01:05:25.995 DEBUG 34595 --- [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/students/roster
+2024-03-26 01:05:26.000 DEBUG 34595 --- [http-nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:05:51.990 DEBUG 34595 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/students/roster
+2024-03-26 01:05:51.990 DEBUG 34595 --- [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:05:51.990 DEBUG 34595 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=test-csv, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=152.3.56.7, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-03-26 01:05:51.991 DEBUG 34595 --- [http-nio-8080-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/students/roster] with attributes [authenticated]
+2024-03-26 01:05:51.991 DEBUG 34595 --- [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/students/roster
+2024-03-26 01:05:51.995 DEBUG 34595 --- [http-nio-8080-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-03-26 01:06:09.295  INFO 34595 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:18
+2024-03-26 10:45:50.103  INFO 41445 --- [main] edu.duke.ece651.team1.server.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 41445 (/home/ht175/project-team-1/server/build/classes/java/main started by ht175 in /home/ht175/project-team-1/server)
+2024-03-26 10:45:50.106  INFO 41445 --- [main] edu.duke.ece651.team1.server.App         : No active profile set, falling back to 1 default profile: "default"
+2024-03-26 10:45:51.006  INFO 41445 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-03-26 10:45:51.014  INFO 41445 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-26 10:45:51.017  INFO 41445 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-03-26 10:45:51.096  INFO 41445 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-26 10:45:51.097  INFO 41445 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 943 ms
+2024-03-26 10:45:51.550  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user begin
+2024-03-26 10:45:51.563  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abcdf
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: kk
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: a
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: ab
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: b
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: meng
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: c
+2024-03-26 10:45:51.564  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: abc
+2024-03-26 10:45:51.566  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: duke
+2024-03-26 10:45:51.566  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao,hi
+2024-03-26 10:45:51.566  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: amzon
+2024-03-26 10:45:51.566  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-save-roster
+2024-03-26 10:45:51.566  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: main
+2024-03-26 10:45:51.567  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: yitiao
+2024-03-26 10:45:51.567  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: huidan
+2024-03-26 10:45:51.567  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-all
+2024-03-26 10:45:51.567  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-csv
+2024-03-26 10:45:51.567  INFO 41445 --- [main] e.d.e.t.s.r.InMemoryUserRepository       : hi restore user: test-add-student
+2024-03-26 10:45:51.573  INFO 41445 --- [main] e.d.e.t.s.controller.SecurityController  : add notification successful
+2024-03-26 10:45:51.702 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/api/login']
+2024-03-26 10:45:51.719 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2024-03-26 10:45:51.720 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/']
+2024-03-26 10:45:51.720 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/api/signup']
+2024-03-26 10:45:51.720 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_ADMIN')] for Ant [pattern='/admin/**']
+2024-03-26 10:45:51.721 DEBUG 41445 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2024-03-26 10:45:51.726  INFO 41445 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d3c6593, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7426a448, org.springframework.security.web.context.SecurityContextPersistenceFilter@45cd7bc5, org.springframework.security.web.header.HeaderWriterFilter@1386313f, org.springframework.security.web.authentication.logout.LogoutFilter@6d0b0da6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@42aae04d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2538bc06, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@516462cc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35e26d05, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29fa6b65, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3456558, org.springframework.security.web.session.SessionManagementFilter@433c6abb, org.springframework.security.web.access.ExceptionTranslationFilter@1491344a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d19d85]
+2024-03-26 10:45:52.027  INFO 41445 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-03-26 10:45:52.038  INFO 41445 --- [main] edu.duke.ece651.team1.server.App         : Started App in 2.229 seconds (JVM running for 2.538)
+2024-03-26 10:45:55.252  INFO 41445 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-26 10:45:55.273  INFO 41445 --- [SpringApplicationShutdownHook] e.d.e.t.s.r.InMemoryUserRepository       : user count:18
