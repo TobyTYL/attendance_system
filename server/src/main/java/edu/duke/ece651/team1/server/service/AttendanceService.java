@@ -1,5 +1,6 @@
 package edu.duke.ece651.team1.server.service;
 import edu.duke.ece651.team1.shared.*;
+import edu.duke.ece651.team1.server.repository.*;
 // import java.io.*;
 
 
@@ -23,12 +24,17 @@ import java.util.List;
 import java.util.Map;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import edu.duke.ece651.team1.server.model.*;
 
 @Service
 public class AttendanceService {
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
-    
+    private NotificationService nService = new NotificationService();
+
+    @Autowired
+    private InMemoryAttendanceRepository inMemoryAttendanceRepository;
+
     public void setAttendanceRecordsPath(String attendanceRecordsPath) {
         this.attendanceRecordsPath = attendanceRecordsPath;
     }

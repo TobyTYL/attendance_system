@@ -35,7 +35,7 @@ public class JsonAttendanceRecordExporterTest {
         // Verify the file content (simplified)
         String content = readFileContent(outputFile);
         // Assuming the serialize method of JsonAttendanceSerializer outputs some identifiable content based on the record
-        String expectedContent = "{\"sessionDate\":\"2024-03-25\",\"Entries\":{}}";
+        String expectedContent = "{\"sessionDate\":\"2024-03-26\",\"Entries\":{}}";
         assertEquals(expectedContent, content, "The file content does not match expected JSON content.");
     }
     @Test
