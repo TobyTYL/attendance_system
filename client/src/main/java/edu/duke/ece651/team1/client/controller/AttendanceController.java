@@ -80,6 +80,9 @@ public class AttendanceController {
                 HttpMethod.GET,
                 requestEntity,
                 responseType);
+       if(responseEntity.getStatusCode()==HttpStatus.NOT_FOUND){
+            throw new IllegalArgumentException("No roster now, please load one first");
+       }
         List<Student> students = responseEntity.getBody();
         return students;
     }
@@ -142,7 +145,14 @@ public class AttendanceController {
     }
 
     public void startAttendance() throws IOException {
-        Iterable<Student> students = getRoaster();
+        Iterable<Student> students;
+        try{
+           students = getRoaster();
+        }catch(IllegalArgumentException e){
+            attendanceView.showNoRosterMessage();
+            return;
+        }
+        
         AttendanceRecord record = new AttendanceRecord(LocalDate.now());
         attendanceView.showTakeAttendanceMenu(record.getSessionDate().toString());
         record.initializeFromRoaster(students);

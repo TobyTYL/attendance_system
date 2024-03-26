@@ -21,16 +21,19 @@ public class MainMenuView {
         out.println("Please select an option to begin:");
         out.println("1. Manage your attendance");
         out.println("2. Manage your students");
+        out.println("3. Exit");
     }
 
     public String readMainOption() throws IOException {
         while (true) {
             try {
-                int optionNum = ViewUtils.getUserOption(inputReader, out, 2);
+                int optionNum = ViewUtils.getUserOption(inputReader, out, 3);
                 if (optionNum == 1) {
                     return "attendance";
-                } else {
+                } if(optionNum==2) {
                     return "students";
+                }else{
+                    return "exit";
                 }
             } catch (IllegalArgumentException e) {
                 out.println("Invalid option. Please select 1 for Manage attendance or 2 for Manage Students.");

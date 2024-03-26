@@ -13,6 +13,9 @@ import java.util.List;
 import java.io.IOError;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
+
+
 public class AttendanceView {
     BufferedReader inputReader;
     private final PrintStream out;
@@ -127,11 +130,12 @@ public class AttendanceView {
             }
     
             // Check if the student name exists in the record
-            boolean studentExists = record.getEntries().keySet().stream()
-                                          .anyMatch(student -> student.getDisPlayName().equals(inputName));
+            Optional<Student> matchingStudent = record.getEntries().keySet().stream()
+            .filter(student -> student.getDisPlayName().equals(inputName))
+            .findFirst();
     
-            if (studentExists) {
-                return inputName;
+            if (matchingStudent.isPresent()) {
+                return matchingStudent.get().getLegalName();
             } else {
                 out.println("Student name not found in the record. Please try again.");
             }
@@ -263,6 +267,11 @@ public class AttendanceView {
         }
       
 
+    }
+
+    public void showNoRosterMessage(){
+        out.println("You cannot take attendance Now, please back to Student Management Menue");
+        out.println("Load a student Roster first");
     }
 
     

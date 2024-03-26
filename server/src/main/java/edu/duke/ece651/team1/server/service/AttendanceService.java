@@ -92,9 +92,7 @@ public class AttendanceService {
         return null;
     }
 
-    // public String getPath(){
-    // return attendanceRecordsPath;
-    // }
+  
     /**
      * get student record entry by searching the username and session date and
      * student name
@@ -107,14 +105,7 @@ public class AttendanceService {
      * @throws IOException
      */
     public String getStudentRecordEntry(String userName, String sessionDate, String studentName) throws IOException {
-        // String filePath = attendanceRecordsPath + userName + "/" + "Attendance-" +
-        // sessionDate + ".json";
-        // String filePath = "src/data/attendanceRecord/" + userName + "/" +
-        // "Attendance-" + sessionDate + ".json";
-        // JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        // String jsonContent = new String(Files.readAllBytes(Paths.get(filePath)));
         AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
-
         Student foundStudent = findStudentByLegalName(record, studentName);
         if (foundStudent != null) {
             AttendanceStatus status = record.getEntries().get(foundStudent);
@@ -129,11 +120,6 @@ public class AttendanceService {
         stringBuilder.append("Dear ").append(studentName).append("\n")
                     .append("We would like to inform you that your attendance status for the ").append(sessionDate)
                     .append(" has been updated  to ").append(attendanceStatus);
-        // String message = String.format(
-        //     "Dear " + studentName+"\n"
-        //     "We would like to inform you that your attendance status for the %s class on %s has been updated  to \"%s\".\n\n" ,
-        //     studentName, sessionDate, attendanceStatus
-        // );
         return stringBuilder.toString();
     }
 
@@ -142,21 +128,16 @@ public class AttendanceService {
         nService.notifyObserver(message, studentEmail);
     }
 
+    
+
     // string attendanceEntry {legal name:yitiao, Atttendance Status: Present}
-    public String modifyStudentEntry(String userName, String sessionDate, String attendanceEntryJson) {
+    public String modifyStudentEntryAndSendUpdates(String userName, String sessionDate, String attendanceEntryJson) {
       
         try {
-            // Assuming a method to get the file path for a specific record
-           
             JSONObject json = new JSONObject(attendanceEntryJson);
             String studentName = json.getString("Legal Name");
             String statusString = json.getString("Attendance Status");
             AttendanceStatus newStatus = AttendanceStatus.valueOf(statusString.toUpperCase());
-
-            // String filePath = "src/data/attendanceRecord/" + userName + "/Attendance-" +
-            // sessionDate + ".json";//find file path
-            // JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-            // String jsonContent = new String(Files.readAllBytes(Paths.get(filePath)));
             AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
 
             // Find and update the student's status
@@ -164,10 +145,6 @@ public class AttendanceService {
             if (foundStudent != null) {
                 record.updateStudentStatus(foundStudent, newStatus);
                 sendMessage(studentName, foundStudent.getEmail(), sessionDate,newStatus.getStatus() );
-               
-                // Serialize the updated record and save it
-                // String updatedJsonContent = serializer.serialize(record);
-                // Files.write(Paths.get(filePath), updatedJsonContent.getBytes());
                 inMemoryAttendanceRepository.saveAttendanceRecord(record, userName);
 
                 return "Successfully updated attendance status for " + studentName;
@@ -184,9 +161,7 @@ public class AttendanceService {
         } catch (JSONException e) {
             logger.info("json error on modify entry", e);
             return "Invalid JSON format for attendance entry: " + e.getMessage();
-            // } catch (IllegalArgumentException e) {
-            // return "Invalid attendance status provided.";
-            // }
+           
         }
     }
 

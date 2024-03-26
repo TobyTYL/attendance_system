@@ -36,7 +36,7 @@ class AttendanceServiceTest {
           // Ensure the test file exists in 'src/test/resources/duke' directory
           assertTrue(Files.exists(testFilePath), "Test file does not exist: " + testFilePath);
 
-          String result = service.modifyStudentEntry(userName, sessionDate, attendanceEntryJson);
+          String result = service.modifyStudentEntryAndSendUpdates(userName, sessionDate, attendanceEntryJson);
           assertEquals("Successfully updated attendance status for yitiao", result);
 
           String content = Files.readString(testFilePath);
