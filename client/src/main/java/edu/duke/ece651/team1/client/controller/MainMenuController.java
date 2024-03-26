@@ -33,6 +33,7 @@ public class MainMenuController {
                     studentController.startStudentMenu();
                 }
                 else{
+                    out.println("GoodBye!");
                     break;
                 }
             }catch(Exception e){

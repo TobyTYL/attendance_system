@@ -12,6 +12,7 @@ import edu.duke.ece651.team1.shared.Student;
 import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
+import java.util.HashSet;
 @SpringBootTest
 
 public class AttendanceManagerTest {
@@ -26,7 +27,7 @@ public class AttendanceManagerTest {
     @Test
     public void testGenerateReport() throws IOException {
         String userName = "duke";
-        AttendanceManager manager= new AttendanceManager(userName, inMemoryRosterRepository.getRoster(userName), inMemoryAttendanceRepository.getRecords(userName));
+        AttendanceManager manager= new AttendanceManager(userName, new HashSet<>(inMemoryRosterRepository.getStudents(userName)), inMemoryAttendanceRepository.getRecords(userName));
         Student yitiao = new Student("yitiao","huidan_tan18@163.com");
         String expected_yitiao = "Attendance Report for yitiao:\n"+
                             "2024-03-18: Absent\n"+

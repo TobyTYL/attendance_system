@@ -47,7 +47,7 @@ public class InMemoryAttendanceRepository {
             int start = attendance_length + 1;
             int end = start + date_length;
             List<String> dates = stream.map(Path::getFileName).map(Path::toString)
-                    .map(filename -> filename.substring(start, end)).collect(Collectors.toList());
+                    .map(filename -> filename.substring(start, end)).sorted().collect(Collectors.toList());
             return dates;
         } catch (NoSuchFileException e) {
             return Collections.emptyList();

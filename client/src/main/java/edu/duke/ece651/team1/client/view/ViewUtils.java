@@ -38,11 +38,9 @@ public class ViewUtils {
         while (true) {
             out.print(prompt);
             input = inputReader.readLine();
-
             if (input == null) {
                 throw new EOFException("End of input reached");
             }
-
             input = input.trim();
             if (handle.test(input)) {
                 return input;

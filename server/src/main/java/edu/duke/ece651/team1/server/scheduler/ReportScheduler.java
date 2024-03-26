@@ -1,6 +1,7 @@
 package edu.duke.ece651.team1.server.scheduler;
 
 import java.security.GeneralSecurityException;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -54,7 +55,7 @@ public class ReportScheduler {
         List<String> userNames = userRepository.getUserNames();
         for (String userName : userNames) {
             try {
-                Set<Student> roster = rosterRepository.getRoster(userName);
+                Set<Student> roster = new HashSet<>(rosterRepository.getStudents(userName));
                 List<AttendanceRecord> records = attendanceRepository.getRecords(userName);
                 // skip
                 if (records.isEmpty()) {

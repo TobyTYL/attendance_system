@@ -118,7 +118,7 @@ public class CSVHandler {
         String line;
         while ((line = reader.readLine()) != null) {
             if (line.trim().isEmpty()) continue;
-            System.out.println("curr line: " + line);
+            // System.out.println("curr line: " + line);
             relation.add(Tuples.readTuple(relation.getTemplate(), Arrays.asList(line.split(COMMA_SPLITTER))));
         }
     }

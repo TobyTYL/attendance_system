@@ -75,9 +75,7 @@ public class AttendanceService {
         return null;
     }
 
-    // public String getPath(){
-    //     return attendanceRecordsPath;
-    // }
+  
     /**
      * get student record entry by searching the username and session date and student name
      * for later modify the entry (attendance status)
@@ -88,12 +86,7 @@ public class AttendanceService {
      * @throws IOException
      */
     public String getStudentRecordEntry(String userName, String sessionDate, String studentName) throws IOException {
-        //String filePath = attendanceRecordsPath + userName + "/" + "Attendance-" + sessionDate + ".json";
-        String filePath = "src/data/attendanceRecord/" + userName + "/" + "Attendance-" + sessionDate + ".json";
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String jsonContent = new String(Files.readAllBytes(Paths.get(filePath)));
-        AttendanceRecord record = serializer.deserialize(jsonContent);
-    
+        AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
         Student foundStudent = findStudentByLegalName(record, studentName);
         if (foundStudent != null) {
             AttendanceStatus status = record.getEntries().get(foundStudent);
@@ -102,29 +95,39 @@ public class AttendanceService {
     
         return "No attendance record found for student: " + studentName;
     }
-//string attendanceEntry {legal name:yitiao, Atttendance Status: Present}
-    public String modifyStudentEntry(String userName, String sessionDate, String attendanceEntryJson) {
+
+    public String generateAttendanceNotification(String studentName,  String sessionDate,String attendanceStatus){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Dear ").append(studentName).append("\n")
+                    .append("We would like to inform you that your attendance status for the ").append(sessionDate)
+                    .append(" has been updated  to ").append(attendanceStatus);
+        return stringBuilder.toString();
+    }
+
+    public void sendMessage(String studentName, String studentEmail, String sessionDate,String attendanceStatus){
+        String message = generateAttendanceNotification(studentName, sessionDate, attendanceStatus);
+        nService.notifyObserver(message, studentEmail);
+    }
+
+    
+
+    // string attendanceEntry {legal name:yitiao, Atttendance Status: Present}
+    public String modifyStudentEntryAndSendUpdates(String userName, String sessionDate, String attendanceEntryJson) {
+      
         try {
-            // Assuming a method to get the file path for a specific record
             JSONObject json = new JSONObject(attendanceEntryJson);
             String studentName = json.getString("Legal Name");
             String statusString = json.getString("Attendance Status");
             AttendanceStatus newStatus = AttendanceStatus.valueOf(statusString.toUpperCase());
+            AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
 
-            String filePath = "src/data/attendanceRecord/" + userName + "/Attendance-" + sessionDate + ".json";//find file path
-            JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-            String jsonContent = new String(Files.readAllBytes(Paths.get(filePath)));
-            AttendanceRecord record = serializer.deserialize(jsonContent);
-    
             // Find and update the student's status
             Student foundStudent = findStudentByLegalName(record, studentName);
             if (foundStudent != null) {
                 record.updateStudentStatus(foundStudent, newStatus);
-                
-                // Serialize the updated record and save it
-                String updatedJsonContent = serializer.serialize(record);
-                Files.write(Paths.get(filePath), updatedJsonContent.getBytes());
-                
+                sendMessage(studentName, foundStudent.getEmail(), sessionDate,newStatus.getStatus() );
+                inMemoryAttendanceRepository.saveAttendanceRecord(record, userName);
+
                 return "Successfully updated attendance status for " + studentName;
             } else {
                 return "Student not found in the attendance record for " + sessionDate;
@@ -135,8 +138,7 @@ public class AttendanceService {
             return "Failed to modify attendance record: " + e.getMessage();
         }catch (JSONException e) {
             return "Invalid JSON format for attendance entry: " + e.getMessage();
-        } catch (IllegalArgumentException e) {
-            return "Invalid attendance status provided.";
+           
         }
     }
     

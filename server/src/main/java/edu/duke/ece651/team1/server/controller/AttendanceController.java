@@ -81,7 +81,7 @@ public class AttendanceController {
         String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
 
         try {
-            String responseMessage = attendanceService.modifyStudentEntry(userName, sessionDate, attendanceEntryJson);
+            String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(userName, sessionDate, attendanceEntryJson);
             System.out.println("error happened in modifying record");
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
         } catch (Exception e) {
