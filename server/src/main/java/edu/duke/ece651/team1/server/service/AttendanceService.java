@@ -1,22 +1,13 @@
 package edu.duke.ece651.team1.server.service;
-
-import edu.duke.ece651.team1.server.controller.SecurityController;
-import edu.duke.ece651.team1.server.model.EmailNotification;
-import edu.duke.ece651.team1.server.model.NotificationService;
-import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
 import edu.duke.ece651.team1.shared.*;
+import edu.duke.ece651.team1.server.repository.*;
 // import java.io.*;
 
-import org.json.JSONException;
 
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,52 +24,50 @@ import java.util.List;
 import java.util.Map;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import org.json.JSONObject;
+import edu.duke.ece651.team1.server.model.*;
 
 @Service
 public class AttendanceService {
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
     private NotificationService nService = new NotificationService();
+
     @Autowired
     private InMemoryAttendanceRepository inMemoryAttendanceRepository;
-    private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
-
-    // public void setAttendanceRecordsPath(String attendanceRecordsPath) {
-    //     this.attendanceRecordsPath = attendanceRecordsPath;
-    // }
-    @PostConstruct
-    public void initializeNotification() {
-        try {
-            nService.addNotification(new EmailNotification());
-            // logger.info("add notification successful");
-        } catch (Exception e) {
-            // logger.info("unable to add email notification because "+e.getMessage());
-        }
-
+    public void setAttendanceRecordsPath(String attendanceRecordsPath) {
+        this.attendanceRecordsPath = attendanceRecordsPath;
     }
-    
-
-    public void saveAttendanceRecord(String record, String userName) throws IOException {
+    public void saveAttendanceRecord(String record,String userName) throws IOException{
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        AttendanceRecord attendanceRecord = serializer.deserialize(record);
-        inMemoryAttendanceRepository.saveAttendanceRecord(attendanceRecord, userName);
+        AttendanceRecord attendanceRecord =serializer.deserialize(record);
+        String fileName = "Attendance-"+attendanceRecord.getSessionDate();
+        AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
+        String filePath = attendanceRecordsPath+userName+"/";
+        exporter.exportToFile(attendanceRecord, fileName,filePath);
     }
 
     public List<String> getRecordDates(String userName) throws IOException {
-        return inMemoryAttendanceRepository.getRecordDates(userName);
+        String path = attendanceRecordsPath+userName+"/";
+        try(Stream<Path>  stream = Files.list(Paths.get(path))){
+            int attendance_length = "attendance".length();
+            int date_length = "YYYY-MM-DD".length();
+            int start = attendance_length+1;
+            int end = start+date_length;
+            List<String> dates = stream.map(Path::getFileName).map(Path::toString).map(filename->filename.substring(start,end)).collect(Collectors.toList()); 
+            return dates;
+        }catch(NoSuchFileException e ){
+            return Collections.emptyList();
+        }
     }
 
-    public String getRecord(String userName, String sessionDate) throws IOException {
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
-        return serializer.serialize(record);
+    public String getRecord(String userName, String sessionDate) throws IOException{
+        String filePath = attendanceRecordsPath+userName+"/"+"Attendance-"+sessionDate+".json";
+        return new String(Files.readAllBytes(Paths.get(filePath)));
     }
 
     /**
-     * find if the student is the record by searching by lagal name
-     * 
+     *  find if the student is the record by searching by lagal name
      * @param record
      * @param studentName
      * @return
@@ -94,10 +83,8 @@ public class AttendanceService {
 
   
     /**
-     * get student record entry by searching the username and session date and
-     * student name
+     * get student record entry by searching the username and session date and student name
      * for later modify the entry (attendance status)
-     * 
      * @param userName
      * @param sessionDate
      * @param studentName
@@ -111,7 +98,7 @@ public class AttendanceService {
             AttendanceStatus status = record.getEntries().get(foundStudent);
             return "Student Name: " + studentName + ", Attendance Status: " + status;
         }
-
+    
         return "No attendance record found for student: " + studentName;
     }
 
@@ -149,20 +136,18 @@ public class AttendanceService {
 
                 return "Successfully updated attendance status for " + studentName;
             } else {
-               
                 return "Student not found in the attendance record for " + sessionDate;
-                
             }
-
+    
         } catch (IOException e) {
             // Handle file reading/writing errors
-            logger.info("io error on modify entry", e);
             return "Failed to modify attendance record: " + e.getMessage();
-        } catch (JSONException e) {
-            logger.info("json error on modify entry", e);
+        }catch (JSONException e) {
             return "Invalid JSON format for attendance entry: " + e.getMessage();
            
         }
     }
-
+    
 }
+
+

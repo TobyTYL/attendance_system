@@ -37,6 +37,13 @@ subprojects{
         testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
         testImplementation 'org.mockito:mockito-core:3.6.28' // or higher
         testImplementation 'org.mockito:mockito-inline:3.6.28' // for static mocking
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+
+    // This is required for JUnit 5 tests to run in Gradle
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
 
     }
     clover{

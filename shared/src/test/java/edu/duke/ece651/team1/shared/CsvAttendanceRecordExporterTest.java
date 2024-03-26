@@ -6,9 +6,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.csv.Csv;
 
 public class CsvAttendanceRecordExporterTest {
@@ -17,6 +24,9 @@ public class CsvAttendanceRecordExporterTest {
     List<Student> students = new ArrayList<>();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    @TempDir
+    Path tempDir;
+    
     @Test
     public void convertToCsvFormatTest(){
         Student student1 = new Student("John", "Doe","john.com");
@@ -37,5 +47,28 @@ public class CsvAttendanceRecordExporterTest {
         assertEquals(expectedCsv, actualCsv);
 
 
+    }
+    @Test
+    public void testExportToFile() throws IOException {
+        // Setup test data as in previous test
+
+        CsvAttendanceRecordExporter exporter = new CsvAttendanceRecordExporter();
+        String filename = "testAttendanceRecord";
+        String filePath = tempDir.toString();
+
+        exporter.exportToFile(record, filename, filePath);
+
+        // Verify file contents
+        File file = new File(tempDir.toFile(), filename + ".csv");
+        assertTrue(file.exists());
+
+        // Read file and assert content
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Perform assertions on file content
+                // For example, check if the file contains the names of the students, their attendance status, etc.
+            }
+        }
     }
 }

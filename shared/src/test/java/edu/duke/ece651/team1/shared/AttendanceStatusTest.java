@@ -12,5 +12,6 @@ public class AttendanceStatusTest {
 
         // Test TARDY status
         assertEquals("Tardy", AttendanceStatus.TARDY.getStatus());
+        assertThrows(IllegalArgumentException.class, () -> AttendanceStatus.fromString("Unknown"));
     }
 }
