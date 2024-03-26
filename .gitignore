@@ -5,6 +5,8 @@
 build
 app/build
 app/bin
+server/logs
+
 
 # Ignore backup and lock files
 *~
