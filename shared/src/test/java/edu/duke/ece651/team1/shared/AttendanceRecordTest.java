@@ -59,4 +59,27 @@ public class AttendanceRecordTest {
     //     assertEquals(expected, record.displayAttendance());
         
     // }
+    @Test
+    public void testGetEntries() {
+        AttendanceRecord record = new AttendanceRecord(LocalDate.now());
+        Student student1 = new Student("123", "John Doe");
+        Student student2 = new Student("456", "Jane Doe");
+        
+        record.initializeAttendanceEntry(student1);
+        record.markPresent(student1);
+        record.initializeAttendanceEntry(student2);
+        record.markAbsent(student2);
+        
+        Map<Student, AttendanceStatus> entries = record.getEntries();
+        
+        // Verify that the entries map has the correct statuses
+        assertEquals(AttendanceStatus.PRESENT, entries.get(student1));
+        assertEquals(AttendanceStatus.ABSENT, entries.get(student2));
+        
+        // Verify that the map is unmodifiable
+        assertThrows(UnsupportedOperationException.class, () -> entries.put(new Student("789", "New Student"), AttendanceStatus.TARDY));
+        
+        // Verify the map size to ensure no unintended entries are present
+        assertEquals(2, entries.size());
+    }
 }

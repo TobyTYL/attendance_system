@@ -74,12 +74,12 @@ public void saveDocumentToFile(Document doc, String filename, String filePath) t
 
     @Override
     public void exportToFile(AttendanceRecord record, String filename, String filePath) throws IOException {
-        try {
+      try {
         Document doc = convertToXmlFormat(record);
         saveDocumentToFile(doc, filename, filePath);
-    } catch (ParserConfigurationException | TransformerException e) {
+      } catch (ParserConfigurationException | TransformerException e) {
         throw new IOException("Error exporting attendance record to XML because: " + e.getMessage(), e);
+      }
     }
-    }
-
+  
 }
