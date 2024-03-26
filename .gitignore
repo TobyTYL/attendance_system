@@ -5,7 +5,13 @@
 build
 app/build
 app/bin
+#ignore logs and email tokens
 server/logs
+server/tokens
+#ignore local data avoid inexists
+server/src/data
+client/src/data
+
 
 
 # Ignore backup and lock files

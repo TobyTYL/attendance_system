@@ -82,7 +82,7 @@ public class AttendanceController {
 
         try {
             String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(userName, sessionDate, attendanceEntryJson);
-            System.out.println("error happened in modifying record");
+            // System.out.println("error happened in modifying record");
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
         } catch (Exception e) {
             // This generic catch block handles all exceptions and returns an INTERNAL_SERVER_ERROR status

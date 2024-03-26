@@ -4,6 +4,9 @@ import edu.duke.ece651.team1.shared.JsonAttendanceSerializer;
 import edu.duke.ece651.team1.shared.Student;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.jasypt.encryption.StringEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
@@ -19,6 +22,9 @@ import com.google.gson.Gson;
 public class InMemoryRosterRepository {
     @Value("${studentInfo.path}")
     private String studentInfoPath;
+    @Autowired
+    private StringEncryptor encryptor;
+
 
     public List<Student> getStudents(String username) throws IOException {
         List<Student> students = new ArrayList<>();
@@ -26,6 +32,8 @@ public class InMemoryRosterRepository {
         File file = new File(filePath);
         if (file.exists()) {
             students.addAll(readStudentsFromFile(file));
+        }else{
+            throw new FileNotFoundException("no roster file in record");
         }
         return students;
     }
@@ -33,15 +41,16 @@ public class InMemoryRosterRepository {
     private  List<Student> readStudentsFromFile(File file) throws IOException {
         List<Student> students = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            StringBuilder jsonContent = new StringBuilder();
+            StringBuilder encryptedJsonContent = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                jsonContent.append(line);
+                encryptedJsonContent.append(line);
             }
             Gson gson = new Gson();
             Type studentListType = new TypeToken<List<Student>>() {
             }.getType();
-            students.addAll(gson.fromJson(jsonContent.toString(), studentListType));
+            String decryptedJson = encryptor.decrypt(encryptedJsonContent.toString());
+            students.addAll(gson.fromJson(decryptedJson, studentListType));
         }
         return students;
     }
@@ -55,7 +64,9 @@ public class InMemoryRosterRepository {
         }
         try (FileWriter writer = new FileWriter(filePath)) {
             Gson gson = new Gson();
-            gson.toJson(students, writer);
+            String json = gson.toJson(students);
+            String encryptedJson = encryptor.encrypt(json); // 加密数据
+            writer.write(encryptedJson);
         }
     }
 

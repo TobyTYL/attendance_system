@@ -25,6 +25,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
@@ -75,16 +76,19 @@ public class AttendanceController {
                 + "/api/students/allStudents";
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
+        try {
         ResponseEntity<List<Student>> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 requestEntity,
                 responseType);
-       if(responseEntity.getStatusCode()==HttpStatus.NOT_FOUND){
-            throw new IllegalArgumentException("No roster now, please load one first");
-       }
-        List<Student> students = responseEntity.getBody();
-        return students;
+
+        return responseEntity.getBody();
+    } catch (HttpClientErrorException.NotFound ex) {
+        throw new IllegalArgumentException("No roster now, please load one first");
+    } catch (HttpServerErrorException ex) {
+        throw new RuntimeException("Server error occurred: " + ex.getMessage());
+    } 
     }
 
     private HttpHeaders getSessionTokenHeaders() {

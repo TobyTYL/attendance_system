@@ -1,15 +1,18 @@
 package edu.duke.ece651.team1.server.repository;
 
-import java.io.IOException;
+// import java.io.BufferedWriter;
+// import java.io.FileWriter;
+// import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+// import java.nio.file.NoSuchFileException;
+// import java.nio.file.Path;
+// import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -17,6 +20,10 @@ import edu.duke.ece651.team1.shared.AttendanceRecord;
 import edu.duke.ece651.team1.shared.AttendanceRecordExporter;
 import edu.duke.ece651.team1.shared.AttendanceRecordExporterFactory;
 import edu.duke.ece651.team1.shared.JsonAttendanceSerializer;
+import java.io.*;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Component;
@@ -31,12 +38,23 @@ import java.util.HashSet;
 public class InMemoryAttendanceRepository {
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
-
+    @Autowired
+    private StringEncryptor encryptor;
     public void saveAttendanceRecord(AttendanceRecord attendanceRecord, String userName) throws IOException {
         String fileName = "Attendance-" + attendanceRecord.getSessionDate();
         AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
-        String filePath = attendanceRecordsPath + userName + "/";
-        exporter.exportToFile(attendanceRecord, fileName, filePath);
+        String filePath = attendanceRecordsPath + userName + "/"+fileName+".json";
+        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
+        String content = serializer.serialize(attendanceRecord);
+        File file = new File(filePath);
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs(); //if parent directory not exist, make one
+        }
+        // write back encrpt info
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(encryptor.encrypt(content));
+        }
     }
 
     public List<String> getRecordDates(String userName) throws IOException {
@@ -58,7 +76,7 @@ public class InMemoryAttendanceRepository {
         String filePath = attendanceRecordsPath + userName + "/" + "Attendance-" + sessionDate + ".json";
         String recordString = new String(Files.readAllBytes(Paths.get(filePath)));
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        return serializer.deserialize(recordString);
+        return serializer.deserialize(encryptor.decrypt(recordString));
     }
 
     public List<AttendanceRecord> getRecords(String userName) throws IOException {
@@ -76,7 +94,7 @@ public class InMemoryAttendanceRepository {
                         }
                     })
                     .filter(content -> content != null)
-                    .map(content -> serializer.deserialize(content))
+                    .map(content -> serializer.deserialize(encryptor.decrypt(content)))
                     .collect(Collectors.toList());
             return records;
         }catch(NoSuchFileException e){

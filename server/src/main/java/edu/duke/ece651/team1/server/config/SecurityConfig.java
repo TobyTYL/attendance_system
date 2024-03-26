@@ -1,5 +1,7 @@
 package edu.duke.ece651.team1.server.config;
 
+import org.jasypt.encryption.StringEncryptor;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,9 +11,12 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Value("${jasypt.encryptor.password}")
+    private String encryptionKey;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -42,6 +47,13 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
    
+    // @Bean("jasyptStringEncryptor")
+    // public StringEncryptor stringEncryptor() {
+    //     StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+    //     encryptor.setPassword(encryptionKey); 
+    //     encryptor.setAlgorithm("PBEWithMD5AndDES"); 
+    //     return encryptor;
+    // }
 
 
 }
