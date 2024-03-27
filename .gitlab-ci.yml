@@ -7,7 +7,7 @@ before_script:
 
 
 stages:
-  - cleanup_job
+   - clean
    - build
    - test
    - coverage
@@ -16,6 +16,9 @@ stages:
   #  - test-deployment
 
 cleanup_job:
+  tags:
+     - ece651
+  stage: clean
   script:
     - echo "Performing cleanup"
     - docker system prune -af
