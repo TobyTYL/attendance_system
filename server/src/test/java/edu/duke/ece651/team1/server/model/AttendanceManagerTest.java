@@ -1,48 +1,77 @@
 package edu.duke.ece651.team1.server.model;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
-import edu.duke.ece651.team1.server.repository.InMemoryRosterRepository;
-import edu.duke.ece651.team1.shared.AttendanceRecord;
-import edu.duke.ece651.team1.shared.Student;
-
+import edu.duke.ece651.team1.shared.*;
 import java.io.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
 import java.util.HashSet;
-@SpringBootTest
+import java.util.List;
+import java.util.Set;
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class AttendanceManagerTest {
 
-    // @Autowired
-    @Autowired
-    InMemoryAttendanceRepository inMemoryAttendanceRepository;
-    @Autowired
-    InMemoryRosterRepository inMemoryRosterRepository;
-    
+    private AttendanceManager manager;
+    private Set<Student> roster;
+    private List<AttendanceRecord> records;
+
+    @BeforeEach
+    public void setUp() {
+        roster = new HashSet<>();
+        records = new ArrayList<>();
+        // Assume Student class has an appropriate constructor
+        Student student1 = new Student("huidan","rachel","huidan@duke.com");
+        Student student2 = new Student("yitiao", "yitiao@duke.com");
+        Student student3 = new Student("meng", "meng@duke.com");
+        roster.add(student1);
+        roster.add(student2);
+        AttendanceRecord record1 = new AttendanceRecord(LocalDate.of(2024, 03, 24));
+        record1.initializeFromRoaster(roster);
+        record1.initializeAttendanceEntry(student3);
+        record1.updateStudentStatus(student2, AttendanceStatus.PRESENT);
+        AttendanceRecord record2 = new AttendanceRecord(LocalDate.of(2024, 03, 27));
+        record2.initializeFromRoaster(roster);
+        record2.updateStudentStatus(student2, AttendanceStatus.TARDY);
+        record2.updateStudentStatus(student1, AttendanceStatus.PRESENT);
+
+        records.add(record1);
+        records.add(record2);
+        manager = new AttendanceManager("professor", roster, records);
+    }
 
     @Test
-    public void testGenerateReport() throws IOException {
-        String userName = "duke";
-        AttendanceManager manager= new AttendanceManager(userName, new HashSet<>(inMemoryRosterRepository.getStudents(userName)), inMemoryAttendanceRepository.getRecords(userName));
-        Student yitiao = new Student("yitiao","huidan_tan18@163.com");
-        String expected_yitiao = "Attendance Report for yitiao:\n"+
-                            "2024-03-18: Absent\n"+
-                            "2024-03-21: Absent\n"+
-                            "2024-03-24: Present\n"+
-                            "Total Attendance: 1/3 (33.33% attendance rate)";
-        String expected_zhecheng = "Attendance Report for zhecheng:\n"+
-        "2024-03-18: Absent\n"+
-        "2024-03-21: Present\n"+
+    public void testGenerateReport()  {
+
+        Student student1 = new Student("huidan","rachel","huidan@duke.com");
+        Student student2 = new Student("yitiao", "yitiao@duke.com");
+        String report = manager.generateReport(student1);
+        String expected_student1 = "Attendance Report for rachel:\n"+
+        "2024-03-24: Absent\n"+
+        "2024-03-27: Present\n"+
+        "Total Attendance: 1/2 (50.00% attendance rate)";
+        assertEquals(expected_student1,report);
+        String expected_student2 = "Attendance Report for yitiao:\n"+
         "2024-03-24: Present\n"+
-        "Total Attendance: 2/3 (66.67% attendance rate)";
-        Student zhecheng = new Student("zhecheng","huidan_tan18@163.com");
-        assertEquals(expected_yitiao, manager.generateReport(yitiao));
-        assertEquals(expected_zhecheng, manager.generateReport(zhecheng));
-     
+        "2024-03-27: Tardy\n"+
+        "Total Attendance: 2/2 (100.00% attendance rate)";
+        String report2 = manager.generateReport(student2);
+        assertEquals(expected_student2, report2);
         
     }
+
+    @Test
+    public void testCalculateAttendance() {
+        Map<String, AttendanceStatus> testRecords = new TreeMap<>();
+        testRecords.put("2024-03-01", AttendanceStatus.PRESENT);
+        testRecords.put("2022-03-02", AttendanceStatus.TARDY);
+        testRecords.put("2022-03-04", AttendanceStatus.PRESENT);
+        testRecords.put("2022-03-03", AttendanceStatus.ABSENT);
+        double[] result = manager.calculateAttendance(testRecords);
+        assertEquals(75.0, result[0]);
+        assertEquals(3, result[1]);
+    }
+    
 }

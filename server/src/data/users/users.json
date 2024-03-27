@@ -1,1 +1,1 @@
-{}
+{"hitest":{"password":"$2a$10$rl1oVOG/cYdjWWwcc0DJXeFv8TctQFNFiFwbO3znCD/YA1uyES2YS","username":"hitest","authorities":[{"authority":"ROLE_USER"}],"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true}}

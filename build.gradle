@@ -47,8 +47,12 @@ subprojects{
 
     }
     clover{
+        report{
+            html = true
+        }
         compiler{
             additionalArgs = "-g:lines,source,vars"
+            debug = true
         }
     }
     test{

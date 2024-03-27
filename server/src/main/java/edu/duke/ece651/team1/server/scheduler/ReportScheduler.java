@@ -23,11 +23,18 @@ import edu.duke.ece651.team1.server.repository.InMemoryRosterRepository;
 import edu.duke.ece651.team1.server.repository.InMemoryUserRepository;
 import java.util.Set;
 import edu.duke.ece651.team1.shared.*;
-
+/**
+ * Schedules and sends weekly attendance reports for students using {@link NotificationService}.
+ * Initializes with adding {@link EmailNotification} to the notification system and schedules
+ * the report distribution every Saturday at 2:00 AM. It generates reports based on attendance
+ * records and student rosters, sending personalized emails to each student.
+ *
+ */
 @Component
 public class ReportScheduler {
-    // @Autowired
-    // private JavaMailSender emailSender;
+    /**
+    * Service for managing notifications. Initialized with a default instance.
+    */
     private NotificationService notification = new NotificationService();
     @Autowired
     private InMemoryUserRepository userRepository;
@@ -36,7 +43,11 @@ public class ReportScheduler {
     @Autowired
     private InMemoryRosterRepository rosterRepository;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
-
+    /**
+    * Initializes the {@link NotificationService} by adding an {@link EmailNotification} observer.
+    * Logs the outcome of the operation, reporting success or the reason for failure. This method is
+    * automatically called after bean instantiation
+    */
     @PostConstruct
     public void initializeNotification() {
         try {
@@ -47,11 +58,19 @@ public class ReportScheduler {
         }
 
     }
-
+    /**
+    * Generates and sends weekly attendance reports for all students. Scheduled to run
+    * automatically every Saturday at 2:00 AM. It retrieves user names from the
+    * {@link InMemoryUserRepository}, then for each user, fetches the student roster and
+    * attendance records. If attendance records exist, it generates a report for each student
+    * using {@link AttendanceManager} and sends it via {@link NotificationService}.
+     *
+    * If no attendance records are found for a user, that user is skipped. Errors encountered
+    * during report generation or sending are logged.
+    */
     @Scheduled(cron = "0 0 2 * * SAT")
     public void sendWeeklyReport() {
         logger.info("begain scheduler");
-        notification.notifyObserver("null", "huidan_tan18@163.com");
         List<String> userNames = userRepository.getUserNames();
         for (String userName : userNames) {
             try {
@@ -65,6 +84,7 @@ public class ReportScheduler {
                 for (Student student : roster) {
                     String report = manager.generateReport(student);
                     notification.notifyObserver(report, student.getEmail());
+                    
                 }
                 logger.info("successfully send email to all students for user: " + userName);
 
@@ -73,6 +93,8 @@ public class ReportScheduler {
 
             }
         }
+      
+        
     }
 
 }

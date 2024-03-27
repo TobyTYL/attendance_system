@@ -33,6 +33,17 @@ import java.util.List;
 import java.util.Properties;
 import java.io.FileNotFoundException;
 
+/**
+ * Implements {@link Notification} to send email notifications via the Gmail API.
+ * This class encapsulates the functionality required to authenticate with Google's OAuth 2.0,
+ * create email messages, and send them to specified recipients. It leverages the Gmail service
+ * to send emails.
+ *
+ *
+ * <p>It requires a credentials.json file obtained from Google Cloud Console configured for OAuth 2.0,
+ * placed in the resources directory, and a tokens directory to store the OAuth tokens.</p>
+ */
+
 public class EmailNotification implements Notification {
 
     private static final String APPLICATION_NAME = "Gmail API Java Quickstart";
@@ -41,7 +52,11 @@ public class EmailNotification implements Notification {
     private static final List<String> SCOPES = Arrays.asList(GmailScopes.GMAIL_SEND);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
     private static Gmail service;
-
+     /**
+     * Constructs a new {@code EmailNotification} instance, initializing the Gmail service
+     * for sending emails. If the Gmail service has not been previously initialized, it performs
+     * OAuth 2.0 authentication and sets up the service.
+     */
     public EmailNotification() {
         if (service == null) {
             try {
@@ -54,7 +69,22 @@ public class EmailNotification implements Notification {
             }
         }
     }
-
+    /**
+     * Alternative constructor that allows for dependency injection of a Gmail service instance,
+     * facilitating testing
+     *
+     * @param gmail an instance of {@link Gmail} to use for email operations.
+     */
+    public EmailNotification(Gmail gmail){
+        service = gmail;
+    }
+    /**
+     * Fetches the Google API OAuth2 credentials. T.
+     * 
+     * @param HTTP_TRANSPORT The network transport to use for OAuth2 flow.
+     * @return Credential object for authorized access to the Gmail API.
+     * @throws IOException If there's an error loading the credentials file
+     */
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         InputStream in = EmailNotification.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
@@ -71,18 +101,32 @@ public class EmailNotification implements Notification {
                                                                                              // available port
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
-
+     /**
+     * Sends an email notification to the specified recipient.
+     * 
+     * @param message   The message content of the email.
+     * @param recipient The email address of the recipient.
+     */
     @Override
     public void notify(String message, String recipient) {
         try {
-            MimeMessage emailContent = createEmail(recipient, "your-email@gmail.com", "AttendanceNotification",
-                    message); // Replace "your-email@gmail.com" with your actual "from" email
+            MimeMessage emailContent = createEmail(recipient, "attendancemanagementsever@gmail.com", "AttendanceNotification",
+                    message); 
             sendMessage(service, "me", emailContent);
         } catch (Exception e) {
             System.err.println("Unable to send message to " + recipient + " because: " + e.getMessage());
         }
     }
-
+     /**
+     * Creates a MIME email message.
+     * 
+     * @param toEmailAddress The recipient's email address.
+     * @param fromEmailAddress The sender's email address.
+     * @param subject The subject line of the email.
+     * @param bodyText The body text of the email.
+     * @return A MimeMessage object ready to be sent.
+     * @throws MessagingException If there's an error creating the email message.
+     */
     public static MimeMessage createEmail(String toEmailAddress,
             String fromEmailAddress,
             String subject,
@@ -100,7 +144,16 @@ public class EmailNotification implements Notification {
         email.setText(bodyText);
         return email;
     }
-
+    /**
+     * Sends the email message through the Gmail service.
+     * 
+     * @param service The Gmail service to use for sending the message.
+     * @param userId The user ID of the sender (usually "me" for the authenticated user).
+     * @param email The MimeMessage to be sent.
+     * @return The sent message as a Message object.
+     * @throws MessagingException If there's an error building the email message.
+     * @throws IOException If there's an error communicating with the Gmail API.
+     */
     public static Message sendMessage(Gmail service, String userId, MimeMessage email)
             throws MessagingException, IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
