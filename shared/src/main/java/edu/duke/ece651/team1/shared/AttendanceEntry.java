@@ -4,7 +4,9 @@ import java.time.*;
 public class AttendanceEntry {
     private LocalDate date;
     private AttendanceStatus status;
-
+    /**
+     * AttendanceEntry: date, status(AttendanceStatus)
+     */
     public AttendanceEntry(LocalDate date, AttendanceStatus status){
         this.date = date;
         this.status = status;

@@ -3,7 +3,10 @@ package edu.duke.ece651.team1.shared;
 import java.io.*;
 
 public class JsonAttendanceRecordExporter implements AttendanceRecordExporter {
-
+    /**
+     * Implements the AttendanceRecordExporter interface to provide JSON exporting functionality.
+     * This class serializes AttendanceRecord objects into JSON format and saves them to a specified file.
+     */
     @Override
     public void exportToFile(AttendanceRecord record, String filename, String filePath) throws IOException {
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();

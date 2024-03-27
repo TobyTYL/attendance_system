@@ -4,13 +4,17 @@ import sun.awt.image.ImageWatched;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-
+/**
+ * Represents a course with a unique identifier and a name.
+ * Additional properties and behavior can be added as needed.
+ */
 public class Course {
     private final long id;
     private String name;
   //private Professor headInstructor;
   //private Set<User> coInstructors = new LinkedHashSet<>();
 
+     // Constructor to set the course ID
     public Course(long id) {
         this.id = id;
     }
