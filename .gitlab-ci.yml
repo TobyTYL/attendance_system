@@ -7,11 +7,12 @@ before_script:
 
 
 stages:
+  - cleanup_job
    - build
    - test
    - coverage
    - deploy
-   - cleanup_job
+   
   #  - test-deployment
 
 cleanup_job:
