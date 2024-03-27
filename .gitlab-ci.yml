@@ -13,7 +13,11 @@ stages:
    - deploy
   #  - test-deployment
 
-   
+cleanup_job:
+  script:
+    - echo "Performing cleanup"
+    - docker system prune -af
+
 build:
   tags:
      - ece651
