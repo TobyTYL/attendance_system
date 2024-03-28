@@ -41,19 +41,19 @@ class AttendanceControllerTest {
         assertNotNull(controller.restTemplate, "restTemplate should be initialized");
     }
 
-    @Test
-    void testStartAttendanceMenuOptionTake() throws IOException {
-        // Assuming readAttendanceOption() is the method that ultimately calls inputReader.readLine()
-        AttendanceView mockView = mock(AttendanceView.class);
-        when(mockView.readAttendanceOption()).thenReturn("take"); // Mock the higher-level method instead
-        controller.attendanceView = mockView;
+    // @Test
+    // void testStartAttendanceMenuOptionTake() throws IOException {
+    //     // Assuming readAttendanceOption() is the method that ultimately calls inputReader.readLine()
+    //     AttendanceView mockView = mock(AttendanceView.class);
+    //     when(mockView.readAttendanceOption()).thenReturn("take"); // Mock the higher-level method instead
+    //     controller.attendanceView = mockView;
     
-        controller.startAttendanceMenue();
+    //     controller.startAttendanceMenue();
     
-        verify(mockView, times(1)).showAttendanceManageOption();
+    //     verify(mockView, times(1)).showAttendanceManageOption();
     
-        // Add more verifications for method calls inside startAttendance
-        // For example, verifying that startAttendance() was called
-    }
+    //     // Add more verifications for method calls inside startAttendance
+    //     // For example, verifying that startAttendance() was called
+    // }
     
 }

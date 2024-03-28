@@ -47,13 +47,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
    
-    // @Bean("jasyptStringEncryptor")
-    // public StringEncryptor stringEncryptor() {
-    //     StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-    //     encryptor.setPassword(encryptionKey); 
-    //     encryptor.setAlgorithm("PBEWithMD5AndDES"); 
-    //     return encryptor;
-    // }
+    
 
 
 }

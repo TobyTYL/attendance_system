@@ -24,7 +24,8 @@ import java.util.*;;
 public class InMemoryUserRepositoryTest {
     InMemoryUserRepository userRepository = new InMemoryUserRepository();
 
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();;
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    
 
     @Test
     public void testParseUserJson() {

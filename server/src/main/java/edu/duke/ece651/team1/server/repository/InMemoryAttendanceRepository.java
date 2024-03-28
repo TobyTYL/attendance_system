@@ -40,9 +40,10 @@ public class InMemoryAttendanceRepository {
     private String attendanceRecordsPath;
     @Autowired
     private StringEncryptor encryptor;
+    
     public void saveAttendanceRecord(AttendanceRecord attendanceRecord, String userName) throws IOException {
         String fileName = "Attendance-" + attendanceRecord.getSessionDate();
-        AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
+        // AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
         String filePath = attendanceRecordsPath + userName + "/"+fileName+".json";
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String content = serializer.serialize(attendanceRecord);

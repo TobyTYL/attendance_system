@@ -38,7 +38,7 @@ public class InMemoryRosterRepository {
         return students;
     }
 
-    private  List<Student> readStudentsFromFile(File file) throws IOException {
+    public  List<Student> readStudentsFromFile(File file) throws IOException {
         List<Student> students = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             StringBuilder encryptedJsonContent = new StringBuilder();

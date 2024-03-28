@@ -11,20 +11,20 @@ public class CSVHandler {
     public static final String COMMA_PLACEHOLDER = "test"; // may use this in the future to handle commas in strings
     private BufferedReader reader;
 
-    public void setWriter(BufferedWriter writer) {
-        this.writer = writer;
-    }
+    // public void setWriter(BufferedWriter writer) {
+    //     this.writer = writer;
+    // }
 
-    public BufferedWriter getWriter() {
-        return writer;
-    }
+    // public BufferedWriter getWriter() {
+    //     return writer;
+    // }
 
-    private BufferedWriter writer;
+    // private BufferedWriter writer;
 
 
-    public void setRelation(Relation relation) {
-        this.relation = relation;
-    }
+    // public void setRelation(Relation relation) {
+    //     this.relation = relation;
+    // }
 
     private Relation relation;
 
@@ -86,33 +86,6 @@ public class CSVHandler {
         return res;
     }
 
-    public static void writeToCSVwithHeader(Writer writer, Relation r, Iterable<Object> columnNamesIterable) throws IOException {
-        CSVHandler handler = initFromWriter(writer);
-        handler.setRelation(r);
-        if (columnNamesIterable != null) {
-            Tuple columnNames = Tuple.of(columnNamesIterable);
-            Tuples.checkColumnNames(columnNames);
-            String header = columnNames.toString(", ");
-            handler.getWriter().write(header + System.lineSeparator());
-        }
-        handler.writeAll();
-    }
-
-    public static void writeToCSVwithoutHeader(Writer writer, Relation r) throws IOException {
-        CSVHandler handler = initFromWriter(writer);
-        handler.setRelation(r);
-        String header = handler.relation.getColumnNames().toString(", ");
-        handler.getWriter().write(header + System.lineSeparator());
-        handler.writeAll();
-    }
-
-    public void writeAll() throws IOException {
-        for (Tuple item: relation) {
-            writer.write(item.toString(", ") + System.lineSeparator());
-        }
-        writer.flush();
-//        writer.close();
-    }
 
     private void readAll() throws IOException {
         String line;
@@ -123,7 +96,7 @@ public class CSVHandler {
         }
     }
 
-    private static CSVHandler initFromReader(Reader reader) {
+    public static CSVHandler initFromReader(Reader reader) {
         if (reader == null) throw new NullPointerException("null reader!");
         BufferedReader bufferedReader = reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
         CSVHandler handler = new CSVHandler();
@@ -131,12 +104,12 @@ public class CSVHandler {
         return handler;
     }
 
-    public static CSVHandler initFromWriter(Writer writer) {
-        if (writer == null) throw new NullPointerException("null writer!");
-        BufferedWriter bufferedWriter = writer instanceof BufferedWriter ? (BufferedWriter) writer : new BufferedWriter(writer);
-        CSVHandler handler = new CSVHandler();
-        handler.setWriter(bufferedWriter);
-        return handler;
-    }
+    // public static CSVHandler initFromWriter(Writer writer) {
+    //     if (writer == null) throw new NullPointerException("null writer!");
+    //     BufferedWriter bufferedWriter = writer instanceof BufferedWriter ? (BufferedWriter) writer : new BufferedWriter(writer);
+    //     CSVHandler handler = new CSVHandler();
+    //     handler.setWriter(bufferedWriter);
+    //     return handler;
+    // }
 
 }

@@ -83,7 +83,7 @@ public class AttendanceService {
      * @param studentName
      * @return
      */
-    private Student findStudentByLegalName(AttendanceRecord record, String studentName) {
+    public Student findStudentByLegalName(AttendanceRecord record, String studentName) {
         for (Student student : record.getEntries().keySet()) {
             if (student.getLegalName().equals(studentName)) {
                 return student;
