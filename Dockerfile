@@ -5,17 +5,7 @@ MAINTAINER Drew Hilton "adhilton@ee.duke.edu"
 USER root
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN -d \
-    -e LOW_FREE_SPACE=10G \
-    -e EXPECTED_FREE_SPACE=20G \
-    -e LOW_FREE_FILES_COUNT=1048576 \
-    -e EXPECTED_FREE_FILES_COUNT=2097152 \
-    -e DEFAULT_TTL=10m \
-    -e USE_DF=1 \
-    --restart always \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    --name=gitlab-runner-docker-cleanup \
-    quay.io/gitlab/gitlab-runner-docker-cleanup
+
 
 RUN apt-get update && apt-get -yq dist-upgrade \
   && apt-get install -yq --no-install-recommends \
