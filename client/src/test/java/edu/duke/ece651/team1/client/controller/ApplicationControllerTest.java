@@ -35,31 +35,20 @@ public class ApplicationControllerTest {
 
     @Test
     public void testStartApplicationWhenAuthenticatedThenMainMenuStarted() {
-        // Arrange
         when(loginSignupController.authenticateOrRegister()).thenReturn(true);
-
-        // Act
         applicationController.startApplication();
-
-        // Assert
         verify(loginSignupController, times(1)).authenticateOrRegister();
         verify(mainMenuController, times(1)).startMainMenu();
     }
 
     @Test
     public void testStartApplicationWhenNotAuthenticatedThenAuthenticated() {
-        // Arrange
         when(loginSignupController.authenticateOrRegister())
                 .thenReturn(false)
                 .thenReturn(true);
 
-        // Act
         applicationController.startApplication();
-
-        // Assert
         verify(loginSignupController, times(2)).authenticateOrRegister();
         verify(mainMenuController, times(1)).startMainMenu();
     }
-
-
 }
