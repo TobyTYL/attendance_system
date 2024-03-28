@@ -35,7 +35,7 @@ public class AttendanceView {
         out.println("Please enter the attendance status for each student listed below:");
     }
     public void showMarkSuccessMessage(String student, String status){
-        out.println("You sucessfully marked " + student + " to "+status);
+        out.println("You successfully marked " + student + " to "+status);
     }
 
     public void showAttenceFinishMessage(AttendanceRecord records){
@@ -49,7 +49,7 @@ public class AttendanceView {
      * @param status
      */
     public void showModifySuccessMessage(String student, String status){
-        out.println("You sucessfully marked " + student + " to "+status);
+        out.println("You successfully marked " + student + " to "+status);
     }
     public String promptForStudentAttendance(String studentName) throws  IOException{
         out.println("Student Name: " + studentName);
@@ -273,6 +273,6 @@ public class AttendanceView {
         out.println("You cannot take attendance Now, please back to Student Management Menue");
         out.println("Load a student Roster first");
     }
-
+    
     
 }

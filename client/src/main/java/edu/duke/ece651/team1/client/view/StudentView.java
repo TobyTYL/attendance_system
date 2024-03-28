@@ -43,7 +43,7 @@ public class StudentView {
 
 
     public void showSuccessAddDisplayNameMessage(String student, String status) {
-        out.println("You successfully added " + student + "display name to this class " + status);
+        out.println("You successfully added " + student + " display name to this class " + status);
     }
 
     public void showSuccessRemoveMessage(String student) {
