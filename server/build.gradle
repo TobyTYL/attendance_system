@@ -9,9 +9,42 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+    id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
 
-application {
-    // Define the main class for the application.
-    mainClassName = 'edu.duke.ece651.team1.server.App'
+group = 'edu.duke.ece651.team1'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	
+	
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.2'
+    implementation 'com.google.api-client:google-api-client:2.0.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.34.1'
+    implementation 'com.google.apis:google-api-services-gmail:v1-rev20220404-2.0.0'
+    implementation 'org.json:json:20210307'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
 }

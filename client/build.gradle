@@ -9,12 +9,38 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+    id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
+
+group = 'edu.duke.ece651.team1'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 application {
     // Define the main class for the application.
     mainClassName = 'edu.duke.ece651.team1.client.App'
 }
+repositories {
+    mavenCentral()
+}
 
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Boot Web Starter 包含了 RestTemplate
+    implementation 'org.json:json:20210307'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // Add Mockito for mocking in tests
+    testImplementation 'org.mockito:mockito-core:3.+' // Use the latest version 3.x.x
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+
+}
+
+run{
+    standardInput = System.in
+}
 
 

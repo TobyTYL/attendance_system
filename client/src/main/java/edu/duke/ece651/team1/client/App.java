@@ -3,18 +3,118 @@
  */
 package edu.duke.ece651.team1.client;
 
+import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.IOError;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.lang.ModuleLayer.Controller;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.IOException;
 import edu.duke.ece651.team1.shared.MyName;
+import edu.duke.ece651.team1.shared.Student;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+import edu.duke.ece651.team1.client.controller.*;
+// @SpringBootApplication
+import edu.duke.ece651.team1.client.model.UserSession;
+import java.net.InetAddress;
 
 
 public class App {
-  public String getMessage() {
-    return "Hello from the client for "+ MyName.getName();
-  }
-  public static void main(String[] args) {
-    App a = new App();
-    System.out.println(a.getMessage());
-    for (int i = 0; i < args.length; i++) {
-      System.out.println("args["+i+"]="+ args[i]);
-    }
+  // final private ApplicationController controller;
+  // final private AttendanceClient attendanceClient;
+  // final private Iterable<Student> students;
+
+  // public App(AttendanceClient attendanceClient) {
+  //   this.attendanceClient = attendanceClient;
+  //   // this.students = students;
+  // }
+
+  
+
+  // public String getMessage() {
+  //   return "Hello from the client for " + MyName.getName();
+  // }
+
+  // public int getUserOption(String prompt, PrintStream out, BufferedReader inputReader) throws IOException {
+  //   out.println(prompt);
+  //   String s = inputReader.readLine();
+  //   if (s == null) {
+  //     throw new EOFException("End of input reached");
+  //   }
+  //   int ans = Integer.parseInt(s);
+  //   if (ans <= 0 || ans > 7) {
+  //     throw new IllegalArgumentException("That action is invalid: it does not have the correct format.");
+  //   }
+  //   return ans;
+  // }
+
+  // public void start(PrintStream out, BufferedReader inputReader) throws IOException {
+  //   out.println("Welcome to the Attendance Management System (AMS)");
+
+  //   while (true) {
+  //     out.println("Please select an option to begin:");
+  //     out.println("1. Load student roster from a CSV file");
+  //     out.println("2. Take attendance for today's class");
+  //     out.println("3. Modify a student's attendance record");
+  //     out.println("4. Update a student's display name");
+  //     out.println("5. Configure notification settings");
+  //     out.println("6. Send weekly attendance report to students");
+  //     out.println("7. Exit");
+  //     try{
+  //       int choice = getUserOption("Enter your choice: ", out, inputReader);
+
+  //     switch (choice) {
+  //       case 1:
+  //         // loadStudentRoster();
+  //         break;
+  //       case 2:
+  //         AttendanceClient attendanceClient = new AttendanceClient(inputReader, out);
+  //         attendanceClient.startAttendance();
+  //         break;
+  //       case 3:
+  //         // modifyAttendanceRecord();
+  //         break;
+  //       case 4:
+  //         // updateDisplayName();
+  //         break;
+  //       case 5:
+  //         // configureNotificationSettings();
+  //         break;
+  //       case 6:
+  //         // sendWeeklyAttendanceReport();
+  //         // break;
+  //       case 7:
+  //         // System.out.println("Exiting...");
+  //         return;
+       
+  //     }
+  //     }catch(IllegalArgumentException e){
+  //       out.println(e.getMessage());
+  //     }
+      
+  //   }
+  // }
+
+  
+  // public App(ApplicationController controller) {
+  //   this.controller = controller;
+  // }
+
+  public static void main(String[] args) throws IOException{
+    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+    ApplicationController controller = new ApplicationController(inputReader, System.out);
+    InetAddress inetAddress = InetAddress.getLocalHost();
+    UserSession.getInstance().setHost(inetAddress.getHostName());
+    UserSession.getInstance().setPort("8080");
+    controller.startApplication();
   }
 }

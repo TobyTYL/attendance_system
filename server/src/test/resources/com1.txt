@@ -1,0 +1,5 @@
+Attendance Report for yitiao:
+    2024-03-18: Absent
+    2024-03-21: Absent
+    2024-03-24: Present
+    Total Attendance: 1.0/3 (33.33% attendance rate)

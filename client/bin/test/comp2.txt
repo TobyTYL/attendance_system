@@ -1,0 +1,16 @@
+Welcome to take Attendance for session: 2024-03-16
+    Student Name: rachel
+    Press 'P' to mark Present, 'A' to mark Absent:
+    You sucessfully marked rachel to Absent
+    Student Name: zhecheng
+    Press 'P' to mark Present, 'A' to mark Absent:
+    Please try again That action is invalid: it does not have the correct format.
+    Press 'P' to mark Present, 'A' to mark Absent:
+    You sucessfully marked zhecheng to Present
+    Attendance marking completed.
+    Attendance records List blow:
+    Attendance Record for 2024-03-16
+    ----------------------------
+    rachel: Absent
+    zhecheng: Present
+    ----------------------------

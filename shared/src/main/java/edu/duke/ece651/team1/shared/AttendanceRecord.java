@@ -1,0 +1,124 @@
+package edu.duke.ece651.team1.shared;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.collect.Iterables;
+/**
+ * Represents an attendance record for a single session on a specific date.
+ * Allows initialization, updating, and querying of attendance status for students.
+ */
+public class AttendanceRecord {
+    private final LocalDate sessionDate;
+    private final HashMap<Student, AttendanceStatus> entries;
+   
+   /**
+    * for each session, record the session date and the student and the corresponding status.
+    * @param sessionDate
+    */
+    public AttendanceRecord(LocalDate sessionDate) {
+         this.sessionDate = sessionDate;
+        this.entries = new HashMap<>();
+    }
+    /**
+     * default constructor
+     */
+    public AttendanceRecord(){
+        this(LocalDate.now());
+    }
+    
+    /**
+     * Initializes an attendance entry for a student as ABSENT by default.
+     * @param student The student to initialize in the attendance record.
+     */
+    public void initializeAttendanceEntry(Student student){
+        // checkStudentRepetition(student);
+        entries.put(student, AttendanceStatus.ABSENT);
+        
+    }
+    /**
+     * Initializes attendance entries for multiple students from a roster.
+     * @param students An Iterable collection of students.
+     */
+    public void initializeFromRoaster(Iterable<Student> students){
+        for(Student s:students){
+            initializeAttendanceEntry(s);
+        }
+    }
+    /**
+     * Checks if a student is in the attendance record.
+     * @param student The student to check.
+     * @throws IllegalArgumentException if the student does not exist in the attendance record.
+     */
+    public void checkStudentInRecord(Student student){
+        if(entries.get(student)==null){
+            throw new IllegalArgumentException("student does not exist in the attendance record");
+        }
+    }
+    /**
+     * Retrieves the attendance status of a specific student.
+     * @param student The student whose attendance status is to be queried.
+     * @return The attendance status of the student.
+     */
+    public AttendanceStatus getAttendanceEntry(Student student){
+        checkStudentInRecord(student);
+        return entries.get(student);
+    }
+     // Methods to mark a student's attendance status as PRESENT, TARDY, or ABSENT.
+    public void markPresent(Student student){
+        checkStudentInRecord(student);
+        entries.put(student, AttendanceStatus.PRESENT);
+    }
+    public void markTardy(Student student){
+        checkStudentInRecord(student);
+        entries.put(student, AttendanceStatus.TARDY);
+    }
+    public void markAbsent(Student student){
+        checkStudentInRecord(student);
+        entries.put(student, AttendanceStatus.ABSENT);
+    }
+    /**
+     * Updates the attendance status of a specific student.
+     * @param student The student whose status is to be updated.
+     * @param status The new attendance status for the student.
+     */
+    public void updateStudentStatus(Student student,AttendanceStatus status){
+        checkStudentInRecord(student);
+        entries.put(student, status);
+    }
+    /**
+     * Returns a sorted iterable of the attendance entries, sorted by student display names.
+     * @return A sorted Iterable of Map entries representing students and their attendance statuses.
+     */
+    public Iterable<Map.Entry<Student, AttendanceStatus>> getSortedEntries(){
+        List<Map.Entry<Student, AttendanceStatus>> entryList = new ArrayList<>(entries.entrySet());
+        Collections.sort(entryList, (entry1, entry2) -> entry1.getKey().getDisPlayName().compareTo(entry2.getKey().getDisPlayName()));
+        return entryList;
+    }
+    // public String displayAttendance() {
+    //     StringBuilder ans = new StringBuilder();
+    //     String newLine = "\n";
+    //     Iterable<Map.Entry<Student, AttendanceStatus>> entryList = getSortedEntries();
+    //     ans.append("Attendance Record for " +sessionDate).append(newLine);
+    //     ans.append("----------------------------").append(newLine);
+    //     for (Map.Entry<Student, AttendanceStatus> entry :entryList) {
+    //         Student student = entry.getKey();
+    //         AttendanceStatus status = entry.getValue();
+    //         ans.append(student.getDisPlayName() + ": " + status.getStatus()).append(newLine);
+    //     }
+    //     ans.append("----------------------------");
+    //     return ans.toString();
+    // }
+
+    public LocalDate getSessionDate() {
+        return sessionDate;
+    }
+
+    public Map<Student, AttendanceStatus> getEntries() {
+        return Collections.unmodifiableMap(entries);
+    }
+    
+}

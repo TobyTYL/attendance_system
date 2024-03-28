@@ -5,13 +5,27 @@ package edu.duke.ece651.team1.server;
 
 import edu.duke.ece651.team1.shared.MyName;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+@SpringBootApplication
+@RestController
+@EnableScheduling
 public class App {
+    @GetMapping("/")
+	public String index() {
+		return "Greetings from Spring Boot!";
+	}
   public String getMessage() {
     return "Hello from the server for "+ MyName.getName();
   }
-  public static void main(String[] args) {
-    App a = new App();
-    System.out.println(a.getMessage());
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(App.class, args);
+	}
+
 }
