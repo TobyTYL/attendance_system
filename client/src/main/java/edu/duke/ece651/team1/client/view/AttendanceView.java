@@ -15,16 +15,26 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * The AttendanceView class manages the presentation of attendance-related information and interactions with the user.
+ * It provides methods to display menus, prompts, messages, and handle user inputs related to attendance management.
+ */
 public class AttendanceView {
     BufferedReader inputReader;
     private final PrintStream out;
-
+    /**
+     * Constructs an AttendanceView object with the specified input reader and output stream.
+     * @param inputReader The BufferedReader to read user input from.
+     * @param out The PrintStream to print output to.
+     */
     public AttendanceView(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
     }
-
+    /**
+     * Displays the menu for taking attendance for a specific session date.
+     * @param sessionDate The date of the session for which attendance is being taken.
+     */
     public void showTakeAttendanceMenu(String sessionDate) {
         out.printf("=============== Take Attendance for session: %s ===============%n", sessionDate);
         out.println("For each student, please mark their attendance status as follows:");
@@ -34,10 +44,18 @@ public class AttendanceView {
         out.println("==================================================================");
         out.println("Please enter the attendance status for each student listed below:");
     }
+    /**
+     * Displays a success message after marking attendance for a student.
+     * @param student The name of the student.
+     * @param status The attendance status (Present, Absent, or Tardy).
+     */
     public void showMarkSuccessMessage(String student, String status){
         out.println("You successfully marked " + student + " to "+status);
     }
-
+    /**
+     * Displays a message indicating completion of attendance marking along with the final attendance records.
+     * @param records The AttendanceRecord containing the final attendance records.
+     */
     public void showAttenceFinishMessage(AttendanceRecord records){
         out.println("Attendance marking completed.");
         out.println("Attendance records List blow:");
@@ -51,6 +69,12 @@ public class AttendanceView {
     public void showModifySuccessMessage(String student, String status){
         out.println("You successfully marked " + student + " to "+status);
     }
+     /**
+     * Prompts the user to input the attendance status for a specific student.
+     * @param studentName The name of the student.
+     * @return The attendance status entered by the user.
+     * @throws IOException If an I/O error occurs.
+     */
     public String promptForStudentAttendance(String studentName) throws  IOException{
         out.println("Student Name: " + studentName);
         out.println("Press 'P' to mark Present, 'A' to mark Absent:");
@@ -166,7 +190,10 @@ public class AttendanceView {
             }
         }
     }
-
+    /**
+     * Displays the final attendance record including the session date and attendance status for each student.
+     * @param record The AttendanceRecord containing the final attendance records.
+     */
     public void showFinalAttendanceRecord(AttendanceRecord record){
         Iterable<Map.Entry<Student, AttendanceStatus>> entryList = record.getSortedEntries();
         out.println("Attendance Record for " +record.getSessionDate());
@@ -178,7 +205,11 @@ public class AttendanceView {
         }
         out.println("=====================================");
     }
-
+    /**
+     * Reads the user's choice of attendance option from the menu.
+     * @return The selected attendance option ("take", "modify", "export", or "back").
+     * @throws IOException If an I/O error occurs.
+     */
     public String readAttendanceOption() throws IOException{
         int option = ViewUtils.getUserOption(inputReader, out, 4);
         if(option == 1){
@@ -191,7 +222,9 @@ public class AttendanceView {
             return "back";
         }
     }
-
+    /**
+     * Displays the menu options for managing attendance.
+     */
     public void showAttendanceManageOption(){
         out.println("Please select an option to begin:");
         out.println("1. Take attendance for today's class");
@@ -199,7 +232,9 @@ public class AttendanceView {
         out.println("3. Export attendance records");
         out.println("4. Back to Main Menu");
     }
-
+    /**
+     * Displays the options for exporting attendance records.
+     */
     public void showExportOption(){
         out.println("Please select an export format:");
         out.println("1. Export as JSON");
@@ -207,15 +242,23 @@ public class AttendanceView {
         out.println("3. Export as CSV");
         out.println("4. Back to attendance Record List");
     }
-
+    /**
+     * Displays a success message after exporting attendance records.
+     * @param fileName The name of the exported file.
+     */
     public void showExportSuccessMessage(String fileName){
         out.println("Export successful. Your file has been saved to client/src/data directory/"+fileName);
     }
-
+    /**
+     * Displays a message indicating that no attendance records are available.
+     */
     public void showEmptyDatesMessage(){
          out.println("No Attendance record available. Please try to take attendance first");
     }
-    
+    /**
+     * Displays a list of attendance dates to choose from.
+     * @param dates The list of attendance dates.
+     */
     public void showAttendanceDateList(List<String> dates){
         for(int i=0;i<dates.size();i++){
             int index = i+1;
@@ -223,7 +266,12 @@ public class AttendanceView {
         }
         
     }
-
+    /**
+     * Reads the user's choice of date for exporting attendance records.
+     * @param dates The list of attendance dates to choose from.
+     * @return The selected date for exporting attendance records, or "back" to return to the previous menu.
+     * @throws IOException If an I/O error occurs.
+     */
     public String readExportDateFromPrompt(List<String> dates) throws IOException{
         while (true) {
             try{
@@ -246,7 +294,11 @@ public class AttendanceView {
         }
         
     }
-
+    /**
+     * Reads the user's choice of export format.
+     * @return The selected export format ("json", "xml", "csv", or "back").
+     * @throws IOException If an I/O error occurs.
+     */
     public String readFormtFromPrompt() throws IOException{
         while (true) {
             try{
@@ -268,7 +320,9 @@ public class AttendanceView {
       
 
     }
-
+    /**
+     * Displays a message indicating that attendance cannot be taken without loading a student roster.
+     */
     public void showNoRosterMessage(){
         out.println("You cannot take attendance Now, please back to Student Management Menue");
         out.println("Load a student Roster first");

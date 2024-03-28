@@ -32,20 +32,48 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * The AttendanceController class manages the attendance functionality of the application.
+ * It handles operations such as taking attendance, modifying attendance records, and exporting attendance data.
+ * This controller interacts with the AttendanceView for user input and displays and utilizes a RestTemplate
+ * for HTTP requests to the backend service.
+ */
 public class AttendanceController {
     BufferedReader inputReader;
     final PrintStream out;
     AttendanceView attendanceView;
     RestTemplate restTemplate;
-
+    /**
+     * Constructor to initialize the AttendanceController with input and output streams.
+     * @param inputReader The BufferedReader to read user input.
+     * @param out The PrintStream to output data to the user.
+     */
     public AttendanceController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.attendanceView = new AttendanceView(inputReader, out);
         this.restTemplate = new RestTemplate();
     }
+    /**
+     * Sets a custom AttendanceView for this controller.
+     * @param attendanceView The AttendanceView to be set.
+     */
+    public void setAttendanceView(AttendanceView attendanceView) {
+        this.attendanceView = attendanceView;
+    }
 
+    /**
+     * Sets a custom RestTemplate for this controller.
+     * @param restTemplate The RestTemplate to be set.
+     */
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+    /**
+     * Displays the attendance management menu and handles user interaction for taking attendance,
+     * modifying attendance records, and exporting attendance data.
+     * @throws IOException If an I/O error occurs during user interaction.
+     */
     public void startAttendanceMenue() throws IOException {
         while (true) {
             try {
@@ -68,7 +96,11 @@ public class AttendanceController {
 
         }
     }
-    private Iterable<Student> getRoaster() {
+    /**
+     * Fetches the roster of students from the backend service.
+     * @return An iterable collection of Student objects.
+     */
+    protected Iterable<Student> getRoaster() {
         // RestTemplate restTemplate = new RestTemplate();
         ParameterizedTypeReference<List<Student>> responseType = new ParameterizedTypeReference<List<Student>>() {
         };
@@ -90,13 +122,19 @@ public class AttendanceController {
         throw new RuntimeException("Server error occurred: " + ex.getMessage());
     } 
     }
-
+    /**
+     * Helper method to construct the headers for HTTP requests, including session tokens.
+     * @return HttpHeaders with session token included.
+     */
     private HttpHeaders getSessionTokenHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie", UserSession.getInstance().getSessionToken());
         return headers;
     }
-
+    /**
+     * Fetches the list of dates for which attendance records are available.
+     * @return A list of dates as strings.
+     */
     private List<String> getRecordDates() {
         ParameterizedTypeReference<List<String>> responseType = new ParameterizedTypeReference<List<String>>() {
         };
@@ -114,7 +152,11 @@ public class AttendanceController {
         }
         return response.getBody();
     }
-
+    /**
+     * Fetches an attendance record for a specific session date.
+     * @param sessionDate The date of the session.
+     * @return An AttendanceRecord object.
+     */
     private AttendanceRecord getAttendanceRecord(String sessionDate) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record/" + sessionDate;
@@ -133,7 +175,10 @@ public class AttendanceController {
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         return serializer.deserialize(response.getBody());
     }
-
+    /**
+     * Sends an attendance record to the backend service for storage.
+     * @param record The AttendanceRecord to be sent.
+     */
     private void sendAttendanceRecord(AttendanceRecord record) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record";
@@ -147,7 +192,10 @@ public class AttendanceController {
             out.println(response.getBody());
         }
     }
-
+    /**
+     * Initiates the process of taking attendance for a session.
+     * @throws IOException If an I/O error occurs during user interaction.
+     */
     public void startAttendance() throws IOException {
         Iterable<Student> students;
         try{
@@ -185,7 +233,10 @@ public class AttendanceController {
         attendanceView.showAttenceFinishMessage(record);
 
     }
-
+    /**
+     * Initiates the process for modifying an existing attendance record.
+     * @throws IOException If an I/O error occurs during user interaction.
+     */
     public void startModify() throws IOException{
         List<String> dates = getRecordDates();
         if (dates.isEmpty()) {
@@ -241,7 +292,10 @@ public class AttendanceController {
         }
     }
 
-    
+     /**
+     * Initiates the process for exporting attendance records in various formats.
+     * @throws IOException If an I/O error occurs during user interaction.
+     */
     public void startExport() throws IOException {
         while (true) {
             List<String> dates = getRecordDates(); 

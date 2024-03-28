@@ -11,8 +11,19 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Set;
 import java.util.function.Predicate;
-
+/**
+ * The ViewUtils class provides utility methods for handling user input and interaction in various views.
+ * It includes methods for getting user options and inputs with validation.
+ */
 public class ViewUtils {
+    /**
+     * Gets the user's option within the specified range.
+     * @param inputReader The BufferedReader to read user input from.
+     * @param out The PrintStream to print output to.
+     * @param maxOption The maximum valid option number.
+     * @return The selected option number.
+     * @throws IOException If an I/O error occurs.
+     */
     public static int getUserOption(BufferedReader inputReader, PrintStream out, int maxOptio) throws  IOException{
         out.println("Enter your choice: ");
         String s = inputReader.readLine();
@@ -25,7 +36,16 @@ public class ViewUtils {
         }
         return ans;
     }
-
+     /**
+     * Gets user input with validation using the specified prompt and redo prompt.
+     * @param prompt The initial prompt message.
+     * @param redoPrompt The prompt message to display if input is invalid.
+     * @param inputReader The BufferedReader to read user input from.
+     * @param out The PrintStream to print output to.
+     * @param handle The predicate to validate user input.
+     * @return The valid user input.
+     * @throws IOException If an I/O error occurs.
+     */
     public static String getUserInput(
             String prompt,
             String redoPrompt,

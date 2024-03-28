@@ -28,21 +28,31 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
+/**
+ * The StudentController class handles all student-related operations within the application.
+ * It interfaces with the StudentView for presenting options and capturing input, and uses a RestTemplate to communicate with the server for data persistence.
+ */
 public class StudentController {
     // legal name, email, display name
     BufferedReader inputReader;
     final PrintStream out;
     StudentView studentView;
     RestTemplate restTemplate;
-
+    /**
+     * Constructs a StudentController with the specified input reader and output stream.
+     * @param inputReader A BufferedReader to read user input.
+     * @param out A PrintStream for outputting text to the console.
+     */
     public StudentController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.studentView = new StudentView(inputReader, out);
         this.restTemplate = new RestTemplate();
     }
-
+    /**
+     * Launches the student menu and processes user choices for various student management operations.
+     * @throws IOException If an input or output exception occurred.
+     */
     public void startStudentMenu() throws IOException {
         while (true) {
             try {
@@ -66,7 +76,10 @@ public class StudentController {
             }
         }
     }
-
+    /**
+     * Adds a new student based on user input. Checks for the existence of the student before adding.
+     * @throws IOException If an input or output exception occurred.
+     */
     private void addStudent() throws IOException {
         String studentName = studentView.readStudentName();
         String displayName = studentView.readStudentDisplayName();
@@ -92,7 +105,11 @@ public class StudentController {
         }
        
     }
-
+    /**
+     * Checks if a student already exists in the system.
+     * @param studentName The name of the student to check.
+     * @return True if the student exists, false otherwise.
+     */
     public boolean checkStudentExists(String studentName){
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
         + "/api/students/student/exists/"+studentName;
@@ -107,7 +124,10 @@ public class StudentController {
     }
 
   
-
+    /**
+     * Removes a student from the system based on user input.
+     * @throws IOException If an input or output exception occurred.
+     */
     private void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
         if(!checkStudentExists(studentName)){
@@ -130,7 +150,10 @@ public class StudentController {
         
 
     }
-
+    /**
+     * Edits the display name of an existing student.
+     * @throws IOException If an input or output exception occurred.
+     */
     private void editStudentDisplayName() throws IOException {
         String studentName = studentView.readStudentName();
         String newDisplayName = studentView.readStudentDisplayName();
@@ -152,7 +175,10 @@ public class StudentController {
             out.println("Error happen in server when try to edit display Name ");
         }
     }
-
+    /**
+     * Loads students from a CSV file and sends the loaded roster to the server.
+     * @throws IOException If an error occurs while reading the file or sending data.
+     */
     public void loadFromCSV() throws IOException {
 
         Iterable<Student> students;
@@ -174,13 +200,19 @@ public class StudentController {
         sendRoster(students);
 
     }
-
+    /**
+     * Utility method to obtain HTTP headers containing the session token.
+     * @return HttpHeaders with session token included.
+     */
     private HttpHeaders getSessionTokenHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie", UserSession.getInstance().getSessionToken());
         return headers;
     }
-
+    /**
+     * Sends the student roster to the server.
+     * @param students Iterable collection of Student objects to send.
+     */
     public void sendRoster(Iterable<Student> students) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/students/roster";
@@ -193,7 +225,10 @@ public class StudentController {
             requestEntity,
            String.class);
     }
-
+    /**
+     * Retrieves a list of all students from the server.
+     * @return A list of Student objects.
+     */
     private List<Student> getStudentsFromServer() {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/students/allStudents";
@@ -208,7 +243,12 @@ public class StudentController {
                 });
         return responseEntity.getBody();
     }
-
+    /**
+     * Reads student information from a CSV file and returns it as a list of Student objects.
+     * @param fileName The path to the CSV file.
+     * @return An iterable collection of Student objects read from the file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static Iterable<Student> readCSV(String fileName) throws IOException {
         java.nio.file.Path path = Paths.get(fileName);
         BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
@@ -306,7 +346,10 @@ public class StudentController {
 
         return res;
     }
-
+    /**
+     * Adds a new student with a display name to the system.
+     * @throws IOException If an input or output exception occurred.
+     */
     private void addStudentDisplayName() throws IOException {
         String studentName = studentView.readStudentName();
         String displayName = studentView.readStudentDisplayName();
