@@ -34,7 +34,9 @@ import java.util.Map;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import org.json.JSONObject;
-
+/**
+ * This class provides services related to attendance management.
+ */
 @Service
 public class AttendanceService {
     @Value("${attendanceRecords.path}")
@@ -43,11 +45,13 @@ public class AttendanceService {
     @Autowired
     private InMemoryAttendanceRepository inMemoryAttendanceRepository;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
-
-
     // public void setAttendanceRecordsPath(String attendanceRecordsPath) {
     //     this.attendanceRecordsPath = attendanceRecordsPath;
     // }
+
+    /**
+     * Initializes the notification service.
+     */
     @PostConstruct
     public void initializeNotification() {
         try {
@@ -56,20 +60,38 @@ public class AttendanceService {
         } catch (Exception e) {
             // logger.info("unable to add email notification because "+e.getMessage());
         }
-
     }
-    
 
+    /**
+     * Saves the attendance record submitted by a user.
+     *
+     * @param record   The attendance record JSON string.
+     * @param userName The username of the user submitting the record.
+     * @throws IOException If an I/O error occurs while saving the record.
+     */
     public void saveAttendanceRecord(String record, String userName) throws IOException {
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         AttendanceRecord attendanceRecord = serializer.deserialize(record);
         inMemoryAttendanceRepository.saveAttendanceRecord(attendanceRecord, userName);
     }
-
+    /**
+     * Retrieves the dates for which attendance records are available for a user.
+     *
+     * @param userName The username of the user.
+     * @return A list of dates for which attendance records are available.
+     * @throws IOException If an I/O error occurs while retrieving the dates.
+     */
     public List<String> getRecordDates(String userName) throws IOException {
         return inMemoryAttendanceRepository.getRecordDates(userName);
     }
-
+    /**
+     * Retrieves the attendance record for a user on a specific session date.
+     *
+     * @param userName    The username of the user.
+     * @param sessionDate The session date for which to retrieve the record.
+     * @return The attendance record JSON string.
+     * @throws IOException If an I/O error occurs while retrieving the record.
+     */
     public String getRecord(String userName, String sessionDate) throws IOException {
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
@@ -92,17 +114,14 @@ public class AttendanceService {
         return null;
     }
 
-  
     /**
-     * get student record entry by searching the username and session date and
-     * student name
-     * for later modify the entry (attendance status)
-     * 
-     * @param userName
-     * @param sessionDate
-     * @param studentName
-     * @return
-     * @throws IOException
+     * Retrieves the attendance record entry for a student.
+     *
+     * @param userName    The username of the user.
+     * @param sessionDate The session date.
+     * @param studentName The legal name of the student.
+     * @return The attendance record entry.
+     * @throws IOException If an I/O error occurs while retrieving the record.
      */
     public String getStudentRecordEntry(String userName, String sessionDate, String studentName) throws IOException {
         AttendanceRecord record = inMemoryAttendanceRepository.getRecord(userName, sessionDate);
@@ -114,7 +133,14 @@ public class AttendanceService {
 
         return "No attendance record found for student: " + studentName;
     }
-
+    /**
+     * This method generates an attendance notification message for a student.
+     *
+     * @param studentName      The name of the student.
+     * @param sessionDate      The session date for which the notification is generated.
+     * @param attendanceStatus The updated attendance status of the student.
+     * @return The attendance notification message.
+     */
     public String generateAttendanceNotification(String studentName,  String sessionDate,String attendanceStatus){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Dear ").append(studentName).append("\n")
@@ -122,15 +148,30 @@ public class AttendanceService {
                     .append(" has been updated  to ").append(attendanceStatus);
         return stringBuilder.toString();
     }
-
+    /**
+     * This method sends an attendance notification message to a student.
+     *
+     * @param studentName      The name of the student.
+     * @param studentEmail     The email address of the student.
+     * @param sessionDate      The session date for which the notification is sent.
+     * @param attendanceStatus The updated attendance status of the student.
+     */
     public void sendMessage(String studentName, String studentEmail, String sessionDate,String attendanceStatus){
         String message = generateAttendanceNotification(studentName, sessionDate, attendanceStatus);
         nService.notifyObserver(message, studentEmail);
     }
 
-    
+
 
     // string attendanceEntry {legal name:yitiao, Atttendance Status: Present}
+    /**
+     * This method modifies a student's attendance entry and sends updates.
+     *
+     * @param userName             The username of the user modifying the attendance.
+     * @param sessionDate          The session date for which the attendance is modified.
+     * @param attendanceEntryJson  The JSON string containing the attendance entry.
+     * @return A message indicating the success or failure of the operation.
+     */
     public String modifyStudentEntryAndSendUpdates(String userName, String sessionDate, String attendanceEntryJson) {
       
         try {
@@ -153,7 +194,6 @@ public class AttendanceService {
                 return "Student not found in the attendance record for " + sessionDate;
                 
             }
-
         } catch (IOException e) {
             // Handle file reading/writing errors
             logger.info("io error on modify entry", e);
@@ -161,8 +201,6 @@ public class AttendanceService {
         } catch (JSONException e) {
             logger.info("json error on modify entry", e);
             return "Invalid JSON format for attendance entry: " + e.getMessage();
-           
         }
     }
-
 }
