@@ -14,13 +14,20 @@ import java.util.Collections;
 import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import java.util.List;
-
+/**
+ * The AttendanceController class handles HTTP requests related to attendance records.
+ */
 @RestController
 @RequestMapping("/api/attendance")
 public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
-
+    /**
+     * Handles POST requests to submit an attendance record.
+     *
+     * @param record The attendance record in JSON format.
+     * @return ResponseEntity indicating success or failure of the operation.
+     */
     @PostMapping("/record")
     public ResponseEntity<String> SubmitAttendanceRecord(@RequestBody String record) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -32,6 +39,11 @@ public class AttendanceController {
         return new ResponseEntity<>("Attendance record saved successfully", HttpStatus.OK);
        
     }
+    /**
+     * Handles GET requests to retrieve dates of recorded attendance.
+     *
+     * @return ResponseEntity containing a list of recorded attendance dates or an empty list if none exist.
+     */
     @GetMapping("/record-dates")
     //fetch available record date
     public ResponseEntity<List<String>> getMethodName() {
@@ -46,6 +58,12 @@ public class AttendanceController {
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    /**
+     * Handles GET requests to retrieve an attendance record for a specific session date.
+     *
+     * @param sessionDate The session date for which the attendance record is requested.
+     * @return ResponseEntity containing the attendance record in JSON format or an error message if not found.
+     */
     @GetMapping("/record/{sessionDate}")
     //fetch attendance record for a specific date
     public ResponseEntity<String> getMethodName(@PathVariable String sessionDate) {
@@ -79,7 +97,6 @@ public class AttendanceController {
     public ResponseEntity<String> modifyAttendanceEntry(@PathVariable String sessionDate, @RequestBody String attendanceEntryJson) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
-
         try {
             String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(userName, sessionDate, attendanceEntryJson);
             // System.out.println("error happened in modifying record");
@@ -90,7 +107,5 @@ public class AttendanceController {
             return new ResponseEntity<>("Error modifying attendance entry: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-
    
 }

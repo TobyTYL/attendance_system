@@ -1,5 +1,6 @@
 package edu.duke.ece651.team1.client.controller;
 
+<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -43,3 +44,57 @@ public class ApplicationControllerTest {
         verify(mainMenuControllerMock, times(1)).startMainMenu();
     }
 }
+=======
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.BufferedReader;
+import java.io.PrintStream;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ApplicationControllerTest {
+
+    @Mock
+    private BufferedReader inputReader;
+
+    @Mock
+    private PrintStream out;
+
+    @Mock
+    private LoginSignupController loginSignupController;
+
+    @Mock
+    private MainMenuController mainMenuController;
+
+    private ApplicationController applicationController;
+
+    @BeforeEach
+    void setUp() {
+        applicationController = new ApplicationController(inputReader, out);
+        applicationController.loginSignupController = loginSignupController;
+        applicationController.mainMenuController = mainMenuController;
+    }
+
+    @Test
+    public void testStartApplicationWhenAuthenticatedThenMainMenuStarted() {
+        when(loginSignupController.authenticateOrRegister()).thenReturn(true);
+        applicationController.startApplication();
+        verify(loginSignupController, times(1)).authenticateOrRegister();
+        verify(mainMenuController, times(1)).startMainMenu();
+    }
+
+    @Test
+    public void testStartApplicationWhenNotAuthenticatedThenAuthenticated() {
+        when(loginSignupController.authenticateOrRegister())
+                .thenReturn(false)
+                .thenReturn(true);
+
+        applicationController.startApplication();
+        verify(loginSignupController, times(2)).authenticateOrRegister();
+        verify(mainMenuController, times(1)).startMainMenu();
+    }
+}
+>>>>>>> 7be3cd028a99cb75392013d74f5e02831a617b12

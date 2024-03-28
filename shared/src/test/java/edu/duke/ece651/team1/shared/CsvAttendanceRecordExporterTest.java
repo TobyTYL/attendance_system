@@ -66,8 +66,7 @@ public class CsvAttendanceRecordExporterTest {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Perform assertions on file content
-                // For example, check if the file contains the names of the students, their attendance status, etc.
+                
             }
         }
     }

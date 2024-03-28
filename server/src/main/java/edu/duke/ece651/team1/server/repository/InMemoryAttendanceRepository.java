@@ -34,31 +34,54 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+/*
+ * This class represents a repository for storing and retrieving attendance records.
+ */
 @Repository
 public class InMemoryAttendanceRepository {
+    // Path to the directory where attendance records are stored
     @Value("${attendanceRecords.path}")
     private String attendanceRecordsPath;
+    // Encryptor used to encrypt and decrypt attendance record content
     @Autowired
     private StringEncryptor encryptor;
+    /*
+     * Saves the given attendance record for the specified user
+     * @param attendanceRecord The attendance record to be saved
+     * @param userName The username of the user
+     * @throws IOException If an I/O error occurs
+     */
     public void saveAttendanceRecord(AttendanceRecord attendanceRecord, String userName) throws IOException {
+        // Constructing the filename based on session date
         String fileName = "Attendance-" + attendanceRecord.getSessionDate();
-        AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
+        // AttendanceRecordExporter exporter = AttendanceRecordExporterFactory.createExporter("json");
+        // Constructing the file path
         String filePath = attendanceRecordsPath + userName + "/"+fileName+".json";
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String content = serializer.serialize(attendanceRecord);
         File file = new File(filePath);
         File parentDir = file.getParentFile();
+        // Creating parent directories if they do not exist
         if (parentDir != null && !parentDir.exists()) {
-            parentDir.mkdirs(); //if parent directory not exist, make one
+            // If parent directory not exist, make one
+            parentDir.mkdirs();
         }
-        // write back encrpt info
+        // Write back encrpt info
+        // Serializing and encrypting the attendance record content, then writing it to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(encryptor.encrypt(content));
         }
     }
-
+    /*
+     * Retrieves the list of session dates for which attendance records exist for the specified user.
+     * @param userName The username of the user.
+     * @return A list of session dates.
+     * @throws IOException If an I/O error occurs.
+     */
     public List<String> getRecordDates(String userName) throws IOException {
+        // Constructing the directory path
         String path = attendanceRecordsPath + userName + "/";
+        // Using Files.list() to list all files in the directory, then extracting session dates from filenames
         try (Stream<Path> stream = Files.list(Paths.get(path))) {
             int attendance_length = "attendance".length();
             int date_length = "YYYY-MM-DD".length();
@@ -71,16 +94,29 @@ public class InMemoryAttendanceRepository {
             return Collections.emptyList();
         }
     }
-
+    /*
+     * Retrieves the attendance record for the specified user and session date.
+     * @param userName The username of the user.
+     * @param sessionDate The session date.
+     * @return The attendance record.
+     * @throws IOException If an I/O error occurs.
+     */
     public AttendanceRecord getRecord(String userName, String sessionDate) throws IOException {
         String filePath = attendanceRecordsPath + userName + "/" + "Attendance-" + sessionDate + ".json";
         String recordString = new String(Files.readAllBytes(Paths.get(filePath)));
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         return serializer.deserialize(encryptor.decrypt(recordString));
     }
-
+    /*
+     * Retrieves all attendance records for the specified user.
+     * @param userName The username of the user.
+     * @return A list of attendance records.
+     * @throws IOException If an I/O error occurs.
+     */
     public List<AttendanceRecord> getRecords(String userName) throws IOException {
+        // Constructing the directory path
         String path = attendanceRecordsPath + userName + "/";
+        // Using Files.list() to list all files in the directory, then reading, decrypting, and deserializing each record
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         try (Stream<Path> stream = Files.list(Paths.get(path))) {
             List<AttendanceRecord> records = stream
@@ -101,7 +137,4 @@ public class InMemoryAttendanceRepository {
             return Collections.emptyList();
         }
     }
-   
-    
-  
 }

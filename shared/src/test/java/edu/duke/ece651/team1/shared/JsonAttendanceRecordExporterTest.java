@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 public class JsonAttendanceRecordExporterTest {
 
@@ -19,7 +20,7 @@ public class JsonAttendanceRecordExporterTest {
     @Test
     public void testExportToFile() throws IOException {
         // Assuming AttendanceRecord and JsonAttendanceSerializer are implemented correctly
-        AttendanceRecord record = new AttendanceRecord(); // Populate your AttendanceRecord as necessary
+        AttendanceRecord record = new AttendanceRecord(LocalDate.of(2024, 03, 26)); // Populate your AttendanceRecord as necessary
         JsonAttendanceRecordExporter exporter = new JsonAttendanceRecordExporter();
 
         String filename = "attendance";

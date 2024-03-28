@@ -26,7 +26,10 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
-
+    /**
+     * Retrieves a list of all students
+     * @return A ResponseEntity containing the list of students, or an empty list if no students are found
+     */
     @GetMapping("/allStudents")
     public ResponseEntity<List<Student>> getAllStudent() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -39,7 +42,11 @@ public class StudentController {
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * Saves a roster of students
+     * @param students The list of students to be saved
+     * @return A ResponseEntity
+     */
     @PostMapping("/roster")
     public ResponseEntity<String> postMethodName(@RequestBody List<Student> students) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -50,14 +57,22 @@ public class StudentController {
              return new ResponseEntity<>("error happen in save roster becaues "+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * Checks if a student exists
+     * @param studentName The name of the student to check
+     * @return A ResponseEntity containing a boolean indicating whether the student exists or not
+     */
     @GetMapping("/student/exists/{studentName}")
     public ResponseEntity<Boolean> checkStudentExists(@PathVariable String studentName) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean exist= studentService.checkStudentExists(auth.getName(),studentName);
         return new ResponseEntity<>(exist, HttpStatus.OK);
     }
-
+    /**
+     * Adds a new student
+     * @param student The student need to be added in the roster
+     * @return A ResponseEntity indicating the result of the operation
+     */
     @PostMapping("/student/{studentName}")
     public ResponseEntity<String> addStudent(@RequestBody Student student) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -68,7 +83,11 @@ public class StudentController {
         }
         return new ResponseEntity<>("Student added successfully", HttpStatus.OK);
     }
-
+    /**
+     * Removes a student
+     * @param studentName The name of the student to be removed
+     * @return A ResponseEntity indicating the result of the operation
+     */
     @DeleteMapping("/student/{studentName}")
     public ResponseEntity<String> removeStudent(@PathVariable String studentName) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -79,7 +98,12 @@ public class StudentController {
         }
         return new ResponseEntity<>("Student removed successfully", HttpStatus.OK);
     }
-
+    /**
+     * Edits the display name of a student
+     * @param studentName The name of the student whose display name is to be edited
+     * @param newDisplayName The new display name for the student
+     * @return A ResponseEntity indicating the result of the operation
+     */
     @PutMapping("/student/displayname/{studentName}/{newDisplayName}")
     public ResponseEntity<String> editStudentDisplayName(@PathVariable String studentName, @PathVariable String newDisplayName) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -92,6 +116,4 @@ public class StudentController {
         }
         return new ResponseEntity<>("Student display name updated successfully", HttpStatus.OK);
     }
-
-
 }

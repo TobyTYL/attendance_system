@@ -10,13 +10,18 @@ import org.slf4j.Logger;
 import edu.duke.ece651.team1.server.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api")
 public class SecurityController {
      
     @Autowired
     UserService userService;
+    /*
+     * Endpoint for user signup.
+     * @param username The username to be registered.
+     * @param password The password to be registered.
+     * @return ResponseEntity<String> A response indicating the success or failure of the signup process.
+     */
     @PostMapping("/signup")
     public ResponseEntity<String> postMethodName(@RequestParam(value = "username") String userName,
             @RequestParam(value = "password") String password) {
@@ -27,17 +32,22 @@ public class SecurityController {
         }
         return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
     }
+    /*
+     * Endpoint for accessing the admin page.
+     * @return String A welcome message for the admin page.
+     */
     @GetMapping("/admin")
     // @PreAuthorize("hasRole('ADMIN')")
     public String adminPage() {
         return "Welcome to admin page!"; 
     }
+    /*
+     * Endpoint for testing purposes.
+     * @return String A welcome message for testing purposes.
+     */
     @GetMapping("/test")
     public String test() {
         return "Welcome to admin page!"; 
     }
- 
-   
-   
-    
+
 }

@@ -5,6 +5,8 @@ MAINTAINER Drew Hilton "adhilton@ee.duke.edu"
 USER root
 
 ENV DEBIAN_FRONTEND noninteractive
+
+
 RUN apt-get update && apt-get -yq dist-upgrade \
   && apt-get install -yq --no-install-recommends \
      curl \

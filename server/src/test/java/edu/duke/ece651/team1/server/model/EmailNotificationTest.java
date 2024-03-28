@@ -112,10 +112,6 @@ public class EmailNotificationTest {
         assertNotNull(sentMessage.getRaw());
     }
 
-    // @Test
-    // public void testSendRealEmail(){
-    //     EmailNotification email = new EmailNotification();
-    //     email.notify("hi", "huidan_tan18@163.com");
-    // }
+   
 
 }

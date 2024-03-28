@@ -37,7 +37,7 @@ public class Relation implements Iterable<Tuple>{
         return tuples.size();
     }
 
-    private static class TupleComparator implements Comparator<Tuple> {
+    public static class TupleComparator implements Comparator<Tuple> {
         @Override
         public int compare(Tuple t1, Tuple t2) {
             for (int i = 0; i < t1.size(); i++) {
@@ -49,10 +49,10 @@ public class Relation implements Iterable<Tuple>{
             return 0;
         }
 
-        private int compareElements(Object o1, Object o2) {
-            if (o1 == null && o2 == null) return 0;
-            if (o1 == null) return -1;
-            if (o2 == null) return 1;
+        public int compareElements(Object o1, Object o2) {
+            // if (o1 == null && o2 == null) return 0;
+            // if (o1 == null) return -1;
+            // if (o2 == null) return 1;
             return ((Comparable) o1).compareTo(o2);
         }
     }
@@ -83,6 +83,7 @@ public class Relation implements Iterable<Tuple>{
 
         return sj.toString();
     }
+    
 
 }
 

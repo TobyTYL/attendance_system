@@ -28,7 +28,9 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-
+/*
+ * This class represents a repository for managing user details stored in memory.
+ */
 @Repository
 public class InMemoryUserRepository extends InMemoryUserDetailsManager {
     @Autowired
@@ -37,10 +39,11 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
     private String userDetailsPath;
     private Map<String, UserDetails> users = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(InMemoryUserRepository.class);
-
+    /**
+     * Initializes the repository by creating default admin user and loading users from file.
+     */
     @PostConstruct
     public void init() {
-
         UserDetails admin = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN")
@@ -59,19 +62,37 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
         }
 
     }
+
+    /**
+     * Reads JSON data from a file and returns its root node.
+     *
+     * @param filePath The path of the JSON file to read.
+     * @return The root node of the JSON data.
+     * @throws IOException If an I/O error occurs while reading the file.
+     */
     public JsonNode readJsonFromFile(String filePath) throws IOException {
         File file = new File(filePath);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file);
         return rootNode;
     }
-
+    /**
+     * Loads user details from a JSON file and returns them as a map.
+     *
+     * @return A map of username to UserDetails.
+     * @throws IOException If an I/O error occurs while reading the file.
+     */
     public Map<String, UserDetails>  loadUserDetailsFromFile() throws IOException{
         JsonNode rootNode = readJsonFromFile(userDetailsPath);
         return parseUserJson(rootNode);
     }
-    
 
+    /**
+     * Parses user details from a JSON node and returns them as a map.
+     *
+     * @param rootNode The root node of the JSON data containing user details.
+     * @return A map of username to UserDetails.
+     */
     public Map<String, UserDetails> parseUserJson(JsonNode rootNode)  {
         Map<String, UserDetails> previousUsers = new HashMap<>();
         Iterator<String> fieldNames = rootNode.fieldNames();
@@ -106,15 +127,22 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
             if(firstAuthority.getAuthority().equals("ROLE_USER")){
                 addUserToMap(user.getUsername(), user);
             }
-           
-
         }
     }
-
+    /**
+     * Adds a user to the internal user map.
+     *
+     * @param userName The username of the user to add.
+     * @param user The UserDetails object representing the user.
+     */
     public void addUserToMap(String userName, UserDetails user) {
         users.put(userName, user);
     }
-
+    /**
+     * Exports user details to a JSON file before destroying the bean.
+     *
+     * @throws IOException If an I/O error occurs while writing to the file.
+     */
     @PreDestroy
     private void exportUserDetailsToFile() throws IOException {
         Map<String, UserDetails> users = getUsers();
@@ -122,13 +150,20 @@ public class InMemoryUserRepository extends InMemoryUserDetailsManager {
         logger.info("user count:"+users.size());
         objectMapper.writeValue(new File(userDetailsPath), users);
     }
-
+    /**
+     * Retrieves the current user map.
+     *
+     * @return An unmodifiable map of username to UserDetails.
+     */
     public Map<String, UserDetails> getUsers() {
         return Collections.unmodifiableMap(users);
     }
-
+    /**
+     * Retrieves the usernames of all users in the repository.
+     *
+     * @return A list of usernames.
+     */
     public List<String> getUserNames(){
         return new ArrayList<>(users.keySet()); 
     }
-
 }
