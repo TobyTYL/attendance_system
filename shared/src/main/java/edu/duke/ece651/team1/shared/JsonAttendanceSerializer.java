@@ -8,7 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import com.google.gson.*;
 
-
+/**
+ * Provides functionality to serialize AttendanceRecord objects into JSON format using Gson.
+ * This class also supports deserializing JSON strings back into AttendanceRecord objects.
+ */
 public class JsonAttendanceSerializer {
     // private final Gson gson;
 
@@ -24,7 +27,12 @@ public class JsonAttendanceSerializer {
         
     // }
 
-    
+    /**
+     * Serializes the given AttendanceRecord object into a JSON string.
+     * Includes details such as session date and attendance entries for each student.
+     * @param record The AttendanceRecord to serialize.
+     * @return A JSON string representing the attendance record.
+     */
     public String serialize(AttendanceRecord record) {
         // TODO Auto-generated method stub
         JsonObject jsonObject = new JsonObject();
@@ -45,7 +53,12 @@ public class JsonAttendanceSerializer {
        
     }
 
-   
+   /**
+     * Deserializes a JSON string into an AttendanceRecord object.
+     * Assumes the JSON format matches that produced by the serialize method.
+     * @param record A JSON string representing an attendance record.
+     * @return The deserialized AttendanceRecord object.
+     */
     public AttendanceRecord deserialize(String record) {
         // TODO Auto-generated method stub
         JsonObject jsonObject = JsonParser.parseString(record).getAsJsonObject();

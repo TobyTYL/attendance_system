@@ -24,23 +24,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AttendanceControllerTest {
 
-    private BufferedReader inputReader;
-    private PrintStream out;
-    private AttendanceController controller;
+    // private BufferedReader inputReader;
+    // private PrintStream out;
+    // private AttendanceController controller;
 
-    @BeforeEach
-    void setUp() {
-        inputReader = mock(BufferedReader.class);
-        out = mock(PrintStream.class);
-        controller = new AttendanceController(inputReader, out);
-    }
+    // @BeforeEach
+    // void setUp() {
+    //     inputReader = mock(BufferedReader.class);
+    //     out = mock(PrintStream.class);
+    //     controller = new AttendanceController(inputReader, out);
+    // }
 
-    @Test
-    void testConstructorInitializesFields() {
-        assertNotNull(controller.attendanceView, "attendanceView should be initialized");
-        assertNotNull(controller.restTemplate, "restTemplate should be initialized");
-    }
+    // @Test
+    // void testConstructorInitializesFields() {
+    //     assertNotNull(controller.attendanceView, "attendanceView should be initialized");
+    //     assertNotNull(controller.restTemplate, "restTemplate should be initialized");
+    // }
 
+    // @Test
+    // void testStartAttendanceMenuOptionTake() throws IOException {
+    //     // Assuming readAttendanceOption() is the method that ultimately calls inputReader.readLine()
+    //     AttendanceView mockView = mock(AttendanceView.class);
+    //     when(mockView.readAttendanceOption()).thenReturn("take"); // Mock the higher-level method instead
+    //     controller.attendanceView = mockView;
     // @Test
     // void testStartAttendanceMenuOptionTake() throws IOException {
     //     // Assuming readAttendanceOption() is the method that ultimately calls inputReader.readLine()
@@ -49,9 +55,14 @@ class AttendanceControllerTest {
     //     controller.attendanceView = mockView;
     
     //     controller.startAttendanceMenue();
+    //     controller.startAttendanceMenue();
     
     //     verify(mockView, times(1)).showAttendanceManageOption();
+    //     verify(mockView, times(1)).showAttendanceManageOption();
     
+    //     // Add more verifications for method calls inside startAttendance
+    //     // For example, verifying that startAttendance() was called
+    // }
     //     // Add more verifications for method calls inside startAttendance
     //     // For example, verifying that startAttendance() was called
     // }

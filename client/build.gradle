@@ -35,6 +35,8 @@ dependencies {
     // Add Mockito for mocking in tests
     testImplementation 'org.mockito:mockito-core:3.+' // Use the latest version 3.x.x
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+
 }
 
 run{
