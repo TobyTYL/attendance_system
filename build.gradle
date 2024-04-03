@@ -69,6 +69,11 @@ subprojects{
 }
 
 // Project specific stuff
+project(':data_access'){
+    dependencies {
+        implementation project(':shared')
+    }
+}
 project (':shared'){
 }
 project (':server'){
