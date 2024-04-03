@@ -1,18 +1,19 @@
-package edu.duke.ece651.team1.dao.user;
+package edu.duke.ece651.team1.data_access.user;
 
 public class User {
     private int userId;
     private String username;
-    private String password;
-    private String role;
-    public User() {
+    private String passwordHash;
+    private String email;
 
+    public User() {
     }
-    public User(int userId, String username, String password, String role) {
+
+    public User(int userId, String username, String passwordHash, String email) {
         this.userId = userId;
         this.username = username;
-        this.password = password;
-        this.role = role;
+        this.passwordHash = passwordHash;
+        this.email = email;
     }
 
     public int getUserId() {
@@ -26,21 +27,24 @@ public class User {
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getPassword() {
-        return password;
+
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
-    public String getRole() {
-        return role;
+
+    public String getEmail() {
+        return email;
     }
-    public void setRole(String role) {
-        this.role = role;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
-
