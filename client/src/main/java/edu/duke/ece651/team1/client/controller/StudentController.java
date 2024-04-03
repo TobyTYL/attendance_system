@@ -66,7 +66,6 @@ public class StudentController {
                     loadFromCSV();
                 } else if (option.equals("edit")) {
                     editStudentDisplayName();
-                    // todo editStudentDisplayName();
                 } else {
                     //back to main meune
                     return;
