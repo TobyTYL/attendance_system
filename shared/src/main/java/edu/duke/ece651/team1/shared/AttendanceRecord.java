@@ -12,8 +12,10 @@ import com.google.common.collect.Iterables;
  * Allows initialization, updating, and querying of attendance status for students.
  */
 public class AttendanceRecord {
+    //id builder pattern 
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
+ 
    
    /**
     * for each session, record the session date and the student and the corresponding status.
