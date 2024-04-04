@@ -4,9 +4,18 @@ package edu.duke.ece651.team1.shared;
  * Provides multiple constructors to support various ways of creating a Student object.
  */
 public class Student {
+    private Long studentId;
+    
     private final String legalName;
     private String disPlayName;
     private String email;
+    public Student(Long studentId, String legalName, String disPlayName, String email) {
+        this.studentId = studentId;
+        this.legalName = legalName;
+        this.disPlayName = disPlayName;
+        this.email = email;
+    }
+
     /**
      * Constructs a Student with specified legal name, display name, and email.
      * @param legalName The student's legal name.
@@ -14,9 +23,7 @@ public class Student {
      * @param email The student's email address.
      */
     public Student(String legalName, String disPlayName, String email) {
-        this.legalName = legalName;
-        this.disPlayName = disPlayName;
-        this.email = email;
+        this(null,legalName,disPlayName,email);
     }
     
     /**
@@ -75,4 +82,12 @@ public class Student {
     public String toString() {
         return "Student [legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
     }
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
 }

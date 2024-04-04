@@ -14,7 +14,7 @@ public class DB_connect {
     public static Connection getConnection()  {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connected to the PostgreSQL server successfully.");
+            // System.out.println("Connected to the PostgreSQL server successfully.");
             return conn;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
