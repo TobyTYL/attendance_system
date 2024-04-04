@@ -10,7 +10,6 @@ public class Professor {
     /**
      * Constructs a Professor with specified unique identifier, legal name, and email.
      * @param professorId The unique identifier of the professor.
-     * @param legalName The professor's legal name.
      */
     public Professor(int professorId, int userId) {
         this.professorId = professorId;

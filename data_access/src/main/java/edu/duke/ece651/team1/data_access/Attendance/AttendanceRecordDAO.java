@@ -6,7 +6,6 @@ import edu.duke.ece651.team1.shared.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import java.time.LocalDate;
 import java.sql.Statement;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
-import edu.duke.ece651.team1.data_access.Student.StudentDAO;
+import edu.duke.ece651.team1.data_access.Student.StudentDao;
 import edu.duke.ece651.team1.shared.AttendanceEntry;
 /**
  * Provides data access object functionalities for handling attendance records in the database.
@@ -69,8 +68,8 @@ public class AttendanceRecordDAO {
         for (AttendanceEntry entry : entries) {
             long studentId = entry.getStudentId();
             AttendanceStatus status = entry.getStatus();
-            if (StudentDAO.findStudentByStudentID(studentId).isPresent()) {
-                Student student = StudentDAO.findStudentByStudentID(studentId).get();
+            if (StudentDao.findStudentByStudentID(studentId).isPresent()) {
+                Student student = StudentDao.findStudentByStudentID(studentId).get();
                 record.addAttendanceEntry(student, status);
             } else {
                 throw new SQLException("get Attendance Record Error : cannot find student record");
@@ -153,7 +152,7 @@ public class AttendanceRecordDAO {
     }
     //test whatever you want
     public static void main(String[] args) throws SQLException {
-        Optional<Student> student1 = StudentDAO.findStudentByStudentID(2);
+        Optional<Student> student1 = StudentDao.findStudentByStudentID(2);
         // Optional<Student> student2 = StudentDAO.findStudentByStudentID(4);
         // AttendanceRecord record = new AttendanceRecord();
         // record.addAttendanceEntry(student1.get(),AttendanceStatus.TARDY);

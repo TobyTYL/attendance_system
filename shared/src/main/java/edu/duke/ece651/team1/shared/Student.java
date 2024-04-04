@@ -8,6 +8,8 @@ public class Student {
     private final String legalName;
     private String disPlayName;
     private String email;
+    private int userId;
+
     /**
      * Constructs a Student with specified legal name, display name, and email.
      * @param legalName The student's legal name.
@@ -40,6 +42,9 @@ public class Student {
         return studentId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
     public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
@@ -55,7 +60,9 @@ public class Student {
     public String getEmail() {
         return email;
     }
-
+    public String getDisplayName() {
+        return disPlayName;
+    }
     public void updateDisplayName(String dispalyName){
         this.disPlayName = dispalyName;
     }
@@ -69,13 +76,13 @@ public class Student {
     public boolean equals(Object obj) {
         if (obj.getClass().equals(getClass())) {
             Student s = (Student) obj;
-            return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email);
+            return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email)&& userId == s.userId;
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
+        return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + ", userId=" + userId + "]";
     }
 }

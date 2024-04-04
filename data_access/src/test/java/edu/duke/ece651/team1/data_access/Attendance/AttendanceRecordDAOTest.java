@@ -20,7 +20,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import java.sql.*;
 import edu.duke.ece651.team1.data_access.DB_connect;
-import edu.duke.ece651.team1.data_access.Student.StudentDAO;
+import edu.duke.ece651.team1.data_access.Student.StudentDao;
 import edu.duke.ece651.team1.shared.AttendanceEntry;
 import edu.duke.ece651.team1.shared.AttendanceRecord;
 import edu.duke.ece651.team1.shared.AttendanceStatus;
@@ -61,9 +61,9 @@ public class AttendanceRecordDAOTest {
     public void testFillAttendanceRecordEntriesMap_Success() throws SQLException {
         Student mockStudent1 = new Student(1L, "John Doe", "John Doe", "john@example.com");
         Student mockStudent2 = new Student(2L, "Jane Doe", "Jane Doe", "jane@example.com");
-        MockedStatic<StudentDAO> studentMock = Mockito.mockStatic(StudentDAO.class);
-        when(StudentDAO.findStudentByStudentID(1L)).thenReturn(Optional.of(mockStudent1));
-        when(StudentDAO.findStudentByStudentID(2L)).thenReturn(Optional.of(mockStudent2));
+        MockedStatic<StudentDao> studentMock = Mockito.mockStatic(StudentDao.class);
+        when(StudentDao.findStudentByStudentID(1L)).thenReturn(Optional.of(mockStudent1));
+        when(StudentDao.findStudentByStudentID(2L)).thenReturn(Optional.of(mockStudent2));
         List<AttendanceEntry> entries = new ArrayList<>();
         entries.add(new AttendanceEntry(1L, 1L, AttendanceStatus.PRESENT));
         entries.add(new AttendanceEntry(2L, 1L, AttendanceStatus.ABSENT));
@@ -80,8 +80,8 @@ public class AttendanceRecordDAOTest {
 
     @Test
     public void testFillAttendanceRecordEntriesMap_Failure() throws SQLException {
-        MockedStatic<StudentDAO> studentMock = Mockito.mockStatic(StudentDAO.class);
-        when(StudentDAO.findStudentByStudentID(1L)).thenReturn(Optional.empty());
+        MockedStatic<StudentDao> studentMock = Mockito.mockStatic(StudentDao.class);
+        when(StudentDao.findStudentByStudentID(1L)).thenReturn(Optional.empty());
         AttendanceRecord record = new AttendanceRecord();
         AttendanceEntry entry = new AttendanceEntry(1L, record.getRecordId(), AttendanceStatus.PRESENT);
         Iterable<AttendanceEntry> entries = Arrays.asList(entry);
