@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.professor;
+package edu.duke.ece651.team1.data_access.Professor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,10 +18,9 @@ public class ProfessorDaoImp implements ProfessorDao {
     @Override
     public void addProfessor(Professor professor) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String sql = "INSERT INTO Professors (LegalName, Email) VALUES (?, ?)";
+            String sql = "INSERT INTO Professors (UserID) VALUES (?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, professor.getLegalName());
-            statement.setString(2, professor.getEmail());
+            statement.setInt(1, professor.getUserId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,9 +38,8 @@ public class ProfessorDaoImp implements ProfessorDao {
             e.printStackTrace();
         }
     }
-
     @Override
-    public List<Professor> getAllProfessors() {
+    public List<Professor> findAllProfessors() {
         List<Professor> professorList = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "SELECT * FROM Professors";
@@ -49,9 +47,8 @@ public class ProfessorDaoImp implements ProfessorDao {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int professorId = rs.getInt("ProfessorID");
-                String legalName = rs.getString("LegalName");
-                String email = rs.getString("Email");
-                Professor professor = new Professor(professorId, legalName, email);
+                int userId = rs.getInt("UserID");
+                Professor professor = new Professor(professorId, userId);
                 professorList.add(professor);
             }
         } catch (SQLException e) {
@@ -59,6 +56,7 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professorList;
     }
+
     @Override
     public Professor getProfessorById(int professorId) {
         Professor professor = null;
@@ -68,10 +66,8 @@ public class ProfessorDaoImp implements ProfessorDao {
             statement.setInt(1, professorId);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                String legalName = rs.getString("LegalName");
-                String email = rs.getString("Email");
-
-                professor = new Professor(professorId, legalName, email);
+                int userId = rs.getInt("UserID");
+                professor = new Professor(professorId, userId);
             }
         } catch (SQLException e) {
             e.printStackTrace();

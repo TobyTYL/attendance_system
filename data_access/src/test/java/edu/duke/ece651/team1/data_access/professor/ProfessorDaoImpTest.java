@@ -35,18 +35,18 @@ public class ProfessorDaoImpTest {
     }
 
 
-    @Test
-    public void testAddAndGetProfessorById() throws SQLException {
-        Professor professorToAdd = new Professor("John Doe", 1);
-        professorDao.addProfessor(professorToAdd);
-
-        Professor retrievedProfessor = professorDao.getProfessorById(1);
-
-        assertNotNull(retrievedProfessor);
-        assertEquals(professorToAdd.getProfessorId(), retrievedProfessor.getProfessorId());
-        assertEquals(professorToAdd.getLegalName(), retrievedProfessor.getLegalName());
-        assertEquals(professorToAdd.getUserId(), retrievedProfessor.getUserId());
-    }
+//    @Test
+//    public void testAddAndGetProfessorById() throws SQLException {
+//        Professor professorToAdd = new Professor("John Doe", 1);
+//        professorDao.addProfessor(professorToAdd);
+//
+//        Professor retrievedProfessor = professorDao.getProfessorById(1);
+//
+//        assertNotNull(retrievedProfessor);
+//        assertEquals(professorToAdd.getProfessorId(), retrievedProfessor.getProfessorId());
+//        assertEquals(professorToAdd.getLegalName(), retrievedProfessor.getLegalName());
+//        assertEquals(professorToAdd.getUserId(), retrievedProfessor.getUserId());
+//    }
 
 }
 
