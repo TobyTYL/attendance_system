@@ -10,16 +10,20 @@ public class UserDaoImp implements UserDao {
     private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
     private static final String USER = "ece651";
     private static final String PASSWORD = "passw0rd";
+    private Connection connection;
+
+    public UserDaoImp(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public void addUser(User user) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String sql = "INSERT INTO Users (Username, PasswordHash, Email, Role) VALUES (?, ?, ?, ?)"; // 修改SQL语句以包含角色字段
+            String sql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPasswordHash());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getRole()); // 设置角色字段的值
+            statement.setString(3, user.getRole());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
