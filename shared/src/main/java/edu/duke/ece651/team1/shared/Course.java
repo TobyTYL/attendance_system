@@ -9,17 +9,17 @@ import java.util.Set;
  * Additional properties and behavior can be added as needed.
  */
 public class Course {
-    private final long id;
+    private final int id;
     private String name;
   //private Professor headInstructor;
   //private Set<User> coInstructors = new LinkedHashSet<>();
 
      // Constructor to set the course ID
-    public Course(long id) {
+    public Course(int id) {
         this.id = id;
     }
 
-    public long getID() {
+    public int getID() {
         return id;
     }
 
