@@ -59,4 +59,23 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professorList;
     }
+    @Override
+    public Professor getProfessorById(int professorId) {
+        Professor professor = null;
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String sql = "SELECT * FROM Professors WHERE ProfessorID = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, professorId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                String legalName = rs.getString("LegalName");
+                String email = rs.getString("Email");
+
+                professor = new Professor(professorId, legalName, email);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return professor;
+    }
 }
