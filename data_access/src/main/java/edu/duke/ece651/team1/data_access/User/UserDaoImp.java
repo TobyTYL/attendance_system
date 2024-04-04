@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.user;
+package edu.duke.ece651.team1.data_access.User;
 
 import edu.duke.ece651.team1.shared.User;
 
@@ -92,4 +92,26 @@ public class UserDaoImp implements UserDao {
         }
         return userList;
     }
+    @Override
+    public User findUserByUsername(String username) {
+        User user = null;
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String sql = "SELECT * FROM Users WHERE Username = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("UserID");
+                String passwordHash = rs.getString("PasswordHash");
+                String email = rs.getString("Email");
+                String role = rs.getString("Role");
+
+                user = new User(userId, username, passwordHash, email, role);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }

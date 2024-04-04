@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.duke.ece651.team1.data_access.Professor.ProfessorDaoImp;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,20 +34,36 @@ public class ProfessorDaoImpTest {
         connection.close();
     }
 
-
     @Test
-    public void testAddAndGetProfessorById() throws SQLException {
-        Professor professorToAdd = new Professor("John Doe", 1);
-        professorDao.addProfessor(professorToAdd);
+    public void testAddProfessor() throws SQLException {
+        Professor professor = new Professor(1, "John Doe", "john.doe@example.com");
+        professorDao.addProfessor(professor);
 
         Professor retrievedProfessor = professorDao.getProfessorById(1);
-
         assertNotNull(retrievedProfessor);
-        assertEquals(professorToAdd.getProfessorId(), retrievedProfessor.getProfessorId());
-        assertEquals(professorToAdd.getLegalName(), retrievedProfessor.getLegalName());
-        assertEquals(professorToAdd.getUserId(), retrievedProfessor.getUserId());
+        assertEquals(professor.getLegalName(), retrievedProfessor.getLegalName());
+        assertEquals(professor.getEmail(), retrievedProfessor.getEmail());
     }
 
+    @Test
+    public void testRemoveProfessor() throws SQLException {
+        // Add a professor first
+        Professor professor = new Professor(1, "John Doe", "john.doe@example.com");
+        professorDao.addProfessor(professor);
+        professorDao.removeProfessor(1);
+        Professor retrievedProfessor = professorDao.getProfessorById(1);
+    }
+
+    @Test
+    public void testGetAllProfessors() throws SQLException {
+        // Add some professors
+        Professor professor1 = new Professor(1, "John Doe", "john.doe@example.com");
+        Professor professor2 = new Professor(2, "Jane Smith", "jane.smith@example.com");
+        professorDao.addProfessor(professor1);
+        professorDao.addProfessor(professor2);
+
+        List<Professor> professors = professorDao.getAllProfessors();
+    }
 }
 
 //

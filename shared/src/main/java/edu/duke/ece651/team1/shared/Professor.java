@@ -6,26 +6,25 @@ package edu.duke.ece651.team1.shared;
 public class Professor {
     private final int professorId;
     private final String legalName;
-    private final String email;
+    private final int userId;
 
     /**
      * Constructs a Professor with specified unique identifier, legal name, and email.
      * @param professorId The unique identifier of the professor.
      * @param legalName The professor's legal name.
-     * @param email The professor's email address.
      */
-    public Professor(int professorId, String legalName, String email) {
+    public Professor(int professorId, String legalName, int userId) {
         this.professorId = professorId;
         this.legalName = legalName;
-        this.email = email;
+        this.userId = userId;
     }
 
     /**
      * Constructs a Professor with a legal name and no email.
      * @param legalName The professor's legal name.
      */
-    public Professor(String legalName) {
-        this(0, legalName, "");
+    public Professor(String legalName, int userId) {
+        this(0, legalName, userId);
     }
 
     public int getProfessorId() {
@@ -36,10 +35,9 @@ public class Professor {
         return legalName;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
-
     @Override
     public int hashCode() {
         return toString().hashCode();
@@ -49,13 +47,13 @@ public class Professor {
     public boolean equals(Object obj) {
         if (obj.getClass().equals(getClass())) {
             Professor p = (Professor) obj;
-            return professorId == p.professorId && legalName.equals(p.legalName) && email.equals(p.email);
+            return professorId == p.professorId && legalName.equals(p.legalName) && userId == p.userId;
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Professor [professorId=" + professorId + ", legalName=" + legalName + ", email=" + email + "]";
+        return "Professor [professorId=" + professorId + ", legalName=" + legalName + ", userId=" + userId + "]";
     }
 }

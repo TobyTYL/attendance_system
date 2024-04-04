@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.user;
+package edu.duke.ece651.team1.data_access.User;
 
 import edu.duke.ece651.team1.shared.User;
 
@@ -10,4 +10,6 @@ public interface UserDao {
     void updateUser(User user);
     User getUserById(int userId);
     List<User> getAllUsers();
+    User findUserByUsername(String username);
+
 }

@@ -68,10 +68,12 @@ public class JsonAttendanceSerializer {
         for (Map.Entry<String, JsonElement> entry : entries.entrySet()) {
             //legal name
             String studentKey = entry.getKey();
+//            Long studentId =
             JsonObject entryValue = entry.getValue().getAsJsonObject();
             String displayName = entryValue.get("Display Name").getAsString();
             String email = entryValue.get("Email").getAsString();
-            Student student = new Student(studentKey,displayName , email);
+            //String legalName = entryValue.get("Legal Name").getAsString();
+            Student student = new Student(studentKey, displayName , email);
             String status = entryValue.get("Attendance status").getAsString();
             AttendanceStatus attendanceStatus = AttendanceStatus.fromString(status);
             attendanceRecord.initializeAttendanceEntry(student);

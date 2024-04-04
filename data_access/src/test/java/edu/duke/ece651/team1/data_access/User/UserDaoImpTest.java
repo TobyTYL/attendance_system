@@ -1,14 +1,11 @@
-package edu.duke.ece651.team1.data_access.user;
+package edu.duke.ece651.team1.data_access.User;
 
 import edu.duke.ece651.team1.shared.User;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import java.sql.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.sql.*;
 
 class UserDaoImpTest {
     private Connection connection;

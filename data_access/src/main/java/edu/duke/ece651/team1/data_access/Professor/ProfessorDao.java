@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.Professor;
+package edu.duke.ece651.team1.data_access.professor;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ public interface ProfessorDao {
     void addProfessor(Professor professor);
     void removeProfessor(int professorId);
     Professor getProfessorById(int professorId);
-    List<Professor> findAllProfessors();
+    List<Professor> getAllProfessors();
 }
 

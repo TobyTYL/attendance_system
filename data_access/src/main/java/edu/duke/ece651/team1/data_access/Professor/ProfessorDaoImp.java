@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.Professor;
+package edu.duke.ece651.team1.data_access.professor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ public class ProfessorDaoImp implements ProfessorDao {
             String sql = "INSERT INTO Professors (LegalName, Email) VALUES (?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, professor.getLegalName());
-            statement.setInt(2, professor.getUserId());
+            statement.setString(2, professor.getEmail());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class ProfessorDaoImp implements ProfessorDao {
     }
 
     @Override
-    public List<Professor> findAllProfessors() {
+    public List<Professor> getAllProfessors() {
         List<Professor> professorList = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "SELECT * FROM Professors";
@@ -50,8 +50,8 @@ public class ProfessorDaoImp implements ProfessorDao {
             while (rs.next()) {
                 int professorId = rs.getInt("ProfessorID");
                 String legalName = rs.getString("LegalName");
-                int userID = rs.getInt("UserID");
-                Professor professor = new Professor(professorId, legalName, userID);
+                String email = rs.getString("Email");
+                Professor professor = new Professor(professorId, legalName, email);
                 professorList.add(professor);
             }
         } catch (SQLException e) {
@@ -69,8 +69,9 @@ public class ProfessorDaoImp implements ProfessorDao {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String legalName = rs.getString("LegalName");
-                int userId = rs.getInt("UserID");
-                professor = new Professor(professorId, legalName, userId);
+                String email = rs.getString("Email");
+
+                professor = new Professor(professorId, legalName, email);
             }
         } catch (SQLException e) {
             e.printStackTrace();

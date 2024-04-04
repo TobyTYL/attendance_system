@@ -5,10 +5,15 @@ package edu.duke.ece651.team1.shared;
  */
 public class Student {
     private Long studentId;
-    
     private final String legalName;
     private String disPlayName;
     private String email;
+    /**
+     * Constructs a Student with specified legal name, display name, and email.
+     * @param legalName The student's legal name.
+     * @param disPlayName The name displayed in the application.
+     * @param email The student's email address.
+     */
     public Student(Long studentId, String legalName, String disPlayName, String email) {
         this.studentId = studentId;
         this.legalName = legalName;
@@ -17,16 +22,6 @@ public class Student {
     }
 
     /**
-     * Constructs a Student with specified legal name, display name, and email.
-     * @param legalName The student's legal name.
-     * @param disPlayName The name displayed in the application.
-     * @param email The student's email address.
-     */
-    public Student(String legalName, String disPlayName, String email) {
-        this(null,legalName,disPlayName,email);
-    }
-    
-    /**
      * Constructs a Student with a legal name and uses it as the display name; no email.
      * @param legalName The student's legal name and display name.
      */
@@ -34,28 +29,29 @@ public class Student {
         // this.legalName = legalName;
         // this.disPlayName = legalName;
         // this.email = "";
-        this(legalName,legalName,"");
-    }
-    
-    /**
-     * Constructs a Student with a legal name and email, and uses the legal name as the display name.
-     * @param legalName The student's legal name.
-     * @param email The student's email address.
-     */
-    public Student(String legalName, String email){
-        this(legalName,legalName,email);
+        this(null, legalName,legalName,"");
     }
 
     public Student(){
-        this("","","");
+        this(null, "", "", "");
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getLegalName() {
         return legalName;
     }
+
     public String getDisPlayName() {
         return disPlayName;
     }
+
     public String getEmail() {
         return email;
     }
@@ -74,20 +70,12 @@ public class Student {
         if (obj.getClass().equals(getClass())) {
             Student s = (Student) obj;
             return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email);
-          }
+        }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Student [legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
+        return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
     }
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
 }
