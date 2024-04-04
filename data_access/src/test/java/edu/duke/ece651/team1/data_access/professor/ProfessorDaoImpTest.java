@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.professor;
+package edu.duke.ece651.team1.data_access.Professor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.duke.ece651.team1.data_access.Professor.ProfessorDaoImp;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
