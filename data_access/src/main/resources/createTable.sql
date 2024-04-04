@@ -65,4 +65,3 @@ CREATE TABLE IF NOT EXISTS NotificationPreference (
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE,
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID) ON DELETE CASCADE
 );
-

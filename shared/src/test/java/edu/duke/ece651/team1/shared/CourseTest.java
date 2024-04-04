@@ -8,7 +8,7 @@ public class CourseTest {
 
     @Test
     public void testGetID() {
-        long expectedId = 1L;
+        int expectedId = 1;
         Course course = new Course(expectedId);
         assertEquals(expectedId, course.getID(), "getID should return the correct id.");
     }

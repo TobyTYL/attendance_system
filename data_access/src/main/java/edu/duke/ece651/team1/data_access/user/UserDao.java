@@ -1,5 +1,7 @@
 package edu.duke.ece651.team1.data_access.user;
 
+import edu.duke.ece651.team1.shared.User;
+
 import java.util.List;
 
 public interface UserDao {

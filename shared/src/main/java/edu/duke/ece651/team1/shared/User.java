@@ -1,19 +1,21 @@
-package edu.duke.ece651.team1.data_access.user;
+package edu.duke.ece651.team1.shared;
 
 public class User {
     private int userId;
     private String username;
     private String passwordHash;
     private String email;
+    private String role;
 
     public User() {
     }
 
-    public User(int userId, String username, String passwordHash, String email) {
+    public User(int userId, String username, String passwordHash, String email, String role) {
         this.userId = userId;
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
+        this.role = role;
     }
 
     public int getUserId() {
@@ -46,5 +48,12 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
