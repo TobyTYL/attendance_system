@@ -1,5 +1,4 @@
-package edu.duke.ece651.team1.data_access;
-
+package edu.duke.ece651.team1.data_access.Course;
 import edu.duke.ece651.team1.shared.Course;
 //import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 import com.opentable.db.postgres.embedded.EmbeddedPostgres;
