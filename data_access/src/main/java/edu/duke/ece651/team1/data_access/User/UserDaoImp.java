@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImp implements UserDao {
-  
+
 
     @Override
     public void addUser(User user) {

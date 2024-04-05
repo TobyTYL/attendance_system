@@ -9,3 +9,9 @@
 
 rootProject.name = 'attendanceManagement'
 include('client', 'server', 'shared','data_access')
+include 'user_admin_app'
+include 'user_admin_app'
+include 'user_admin_app'
+include 'user_admin_app'
+include 'user_admin_app'
+
