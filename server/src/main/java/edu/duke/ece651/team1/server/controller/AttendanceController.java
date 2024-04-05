@@ -1,15 +1,15 @@
 package edu.duke.ece651.team1.server.controller;
 import java.io.IOException;
 
+import java.sql.*;
+import edu.duke.ece651.team1.server.service.AttendanceService;
+import edu.duke.ece651.team1.shared.AttendanceRecord;
+import edu.duke.ece651.team1.shared.AttendanceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import edu.duke.ece651.team1.server.service.AttendanceService;
-import edu.duke.ece651.team1.shared.AttendanceRecord;
-import edu.duke.ece651.team1.shared.AttendanceStatus;
-
 import java.util.Collections;
 import java.util.Collection;
 import org.springframework.security.core.Authentication;
@@ -28,11 +28,11 @@ public class AttendanceController {
      * @param record The attendance record in JSON format.
      * @return ResponseEntity indicating success or failure of the operation.
      */
-    @PostMapping("/record")
-    public ResponseEntity<String> SubmitAttendanceRecord(@RequestBody String record) {
+    @PostMapping("/record/{sectionID}")
+    public ResponseEntity<String> SubmitAttendanceRecord(@PathVariable int sectionID,@RequestBody String record) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try{
-            attendanceService.saveAttendanceRecord(record,auth.getName());
+            attendanceService.saveAttendanceRecord(record,sectionID);
         }catch(Exception e){
             return new ResponseEntity<>("Failed to save attendance record because"+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -44,12 +44,12 @@ public class AttendanceController {
      *
      * @return ResponseEntity containing a list of recorded attendance dates or an empty list if none exist.
      */
-    @GetMapping("/record-dates")
+    @GetMapping("/record-dates/{sectionID}")
     //fetch available record date
-    public ResponseEntity<List<String>> getMethodName() {
+    public ResponseEntity<List<String>> getMethodName(@PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try{
-            List<String> dates=attendanceService.getRecordDates(auth.getName());
+            List<String> dates=attendanceService.getRecordDates(sectionID);
             //get empty list or list of date string
             //empty is allowed here, because user might not have a attendance record now.
             return new ResponseEntity<>(dates, HttpStatus.OK);
@@ -64,27 +64,27 @@ public class AttendanceController {
      * @param sessionDate The session date for which the attendance record is requested.
      * @return ResponseEntity containing the attendance record in JSON format or an error message if not found.
      */
-    @GetMapping("/record/{sessionDate}")
+    @GetMapping("/record/{sectionID}/{sessionDate}")
     //fetch attendance record for a specific date
-    public ResponseEntity<String> getMethodName(@PathVariable String sessionDate) {
+    public ResponseEntity<String> getMethodName(@PathVariable String sessionDate,@PathVariable int sectionID) {
        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
        try{
-            String record =attendanceService.getRecord(auth.getName(), sessionDate);
+            String record =attendanceService.getRecord(sectionID,sessionDate);
             return new ResponseEntity<>(record, HttpStatus.OK);
-       }catch(IOException e){
+       }catch(SQLException e){
             return new ResponseEntity<>("Failed to fetch record because "+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
        }
     }
     //API for getting student attendance record based on sessionDate and name
-    @GetMapping("/entry/{sessionDate}/{studentName}")
-    public ResponseEntity<String> getStudentRecordEntry(@PathVariable String sessionDate, @PathVariable String studentName) {
+    @GetMapping("/entry/{sectionID}/{sessionDate}/{studentName}")
+    public ResponseEntity<String> getStudentRecordEntry(@PathVariable String sessionDate, @PathVariable String studentName,@PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
 
         try {
-            String responseMessage = attendanceService.getStudentRecordEntry(userName, sessionDate, studentName);
+            String responseMessage = attendanceService.getStudentRecordEntry(sectionID, sessionDate, studentName);
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
-        } catch (IOException e) {
+        } catch (SQLException e) {
             return new ResponseEntity<>("Failed to fetch student attendance entry: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             // Generic catch block for other exceptions
@@ -93,12 +93,12 @@ public class AttendanceController {
     }
     //API for modify student attendance status,
     //Key: Legal Name: yitiao, Attendance Status: Tardy
-    @PostMapping("/modification/{sessionDate}")
-    public ResponseEntity<String> modifyAttendanceEntry(@PathVariable String sessionDate, @RequestBody String attendanceEntryJson) {
+    @PostMapping("/modification/{sectionID}/{sessionDate}")
+    public ResponseEntity<String> modifyAttendanceEntry(@PathVariable String sessionDate, @RequestBody String attendanceEntryJson,@PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
         try {
-            String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(userName, sessionDate, attendanceEntryJson);
+            String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(sectionID, sessionDate, attendanceEntryJson);
             // System.out.println("error happened in modifying record");
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
         } catch (Exception e) {

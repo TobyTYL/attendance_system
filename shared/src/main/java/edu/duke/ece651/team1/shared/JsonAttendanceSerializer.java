@@ -12,6 +12,7 @@ import com.google.gson.*;
  * Provides functionality to serialize AttendanceRecord objects into JSON format using Gson.
  * This class also supports deserializing JSON strings back into AttendanceRecord objects.
  */
+//to-do edit
 public class JsonAttendanceSerializer {
     // private final Gson gson;
 
@@ -72,8 +73,8 @@ public class JsonAttendanceSerializer {
             JsonObject entryValue = entry.getValue().getAsJsonObject();
             String displayName = entryValue.get("Display Name").getAsString();
             String email = entryValue.get("Email").getAsString();
-            //String legalName = entryValue.get("Legal Name").getAsString();
-            Student student = new Student(studentKey, displayName , email);
+            String legalName = entryValue.get("Legal Name").getAsString();
+            Student student = new Student( legalName,displayName , email);
             String status = entryValue.get("Attendance status").getAsString();
             AttendanceStatus attendanceStatus = AttendanceStatus.fromString(status);
             attendanceRecord.initializeAttendanceEntry(student);

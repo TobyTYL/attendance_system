@@ -13,7 +13,7 @@ import com.google.common.collect.Iterables;
  */
 public class AttendanceRecord {
     //id builder pattern 
-    private Long recordId;
+    private Integer recordId;
     
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
@@ -130,10 +130,10 @@ public class AttendanceRecord {
     public Map<Student, AttendanceStatus> getEntries() {
         return Collections.unmodifiableMap(entries);
     }
-    public void setRecordId(long recordId) {
+    public void setRecordId(int recordId) {
         this.recordId = recordId;
     }
-    public Long getRecordId() {
+    public int getRecordId() {
         return recordId;
     }
     @Override

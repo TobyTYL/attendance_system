@@ -6,6 +6,7 @@ import edu.duke.ece651.team1.shared.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.sql.Statement;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.data_access.Student.StudentDao;
+import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
 import edu.duke.ece651.team1.shared.AttendanceEntry;
 /**
  * Provides data access object functionalities for handling attendance records in the database.
@@ -28,21 +30,24 @@ public class AttendanceRecordDAO {
     * @param record The AttendanceRecord object to add to the database.
     * @param sectionId The ID of the section for which the attendance is being recorded.
     * @throws SQLException if there is a problem communicating with the database.
+
     */
-    public static void addAttendanceRecord(AttendanceRecord record, long sectionId) throws SQLException {
+    private static StudentDao studentDao = new StudentDaoImp();
+
+    public static void addAttendanceRecord(AttendanceRecord record, int sectionId) throws SQLException {
         String sql = "INSERT INTO AttendanceRecords (sectionId, sessionDate) VALUES (?, ?)";
         LocalDate date = record.getSessionDate();
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setLong(1, sectionId);
+            statement.setInt(1, sectionId);
             statement.setDate(2, java.sql.Date.valueOf(date));
             int affectedRowsRecord = statement.executeUpdate();
             if (affectedRowsRecord == 0) {
                 throw new SQLException("Creating attendance record failed, no rows affected.");
             }
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                long recordId;
+                int recordId;
                 if (generatedKeys.next()) {
-                    recordId = generatedKeys.getLong(1);
+                    recordId = generatedKeys.getInt(1);
                 } else {
                     throw new SQLException("Creating attendance record failed, no ID obtained.");
                 }
@@ -66,10 +71,10 @@ public class AttendanceRecordDAO {
     public static void fillAttendanceRecordEntriesMap(Iterable<AttendanceEntry> entries, AttendanceRecord record)
             throws SQLException {
         for (AttendanceEntry entry : entries) {
-            long studentId = entry.getStudentId();
+            int studentId = entry.getStudentId();
             AttendanceStatus status = entry.getStatus();
-            if (StudentDao.findStudentByStudentID(studentId).isPresent()) {
-                Student student = StudentDao.findStudentByStudentID(studentId).get();
+            if (studentDao.findStudentByStudentID(studentId).isPresent()) {
+                Student student = studentDao.findStudentByStudentID(studentId).get();
                 record.addAttendanceEntry(student, status);
             } else {
                 throw new SQLException("get Attendance Record Error : cannot find student record");
@@ -85,15 +90,15 @@ public class AttendanceRecordDAO {
      * @return An AttendanceRecord object if found, otherwise throws an exception.
      * @throws SQLException if the record cannot be found or there is a problem communicating with the database.
      */
-    public static AttendanceRecord findAttendanceRecordBySectionIDAndSessionDate(long sectionId, LocalDate sessionDate)
+    public static AttendanceRecord findAttendanceRecordBySectionIDAndSessionDate(int sectionId, LocalDate sessionDate)
             throws SQLException {
         String sql = "SELECT * From AttendanceRecords WHERE SectionID = ? AND SessionDate = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
-            statement.setLong(1, sectionId);
+            statement.setInt(1, sectionId);
             statement.setDate(2, java.sql.Date.valueOf(sessionDate));
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                long recordId = resultSet.getLong("AttendanceRecordID");
+                int recordId = resultSet.getInt("AttendanceRecordID");
                 LocalDate date = resultSet.getDate("SessionDate").toLocalDate();
                 AttendanceRecord record = new AttendanceRecord(date);
                 Iterable<AttendanceEntry> entries = AttendanceEntryDAO
@@ -114,14 +119,14 @@ public class AttendanceRecordDAO {
      * @return An Iterable of AttendanceRecord objects.
      * @throws SQLException if there is a problem communicating with the database.
      */
-    public static Iterable<AttendanceRecord> findAttendanceRecordsBysectionID(long sectionId) throws SQLException {
+    public static Iterable<AttendanceRecord> findAttendanceRecordsBysectionID(int sectionId) throws SQLException {
         List<AttendanceRecord> records = new ArrayList<>();
         String sql = "SELECT * From AttendanceRecords WHERE SectionID = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
-            statement.setLong(1, sectionId);
+            statement.setInt(1, sectionId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                long recordId = resultSet.getLong("AttendanceRecordID");
+                int recordId = resultSet.getInt("AttendanceRecordID");
                 LocalDate sessionDate = resultSet.getDate("SessionDate").toLocalDate();
                 AttendanceRecord record = new AttendanceRecord(sessionDate);
                 Iterable<AttendanceEntry> entries = AttendanceEntryDAO
@@ -142,31 +147,32 @@ public class AttendanceRecordDAO {
      * @throws SQLException if there is a problem updating the entries in the database.
      */
     public static void updateAttendanceRecord(AttendanceRecord record) throws SQLException{
-        long recordId = record.getRecordId();
+        int recordId = record.getRecordId();
         for (Map.Entry<Student, AttendanceStatus> entry : record.getSortedEntries()){
             Student student = entry.getKey();
             AttendanceStatus status = entry.getValue();
-            long studentId = student.getStudentId(); 
+            int studentId = student.getStudentId(); 
             AttendanceEntryDAO.updateAttendanceEntry(recordId, studentId, status.getStatus());
         }
     }
     //test whatever you want
     public static void main(String[] args) throws SQLException {
-        Optional<Student> student1 = StudentDao.findStudentByStudentID(2);
-        // Optional<Student> student2 = StudentDAO.findStudentByStudentID(4);
-        // AttendanceRecord record = new AttendanceRecord();
-        // record.addAttendanceEntry(student1.get(),AttendanceStatus.TARDY);
-        // record.addAttendanceEntry(student2.get(),AttendanceStatus.TARDY);
-        // addAttendanceRecord(record, 1);
-        // System.out.println(findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now()).toString());
-        // System.out.println("------------------------");
-        // for(AttendanceRecord attendanceRecord: findAttendanceRecordsBysectionID(1)){
-        //     System.out.println(attendanceRecord.toString());
-        // }
-        AttendanceRecord record = findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now());
-        record.markPresent(student1.get());
-        updateAttendanceRecord(record);
-        System.out.println(record.toString());
+        
+        Optional<Student> student1 = studentDao.findStudentByStudentID(2);
+        Optional<Student> student2 = studentDao.findStudentByStudentID(4);
+        AttendanceRecord record = new AttendanceRecord();
+        record.addAttendanceEntry(student1.get(),AttendanceStatus.PRESENT);
+        record.addAttendanceEntry(student2.get(),AttendanceStatus.TARDY);
+        addAttendanceRecord(record, 1);
+        System.out.println(findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now()).toString());
+        System.out.println("------------------------");
+        for(AttendanceRecord attendanceRecord: findAttendanceRecordsBysectionID(1)){
+            System.out.println(attendanceRecord.toString());
+        }
+        AttendanceRecord record2 = findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now());
+        record.markAbsent(student1.get());
+        updateAttendanceRecord(record2);
+        System.out.println(record2.toString());
 
 
     }

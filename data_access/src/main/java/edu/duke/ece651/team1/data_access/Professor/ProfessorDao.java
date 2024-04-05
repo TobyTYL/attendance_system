@@ -7,5 +7,6 @@ public interface ProfessorDao {
     void removeProfessor(int professorId);
     Professor getProfessorById(int professorId);
     List<Professor> findAllProfessors();
+    Professor findProfessorByUsrID(int userID);
 }
 

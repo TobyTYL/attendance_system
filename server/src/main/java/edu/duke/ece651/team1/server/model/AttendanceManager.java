@@ -1,6 +1,4 @@
 package edu.duke.ece651.team1.server.model;
-import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
-import edu.duke.ece651.team1.server.repository.InMemoryRosterRepository;
 import edu.duke.ece651.team1.shared.*;
 
 

@@ -4,19 +4,17 @@ package edu.duke.ece651.team1.shared;
  * Provides multiple constructors to support various ways of creating a Student object.
  */
 public class Student {
-    private Long studentId;
+    private Integer studentId;
     private final String legalName;
     private String disPlayName;
     private String email;
-    private int userId;
-
     /**
      * Constructs a Student with specified legal name, display name, and email.
      * @param legalName The student's legal name.
      * @param disPlayName The name displayed in the application.
      * @param email The student's email address.
      */
-    public Student(Long studentId, String legalName, String disPlayName, String email) {
+    public Student(Integer studentId, String legalName, String disPlayName, String email) {
         this.studentId = studentId;
         this.legalName = legalName;
         this.disPlayName = disPlayName;
@@ -34,18 +32,24 @@ public class Student {
         this(null, legalName,legalName,"");
     }
 
+    public Student(String legalName, String displayName,String email){
+        this(null,legalName,displayName,email);
+    }
+    public Student(String legalName, String email){
+        this(null,legalName,legalName,email);
+    }
+
+
+
     public Student(){
         this(null, "", "", "");
     }
 
-    public Long getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-    public void setStudentId(Long studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
@@ -60,9 +64,7 @@ public class Student {
     public String getEmail() {
         return email;
     }
-    public String getDisplayName() {
-        return disPlayName;
-    }
+
     public void updateDisplayName(String dispalyName){
         this.disPlayName = dispalyName;
     }
@@ -76,13 +78,13 @@ public class Student {
     public boolean equals(Object obj) {
         if (obj.getClass().equals(getClass())) {
             Student s = (Student) obj;
-            return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email)&& userId == s.userId;
+            return legalName.equals(s.legalName) && disPlayName.equals(s.disPlayName) && email.equals(s.email);
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + ", userId=" + userId + "]";
+        return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";
     }
 }
