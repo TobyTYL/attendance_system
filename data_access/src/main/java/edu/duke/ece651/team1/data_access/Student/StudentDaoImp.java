@@ -1,5 +1,6 @@
 package edu.duke.ece651.team1.data_access.Student;
 
+import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Student;
 
 import java.sql.Connection;
@@ -14,18 +15,15 @@ import java.util.Optional;
 
 
 public class StudentDaoImp implements StudentDao {
-    private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
-    private static final String USER = "ece651";
-    private static final String PASSWORD = "passw0rd";
 
     @Override
-    public void addStudent(Student student) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+    public void addStudent(Student student,long userId) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO Students (UserID, LegalName, DisplayName, Email) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, student.getUserId());
+            statement.setLong(1, userId);
             statement.setString(2, student.getLegalName());
-            statement.setString(3, student.getDisplayName());
+            statement.setString(3, student.getDisPlayName());
             statement.setString(4, student.getEmail());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -35,7 +33,7 @@ public class StudentDaoImp implements StudentDao {
 
     @Override
     public void removeStudent(long studentID) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "DELETE FROM Students WHERE StudentID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, studentID);
@@ -48,7 +46,7 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public Optional<Student> findStudentByStudentID(long studentID) {
         Optional<Student> optionalStudent = Optional.empty();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Students WHERE StudentID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, studentID);
@@ -68,7 +66,7 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Students";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -87,12 +85,12 @@ public class StudentDaoImp implements StudentDao {
         return studentList;
     }
     @Override
-    public Optional<Student> findStudentByUserID(int userID) {
+    public Optional<Student> findStudentByUserID(long userID) {
         Optional<Student> optionalStudent = Optional.empty();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Students WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userID);
+            statement.setLong(1, userID);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 long studentID = rs.getLong("StudentID");

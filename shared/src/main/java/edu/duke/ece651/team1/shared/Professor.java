@@ -4,24 +4,28 @@ package edu.duke.ece651.team1.shared;
  * Represents a professor with a unique identifier, legal name, and email address.
  */
 public class Professor {
-    private final int professorId;
-    private final int userId;
+    private  Long professorId;
+    private  long userId;
 
     /**
      * Constructs a Professor with specified unique identifier, legal name, and email.
      * @param professorId The unique identifier of the professor.
      */
-    public Professor(int professorId, int userId) {
+    public Professor(Long professorId, long userId) {
         this.professorId = professorId;
         this.userId = userId;
     }
 
+    public Professor(long userId){
+        this(null, userId);
+    }
 
-    public int getProfessorId() {
+
+    public long getProfessorId() {
         return professorId;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
     @Override

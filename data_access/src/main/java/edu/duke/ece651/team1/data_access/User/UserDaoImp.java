@@ -1,5 +1,6 @@
 package edu.duke.ece651.team1.data_access.User;
 
+import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.User;
 
 import java.sql.*;
@@ -7,18 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImp implements UserDao {
-    private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
-    private static final String USER = "ece651";
-    private static final String PASSWORD = "passw0rd";
-    private Connection connection;
-
-    public UserDaoImp(Connection connection) {
-        this.connection = connection;
-    }
+  
 
     @Override
     public void addUser(User user) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUsername());
@@ -32,7 +26,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void removeUser(int userId) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "DELETE FROM Users WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
@@ -50,20 +44,20 @@ public class UserDaoImp implements UserDao {
     @Override
     public User getUserById(int userId) {
         User user = null;
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Users WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                int userIdResult = rs.getInt("UserID");
+                Long userIdResult = rs.getLong("UserID");
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
-                String email = rs.getString("Email");
+                // String email = rs.getString("Email");
                 String role = rs.getString("Role");
 
-                user = new User(userIdResult, username, passwordHash, email, role);
+                user = new User(userIdResult, username, passwordHash, role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,17 +68,17 @@ public class UserDaoImp implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Users");
             while (rs.next()) {
-                int userId = rs.getInt("UserID");
+                Long userId = rs.getLong("UserID");
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
-                String email = rs.getString("Email");
+                // String email = rs.getString("Email");
                 String role = rs.getString("Role");
 
-                User user = new User(userId, username, passwordHash, email, role);
+                User user = new User(userId, username, passwordHash, role);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -95,18 +89,18 @@ public class UserDaoImp implements UserDao {
     @Override
     public User findUserByUsername(String username) {
         User user = null;
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Users WHERE Username = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, username);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                int userId = rs.getInt("UserID");
+                Long userId = rs.getLong("UserID");
                 String passwordHash = rs.getString("PasswordHash");
-                String email = rs.getString("Email");
+                // String email = rs.getString("Email");
                 String role = rs.getString("Role");
 
-                user = new User(userId, username, passwordHash, email, role);
+                user = new User(userId, username, passwordHash, role);
             }
         } catch (SQLException e) {
             e.printStackTrace();

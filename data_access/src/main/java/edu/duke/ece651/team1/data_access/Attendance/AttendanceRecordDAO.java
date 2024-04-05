@@ -6,6 +6,7 @@ import edu.duke.ece651.team1.shared.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.sql.Statement;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.data_access.Student.StudentDao;
+import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
 import edu.duke.ece651.team1.shared.AttendanceEntry;
 /**
  * Provides data access object functionalities for handling attendance records in the database.
@@ -28,7 +30,10 @@ public class AttendanceRecordDAO {
     * @param record The AttendanceRecord object to add to the database.
     * @param sectionId The ID of the section for which the attendance is being recorded.
     * @throws SQLException if there is a problem communicating with the database.
+
     */
+    private static StudentDao studentDao = new StudentDaoImp();
+
     public static void addAttendanceRecord(AttendanceRecord record, long sectionId) throws SQLException {
         String sql = "INSERT INTO AttendanceRecords (sectionId, sessionDate) VALUES (?, ?)";
         LocalDate date = record.getSessionDate();
@@ -68,8 +73,8 @@ public class AttendanceRecordDAO {
         for (AttendanceEntry entry : entries) {
             long studentId = entry.getStudentId();
             AttendanceStatus status = entry.getStatus();
-            if (StudentDao.findStudentByStudentID(studentId).isPresent()) {
-                Student student = StudentDao.findStudentByStudentID(studentId).get();
+            if (studentDao.findStudentByStudentID(studentId).isPresent()) {
+                Student student = studentDao.findStudentByStudentID(studentId).get();
                 record.addAttendanceEntry(student, status);
             } else {
                 throw new SQLException("get Attendance Record Error : cannot find student record");
@@ -152,7 +157,7 @@ public class AttendanceRecordDAO {
     }
     //test whatever you want
     public static void main(String[] args) throws SQLException {
-        Optional<Student> student1 = StudentDao.findStudentByStudentID(2);
+        Optional<Student> student1 = studentDao.findStudentByStudentID(2);
         // Optional<Student> student2 = StudentDAO.findStudentByStudentID(4);
         // AttendanceRecord record = new AttendanceRecord();
         // record.addAttendanceEntry(student1.get(),AttendanceStatus.TARDY);
@@ -163,10 +168,10 @@ public class AttendanceRecordDAO {
         // for(AttendanceRecord attendanceRecord: findAttendanceRecordsBysectionID(1)){
         //     System.out.println(attendanceRecord.toString());
         // }
-        AttendanceRecord record = findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now());
-        record.markPresent(student1.get());
-        updateAttendanceRecord(record);
-        System.out.println(record.toString());
+        // AttendanceRecord record = findAttendanceRecordBySectionIDAndSessionDate(1, LocalDate.now());
+        // record.markPresent(student1.get());
+        // updateAttendanceRecord(record);
+        // System.out.println(record.toString());
 
 
     }

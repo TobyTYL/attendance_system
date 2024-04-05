@@ -1,7 +1,7 @@
 package edu.duke.ece651.team1.shared;
 
 public class User {
-    private int userId;
+    private Long userId;
     private String username;
     private String passwordHash;
     private String email;
@@ -10,19 +10,21 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String username, String passwordHash, String email, String role) {
+    public User(Long userId, String username, String passwordHash, String role) {
         this.userId = userId;
         this.username = username;
         this.passwordHash = passwordHash;
-        this.email = email;
         this.role = role;
     }
+    public User(String username, String passwordHash, String role){
+        this(null,username,passwordHash,role);
+    }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

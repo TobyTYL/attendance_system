@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentDao {
-    void addStudent(Student student);
+    void addStudent(Student student, long userId);
     void removeStudent(long studentID);
     Optional<Student> findStudentByStudentID(long studentID);
-    Optional<Student> findStudentByUserID(int userID);
+    Optional<Student> findStudentByUserID(long userID);
     List<Student> getAllStudents();
 }

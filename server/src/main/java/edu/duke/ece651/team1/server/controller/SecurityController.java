@@ -22,13 +22,23 @@ public class SecurityController {
      * @param password The password to be registered.
      * @return ResponseEntity<String> A response indicating the success or failure of the signup process.
      */
-    @PostMapping("/signup")
-    public ResponseEntity<String> postMethodName(@RequestParam(value = "username") String userName,
+    @PostMapping("/signup/professor")
+    public ResponseEntity<String> ProfessorRegister(@RequestParam(value = "username") String userName,
             @RequestParam(value = "password") String password) {
         try{
-            userService.createUser(userName, password);
+            userService.createUserProfessor(userName, password,"Professor");
         }catch(Exception e){
             return new ResponseEntity<String>("username has already been registered", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
+    }
+    @PostMapping("/signup/student")
+    public ResponseEntity<String> StudentRegister(@RequestParam(value = "username") String userName,
+            @RequestParam(value = "password") String password, @RequestParam(value = "legalname") String legalName,@RequestParam(value = "displayname") String displayName,@RequestParam(value = "email") String email) {
+        try{
+            userService.createUserStudent(userName, password,"Student",legalName,displayName,email);
+        }catch(Exception e){
+            return new ResponseEntity<String>("username has already been registered"+e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
     }
