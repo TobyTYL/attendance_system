@@ -51,7 +51,7 @@ public class UserDaoImp implements UserDao {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                Long userIdResult = rs.getLong("UserID");
+                int userIdResult = rs.getInt("UserID");
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
                 // String email = rs.getString("Email");
@@ -72,7 +72,7 @@ public class UserDaoImp implements UserDao {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Users");
             while (rs.next()) {
-                Long userId = rs.getLong("UserID");
+                int userId = rs.getInt("UserID");
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
                 // String email = rs.getString("Email");
@@ -95,7 +95,7 @@ public class UserDaoImp implements UserDao {
             statement.setString(1, username);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Long userId = rs.getLong("UserID");
+                int userId = rs.getInt("UserID");
                 String passwordHash = rs.getString("PasswordHash");
                 // String email = rs.getString("Email");
                 String role = rs.getString("Role");

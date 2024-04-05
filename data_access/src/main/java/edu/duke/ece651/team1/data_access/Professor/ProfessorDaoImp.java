@@ -21,7 +21,7 @@ public class ProfessorDaoImp implements ProfessorDao {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO Professors (UserID) VALUES (?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, professor.getUserId());
+            statement.setInt(1, professor.getUserId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,11 +29,11 @@ public class ProfessorDaoImp implements ProfessorDao {
     }
 
     @Override
-    public void removeProfessor(long professorId) {
+    public void removeProfessor(int professorId) {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "DELETE FROM Professors WHERE ProfessorID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, professorId);
+            statement.setInt(1, professorId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class ProfessorDaoImp implements ProfessorDao {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                long professorId = rs.getLong("ProfessorID");
+                int professorId = rs.getInt("ProfessorID");
                 int userId = rs.getInt("UserID");
                 Professor professor = new Professor(professorId, userId);
                 professorList.add(professor);
@@ -59,15 +59,15 @@ public class ProfessorDaoImp implements ProfessorDao {
     }
 
     @Override
-    public Professor getProfessorById(long professorId) {
+    public Professor getProfessorById(int professorId) {
         Professor professor = null;
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Professors WHERE ProfessorID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, professorId);
+            statement.setInt(1, professorId);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                long userId = rs.getLong("UserID");
+                int userId = rs.getInt("UserID");
                 professor = new Professor(professorId, userId);
             }
         } catch (SQLException e) {
@@ -77,16 +77,16 @@ public class ProfessorDaoImp implements ProfessorDao {
     }
 
     @Override
-    public Professor findProfessorByUsrID(long userID) {
+    public Professor findProfessorByUsrID(int userID) {
         // TODO Auto-generated method stub
         Professor professor = null;
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Professors WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, userID);
+            statement.setInt(1, userID);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                long professorId = rs.getLong("ProfessorID");
+                int professorId = rs.getInt("ProfessorID");
                 professor = new Professor(professorId, userID);
             }
         } catch (SQLException e) {

@@ -12,9 +12,9 @@ public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
     private String role;
-    private long userId;
+    private int userId;
 
-    public CustomUserDetails(String username, String password, String role, long userId) {
+    public CustomUserDetails(String username, String password, String role, int userId) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -63,7 +63,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
     // Custom getters
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 

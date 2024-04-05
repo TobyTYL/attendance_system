@@ -23,8 +23,8 @@ public class EnrollmentDaoImplTest {
     @BeforeEach
     void setUp() throws Exception {
         // Connect to H2 in-memory database
-        conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
-        enrollmentDao = new EnrollmentDaoImpl(conn);
+        // conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
+        enrollmentDao = new EnrollmentDaoImpl();
         
         // Setup schema and initial data
         try (Statement stmt = conn.createStatement()) {
@@ -114,7 +114,7 @@ public class EnrollmentDaoImplTest {
     @Test
     void testGetEnrollmentsByStudentIdSQLException() {
         // Introduce a broken SQL statement to simulate an SQLException
-        enrollmentDao = new EnrollmentDaoImpl(conn) {
+        enrollmentDao = new EnrollmentDaoImpl() {
             @Override
             public List<Enrollment> getEnrollmentsByStudentId(int studentId) {
                 // Override to introduce a SQL error

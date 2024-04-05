@@ -17,11 +17,11 @@ import java.util.Optional;
 public class StudentDaoImp implements StudentDao {
 
     @Override
-    public void addStudent(Student student,long userId) {
+    public void addStudent(Student student,int userId) {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO Students (UserID, LegalName, DisplayName, Email) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, userId);
+            statement.setInt(1, userId);
             statement.setString(2, student.getLegalName());
             statement.setString(3, student.getDisPlayName());
             statement.setString(4, student.getEmail());
@@ -32,11 +32,11 @@ public class StudentDaoImp implements StudentDao {
     }
 
     @Override
-    public void removeStudent(long studentID) {
+    public void removeStudent(int studentID) {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "DELETE FROM Students WHERE StudentID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, studentID);
+            statement.setInt(1, studentID);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,12 +44,12 @@ public class StudentDaoImp implements StudentDao {
     }
 
     @Override
-    public Optional<Student> findStudentByStudentID(long studentID) {
+    public Optional<Student> findStudentByStudentID(int studentID) {
         Optional<Student> optionalStudent = Optional.empty();
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Students WHERE StudentID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, studentID);
+            statement.setInt(1, studentID);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String legalName = rs.getString("LegalName");
@@ -71,7 +71,7 @@ public class StudentDaoImp implements StudentDao {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                long studentID = rs.getLong("StudentID");
+                int studentID = rs.getInt("StudentID");
                 int userID = rs.getInt("UserID");
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
@@ -85,15 +85,15 @@ public class StudentDaoImp implements StudentDao {
         return studentList;
     }
     @Override
-    public Optional<Student> findStudentByUserID(long userID) {
+    public Optional<Student> findStudentByUserID(int userID) {
         Optional<Student> optionalStudent = Optional.empty();
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Students WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, userID);
+            statement.setInt(1, userID);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                long studentID = rs.getLong("StudentID");
+                int studentID = rs.getInt("StudentID");
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
                 String email = rs.getString("Email");
@@ -107,10 +107,10 @@ public class StudentDaoImp implements StudentDao {
 }
 
 //
-//    public static Optional<Student> findStudentByStudentID(long studentID){
+//    public static Optional<Student> findStudentByStudentID(int studentID){
 //        String sql = "SELECT * FROM Students WHERE StudentID = ?";
 //        try(PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)){
-//            statement.setLong(1, studentID);
+//            statement.setInt(1, studentID);
 //            ResultSet resultSet = statement.executeQuery();
 //            if (resultSet.next()) {
 //                String legalName = resultSet.getString("LegalName");

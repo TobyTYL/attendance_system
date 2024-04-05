@@ -26,9 +26,9 @@ public class AttendanceEntryDAO {
     public static void addAttendanceEntry(AttendanceEntry entry) throws SQLException {
         String sql = "INSERT INTO AttendanceEntries (StudentID, AttendanceRecordID, AttendanceStatus) VALUES (?, ?, ?)";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
-            // statement.setLong(1, entry.getEntryId());
-            statement.setLong(1, entry.getStudentId());
-            statement.setLong(2, entry.getAttendanceRecordId());
+            // statement.setInt(1, entry.getEntryId());
+            statement.setInt(1, entry.getStudentId());
+            statement.setInt(2, entry.getAttendanceRecordId());
             statement.setString(3, entry.getStatus().getStatus());
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
@@ -45,16 +45,16 @@ public class AttendanceEntryDAO {
      *         record ID.
      * @throws SQLException If there is an error performing the query.
      */
-    public static Iterable<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(Long attendanceRecordId)
+    public static Iterable<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(int attendanceRecordId)
             throws SQLException {
         String sql = "SELECT * FROM AttendanceEntries WHERE attendanceRecordId = ?";
         List<AttendanceEntry> entries = new ArrayList<>();
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
-            statement.setLong(1, attendanceRecordId);
+            statement.setInt(1, attendanceRecordId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Long entryId = resultSet.getLong("AttendanceEntryID");
-                Long studentId = resultSet.getLong("studentId");
+                int entryId = resultSet.getInt("AttendanceEntryID");
+                int studentId = resultSet.getInt("studentId");
                 String status = resultSet.getString("AttendanceStatus");
                 AttendanceEntry entry = new AttendanceEntry(studentId, attendanceRecordId,
                        AttendanceStatus.fromString(status));
@@ -73,15 +73,15 @@ public class AttendanceEntryDAO {
      * @return An Optional containing the ID of the found attendance entry if it
      *         exists, or an empty Optional if not found.
      */
-    public static Optional<Long> findAttendanceEntryIdByRecordIdAndStudentId(Long attendanceRecordId, Long studentId)
+    public static Optional<Integer> findAttendanceEntryIdByRecordIdAndStudentId(int attendanceRecordId, int studentId)
             throws SQLException {
         String sql = "SELECT AttendanceEntryID FROM AttendanceEntries WHERE AttendanceRecordID = ? AND StudentID = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
-            statement.setLong(1, attendanceRecordId);
-            statement.setLong(2, studentId);
+            statement.setInt(1, attendanceRecordId);
+            statement.setInt(2, studentId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(resultSet.getLong("AttendanceEntryID"));
+                return Optional.of(resultSet.getInt("AttendanceEntryID"));
             }
         }
         return Optional.empty();
@@ -97,13 +97,13 @@ public class AttendanceEntryDAO {
      * @throws SQLException If the update operation fails or no rows are affected.
      */
 
-    public static void updateAttendanceEntry(long recordId, long studentId, String newStatus) throws SQLException {
+    public static void updateAttendanceEntry(int recordId, int studentId, String newStatus) throws SQLException {
         String sql = "UPDATE AttendanceEntries SET attendanceStatus = ? WHERE attendanceRecordId = ? AND studentId = ?";
         try (Connection connection = DB_connect.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, newStatus);
-            statement.setLong(2, recordId);
-            statement.setLong(3, studentId);
+            statement.setInt(2, recordId);
+            statement.setInt(3, studentId);
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Updating attendance entry failed, no rows affected.");

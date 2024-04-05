@@ -71,18 +71,18 @@ public class SecurityConfig {
     public AuthenticationSuccessHandler successHandler() {
         return (request, response, authentication) -> {
             Object principal = authentication.getPrincipal();
-            long uid = ((CustomUserDetails)principal).getUserId();
+            int uid = ((CustomUserDetails)principal).getUserId();
             String role = ((CustomUserDetails)principal).getRole();
             Map<String, Object> data = new HashMap<>();
             data.put("role", role);
             if(role.equals("Professor")){
                 ProfessorDao dao = new ProfessorDaoImp();
-                long professor_id = dao.findProfessorByUsrID(uid).getProfessorId();
+                int professor_id = dao.findProfessorByUsrID(uid).getProfessorId();
                 data.put("id", professor_id);
 
             }else{
                 StudentDao dao = new StudentDaoImp();
-                long professor_id = dao.findStudentByUserID(uid).get().getStudentId();
+                int professor_id = dao.findStudentByUserID(uid).get().getStudentId();
                 data.put("id", professor_id);
             }
             response.setStatus(HttpStatus.FOUND.value());

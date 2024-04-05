@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.data_access.Professor;
+// package edu.duke.ece651.team1.data_access.Professor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,24 +15,24 @@ import org.junit.jupiter.api.Test;
 
 import edu.duke.ece651.team1.shared.Professor;
 
-public class ProfessorDaoImpTest {
-    private Connection connection;
-    private ProfessorDaoImp professorDao;
+// public class ProfessorDaoImpTest {
+//     private Connection connection;
+//     private ProfessorDaoImp professorDao;
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
-    private static final String USER = "ece651";
-    private static final String PASSWORD = "passw0rd";
+//     private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
+//     private static final String USER = "ece651";
+//     private static final String PASSWORD = "passw0rd";
 
-    @BeforeEach
-    public void setUp() throws SQLException {
-        connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        professorDao = new ProfessorDaoImp();
-    }
+//     @BeforeEach
+//     public void setUp() throws SQLException {
+//         connection = DriverManager.getConnection(URL, USER, PASSWORD);
+//         professorDao = new ProfessorDaoImp();
+//     }
 
-    @AfterEach
-    public void tearDown() throws SQLException {
-        connection.close();
-    }
+//     @AfterEach
+//     public void tearDown() throws SQLException {
+//         connection.close();
+//     }
 
 
 //    @Test
@@ -48,7 +48,7 @@ public class ProfessorDaoImpTest {
 //        assertEquals(professorToAdd.getUserId(), retrievedProfessor.getUserId());
 //    }
 
-}
+// }
 
 //
 //import static org.junit.jupiter.api.Assertions.assertNull;

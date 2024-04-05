@@ -4,9 +4,9 @@ import edu.duke.ece651.team1.shared.Professor;
 
 public interface ProfessorDao {
     void addProfessor(Professor professor);
-    void removeProfessor(long professorId);
-    Professor getProfessorById(long professorId);
+    void removeProfessor(int professorId);
+    Professor getProfessorById(int professorId);
     List<Professor> findAllProfessors();
-    Professor findProfessorByUsrID(long userID);
+    Professor findProfessorByUsrID(int userID);
 }
 
