@@ -98,9 +98,10 @@ public class ProfessorDaoImp implements ProfessorDao {
     @Override
     public boolean checkProfessorExists(String professorName) {
         try (Connection conn = DB_connect.getConnection()) {
-            String sql = "SELECT * FROM Professor WHERE LegalName = ?";
+            String sql = "SELECT * FROM Professors WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, professorName);
+            int userId = getUserIDByProfessorName(conn, professorName);
+            statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -108,4 +109,16 @@ public class ProfessorDaoImp implements ProfessorDao {
             return false;
         }
     }
+    private int getUserIDByProfessorName(Connection conn, String professorName) throws SQLException {
+        String sql = "SELECT UserID FROM Users WHERE Username = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, professorName);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("UserID");
+        } else {
+            throw new SQLException("No user found with the given professor name: " + professorName);
+        }
+    }
+
 }

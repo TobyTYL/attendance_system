@@ -62,7 +62,7 @@ public class StudentController {
         String displayName = studentView.readStudentDisplayName();
         String email = studentView.readStudentEmail();
         // "student" 搞一个常量，默认密码搞常量
-        User user = new User(studentName, passwordEncoder.encode("passw0rd"), "student");
+        User user = new User(studentName, passwordEncoder.encode("passw0rd"), "Student");
         int uid = userDao.addUser(user);
         Student newStudent = new Student(uid, studentName, displayName, email);
         if (studentDao.checkStudentExists(studentName)) {

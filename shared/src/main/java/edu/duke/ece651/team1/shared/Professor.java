@@ -6,7 +6,7 @@ package edu.duke.ece651.team1.shared;
 public class Professor {
     private Integer professorId;
     private  int userId;
-    private String displayName;
+    private String professorName;
     /**
      * Constructs a Professor with specified unique identifier, legal name, and email.
      * @param professorId The unique identifier of the professor.
@@ -15,17 +15,21 @@ public class Professor {
         this.professorId = professorId;
         this.userId = userId;
     }
-    public Professor(Integer professorId, int userId, String displayName) {
+    public Professor(Integer professorId, int userId, String professorName) {
         this.professorId = professorId;
         this.userId = userId;
-        this.displayName = displayName;
+        this.professorName = professorName;
     }
 
     public Professor(int userId){
         this(null, userId);
     }
     public Professor(String displayName){
-        this.displayName = displayName;
+        this.professorName = displayName;
+    }
+    public Professor(int userId, String professorName){
+        this.userId = userId;
+        this.professorName = professorName;
     }
 
     public int getProfessorId() {
@@ -36,7 +40,7 @@ public class Professor {
         return userId;
     }
     public String getDisplayName() {
-        return displayName;
+        return professorName;
     }
 
     @Override
