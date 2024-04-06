@@ -94,4 +94,18 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professor;
     }
+
+    @Override
+    public boolean checkProfessorExists(String professorName) {
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "SELECT * FROM Professor WHERE LegalName = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, professorName);
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -8,5 +8,7 @@ public interface ProfessorDao {
     Professor getProfessorById(int professorId);
     List<Professor> findAllProfessors();
     Professor findProfessorByUsrID(int userID);
+    boolean checkProfessorExists(String name);
+
 }
 

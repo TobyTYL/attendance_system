@@ -11,7 +11,7 @@ public class UserDaoImp implements UserDao {
 
 
     @Override
-    public void addUser(User user) {
+    public int addUser(User user) {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO Users (Username, PasswordHash, Role) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -19,8 +19,10 @@ public class UserDaoImp implements UserDao {
             statement.setString(2, user.getPasswordHash());
             statement.setString(3, user.getRole());
             statement.executeUpdate();
+            return findUserByUsername(user.getUsername()).getUserId();
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
     }
 
