@@ -144,6 +144,28 @@ public class StudentDaoImp implements StudentDao {
             return false;
         }
     }
+    // new one
+    @Override
+    public Optional<Student> findStudentByName(String studentName) {
+        Optional<Student> optionalStudent = Optional.empty();
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "SELECT * FROM Students WHERE LegalName = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, studentName);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("UserID");
+                Integer studentID = rs.getInt("StudentID");
+                String legalName = rs.getString("LegalName");
+                String displayName = rs.getString("DisplayName");
+                String email = rs.getString("Email");
+                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email, userId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return optionalStudent;
+    }
 
 }
 

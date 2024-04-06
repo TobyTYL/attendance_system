@@ -7,6 +7,7 @@ import java.io.PrintStream;
 
 import edu.duke.ece651.team1.data_access.User.UserDao;
 import edu.duke.ece651.team1.data_access.User.UserDaoImp;
+import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -44,7 +45,7 @@ public class StudentController {
                 if (option.equals("add")) {
                     addStudent();
                 } else if (option.equals("remove")) {
-                    //removeStudent();
+                    removeStudent();
                 } else if (option.equals("update")) {
                     //todo: updateStudent();
                 } else {
@@ -71,70 +72,26 @@ public class StudentController {
         }
         studentDao.addStudent(newStudent);
         out.println("Student added successfully.");
-
     }
 
+    private void removeStudent() throws IOException {
+        String studentName = studentView.readStudentName();
+        Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            Integer studentId = student.getStudentId();
+            if (studentId != null) {
+                studentDao.removeStudent(student);
+                userDao.removeUser(student.getUserId());
+                out.println("Student removed successfully.");
+            } else {
+                out.println("Student ID is null.");
+            }
+        } else {
+            out.println("Student not found.");
+        }
+    }
 
-//
-//    public boolean checkStudentExists(String studentName) {
-//        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-//                + "/api/students/student/exists/" + studentName;
-//        HttpEntity<Student> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
-//        ResponseEntity<Boolean> responseEntity = restTemplate.exchange(
-//                url,
-//                HttpMethod.GET,
-//                requestEntity,
-//                Boolean.class);
-//        return responseEntity.getBody();
-//
-//    }
-//
-//
-//    private void removeStudent() throws IOException {
-//        String studentName = studentView.readStudentName();
-//        if(!checkStudentExists(studentName)){
-//            out.println("The Student you want to remove does not exists");
-//            return;
-//        }
-//        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-//                + "/api/students/student/"+studentName;
-//        HttpEntity<Void> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
-//        ResponseEntity<String> responseEntity = restTemplate.exchange(
-//                url,
-//                HttpMethod.DELETE,
-//                requestEntity,
-//                String.class);
-//        if(responseEntity.getStatusCode()==HttpStatus.OK){
-//            studentView.showSuccessRemoveMessage(studentName);
-//        }else{
-//            out.println("Remove Student: "+studentName+" failed");
-//        }
-//
-//
-//    }
-//
-//    private void editStudentDisplayName() throws IOException {
-//        String studentName = studentView.readStudentName();
-//        String newDisplayName = studentView.readStudentDisplayName();
-//        // HttpHeaders headers = new HttpHeaders();
-//        // headers.add("Cookie", UserSession.getInstance().getSessionToken());
-//        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
-//        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-//                + "/api/students/student/displayname/" + studentName + "/" + newDisplayName;
-//        ResponseEntity<String> responseEntity = restTemplate.exchange(
-//                url,
-//                HttpMethod.PUT,
-//                requestEntity,
-//                String.class);
-//        if (responseEntity.getStatusCode()==HttpStatus.OK) {
-//            studentView.showSuccessEditNameMessage(studentName, newDisplayName);
-//        }else if(responseEntity.getStatusCode()==HttpStatus.NOT_FOUND){
-//            studentView.showStudentNotFoundMessage("edit dispaly name");
-//        }else{
-//            out.println("Error happen in server when try to edit display Name ");
-//        }
-//    }
-//
 
 
 }

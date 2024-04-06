@@ -61,8 +61,8 @@ public class Student {
         this(null, "", "", "");
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Integer getStudentId() {
+        return this.studentId;
     }
 
     public void setStudentId(int studentId) {

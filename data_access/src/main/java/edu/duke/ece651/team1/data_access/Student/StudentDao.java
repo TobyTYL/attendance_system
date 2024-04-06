@@ -12,5 +12,5 @@ public interface StudentDao {
     Optional<Student> findStudentByUserID(int userID);
     List<Student> getAllStudents();
     boolean checkStudentExists(String name);
-
+    Optional<Student> findStudentByName(String studentName);
 }
