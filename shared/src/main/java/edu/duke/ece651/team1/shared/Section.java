@@ -10,6 +10,9 @@ public class Section {
         this.classId = classId;
         this.professorId = professorId;
     }
+    public Section(int classId, int professorId){
+        this(-1,classId, professorId);
+    }
 
     // Getters
     public int getSectionId() {
