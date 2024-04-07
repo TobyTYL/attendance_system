@@ -47,14 +47,14 @@ public class AttendanceEntryDAO {
      */
     public static Iterable<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(int attendanceRecordId)
             throws SQLException {
-        String sql = "SELECT * FROM AttendanceEntries WHERE attendanceRecordId = ?";
+        String sql = "SELECT * FROM AttendanceEntries WHERE AttendanceRecordID = ?";
         List<AttendanceEntry> entries = new ArrayList<>();
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
             statement.setInt(1, attendanceRecordId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int entryId = resultSet.getInt("AttendanceEntryID");
-                int studentId = resultSet.getInt("studentId");
+                int studentId = resultSet.getInt("StudentID");
                 String status = resultSet.getString("AttendanceStatus");
                 AttendanceEntry entry = new AttendanceEntry(studentId, attendanceRecordId,
                        AttendanceStatus.fromString(status));
@@ -73,7 +73,7 @@ public class AttendanceEntryDAO {
      * @return An Optional containing the ID of the found attendance entry if it
      *         exists, or an empty Optional if not found.
      */
-    public static Optional<Integer> findAttendanceEntryIdByRecordIdAndStudentId(int attendanceRecordId, int studentId)
+    public static Optional<Long> findAttendanceEntryIdByRecordIdAndStudentId(int attendanceRecordId, int studentId)
             throws SQLException {
         String sql = "SELECT AttendanceEntryID FROM AttendanceEntries WHERE AttendanceRecordID = ? AND StudentID = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
@@ -81,7 +81,9 @@ public class AttendanceEntryDAO {
             statement.setInt(2, studentId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(resultSet.getInt("AttendanceEntryID"));
+                // this seems to be a type error
+//                return Optional.of(resultSet.getInt("AttendanceEntryID"));
+                return Optional.of(resultSet.getLong("AttendanceEntryID"));
             }
         }
         return Optional.empty();
