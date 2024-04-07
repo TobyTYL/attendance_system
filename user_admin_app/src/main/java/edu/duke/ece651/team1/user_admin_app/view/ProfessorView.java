@@ -29,8 +29,8 @@ public class ProfessorView {
         out.println("Please select an option:");
         out.println("1. Add a professor");
         out.println("2. Remove a professor");
-        out.println("3. Update professor's info");
-        out.println("4. Back to main menu");
+//        out.println("3. Update professor's info");
+        out.println("3. Back to main menu");
 
     }
     public String readProfessorOption() throws IOException {
@@ -39,8 +39,6 @@ public class ProfessorView {
             return "add";
         } else if (optionNum == 2) {
             return "remove";
-        } else if (optionNum == 3) {
-            return "update";
         } else {
             return "back";
         }
@@ -51,15 +49,18 @@ public class ProfessorView {
         return inputReader.readLine().trim();
     }
 
-
-    public void displayProfessorList(Iterable<Professor> professors) {
-        out.println("Professor Name");
-        out.println("=============");
-        for (Professor professor : professors) {
-            out.printf(professor.getDisplayName() + "\n");
+    public int readProfessorId() throws IOException {
+        out.println("Enter the ID of the professor:");
+        String input = inputReader.readLine().trim();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            out.println("Invalid input. Please enter a valid integer ID.");
+            return readProfessorId();
         }
-
     }
+
+
     public void showSuccessAddDisplayNameMessage(String professor, String status) {
         out.println("You successfully added " + professor + " to this class " + status);
     }

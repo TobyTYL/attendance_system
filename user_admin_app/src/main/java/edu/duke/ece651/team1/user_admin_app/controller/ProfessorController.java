@@ -4,6 +4,7 @@ package edu.duke.ece651.team1.user_admin_app.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Optional;
 
 import edu.duke.ece651.team1.data_access.User.UserDao;
 import edu.duke.ece651.team1.data_access.User.UserDaoImp;
@@ -33,8 +34,6 @@ public class ProfessorController {
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.userDao = new UserDaoImp();
 
-
-
     }
 
     public void startProfessorMenu() throws IOException {
@@ -45,9 +44,7 @@ public class ProfessorController {
                 if (option.equals("add")) {
                     addProfessor();
                 } else if (option.equals("remove")) {
-                    //removeStudent();
-                } else if (option.equals("update")) {
-                    //todo: updateStudent();
+                    removeProfessor();
                 } else {
                     //back to main menu
                     return;
@@ -69,7 +66,19 @@ public class ProfessorController {
         }
         professorDao.addProfessor(newProfessor);
         out.println("Professor added successfully.");
-
     }
+    private void removeProfessor() throws IOException {
+        String professorName = professorView.readProfessorName();
+        int userId = userDao.findUserByUsername(professorName).getUserId();
+        if (userId != -1) {
+            int professorId = professorDao.findProfessorByUsrID(userId).getProfessorId();
+            professorDao.removeProfessor(professorId);
+            userDao.removeUser(userId);
+            out.println("Professor removed successfully.");
+        } else {
+            out.println("Professor not found.");
+        }
+    }
+
 
 }
