@@ -13,4 +13,5 @@ public interface StudentDao {
     List<Student> getAllStudents();
     boolean checkStudentExists(String name);
     Optional<Student> findStudentByName(String studentName);
+    void updateStudent(Student student);
 }

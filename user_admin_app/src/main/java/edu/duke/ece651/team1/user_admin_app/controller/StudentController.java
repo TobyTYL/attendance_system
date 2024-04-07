@@ -47,7 +47,7 @@ public class StudentController {
                 } else if (option.equals("remove")) {
                     removeStudent();
                 } else if (option.equals("update")) {
-                    //todo: updateStudent();
+                    updateStudent();
                 } else {
                     //back to main menu
                     return;
@@ -84,6 +84,26 @@ public class StudentController {
                 studentDao.removeStudent(student);
                 userDao.removeUser(student.getUserId());
                 out.println("Student removed successfully.");
+            } else {
+                out.println("Student ID is null.");
+            }
+        } else {
+            out.println("Student not found.");
+        }
+    }
+    private void updateStudent() throws IOException {
+        String studentName = studentView.readStudentName();
+        Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            Integer studentId = student.getStudentId();
+            if (studentId != null) {
+                String newDisplayName = studentView.readStudentDisplayName();
+                String newEmail = studentView.readStudentEmail();
+                student.updateDisplayName(newDisplayName);
+                student.setStudentEmail(newEmail);
+                studentDao.updateStudent(student);
+                out.println("Student updated successfully.");
             } else {
                 out.println("Student ID is null.");
             }

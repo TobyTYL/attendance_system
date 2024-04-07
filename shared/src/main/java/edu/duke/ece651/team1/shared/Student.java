@@ -80,6 +80,10 @@ public class Student {
     public String getEmail() {
         return email;
     }
+    public void setStudentEmail(String email) {
+        this.email = email;
+    }
+
     public int getUserId() {
         return userId;
     }

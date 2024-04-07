@@ -11,22 +11,6 @@ import java.util.Optional;
 
 
 public class StudentDaoImp implements StudentDao {
-
-//    @Override
-//    public void addStudent(Student student) {
-//        try (Connection conn = DB_connect.getConnection()) {
-//            String sql = "INSERT INTO Students (UserID, LegalName, DisplayName, Email) VALUES (?, ?, ?, ?)";
-//            PreparedStatement statement = conn.prepareStatement(sql);
-//            statement.setInt(1, student.getUserId());
-//            statement.setString(2, student.getLegalName());
-//            statement.setString(3, student.getDisPlayName());
-//            statement.setString(4, student.getEmail());
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     public void addStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -166,22 +150,20 @@ public class StudentDaoImp implements StudentDao {
         }
         return optionalStudent;
     }
+    @Override
+    public void updateStudent(Student student) {
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "UPDATE Students SET DisplayName = ?, Email = ? WHERE StudentID = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, student.getDisPlayName());
+            statement.setString(2, student.getEmail());
+            statement.setInt(3, student.getStudentId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
-//
-//    public static Optional<Student> findStudentByStudentID(int studentID){
-//        String sql = "SELECT * FROM Students WHERE StudentID = ?";
-//        try(PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)){
-//            statement.setInt(1, studentID);
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                String legalName = resultSet.getString("LegalName");
-//                String displayName = resultSet.getString("DisplayName");
-//                String email = resultSet.getString("Email");
-//                return Optional.of(new Student(studentID, legalName, displayName, email));
-//            }else{
-//                return Optional.empty();
-//            }
-//        }
-//    }
