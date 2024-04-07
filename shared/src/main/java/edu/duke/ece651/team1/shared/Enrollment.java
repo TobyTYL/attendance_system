@@ -1,14 +1,23 @@
 package edu.duke.ece651.team1.shared;
 
 public class Enrollment {
-    private int enrollmentId;
+    private Integer enrollmentId;
     private int studentId;
     private int sectionId;
 
-    public Enrollment(int studentId, int sectionId) {
+    public Enrollment(Integer enrollmentId, int studentId, int sectionId) {
+        this.enrollmentId = enrollmentId;
         this.studentId = studentId;
         this.sectionId = sectionId;
     }
+
+
+    public Enrollment(int studentId, int sectionId) {
+        // this.studentId = studentId;
+        // this.sectionId = sectionId;
+        this(null, studentId, sectionId);
+    }
+   
 
     public int getEnrollmentId() {
         return enrollmentId;

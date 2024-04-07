@@ -6,12 +6,17 @@ import java.lang.reflect.Type;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 
-import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDao;
+import edu.duke.ece651.team1.data_access.Notification.*;
 import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDaoImpl;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreferenceDaoImp;
 import edu.duke.ece651.team1.data_access.Student.StudentDao;
 import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
 // import edu.duke.ece651.team1.server.controller.StudentController;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import javax.management.Notification;
+
 import edu.duke.ece651.team1.shared.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,12 +38,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class StudentService {
-    // private final String studentInfoPath;
-    // @Autowired
-    // private InMemoryRosterRepository rosterRepository;
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
-    private EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
-    private StudentDao studentDao = new StudentDaoImp();
+    private NotificationPreferenceDao notificationDao = new NotificationPreferenceDaoImp();
+
+    public void updateNotificationPreference(int studentId, int coursId, boolean preference){
+        notificationDao.updateNotificationPreference(studentId, coursId, preference);
+    }
+
+    public String getNotificationPreference(int studentId, int courseId){
+        NotificationPreference preference=notificationDao.findNotificationPreferenceByStudentIdAndClassId(studentId, courseId);
+        Gson gson = new Gson();
+        Map<String, Object> notificationInfo = new HashMap<>();
+        notificationInfo.put("ReceiveNotifications", preference.isReceiveNotifications());
+        return gson.toJson(notificationInfo);
+    }
     /*
      * Saves the roster of students for the specified user.
      *
@@ -99,14 +112,14 @@ public class StudentService {
      * 
      * @throws IOException if an I/O error occurs while retrieving the students
      */
-    public List<Student> getAllStudent(int sectionId)  {
-        List<Enrollment> enrollments = enrollmentDao.getEnrollmentsBySectionId(sectionId);
-        List<Student> students = enrollments.stream()
-                .map(enrollment -> studentDao.findStudentByStudentID(enrollment.getStudentId()).get())
-                .collect(Collectors.toList());
-        return students;
+    // public List<Student> getAllStudent(int sectionId)  {
+    //     List<Enrollment> enrollments = enrollmentDao.getEnrollmentsBySectionId(sectionId);
+    //     List<Student> students = enrollments.stream()
+    //             .map(enrollment -> studentDao.findStudentByStudentID(enrollment.getStudentId()).get())
+    //             .collect(Collectors.toList());
+    //     return students;
 
-    }
+    // }
     /*
      * Removes the student with the specified name from the roster of the specified
      * user.

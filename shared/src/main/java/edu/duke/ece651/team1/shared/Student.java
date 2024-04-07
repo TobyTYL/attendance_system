@@ -45,7 +45,7 @@ public class Student {
         this(null, "", "", "");
     }
 
-    public int getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
 
