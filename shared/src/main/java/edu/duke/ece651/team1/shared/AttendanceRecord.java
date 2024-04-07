@@ -12,14 +12,20 @@ import com.google.common.collect.Iterables;
  * Allows initialization, updating, and querying of attendance status for students.
  */
 public class AttendanceRecord {
+    //id builder pattern 
+    private Integer recordId;
+    
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
+ 
    
    /**
     * for each session, record the session date and the student and the corresponding status.
     * @param sessionDate
     */
     public AttendanceRecord(LocalDate sessionDate) {
+        // not insert to database yet, use null to represent.
+         this.recordId = null;
          this.sessionDate = sessionDate;
         this.entries = new HashMap<>();
     }
@@ -47,6 +53,10 @@ public class AttendanceRecord {
         for(Student s:students){
             initializeAttendanceEntry(s);
         }
+    }
+
+    public void addAttendanceEntry(Student student, AttendanceStatus status){
+        entries.put(student, status);
     }
     /**
      * Checks if a student is in the attendance record.
@@ -119,6 +129,16 @@ public class AttendanceRecord {
 
     public Map<Student, AttendanceStatus> getEntries() {
         return Collections.unmodifiableMap(entries);
+    }
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
+    }
+    public Integer getRecordId() {
+        return recordId;
+    }
+    @Override
+    public String toString() {
+        return "AttendanceRecord [recordId=" + recordId + ", sessionDate=" + sessionDate + ", entries=" + entries + "]";
     }
     
 }

@@ -51,6 +51,4 @@ public class UserSession {
     public void setPort(String port) {
         this.port = port;
     }
-
-   
 }

@@ -23,9 +23,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -33,42 +36,68 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 
 @ExtendWith(MockitoExtension.class)
 class AttendanceControllerTest {
     @Mock
-    private BufferedReader inputReader;
-
+    private BufferedReader mockBufferedReader;
     @Mock
-    private PrintStream out;
-
-    @Mock
-    private RestTemplate restTemplate;
-    @Mock
-    private AttendanceView attendanceView;
-
+    private RestTemplate mockRestTemplate;
     @InjectMocks
     private AttendanceController controller;
-    private ByteArrayOutputStream outContent;
-    //private AttendanceView attendanceView;
-    //private AttendanceController controller;
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
 
     @BeforeEach
-    void setUp() {
-        // inputReader = mock(BufferedReader.class);
-        // out = new PrintStream(new ByteArrayOutputStream());
-        // restTemplate = mock(RestTemplate.class);
-        // attendanceView = mock(AttendanceView.class);
+    void setUp() throws IOException {
+        System.setOut(new PrintStream(outContent)); // Capture System.out prints
+        mockBufferedReader = mock(BufferedReader.class);
 
-        // controller = new AttendanceController(inputReader, out);
-        // controller.setAttendanceView(attendanceView);
-        // controller.setRestTemplate(restTemplate);
-        outContent = new ByteArrayOutputStream();
-        out = new PrintStream(outContent);
-        UserSession.getInstance().setHost("localhost");
-        UserSession.getInstance().setPort("8080"); // Use string if your port is managed as such
+        // Use Mockito.when to simulate sequential inputs.
+        // Chain thenReturn calls for each expected input in sequence.
+        when(mockBufferedReader.readLine())
+            .thenReturn("take")  // First input
+            .thenReturn("option1") // Possible next input based on logic
+            .thenReturn("option2") // Another possible input
+            .thenReturn("exit");   // Final input to exit or complete the operation
+
+        controller = new AttendanceController(mockBufferedReader, System.out); // Inject mocked BufferedReader
     }
-   
+    @Disabled
+    @Test
+    void testStartAttendanceMenu() throws IOException {
+        controller.startAttendanceMenue(); 
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Taking attendance...")); // Assuming "Taking attendance..." is part of the expected output
+    }
+    @Disabled
+    @Test
+    void testGetRoaster() {
+        // Create a dummy list of students as expected response
+        List<Student> expectedStudents = List.of(new Student("John Doe"), new Student("Jane Doe"));
+        ResponseEntity<List<Student>> mockedResponse = new ResponseEntity<>(expectedStudents, HttpStatus.OK);
+
+        // Configure the mock to return the mockedResponse when exchange method is called
+        when(mockRestTemplate.exchange(
+                eq("http://testHost:8080/api/students/allStudents"),
+                eq(HttpMethod.GET),
+                any(),
+                eq(new ParameterizedTypeReference<List<Student>>() {})
+        )).thenReturn(mockedResponse);
+
+        // Execute the method under test
+        Iterable<Student> result = controller.getRoaster();
+
+        // Assertions to verify the expected behavior
+        assertNotNull(result);
+        assertEquals(expectedStudents.size(), ((List<Student>) result).size());
+        assertEquals(expectedStudents.get(0).getLegalName(), ((List<Student>) result).get(0).getLegalName());
+    }
 
 }
