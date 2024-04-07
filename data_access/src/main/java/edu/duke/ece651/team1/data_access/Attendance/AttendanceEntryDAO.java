@@ -73,7 +73,7 @@ public class AttendanceEntryDAO {
      * @return An Optional containing the ID of the found attendance entry if it
      *         exists, or an empty Optional if not found.
      */
-    public static Optional<Integer> findAttendanceEntryIdByRecordIdAndStudentId(int attendanceRecordId, int studentId)
+    public static Optional<Long> findAttendanceEntryIdByRecordIdAndStudentId(int attendanceRecordId, int studentId)
             throws SQLException {
         String sql = "SELECT AttendanceEntryID FROM AttendanceEntries WHERE AttendanceRecordID = ? AND StudentID = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
@@ -81,7 +81,9 @@ public class AttendanceEntryDAO {
             statement.setInt(2, studentId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(resultSet.getInt("AttendanceEntryID"));
+                // this seems to be a type error
+//                return Optional.of(resultSet.getInt("AttendanceEntryID"));
+                return Optional.of(resultSet.getLong("AttendanceEntryID"));
             }
         }
         return Optional.empty();
