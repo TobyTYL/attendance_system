@@ -47,14 +47,14 @@ public class AttendanceEntryDAO {
      */
     public static Iterable<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(int attendanceRecordId)
             throws SQLException {
-        String sql = "SELECT * FROM AttendanceEntries WHERE attendanceRecordId = ?";
+        String sql = "SELECT * FROM AttendanceEntries WHERE AttendanceRecordID = ?";
         List<AttendanceEntry> entries = new ArrayList<>();
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
             statement.setInt(1, attendanceRecordId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int entryId = resultSet.getInt("AttendanceEntryID");
-                int studentId = resultSet.getInt("studentId");
+                int studentId = resultSet.getInt("StudentID");
                 String status = resultSet.getString("AttendanceStatus");
                 AttendanceEntry entry = new AttendanceEntry(studentId, attendanceRecordId,
                        AttendanceStatus.fromString(status));

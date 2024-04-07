@@ -74,6 +74,7 @@
          when(mockResultSet.getInt("StudentID")).thenReturn(1);
 //         when(mockResultSet.getString("status")).thenReturn("PRESENT");
          when(mockResultSet.getString("AttendanceStatus")).thenReturn("PRESENT");
+         when(mockResultSet.getString("not_a_field")).thenReturn("test");
          Iterable<AttendanceEntry> entries = AttendanceEntryDAO.findAttendanceEntrisByattendanceRecordId(9);
 //         verify(mockStatement).setLong(1, 9L);
          verify(mockStatement).setInt(1, 9);
@@ -81,7 +82,7 @@
          AttendanceEntry resultEntry = entries.iterator().next();
          assertNotNull(resultEntry);
          assertEquals(1, resultEntry.getEntryId());
-         assertEquals(1, resultEntry.getStudentId());
+         assertEquals(1, resultEntry.getStudentId()); // only this line reports error
          assertEquals(AttendanceStatus.PRESENT, resultEntry.getStatus());
          db.close();
      }
