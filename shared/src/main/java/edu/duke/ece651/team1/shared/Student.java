@@ -8,6 +8,8 @@ public class Student {
     private final String legalName;
     private String disPlayName;
     private String email;
+    private int userId;
+
     /**
      * Constructs a Student with specified legal name, display name, and email.
      * @param legalName The student's legal name.
@@ -19,6 +21,20 @@ public class Student {
         this.legalName = legalName;
         this.disPlayName = disPlayName;
         this.email = email;
+    }
+    public Student(Integer studentId, String legalName, String disPlayName, String email, int userId) {
+        this.studentId = studentId;
+        this.legalName = legalName;
+        this.disPlayName = disPlayName;
+        this.email = email;
+        this.userId = userId;
+    }
+
+    public Student(int userId, String legalName, String disPlayName, String email) {
+        this.legalName = legalName;
+        this.disPlayName = disPlayName;
+        this.email = email;
+        this.userId = userId;
     }
 
     /**
@@ -45,8 +61,8 @@ public class Student {
         this(null, "", "", "");
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Integer getStudentId() {
+        return this.studentId;
     }
 
     public void setStudentId(int studentId) {
@@ -63,6 +79,17 @@ public class Student {
 
     public String getEmail() {
         return email;
+    }
+    public void setStudentEmail(String email) {
+        this.email = email;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void updateDisplayName(String dispalyName){

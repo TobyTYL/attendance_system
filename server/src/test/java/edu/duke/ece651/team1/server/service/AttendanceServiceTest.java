@@ -2,7 +2,7 @@ package edu.duke.ece651.team1.server.service;
 
 import edu.duke.ece651.team1.server.model.EmailNotification;
 import edu.duke.ece651.team1.server.model.NotificationService;
-import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
+//import edu.duke.ece651.team1.server.repository.InMemoryAttendanceRepository;
 import edu.duke.ece651.team1.shared.AttendanceRecord;
 import edu.duke.ece651.team1.shared.AttendanceStatus;
 import edu.duke.ece651.team1.shared.JsonAttendanceSerializer;

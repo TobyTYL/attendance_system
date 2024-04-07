@@ -3,11 +3,7 @@ package edu.duke.ece651.team1.data_access.Student;
 import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Student;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,13 +11,15 @@ import java.util.Optional;
 
 
 public class StudentDaoImp implements StudentDao {
-
     @Override
-    public void addStudent(Student student,int userId) {
+    public void addStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {
+            if (!userExists(conn, student.getUserId())) {
+                throw new SQLException("User ID does not exist: " + student.getUserId());
+            }
             String sql = "INSERT INTO Students (UserID, LegalName, DisplayName, Email) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userId);
+            statement.setInt(1, student.getUserId());
             statement.setString(2, student.getLegalName());
             statement.setString(3, student.getDisPlayName());
             statement.setString(4, student.getEmail());
@@ -31,12 +29,25 @@ public class StudentDaoImp implements StudentDao {
         }
     }
 
+    private boolean userExists(Connection conn, int userId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Users WHERE UserID = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1, userId);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            int count = resultSet.getInt(1);
+            return count > 0;
+        } else {
+            return false;
+        }
+    }
+
     @Override
-    public void removeStudent(int studentID) {
+    public void removeStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "DELETE FROM Students WHERE StudentID = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, studentID);
+            statement.setInt(1, student.getStudentId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,21 +115,55 @@ public class StudentDaoImp implements StudentDao {
         }
         return optionalStudent;
     }
+    @Override
+    public boolean checkStudentExists(String studentName) {
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "SELECT * FROM Students WHERE LegalName = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, studentName);
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    // new one
+    @Override
+    public Optional<Student> findStudentByName(String studentName) {
+        Optional<Student> optionalStudent = Optional.empty();
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "SELECT * FROM Students WHERE LegalName = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, studentName);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("UserID");
+                Integer studentID = rs.getInt("StudentID");
+                String legalName = rs.getString("LegalName");
+                String displayName = rs.getString("DisplayName");
+                String email = rs.getString("Email");
+                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email, userId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return optionalStudent;
+    }
+    @Override
+    public void updateStudent(Student student) {
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "UPDATE Students SET DisplayName = ?, Email = ? WHERE StudentID = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, student.getDisPlayName());
+            statement.setString(2, student.getEmail());
+            statement.setInt(3, student.getStudentId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 
-//
-//    public static Optional<Student> findStudentByStudentID(int studentID){
-//        String sql = "SELECT * FROM Students WHERE StudentID = ?";
-//        try(PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)){
-//            statement.setInt(1, studentID);
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                String legalName = resultSet.getString("LegalName");
-//                String displayName = resultSet.getString("DisplayName");
-//                String email = resultSet.getString("Email");
-//                return Optional.of(new Student(studentID, legalName, displayName, email));
-//            }else{
-//                return Optional.empty();
-//            }
-//        }
-//    }

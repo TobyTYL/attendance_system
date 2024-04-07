@@ -8,10 +8,6 @@
  */
 
 rootProject.name = 'attendanceManagement'
-include('client', 'server', 'shared','data_access','enrollmentApp')
-include 'user_admin_app'
-include 'user_admin_app'
-include 'user_admin_app'
-include 'user_admin_app'
-include 'user_admin_app'
+include('client', 'server', 'shared','data_access', 'user_admin_app', 'enrollmentApp')
+
 
