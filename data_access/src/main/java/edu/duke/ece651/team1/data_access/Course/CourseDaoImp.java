@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 
@@ -62,17 +63,35 @@ public class CourseDaoImp implements CourseDao{
         return -1; // Indicating not found
     }
     @Override
-    public void addCourse(Course course) throws IllegalArgumentException{
+    public void addCourse(Course course) throws IllegalArgumentException {
+        // Check if the course name is valid
         if (course.getName() == null || course.getName().isEmpty()) {
             throw new IllegalArgumentException("Course name cannot be null or empty");
         }
-        String sql = "INSERT INTO classes (classid, classname) VALUES (?, ?)";
-        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, course.getID());
-            ps.setString(2, course.getName());
+        
+        // Modify the SQL query to only specify the classname column
+        String sql = "INSERT INTO classes (classname) VALUES (?)";
+        try (Connection conn = DB_connect.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            // Set the classname parameter
+            ps.setString(1, course.getName());
+            
+            // Execute the update
             ps.executeUpdate();
+            
+            // Retrieve the generated classid
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    // Set the generated id back to the course object
+                    course.setID(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating course failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            // Consider rethrowing as a runtime exception or a custom exception
+            // throw new RuntimeException("Database operation failed", e);
         }
     }
 

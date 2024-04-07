@@ -149,4 +149,16 @@ public class SectionDaoImpl implements SectionDao{
             psUpdateSection.executeUpdate();
         }
     }
+    public boolean checkSectionExists(int sectionId) {
+        String sql = "SELECT 1 FROM sections WHERE sectionid = ?";
+        try (Connection conn = DB_connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, sectionId);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

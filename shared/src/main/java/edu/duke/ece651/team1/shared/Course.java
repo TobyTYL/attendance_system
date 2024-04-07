@@ -34,7 +34,10 @@ public class Course {
     }
 
     public void setName(String s) {
-        name = s;
+        this.name = s;
+    }
+    public void setID(int id){
+        this.id = id;
     }
   //ignore the user part for attendance
   /**

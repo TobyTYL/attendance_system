@@ -38,8 +38,11 @@ public class CourseView {
                 input -> !input.trim().isEmpty()
         );
     }
+    public int getStudentUpdateCourseChoice() throws IOException{
+        return ViewUtils.getUserOption(inputReader, out, 5);
+    }
     public void showCreateNewClassSuccessMessage(String course){
-        out.println("You successfully created " + course + "class");
+        out.println("You successfully created " + course + " class");
     }
     public String getClassNameToUpdateOrRemove(String action) throws IOException {
         

@@ -3,7 +3,7 @@ package edu.duke.ece651.team1.enrollmentApp.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-
+import java.sql.*;
 public class ApplicationController {
     private BufferedReader inputReader;
     private final PrintStream out;
@@ -19,7 +19,7 @@ public class ApplicationController {
         //this.enrollmentController = new EnrollmentController(inputReader, out);
     }
 
-    public void startApplication() throws IOException {
+    public void startApplication() throws IOException, SQLException {
         MainMenuController.startMainMenu();
     }
 

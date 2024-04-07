@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.*;
 public interface SectionDao {
     List<Section> getAllSections();
+    boolean checkSectionExists(int sectionId);
     Section getSectionById(int sectionId);
     void addSection(Section section);
     void updateSection(Section section);

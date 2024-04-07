@@ -120,5 +120,19 @@ public class ProfessorDaoImp implements ProfessorDao {
             throw new SQLException("No user found with the given professor name: " + professorName);
         }
     }
-
+    public Professor findProfessorByName(String name) {
+        try (Connection conn = DB_connect.getConnection()) {
+            // Assuming there's a Users table where professor names are stored.
+            String sql = "SELECT p.ProfessorID, p.UserID FROM Professors p JOIN Users u ON p.UserID = u.UserID WHERE u.Username = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return new Professor(rs.getInt("ProfessorID"), rs.getInt("UserID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

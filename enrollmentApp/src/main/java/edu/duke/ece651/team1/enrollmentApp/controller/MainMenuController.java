@@ -3,6 +3,7 @@ package edu.duke.ece651.team1.enrollmentApp.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.*;
 
 import edu.duke.ece651.team1.enrollmentApp.view.MainMenuView;
 import edu.duke.ece651.team1.enrollmentApp.view.*;
@@ -22,7 +23,7 @@ public class MainMenuController {
         //this.enrollmentController = new EnrollmentController(inputReader, out);
     }
 
-    public void startMainMenu() throws IOException {
+    public void startMainMenu() throws IOException, SQLException {
         boolean exit = false;
         while (!exit) {
             mainMenuView.displayMenu();

@@ -1,8 +1,12 @@
 package edu.duke.ece651.team1.enrollmentApp.view;
 import edu.duke.ece651.team1.client.view.ViewUtils;
+import edu.duke.ece651.team1.shared.Professor;
+import edu.duke.ece651.team1.shared.Section;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.function.Predicate;
 public class SectionView {
     private BufferedReader inputReader;
@@ -20,7 +24,17 @@ public class SectionView {
         out.println("3. Update a Section");
         out.println("5. Return to Previous Menu");
     }
+     public void showAllSections(List<Section> sections) {
+        if (sections.isEmpty()) {
+            out.println("No sections available.");
+            return;
+        }
 
+        out.println("Available sections:");
+        for (Section section : sections) {
+            out.println("Section ID: " + section.getSectionId() + ", Class ID: " + section.getClassId() + ", Professor ID: " + section.getProfessorId());
+        }
+    }
     public int getSectionManageChoice() throws IOException {
         return ViewUtils.getUserOption(inputReader, out, 5);
     }
@@ -48,7 +62,7 @@ public class SectionView {
 
     public String getProfessorDetailsForSection() throws IOException {
         return ViewUtils.getUserInput(
-                "Enter the Professor ID or name who will be instructing this section: ",
+                "Enter the Professor name who will be instructing this section: ",
                 "Professor ID or name cannot be empty. Please enter a valid ID or name: ",
                 inputReader,
                 out,
@@ -73,7 +87,7 @@ public class SectionView {
 
     public String getNewProfessorName() throws IOException {
         return ViewUtils.getUserInput(
-                "\nEnter the new Professor ID or name for the section: ",
+                "\nEnter the new Professor name for the section: ",
                 "Professor ID or name cannot be empty. Please enter a valid ID or name: ",
                 inputReader,
                 out,
@@ -97,6 +111,16 @@ public class SectionView {
         );
         return "yes".equalsIgnoreCase(userInput) || "Y".equalsIgnoreCase(userInput);
     }
-
+    public void showAllProfessors(List<Professor> professors) {
+    if (professors.isEmpty()) {
+        out.println("No professors available.");
+        return;
+    }
+    out.println("Available Professors:");
+    for (Professor professor : professors) {
+        // Assuming Professor class has getName() method or similar
+        out.println("ID: " + professor.getProfessorId() + " - Name: " + professor.getDisplayName());
+    }
+}
 
 }
