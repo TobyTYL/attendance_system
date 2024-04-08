@@ -85,10 +85,10 @@ public class CourseController {
                     sectionController.addSection(ClassNameToUpdate);
                     break;
                 case 2:
-                    sectionController.updateSection(ClassNameToUpdate);
+                    sectionController.removeSection(ClassNameToUpdate);
                     break;
                 case 3:
-                    sectionController.removeSection(ClassNameToUpdate);
+                    sectionController.updateSection(ClassNameToUpdate);
                     break;
                 case 4:
                 updateClassName(ClassNameToUpdate);

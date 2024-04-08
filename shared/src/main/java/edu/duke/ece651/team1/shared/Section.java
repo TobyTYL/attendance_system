@@ -11,7 +11,10 @@ public class Section {
         this.professorId = professorId;
     }
     public Section(int classId, int professorId){
-        this(-1,classId, professorId);
+        // edit here
+//        this(-1,classId, professorId);
+        this.classId = classId;
+        this.professorId = professorId;
     }
 
     // Getters

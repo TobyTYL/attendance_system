@@ -35,7 +35,6 @@ public class SectionView {
             out.println("No sections available.");
             return;
         }
-
         out.println("Available sections:");
         for (Section section : sections) {
             out.println("Section ID: " + section.getSectionId() + ", Class ID: " + section.getClassId() + ", Professor ID: " + section.getProfessorId());
@@ -77,11 +76,11 @@ public class SectionView {
     }
 
     public void showAddSectionSuccessMessage(String className, String professorName) {
-        out.println("New section added to " + className + " with Professor " + professorName + " successfully.");
+        out.println("New section added to [SectionID: " + className + "] with Professor [" + professorName + "] successfully.");
     }
 
     public void showRemoveSectionSuccessMessage(int sectionID, String className) {
-        out.println("Section " + sectionID + " removed successfully from " + className + ".");
+        out.println("Section [SectionID: " + sectionID + "] removed successfully from [Class: " + className + "].");
     }
 
     public int getDetailToUpdateForSection() throws IOException {
