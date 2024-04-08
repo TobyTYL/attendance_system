@@ -62,7 +62,7 @@ public class Student {
     }
 
     public Integer getStudentId() {
-        return this.studentId;
+        return studentId;
     }
 
     public void setStudentId(int studentId) {

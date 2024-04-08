@@ -48,8 +48,7 @@ public class LoginSignupController {
      * Prompts the user for login or signup and proceeds with the selected option.
      * @return boolean indicating if the user was successfully authenticated or registered.
      */
-    public boolean authenticateOrRegister() {
-        try {
+    public String authenticateOrRegister() throws IOException{
             loginSignUpView.showLoginOrRegistrationMenu();
             String option = loginSignUpView.readLoginOrSignUp();
             if (option.equals("login")) {
@@ -59,12 +58,6 @@ public class LoginSignupController {
                 Map<String, String> userdata = loginSignUpView.promptsignUp();
                 return handleSignUpLogin(userdata.get("username"), userdata.get("password"));
             }
-        
-        }catch(Exception e){
-            out.println("Exception happen in login singup page " + e.getMessage());
-        }
-        return false;
-
     }   
     /**
      * Constructs the request body for POST requests during login and signup processes.
@@ -85,17 +78,17 @@ public class LoginSignupController {
      * @return boolean indicating if the login was successful.
      * @throws IOException If an I/O error occurs during the process.
      */
-    protected boolean handleLogin(String username, String passwrod) throws IOException {
+    protected String handleLogin(String username, String passwrod) throws IOException {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort() + "/api/login";
         try {
             ResponseEntity<String> response = sendPostRequestWithFormData(getRequestBody(username, passwrod), url);
             loginSignUpView.showLoginSuccessMessage();
             UserSession.getInstance().setUsername(username);
             UserSession.getInstance().setSessionToken(response.getHeaders().getFirst("Set-Cookie"));
-            return true;
+            return response.getBody();
         } catch (HttpClientErrorException.Unauthorized e) {
             loginSignUpView.showLoginFailureMessage();
-            return false;
+            return "LoginFailed";
         } catch (RestClientException e) {
             throw new RuntimeException("Unexpected error during login: " + e.getMessage());
         }
@@ -107,11 +100,11 @@ public class LoginSignupController {
      * @return boolean indicating if the signup and subsequent login were successful.
      * @throws IOException If an I/O error occurs during the process.
      */
-    protected boolean handleSignUpLogin(String username, String passwrod) throws IOException{
+    protected String handleSignUpLogin(String username, String passwrod) throws IOException{
         if(handleSignUp(username, passwrod)){
             return handleLogin(username, passwrod);
         }
-        return false;
+        throw new IllegalArgumentException("Sign up failed");
         
     }
      /**
@@ -131,7 +124,7 @@ public class LoginSignupController {
             loginSignUpView.showRegistrationFailureMessage(e.getMessage());
             return false;
         } catch (RestClientException e) {
-            throw new RuntimeException("Unexpected error during login: " + e.getMessage());
+            throw new RuntimeException("Unexpected error during signUp: " + e.getMessage());
         }
 
     }

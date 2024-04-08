@@ -133,7 +133,7 @@ public class AttendanceRecord {
     public void setRecordId(int recordId) {
         this.recordId = recordId;
     }
-    public int getRecordId() {
+    public Integer getRecordId() {
         return recordId;
     }
     @Override

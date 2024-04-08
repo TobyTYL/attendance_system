@@ -13,6 +13,8 @@ public class NotificationPreference {
         this.receiveNotifications = receiveNotifications;
     }
 
+   
+
     public int getPreferenceId() {
         return preferenceId;
     }

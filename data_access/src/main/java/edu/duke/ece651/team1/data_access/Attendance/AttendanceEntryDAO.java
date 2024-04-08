@@ -45,7 +45,7 @@ public class AttendanceEntryDAO {
      *         record ID.
      * @throws SQLException If there is an error performing the query.
      */
-    public static Iterable<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(int attendanceRecordId)
+    public static List<AttendanceEntry> findAttendanceEntrisByattendanceRecordId(int attendanceRecordId)
             throws SQLException {
         String sql = "SELECT * FROM AttendanceEntries WHERE AttendanceRecordID = ?";
         List<AttendanceEntry> entries = new ArrayList<>();
