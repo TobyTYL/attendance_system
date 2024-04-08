@@ -1,5 +1,7 @@
 package edu.duke.ece651.team1.server.service;
 import edu.duke.ece651.team1.data_access.Enrollment.*;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreferenceDao;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreferenceDaoImp;
 import edu.duke.ece651.team1.data_access.Attendance.AttendanceEntryDAO;
 import edu.duke.ece651.team1.data_access.Attendance.AttendanceRecordDAO;
 import edu.duke.ece651.team1.data_access.Section.SectionDao;
@@ -31,7 +33,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Optional;
 import com.google.gson.Gson;
-
+import edu.duke.ece651.team1.data_access.Notification.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -58,6 +60,7 @@ public class AttendanceService {
     private StudentDao studentDao = new StudentDaoImp();
     private SectionDao sectionDao = new SectionDaoImpl();
     private EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
+    private NotificationPreferenceDao notificationPreferenceDao = new NotificationPreferenceDaoImp();
     JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
     // public void setAttendanceRecordsPath(String attendanceRecordsPath) {
     // this.attendanceRecordsPath = attendanceRecordsPath;
@@ -197,6 +200,12 @@ public class AttendanceService {
         nService.notifyObserver(message, studentEmail);
     }
 
+    private boolean getNotificationPreference(int sectionId, int studentId) throws SQLException{
+        int courseId = sectionDao.getSectionById(sectionId).getClassId();
+        NotificationPreference preference=notificationPreferenceDao.findNotificationPreferenceByStudentIdAndClassId(studentId, courseId);
+        return preference.isReceiveNotifications();
+    }
+
     // string attendanceEntry {legal name:yitiao, Atttendance Status: Present}
     /**
      * This method modifies a student's attendance entry and sends updates.
@@ -223,7 +232,9 @@ public class AttendanceService {
                 int studentID = foundStudent.getStudentId();
                 int recordID = record.getRecordId();
                 AttendanceEntryDAO.updateAttendanceEntry(recordID, studentID, statusString);
-                sendMessage(studentName, foundStudent.getEmail(), sessionDate, newStatus.getStatus());
+                if(getNotificationPreference(sectionId, studentID)){
+                    sendMessage(studentName, foundStudent.getEmail(), sessionDate, newStatus.getStatus());
+                }
                 return "Successfully updated attendance status for " + studentName;
             } else {
 
@@ -254,12 +265,7 @@ public class AttendanceService {
         return new AttendanceManager(roster, records);
     }
 
-   
-    // public String getDetailAttendanceReportForStudent(int studentid, int sectionId) throws SQLException{
-    //     Student student = studentDao.findStudentByStudentID(studentid).get();
-    //     AttendanceManager manager = getAttendanceManager(sectionId);
-    //     return manager.generateReport(student,true);
-    // }
+
 
     public String getAttendanceReportForStudent(int studentid, int sectionId, boolean detail) throws SQLException{
         Student student = studentDao.findStudentByStudentID(studentid).get();
