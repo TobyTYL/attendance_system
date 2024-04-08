@@ -65,8 +65,9 @@ public class StudentDaoImp implements StudentDao {
             if (rs.next()) {
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
-                String email = rs.getString("Email");
-                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
+                //String email = rs.getString("Email");
+                //optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
+                optionalStudent = Optional.of(new Student(studentID, legalName, displayName));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,6 +96,7 @@ public class StudentDaoImp implements StudentDao {
         }
         return studentList;
     }
+
     @Override
     public Optional<Student> findStudentByUserID(int userID) {
         Optional<Student> optionalStudent = Optional.empty();

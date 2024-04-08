@@ -118,6 +118,7 @@ public class SectionDaoImpl implements SectionDao{
             System.out.println("Error getting sections by professor ID: " + e.getMessage());
         }
         return Optional.empty();
+    }
 
     @Override
     public List<Section> getSectionsByClassId(int classId) {

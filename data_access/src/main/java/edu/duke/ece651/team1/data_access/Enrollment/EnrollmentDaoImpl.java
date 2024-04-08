@@ -108,5 +108,32 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
         }
         return Optional.empty();
     }
-
+    public boolean isStudentAlreadyEnrolled(int studentId, int sectionId) {
+        String sql = "SELECT count(*) AS count FROM enrollment WHERE studentid = ? AND sectionid = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, studentId);
+            ps.setInt(2, sectionId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt("count") > 0) {
+                return true; // Enrollment exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // No enrollment found
+    }
+    public boolean existsById(int enrollmentId) {
+        String sql = "SELECT count(*) AS count FROM enrollment WHERE enrollmentid = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, enrollmentId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt("count") > 0) {
+                return true; // Enrollment exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // No enrollment found
+    }
+    
 }

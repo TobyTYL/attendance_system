@@ -13,14 +13,14 @@ public class MainMenuController {
     private PrintStream out;
     private MainMenuView mainMenuView;
     private CourseController courseController;
-    //private EnrollmentController enrollmentController;
+    private EnrollmentController enrollmentController;
 
     public MainMenuController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.mainMenuView = new MainMenuView(inputReader, out);
         this.courseController = new CourseController(inputReader, out);
-        //this.enrollmentController = new EnrollmentController(inputReader, out);
+        this.enrollmentController = new EnrollmentController(inputReader, out);
     }
 
     public void startMainMenu() throws IOException, SQLException {
@@ -33,7 +33,7 @@ public class MainMenuController {
                     courseController.startCourseManagement();
                     break;
                 case 2:
-                    //enrollmentController.startEnrollment();
+                    enrollmentController.startEnrollment();
                     break;
                 case 3:
                     exit = true;

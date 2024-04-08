@@ -37,6 +37,11 @@ public class Student {
         this.userId = userId;
     }
 
+    public Student(int userId, String legalName, String disPlayName) {
+        this.legalName = legalName;
+        this.disPlayName = disPlayName;
+        this.userId = userId;
+    }
     /**
      * Constructs a Student with a legal name and uses it as the display name; no email.
      * @param legalName The student's legal name and display name.

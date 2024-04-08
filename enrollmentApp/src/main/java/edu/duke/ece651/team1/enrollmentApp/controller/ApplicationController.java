@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.*;
+
+import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDao;
 public class ApplicationController {
     private BufferedReader inputReader;
     private final PrintStream out;
     private MainMenuController MainMenuController;
     private CourseController courseController;
+    private EnrollmentController enrollmentController;
     //private EnrollmentController enrollmentController;
 
     public ApplicationController(BufferedReader inputReader, PrintStream out) {
@@ -16,7 +19,7 @@ public class ApplicationController {
         this.out = out;
         this.MainMenuController = new MainMenuController(inputReader, out); // Adjusted to pass ApplicationController itself
         this.courseController = new CourseController(inputReader, out);
-        //this.enrollmentController = new EnrollmentController(inputReader, out);
+        this.enrollmentController = new EnrollmentController(inputReader, out);
     }
 
     public void startApplication() throws IOException, SQLException {

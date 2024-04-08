@@ -14,4 +14,5 @@ public interface CourseDao {
     void deleteCourse(int id);
     void deleteCourse(String className);
     boolean checkCourseExists(String className);
+    Course getClassByName(String name);
 }

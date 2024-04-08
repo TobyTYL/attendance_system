@@ -156,4 +156,22 @@ public class CourseDaoImp implements CourseDao{
             System.err.println("Error updating class name: " + e.getMessage());
         }
     }
+    @Override
+    public Course getClassByName(String name) {
+        Course course = null;
+        String sql = "SELECT classid, classname FROM classes WHERE classname = ?";
+        try (Connection conn = DB_connect.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, name);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    course = new Course(rs.getInt("classid"), rs.getString("classname"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return course;
+    }
+
 }
