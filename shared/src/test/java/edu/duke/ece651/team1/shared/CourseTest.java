@@ -16,7 +16,7 @@ public class CourseTest {
     @Test
     public void testGetAndSetName() {
         String expectedName = "Software Engineering";
-        Course course = new Course(1L); // The ID value here is arbitrary for this test
+        Course course = new Course(1); // The ID value here is arbitrary for this test
         course.setName(expectedName);
         assertEquals(expectedName, course.getName(), "getName should return the correct name.");
     }

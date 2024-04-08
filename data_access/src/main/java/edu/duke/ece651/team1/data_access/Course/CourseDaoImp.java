@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 
@@ -12,10 +13,7 @@ import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.*;
 
 public class CourseDaoImp implements CourseDao{
-    // private Connection connection;
-    // public CourseDaoImp(Connection connection){
-    //     this.connection = connection;
-    // }
+   
     @Override
     public List<Course> getAllCourses() {
         List<Course> courses = new ArrayList<>();
@@ -50,19 +48,50 @@ public class CourseDaoImp implements CourseDao{
         }
         return null;
     }
-
     @Override
-    public void addCourse(Course course) throws IllegalArgumentException{
+    public int getClassIdByName(String className) {
+        String sql = "SELECT classid FROM classes WHERE classname = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setString(1, className);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("classid");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Indicating not found
+    }
+    @Override
+    public void addCourse(Course course) throws IllegalArgumentException {
+        // Check if the course name is valid
         if (course.getName() == null || course.getName().isEmpty()) {
             throw new IllegalArgumentException("Course name cannot be null or empty");
         }
-        String sql = "INSERT INTO classes (classid, classname) VALUES (?, ?)";
-        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, course.getID());
-            ps.setString(2, course.getName());
+        
+        // Modify the SQL query to only specify the classname column
+        String sql = "INSERT INTO classes (classname) VALUES (?)";
+        try (Connection conn = DB_connect.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            // Set the classname parameter
+            ps.setString(1, course.getName());
+            
+            // Execute the update
             ps.executeUpdate();
+            
+            // Retrieve the generated classid
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    // Set the generated id back to the course object
+                    course.setID(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating course failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            // Consider rethrowing as a runtime exception or a custom exception
+            // throw new RuntimeException("Database operation failed", e);
         }
     }
 
@@ -86,6 +115,45 @@ public class CourseDaoImp implements CourseDao{
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    @Override
+    public void deleteCourse(String className) {
+        String sql = "DELETE FROM classes WHERE classname = ?";
+        try (Connection conn = DB_connect.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, className);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error deleting course: " + e.getMessage());
+        }
+    }
+    @Override
+    public boolean checkCourseExists(String className) {
+        String sql = "SELECT COUNT(*) FROM classes WHERE classname = ?";
+        try (Connection conn = DB_connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, className);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking if course exists: " + e.getMessage());
+        }
+        return false;
+    }
+    @Override
+    public void updateClassName(String oldClassName, String newClassName) {
+        String sql = "UPDATE classes SET classname = ? WHERE classname = ?";
+        try (Connection conn = DB_connect.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newClassName);
+            ps.setString(2, oldClassName);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error updating class name: " + e.getMessage());
         }
     }
 }

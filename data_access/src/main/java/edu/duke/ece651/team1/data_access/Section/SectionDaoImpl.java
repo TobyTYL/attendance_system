@@ -1,4 +1,5 @@
 package edu.duke.ece651.team1.data_access.Section;
+import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Section;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -117,5 +118,67 @@ public class SectionDaoImpl implements SectionDao{
             System.out.println("Error getting sections by professor ID: " + e.getMessage());
         }
         return Optional.empty();
+
+    @Override
+    public List<Section> getSectionsByClassId(int classId) {
+        List<Section> sections = new ArrayList<>();
+        String sql = "SELECT sectionid, classid, professorid FROM sections WHERE classid = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, classId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Section section = new Section(rs.getInt("sectionid"), rs.getInt("classid"), rs.getInt("professorid"));
+                    sections.add(section);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting sections by class ID: " + e.getMessage());
+        }
+        return sections;
+    }
+    public void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException {
+        // Step 1: Retrieve the professor's userid using the professor's name.
+        String getUserIdSql = "SELECT userid FROM users WHERE username = ?";
+        int professorUserId = 0;
+        try (PreparedStatement psGetUserId = DB_connect.getConnection().prepareStatement(getUserIdSql)) {
+            psGetUserId.setString(1, professorName);
+            try (ResultSet rs = psGetUserId.executeQuery()) {
+                if (rs.next()) {
+                    professorUserId = rs.getInt("userid");
+                }
+            }
+        }
+        
+        // Step 2: Retrieve the professorid using the userid.
+        String getProfessorIdSql = "SELECT professorid FROM professors WHERE userid = ?";
+        int professorId = 0;
+        try (PreparedStatement psGetProfessorId = DB_connect.getConnection().prepareStatement(getProfessorIdSql)) {
+            psGetProfessorId.setInt(1, professorUserId);
+            try (ResultSet rs = psGetProfessorId.executeQuery()) {
+                if (rs.next()) {
+                    professorId = rs.getInt("professorid");
+                }
+            }
+        }
+        
+        // Step 3: Update the section with the new professorid.
+        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
+        try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
+            psUpdateSection.setInt(1, professorId);
+            psUpdateSection.setInt(2, sectionID);
+            psUpdateSection.executeUpdate();
+        }
+    }
+    public boolean checkSectionExists(int sectionId) {
+        String sql = "SELECT 1 FROM sections WHERE sectionid = ?";
+        try (Connection conn = DB_connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, sectionId);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

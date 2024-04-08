@@ -9,7 +9,7 @@ import java.util.Set;
  * Additional properties and behavior can be added as needed.
  */
 public class Course {
-    private final int id;
+    private int id;
     private String name;
   //private Professor headInstructor;
   //private Set<User> coInstructors = new LinkedHashSet<>();
@@ -18,7 +18,13 @@ public class Course {
     public Course(int id) {
         this.id = id;
     }
-
+    public Course(String name){
+        this.name = name;
+    }
+    public Course(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
     public int getID() {
         return id;
     }
@@ -28,7 +34,10 @@ public class Course {
     }
 
     public void setName(String s) {
-        name = s;
+        this.name = s;
+    }
+    public void setID(int id){
+        this.id = id;
     }
   //ignore the user part for attendance
   /**

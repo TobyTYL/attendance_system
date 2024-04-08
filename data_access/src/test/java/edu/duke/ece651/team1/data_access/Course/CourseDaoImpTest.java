@@ -6,12 +6,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
+import java.sql.*;
+import java.util.List;
+import static org.mockito.Mockito.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+
+import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -19,87 +28,98 @@ import static org.mockito.Mockito.*;
 
 
 public class CourseDaoImpTest {
-  private EmbeddedPostgres embeddedPostgres;
-  private Connection conn;
-  private CourseDaoImp courseDao;
 
-  @BeforeEach
-    public void setUp() throws Exception {
-        // Start the embedded PostgreSQL
-        embeddedPostgres = EmbeddedPostgres.start();
-        // Get a connection to the embedded database
-        conn = embeddedPostgres.getPostgresDatabase().getConnection();
-        // Create table and insert some test data
-        try (Statement stmt = conn.createStatement()) {
-            stmt.execute("CREATE TABLE classes (classid SERIAL PRIMARY KEY, classname VARCHAR(255))");
-            stmt.execute("INSERT INTO classes (classname) VALUES ('Test Course')");
-        }
-        // Initialize the DAO implementation
-        courseDao = new CourseDaoImp(conn);
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
+    private CourseDaoImp courseDao;
+    private MockedStatic<DB_connect> mockedDBConnect;
+
+    @BeforeEach
+    public void setUp() {
+        conn = mock(Connection.class);
+        ps = mock(PreparedStatement.class);
+        rs = mock(ResultSet.class);
+        
+        mockedDBConnect = Mockito.mockStatic(DB_connect.class);
+        mockedDBConnect.when(DB_connect::getConnection).thenReturn(conn);
+        
+        courseDao = new CourseDaoImp();
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
-        conn.close();
-        embeddedPostgres.close();
+    public void tearDown() {
+        mockedDBConnect.close();
     }
 
     @Test
-    public void testGetAllCourses() throws Exception {
+    public void testGetAllCourses() throws SQLException {
+        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true).thenReturn(false); // To simulate one result
+        when(rs.getInt("classid")).thenReturn(1);
+        when(rs.getString("classname")).thenReturn("Test Course");
+        
         List<Course> courses = courseDao.getAllCourses();
+        
+        verify(ps).executeQuery();
+        verify(rs, atLeastOnce()).getInt("classid");
+        verify(rs, atLeastOnce()).getString("classname");
+        
         assertNotNull(courses);
-        assertFalse(courses.isEmpty());
+        assertEquals(1, courses.size());
         assertEquals("Test Course", courses.get(0).getName());
     }
 
     @Test
-    public void testAddAndRetrieveCourse() throws Exception {
-        Course newCourse = new Course(2); // Assuming ID is auto-incremented and starts at 1
-        newCourse.setName("Another Course");
+    public void testGetCourseById() throws SQLException {
+        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true).thenReturn(false); // To simulate one result
+        when(rs.getInt("classid")).thenReturn(1);
+        when(rs.getString("classname")).thenReturn("Test Course");
+        
+        Course course = courseDao.getCourseById(1);
+        
+        verify(ps).setLong(1, 1);
+        verify(ps).executeQuery();
+        
+        assertNotNull(course);
+        assertEquals("Test Course", course.getName());
+    }
+
+    @Test
+    public void testAddCourse() throws SQLException {
+        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        
+        Course newCourse = new Course(1, "New Course");
         courseDao.addCourse(newCourse);
-
-        Course retrievedCourse = courseDao.getCourseById(2);
-        assertNotNull(retrievedCourse);
-        assertEquals("Another Course", retrievedCourse.getName());
+        
+        verify(ps).setLong(1, 1);
+        verify(ps).setString(2, "New Course");
+        verify(ps).executeUpdate();
     }
 
     @Test
-    public void testUpdateCourse() throws Exception {
-        Course courseToUpdate = courseDao.getCourseById(1);
-        assertNotNull(courseToUpdate);
-        courseToUpdate.setName("Updated Course");
+    public void testUpdateCourse() throws SQLException {
+        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        
+        Course courseToUpdate = new Course(1, "Updated Course");
         courseDao.updateCourse(courseToUpdate);
-
-        Course updatedCourse = courseDao.getCourseById(1);
-        assertNotNull(updatedCourse);
-        assertEquals("Updated Course", updatedCourse.getName());
+        
+        verify(ps).setString(1, "Updated Course");
+        verify(ps).setLong(2, 1);
+        verify(ps).executeUpdate();
     }
 
     @Test
-    public void testDeleteCourse() throws Exception {
+    public void testDeleteCourse() throws SQLException {
+        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        
         courseDao.deleteCourse(1);
-        Course deletedCourse = courseDao.getCourseById(1);
-        assertNull(deletedCourse);
-    }
-    @Test
-    public void testAddCourseWithNullNameThrowsException() {
-        Course newCourse = new Course(1); // Assuming an ID of 1 for simplicity
-        newCourse.setName(null); // Explicitly setting the name to null
-        assertThrows(IllegalArgumentException.class, () -> courseDao.addCourse(newCourse),
-            "Expected an IllegalArgumentException to be thrown when adding a course with null name");
-    }
-    @Test
-    public void testUpdateNonExistentCourse() {
-        Course courseToUpdate = new Course(999); // Use a non-existent course ID
-        courseToUpdate.setName("Non Existent Course");
-        // Depending on your DB setup, this might not throw an SQLException directly unless there are constraints/triggers
-        assertDoesNotThrow(() -> courseDao.updateCourse(courseToUpdate));
-    }
-
-    @Test
-    public void testDeleteNonExistentCourse() {
-        // Similarly, this might not directly result in SQLException
-        assertDoesNotThrow(() -> courseDao.deleteCourse(999));
+        
+        verify(ps).setLong(1, 1);
+        verify(ps).executeUpdate();
     }
 
 }

@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentDao {
-    void addStudent(Student student, int userId);
-    void removeStudent(int studentID);
+    void addStudent(Student student);
+    void removeStudent(Student student);
     Optional<Student> findStudentByStudentID(int studentID);
     Optional<Student> findStudentByUserID(int userID);
     List<Student> getAllStudents();
+    boolean checkStudentExists(String name);
+    Optional<Student> findStudentByName(String studentName);
+    void updateStudent(Student student);
 }

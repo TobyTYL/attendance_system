@@ -66,10 +66,10 @@ public class UserService implements UserDetailsService {
 
     public void createUserStudent(String username, String password,String role,String legalName, String displayName,String email) {
         User user = new User(username,passwordEncoder.encode(password),role);
-        userDao.addUser(user);
-        int userId = userDao.findUserByUsername(username).getUserId();
-        Student student = new Student(legalName,displayName,email);
-        studentDao.addStudent(student,userId);
+        int userId = userDao.addUser(user);
+//        userDao.findUserByUsername(username).getUserId();
+        Student student = new Student(userId, legalName,displayName,email);
+        studentDao.addStudent(student);
         
     }
 

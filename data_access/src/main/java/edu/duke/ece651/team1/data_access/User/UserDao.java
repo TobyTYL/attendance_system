@@ -5,7 +5,7 @@ import edu.duke.ece651.team1.shared.User;
 import java.util.List;
 
 public interface UserDao {
-    void addUser(User user);
+    int addUser(User user);
     void removeUser(int userId);
     void updateUser(User user);
     User getUserById(int userId);

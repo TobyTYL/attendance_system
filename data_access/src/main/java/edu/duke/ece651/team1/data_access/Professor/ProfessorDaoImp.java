@@ -94,4 +94,45 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professor;
     }
+
+    @Override
+    public boolean checkProfessorExists(String professorName) {
+        try (Connection conn = DB_connect.getConnection()) {
+            String sql = "SELECT * FROM Professors WHERE UserID = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            int userId = getUserIDByProfessorName(conn, professorName);
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    private int getUserIDByProfessorName(Connection conn, String professorName) throws SQLException {
+        String sql = "SELECT UserID FROM Users WHERE Username = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, professorName);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("UserID");
+        } else {
+            throw new SQLException("No user found with the given professor name: " + professorName);
+        }
+    }
+    public Professor findProfessorByName(String name) {
+        try (Connection conn = DB_connect.getConnection()) {
+            // Assuming there's a Users table where professor names are stored.
+            String sql = "SELECT p.ProfessorID, p.UserID FROM Professors p JOIN Users u ON p.UserID = u.UserID WHERE u.Username = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return new Professor(rs.getInt("ProfessorID"), rs.getInt("UserID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
