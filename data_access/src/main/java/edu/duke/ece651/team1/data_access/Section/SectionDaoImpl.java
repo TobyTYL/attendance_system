@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import edu.duke.ece651.team1.data_access.DB_connect;
+import java.util.Optional;
 
 public class SectionDaoImpl implements SectionDao{
     // private Connection connection;
@@ -49,7 +51,7 @@ public class SectionDaoImpl implements SectionDao{
     @Override
     public void addSection(Section section) {
         String sql = "INSERT INTO sections (sectionid, classid, professorid) VALUES (?, ?, ?)";
-        try (PreparedStatement ps =DB_connect.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
             ps.setInt(1, section.getSectionId());
             ps.setInt(2, section.getClassId());
             ps.setInt(3, section.getProfessorId());
@@ -99,6 +101,24 @@ public class SectionDaoImpl implements SectionDao{
         }
         return sections;
     }
+
+    @Override
+    public Optional<Section> findSectionByProfessorIdAndClassID(int professorId, int classId) {
+        String sql = "SELECT sectionid, classid, professorid FROM sections WHERE professorid = ? AND ClassID = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, professorId);
+            ps.setInt(2, classId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if(rs.next()) {
+                    Section section = new Section(rs.getInt("sectionid"), rs.getInt("classid"), rs.getInt("professorid"));
+                    return Optional.of(section);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting sections by professor ID: " + e.getMessage());
+        }
+        return Optional.empty();
+
     @Override
     public List<Section> getSectionsByClassId(int classId) {
         List<Section> sections = new ArrayList<>();

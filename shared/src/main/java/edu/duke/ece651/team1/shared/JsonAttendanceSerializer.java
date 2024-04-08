@@ -37,10 +37,14 @@ public class JsonAttendanceSerializer {
     public String serialize(AttendanceRecord record) {
         // TODO Auto-generated method stub
         JsonObject jsonObject = new JsonObject();
+        if(record.getRecordId()!=null){
+            jsonObject.addProperty("Record Id", record.getRecordId());
+        }
         jsonObject.addProperty("sessionDate", record.getSessionDate().format(formatter));
         JsonObject entriesJson = new JsonObject();
         for(Map.Entry<Student,AttendanceStatus> entry:record.getSortedEntries()){
-            JsonObject entryJason = new JsonObject();
+            JsonObject entryJason = new JsonObject();     
+            entryJason.addProperty("student Id", entry.getKey().getStudentId());
             entryJason.addProperty("Display Name", entry.getKey().getDisPlayName());
             entryJason.addProperty("Email", entry.getKey().getEmail());
             entryJason.addProperty("Attendance status", entry.getValue().getStatus());
@@ -65,16 +69,18 @@ public class JsonAttendanceSerializer {
         JsonObject jsonObject = JsonParser.parseString(record).getAsJsonObject();
         LocalDate sessionDate = LocalDate.parse(jsonObject.get("sessionDate").getAsString(), formatter);
         AttendanceRecord attendanceRecord = new AttendanceRecord(sessionDate);
+        if (jsonObject.has("Record Id") ) {
+            int recordId = jsonObject.get("Record Id").getAsInt();
+            attendanceRecord.setRecordId(recordId);
+        }
         JsonObject entries = jsonObject.getAsJsonObject("Entries");
         for (Map.Entry<String, JsonElement> entry : entries.entrySet()) {
-            //legal name
-            String studentKey = entry.getKey();
-//            Long studentId =
             JsonObject entryValue = entry.getValue().getAsJsonObject();
             String displayName = entryValue.get("Display Name").getAsString();
             String email = entryValue.get("Email").getAsString();
-            String legalName = entryValue.get("Legal Name").getAsString();
-            Student student = new Student( legalName,displayName , email);
+            String legalName =  entry.getKey();
+            int studentId = entryValue.get("student Id").getAsInt();
+            Student student = new Student( studentId,legalName,displayName , email);
             String status = entryValue.get("Attendance status").getAsString();
             AttendanceStatus attendanceStatus = AttendanceStatus.fromString(status);
             attendanceRecord.initializeAttendanceEntry(student);

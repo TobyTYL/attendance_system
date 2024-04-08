@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EnrollmentDaoImpl implements EnrollmentDao {
     // private Connection connection;
@@ -84,6 +85,28 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
             // Log and handle exception
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Optional<Enrollment> findEnrollmentByStudentIdAndClassId(int studentId, int classId) {
+        // TODO Auto-generated method stub
+        String sql = "SELECT e.EnrollmentID, e.StudentID, e.SectionID " +
+                 "FROM Enrollment e " +
+                 "JOIN Sections s ON e.SectionID = s.SectionID " +
+                 "JOIN Classes c ON s.ClassID = c.ClassID " +
+                 "WHERE e.StudentID = ? AND c.ClassID = ?";
+        try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, studentId);
+            ps.setInt(2, classId);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                Enrollment enrollment = new Enrollment(rs.getInt("enrollmentid"),rs.getInt("studentid"), rs.getInt("sectionid"));
+                return Optional.of(enrollment);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 
 }

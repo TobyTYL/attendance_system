@@ -119,7 +119,7 @@ public class AttendanceRecordDAO {
      * @return An Iterable of AttendanceRecord objects.
      * @throws SQLException if there is a problem communicating with the database.
      */
-    public static Iterable<AttendanceRecord> findAttendanceRecordsBysectionID(int sectionId) throws SQLException {
+    public static List<AttendanceRecord> findAttendanceRecordsBysectionID(int sectionId) throws SQLException {
         List<AttendanceRecord> records = new ArrayList<>();
         String sql = "SELECT * From AttendanceRecords WHERE SectionID = ?";
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql)) {
@@ -129,7 +129,7 @@ public class AttendanceRecordDAO {
                 int recordId = resultSet.getInt("AttendanceRecordID");
                 LocalDate sessionDate = resultSet.getDate("SessionDate").toLocalDate();
                 AttendanceRecord record = new AttendanceRecord(sessionDate);
-                Iterable<AttendanceEntry> entries = AttendanceEntryDAO
+                List<AttendanceEntry> entries = AttendanceEntryDAO
                         .findAttendanceEntrisByattendanceRecordId(recordId);
                 fillAttendanceRecordEntriesMap(entries, record);
                 record.setRecordId(recordId);
