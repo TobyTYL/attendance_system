@@ -12,6 +12,9 @@ import edu.duke.ece651.team1.client.*;
 import edu.duke.ece651.team1.data_access.Course.CourseDao;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDaoImpl;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreference;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreferenceDao;
+import edu.duke.ece651.team1.data_access.Notification.NotificationPreferenceDaoImp;
 import edu.duke.ece651.team1.data_access.Section.SectionDao;
 import edu.duke.ece651.team1.data_access.Section.SectionDaoImpl;
 import edu.duke.ece651.team1.data_access.Student.StudentDao;
@@ -28,7 +31,7 @@ public class EnrollmentController {
     private SectionDao sectionDao;
     private EnrollmentDaoImpl enrollmentDao;
     private StudentDao studentDao;
-    //add notifivcation Dao
+    private NotificationPreferenceDao notificationPreferenceDao;
     private final PrintStream out; 
 
     public EnrollmentController(BufferedReader inputReader, PrintStream out) {
@@ -37,6 +40,7 @@ public class EnrollmentController {
         this.sectionDao = new SectionDaoImpl();
         this.enrollmentDao = new EnrollmentDaoImpl();
         this.studentDao = new StudentDaoImp();
+        this.notificationPreferenceDao = new NotificationPreferenceDaoImp();
         this.out = out;
     }
 
@@ -68,6 +72,21 @@ public class EnrollmentController {
         Enrollment newEnrollment = new Enrollment(studentId, sectionId);
         enrollmentDao.addEnrollment(newEnrollment);
         out.println("Student ID " + studentId + " successfully enrolled in Section ID: " + sectionId);
+        int classId = sectionDao.getClassIdBySectionId(sectionId);
+        if (classId == -1) {
+            out.println("Failed to find the class for the given section. Enrollment failed.");
+            return false;
+        }
+
+        // Check if notification preference exists, if not add it
+        NotificationPreference notificationPreference = notificationPreferenceDao.findNotificationPreferenceByStudentIdAndClassId(studentId, classId);
+        if (notificationPreference == null) {
+            // No existing preference, add a new one with notifications enabled
+            notificationPreferenceDao.addNotificationPreference(studentId, classId, true);
+        } else {
+            // Existing preference, update it to enable notifications
+            notificationPreferenceDao.updateNotificationPreference(studentId, classId, true);
+        }
         return true;
     }
 

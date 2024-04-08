@@ -99,13 +99,6 @@ public class CourseController {
             }
         }
         
-        // String newClassName = CourseView.getNewClassName();
-
-        // // Update the class name using CourseDao
-        // courseDao.updateClassName(oldClassName, newClassName);
-
-        // // Confirm the successful update
-        // CourseView.showActionConfirmation("updated", newClassName);
     }
 
     private void removeClass() throws IOException {
