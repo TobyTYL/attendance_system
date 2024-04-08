@@ -1,4 +1,6 @@
 package edu.duke.ece651.team1.enrollmentApp.controller;
+import edu.duke.ece651.team1.data_access.User.UserDao;
+import edu.duke.ece651.team1.data_access.User.UserDaoImp;
 import edu.duke.ece651.team1.enrollmentApp.view.CourseView;
 import edu.duke.ece651.team1.enrollmentApp.view.SectionView;
 import edu.duke.ece651.team1.data_access.Course.CourseDao;
@@ -22,6 +24,8 @@ public class SectionController {
     private final BufferedReader inputReader;
     private final PrintStream out;
     private final SectionView sectionView;
+    //add userDaoImp
+    private final UserDao userDao;
 
     public SectionController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
@@ -30,8 +34,8 @@ public class SectionController {
         this.sectionDao = new SectionDaoImpl();
         this.courseDao = new CourseDaoImp();
         this.professorDao = new ProfessorDaoImp() {
-            
         };
+        this.userDao = new UserDaoImp();
     }
 
     public void startSectionManagement(String className) throws IOException, SQLException {
@@ -61,6 +65,7 @@ public class SectionController {
         sectionView.showAllProfessors(professors);
         String professorName = sectionView.getProfessorDetailsForSection();
         // Attempt to find the professor by name
+        // edit here
         Professor professor = professorDao.findProfessorByName(professorName);
         if (professor == null) {
             out.println("Professor with name " + professorName + " not found. Please add the professor first.");

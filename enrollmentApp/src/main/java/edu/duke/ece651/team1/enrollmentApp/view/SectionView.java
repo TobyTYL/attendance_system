@@ -2,6 +2,9 @@ package edu.duke.ece651.team1.enrollmentApp.view;
 import edu.duke.ece651.team1.client.view.ViewUtils;
 import edu.duke.ece651.team1.shared.Professor;
 import edu.duke.ece651.team1.shared.Section;
+import edu.duke.ece651.team1.shared.User;
+import edu.duke.ece651.team1.data_access.User.UserDao;
+import edu.duke.ece651.team1.data_access.User.UserDaoImp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,10 +14,13 @@ import java.util.function.Predicate;
 public class SectionView {
     private BufferedReader inputReader;
     private final PrintStream out;
+    private final UserDao userDao;
 
     public SectionView(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
+        this.userDao = new UserDaoImp();
+
     }
 
     public void showClassSectionOptions(String className) {
@@ -119,8 +125,12 @@ public class SectionView {
     out.println("Available Professors:");
     for (Professor professor : professors) {
         // Assuming Professor class has getName() method or similar
-        out.println("ID: " + professor.getProfessorId() + " - Name: " + professor.getDisplayName());
+        // edit here (Toby)
+        int userId = professor.getUserId();
+        String professorName = userDao.getUserById(userId).getUsername();
+        out.println("ID: " + professor.getProfessorId() + " - Name: " + professorName);
+//        out.println("ID: " + professor.getProfessorId() + " - Name: " + professor.getDisplayName())
+        }
     }
-}
 
 }
