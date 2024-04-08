@@ -35,7 +35,7 @@ public class AttendanceRecordDAO {
     private static StudentDao studentDao = new StudentDaoImp();
 
     public static void addAttendanceRecord(AttendanceRecord record, int sectionId) throws SQLException {
-        String sql = "INSERT INTO AttendanceRecords (sectionId, sessionDate) VALUES (?, ?)";
+        String sql = "INSERT INTO AttendanceRecords (SectionId, SessionDate) VALUES (?, ?)";
         LocalDate date = record.getSessionDate();
         try (PreparedStatement statement = DB_connect.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, sectionId);

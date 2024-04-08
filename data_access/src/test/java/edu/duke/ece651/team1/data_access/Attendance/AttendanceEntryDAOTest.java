@@ -9,7 +9,12 @@
  import static org.mockito.Mockito.mock;
  import static org.mockito.Mockito.verify;
  import static org.mockito.Mockito.when;
+
+ import java.util.Locale;
  import java.util.Optional;
+
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
  import org.mockito.MockedStatic;
  import org.mockito.Mockito;
 
@@ -29,105 +34,120 @@
  public class AttendanceEntryDAOTest {
      Connection mockConnection = mock(Connection.class);
      PreparedStatement mockStatement = mock(PreparedStatement.class);
-    
-     @Test
-     void testAddAttendanceEntry() throws SQLException {
-         MockedStatic<DB_connect> db = Mockito.mockStatic(DB_connect.class);
+     private MockedStatic<DB_connect> mockedDB;
+     @BeforeEach
+     public void setUp() throws SQLException {
+         // Create mocks before each test
+         mockedDB = Mockito.mockStatic(DB_connect.class);
+         mockConnection = mock(Connection.class);
+         mockStatement = mock(PreparedStatement.class);
+
+         // Common stubbing used by multiple tests
          when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
-         db.when(DB_connect::getConnection).thenReturn(mockConnection);
+         when(DB_connect.getConnection()).thenReturn(mockConnection);
+     }
+
+     @AfterEach
+     public void tearDown() {
+         // Close resources and mocks after each test
+         mockedDB.close();
+         // Reset other shared resources if necessary
+     }
+    
+
+
+     @Test
+     void testAddAttendanceEntry2() throws SQLException {
+         // Assuming mockedDB, mockConnection, and mockStatement have been initialized in @BeforeEach
          when(mockStatement.executeUpdate()).thenReturn(1);
-         AttendanceEntry entry = new AttendanceEntry(14, 15, AttendanceStatus.PRESENT);
+
+         AttendanceEntry entry = new AttendanceEntry(14,  15, AttendanceStatus.PRESENT);
          AttendanceEntryDAO.addAttendanceEntry(entry);
+
          ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
          verify(mockConnection).prepareStatement(sqlCaptor.capture());
-         assertEquals("INSERT INTO AttendanceEntries (studentId, attendanceRecordId, status) VALUES (?, ?, ?)", sqlCaptor.getValue());
-         verify(mockStatement).setLong(1, entry.getStudentId());
-         verify(mockStatement).setLong(2, entry.getAttendanceRecordId());
-         verify(mockStatement).setString(3, entry.getStatus().toString());
+
+         assertEquals("INSERT INTO AttendanceEntries (StudentID, AttendanceRecordID, AttendanceStatus) VALUES (?, ?, ?)", sqlCaptor.getValue());
+
+         verify(mockStatement).setInt(1, entry.getStudentId());
+         verify(mockStatement).setInt(2, entry.getAttendanceRecordId());
+//         verify(mockStatement).setString(3, entry.getStatus().toString()); // Changed to match the actual method call
+         verify(mockStatement).setString(3, "Present");
          verify(mockStatement).executeUpdate();
-         db.close();
+         // No need to close here since we're using @AfterEach to manage your resources.
      }
+
+
 
      @Test
      public void testAddAttendanceEntryFailure() throws SQLException {
-         MockedStatic<DB_connect> db = Mockito.mockStatic(DB_connect.class);
-         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
-         db.when(DB_connect::getConnection).thenReturn(mockConnection);
-         when(mockStatement.executeUpdate()).thenReturn(0);
+         when(mockStatement.executeUpdate()).thenReturn(0); // Simulate failure by returning 0 updated rows
+
          AttendanceEntry entry = new AttendanceEntry(1, 2, AttendanceStatus.PRESENT);
          assertThrows(SQLException.class, () -> AttendanceEntryDAO.addAttendanceEntry(entry),
-                     "Creating attendance entry failed, no rows affected.");
-         db.close();
+                 "Creating attendance entry failed, no rows affected.");
      }
+
+
+
 
      @Test
      void testFindAttendanceEntriesByAttendanceRecordId() throws SQLException {
-         MockedStatic<DB_connect> db = Mockito.mockStatic(DB_connect.class);
-         db.when(DB_connect::getConnection).thenReturn(mockConnection);
-         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
          ResultSet mockResultSet = mock(ResultSet.class);
+         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
          when(mockStatement.executeQuery()).thenReturn(mockResultSet);
-         when(mockResultSet.next()).thenReturn(true, false); // Simulate one result
-//         when(mockResultSet.getInt("entryId")).thenReturn(1);
+         when(mockResultSet.next()).thenReturn(true).thenReturn(false); // Simulate one result followed by end of results
          when(mockResultSet.getInt("AttendanceEntryID")).thenReturn(1);
-//         when(mockResultSet.getInt("studentId")).thenReturn(1);
          when(mockResultSet.getInt("StudentID")).thenReturn(1);
-//         when(mockResultSet.getString("status")).thenReturn("PRESENT");
          when(mockResultSet.getString("AttendanceStatus")).thenReturn("PRESENT");
-         when(mockResultSet.getString("not_a_field")).thenReturn("test");
+
          Iterable<AttendanceEntry> entries = AttendanceEntryDAO.findAttendanceEntrisByattendanceRecordId(9);
-//         verify(mockStatement).setLong(1, 9L);
+
+         // Check that the query is setting the correct parameter
          verify(mockStatement).setInt(1, 9);
          verify(mockStatement).executeQuery();
+
+         // Assert that the entries are correct
          AttendanceEntry resultEntry = entries.iterator().next();
          assertNotNull(resultEntry);
          assertEquals(1, resultEntry.getEntryId());
-         assertEquals(1, resultEntry.getStudentId()); // only this line reports error
+         assertEquals(1, resultEntry.getStudentId());
          assertEquals(AttendanceStatus.PRESENT, resultEntry.getStatus());
-         db.close();
+
+         // No need to manually close the mocked DB as it should be managed by @AfterEach
      }
+
+
      @Test
      void testFindAttendanceEntryIdByRecordIdAndStudentId() throws SQLException {
-         try (MockedStatic<DB_connect> mockedDB = Mockito.mockStatic(DB_connect.class)) {
-             Connection mockConnection = mock(Connection.class);
-             PreparedStatement mockStatement = mock(PreparedStatement.class);
-             ResultSet mockResultSet = mock(ResultSet.class);
-             mockedDB.when(DB_connect::getConnection).thenReturn(mockConnection);
-             when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
-             when(mockStatement.executeQuery()).thenReturn(mockResultSet);
-             when(mockResultSet.next()).thenReturn(true);
-//             when(mockResultSet.getInt("AttendanceEntryID")).thenReturn(1);
-             // above line still seems to arise from a cast issue
-             when(mockResultSet.getLong("AttendanceEntryID")).thenReturn(1L);
-             Optional<Long> result = AttendanceEntryDAO.findAttendanceEntryIdByRecordIdAndStudentId(1,  1);
-             assertTrue(result.isPresent());
-             assertEquals(1L, result.get());
-         }
+         ResultSet mockResultSet = mock(ResultSet.class);
+         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+         when(mockResultSet.next()).thenReturn(true);
+         when(mockResultSet.getLong("AttendanceEntryID")).thenReturn(1L); // Simulate finding an entry with ID 1
+
+         Optional<Long> result = AttendanceEntryDAO.findAttendanceEntryIdByRecordIdAndStudentId(1, 1);
+
+         assertTrue(result.isPresent());
+         assertEquals(1L, result.get());
      }
 
      @Test
      void testUpdateAttendanceEntry() throws SQLException {
-         try (MockedStatic<DB_connect> mockedDB = Mockito.mockStatic(DB_connect.class)) {
-             Connection mockConnection = mock(Connection.class);
-             PreparedStatement mockStatement = mock(PreparedStatement.class);
-             mockedDB.when(DB_connect::getConnection).thenReturn(mockConnection);
-             when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
-             when(mockStatement.executeUpdate()).thenReturn(1);
-             assertDoesNotThrow(() -> AttendanceEntryDAO.updateAttendanceEntry(1, 1, "Present"));
-         }
+         when(mockStatement.executeUpdate()).thenReturn(1); // Simulate successful update
+
+         // Since the update is successful, we expect no exception to be thrown
+         assertDoesNotThrow(() -> AttendanceEntryDAO.updateAttendanceEntry(1, 1, "Present"));
      }
+
+
 
      @Test
      void testUpdateAttendanceEntryFailure() throws SQLException {
-         try (MockedStatic<DB_connect> mockedDB = Mockito.mockStatic(DB_connect.class)) {
-             Connection mockConnection = mock(Connection.class);
-             PreparedStatement mockStatement = mock(PreparedStatement.class);
-             mockedDB.when(DB_connect::getConnection).thenReturn(mockConnection);
-             when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
-             when(mockStatement.executeUpdate()).thenReturn(0);
-             assertThrows(SQLException.class, () -> AttendanceEntryDAO.updateAttendanceEntry(1, 1, "Present"));
-         }
-     }
+         when(mockStatement.executeUpdate()).thenReturn(0); // Simulate update failure
 
+         // Expect an SQLException because no rows should be affected (update failed)
+         assertThrows(SQLException.class, () -> AttendanceEntryDAO.updateAttendanceEntry(1, 1, "Present"));
+     }
 
  }

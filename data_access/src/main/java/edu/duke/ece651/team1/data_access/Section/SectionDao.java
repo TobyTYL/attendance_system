@@ -14,5 +14,5 @@ public interface SectionDao {
     Optional<Section> findSectionByProfessorIdAndClassID(int professorId, int classId);
     List<Section> getSectionsByClassId(int classId);
     void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException;
-
+    int getClassIdBySectionId(int sectionId);
 }

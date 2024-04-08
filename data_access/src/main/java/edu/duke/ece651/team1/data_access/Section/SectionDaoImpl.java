@@ -182,4 +182,19 @@ public class SectionDaoImpl implements SectionDao{
             return false;
         }
     }
+    public int getClassIdBySectionId(int sectionId) {
+        String sql = "SELECT classid FROM sections WHERE sectionid = ?";
+        try (Connection conn = DB_connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, sectionId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("classid");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting class ID by section ID: " + e.getMessage());
+        }
+        return -1; // Return an invalid value indicating not found
+    }
+    
 }
