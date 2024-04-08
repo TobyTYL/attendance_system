@@ -70,7 +70,7 @@ public class SectionController {
         }
         
         int professorId = professor.getProfessorId();
-        
+        // error here
         int classId = courseDao.getClassIdByName(className);
         if (classId == -1) {
             out.println("Class " + className + " not found.");

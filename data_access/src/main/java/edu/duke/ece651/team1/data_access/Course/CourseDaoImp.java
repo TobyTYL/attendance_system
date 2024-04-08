@@ -50,7 +50,7 @@ public class CourseDaoImp implements CourseDao{
     }
     @Override
     public int getClassIdByName(String className) {
-        String sql = "SELECT classid FROM classes WHERE classname = ?";
+        String sql = "SELECT ClassID FROM classes WHERE ClassName = ?";
         try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
             ps.setString(1, className);
             ResultSet rs = ps.executeQuery();
