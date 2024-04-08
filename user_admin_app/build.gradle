@@ -22,8 +22,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation project(':data_access')
     implementation project(':shared')
-
-
 }
 
 test {

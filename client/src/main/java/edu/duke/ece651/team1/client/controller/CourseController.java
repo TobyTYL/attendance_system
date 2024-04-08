@@ -79,16 +79,6 @@ public class CourseController {
         };
         String url = String.format("http://%s:%s/api/class/%s/allclasses/?%sId=%d",
                 UserSession.getInstance().getHost(), UserSession.getInstance().getPort(), userTypePath, userTypePath, id);
-        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
-        ResponseEntity<List<String>> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                requestEntity,
-                responseType);
-
-        if (response.getStatusCode() != HttpStatus.OK) {
-            throw new IllegalStateException("Failed to fetch class record: " + response.getStatusCode());
-        }
-        return response.getBody();
+        return ControllerUtils.executeGetRequest(url, responseType);
     }
 }

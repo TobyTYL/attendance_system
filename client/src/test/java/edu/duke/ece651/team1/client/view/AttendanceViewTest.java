@@ -51,7 +51,7 @@ public class AttendanceViewTest {
     void testPromptForStudentAttendance() throws IOException {
         when(inputReader.readLine()).thenReturn("P");
         String studentName = "John Doe";
-        String response = attendanceView.promptForStudentAttendance(studentName);
+        String response = attendanceView.promptForStudentAttendance(studentName,true);
         verify(out).println("Student Name: " + studentName);
         verify(out).println("Press 'P' to mark Present, 'A' to mark Absent:");
         assertEquals("P", response);
@@ -61,7 +61,7 @@ public class AttendanceViewTest {
       String studentName = "John Doe";
       try {
           when(inputReader.readLine()).thenReturn("X"); // Invalid input
-          attendanceView.promptForStudentAttendance(studentName);
+          attendanceView.promptForStudentAttendance(studentName,true);
           fail("Should have thrown IllegalArgumentException for invalid format.");
       } catch (IOException e) {
           fail("IOException should not have occurred.");
@@ -210,11 +210,12 @@ public class AttendanceViewTest {
     }
     @Test
     void testReadAttendanceOption() throws IOException {
-        when(inputReader.readLine()).thenReturn("1", "2", "3", "4");
+        when(inputReader.readLine()).thenReturn("1", "2", "3", "4","5");
         assertEquals("take", attendanceView.readAttendanceOption(), "Option 1 should return 'take'");
         assertEquals("modify", attendanceView.readAttendanceOption(), "Option 2 should return 'modify'");
         assertEquals("export", attendanceView.readAttendanceOption(), "Option 3 should return 'export'");
-        assertEquals("back", attendanceView.readAttendanceOption(), "Any other option should return 'back'");
+        assertEquals("report", attendanceView.readAttendanceOption(), "option4 should return 'report'");
+        assertEquals("back",attendanceView.readAttendanceOption(),"option 5 should back");
     }
     @Test
     void testShowAttendanceManageOption() {
@@ -223,7 +224,8 @@ public class AttendanceViewTest {
         verify(out).println("1. Take attendance for today's class");
         verify(out).println("2. Edit your previous attendance");
         verify(out).println("3. Export attendance records");
-        verify(out).println("4. Back to Main Menu");
+        verify(out).println("4. Obtain class Attendance report ");
+        verify(out).println("5. Go back");
     }
     @Test
     void testShowExportOption() {
@@ -295,7 +297,7 @@ public class AttendanceViewTest {
     void testPromptForStudentAttendanceEOFException() {
         assertThrows(EOFException.class, () -> {
             when(inputReader.readLine()).thenReturn(null); // Simulate EOF
-            attendanceView.promptForStudentAttendance("John Doe");
+            attendanceView.promptForStudentAttendance("John Doe",true);
         });
     }
 

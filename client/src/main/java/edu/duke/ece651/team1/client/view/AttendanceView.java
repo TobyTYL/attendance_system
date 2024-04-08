@@ -54,7 +54,7 @@ public class AttendanceView {
     }
 
     public void showUpdateSuccessMessage(String student, String status){
-        out.println("You successfully update " + student + "attendance status to "+status);
+        out.println("You successfully update " + student + " attendance status to "+status);
     }
     /**
      * Displays a message indicating completion of attendance marking along with the final attendance records.
