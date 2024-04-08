@@ -188,6 +188,7 @@ public class AttendanceController {
         Iterable<Student> students;
         try {
             students = getRoaster();
+           
         } catch (IllegalArgumentException e) {
             attendanceView.showNoRosterMessage();
             return;
