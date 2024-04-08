@@ -57,9 +57,9 @@ public class UserDaoImp implements UserDao {
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
                 // String email = rs.getString("Email");
-                String role = rs.getString("Role");
-
-                user = new User(userIdResult, username, passwordHash, role);
+                //String role = rs.getString("Role");
+                //edit here slash role
+                user = new User(userIdResult, username, passwordHash);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,10 +77,10 @@ public class UserDaoImp implements UserDao {
                 int userId = rs.getInt("UserID");
                 String username = rs.getString("Username");
                 String passwordHash = rs.getString("PasswordHash");
-                // String email = rs.getString("Email");
-                String role = rs.getString("Role");
+                String email = rs.getString("Email");
+                //String role = rs.getString("Role");
 
-                User user = new User(userId, username, passwordHash, role);
+                User user = new User(userId, username, passwordHash);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -99,10 +99,10 @@ public class UserDaoImp implements UserDao {
             if (rs.next()) {
                 int userId = rs.getInt("UserID");
                 String passwordHash = rs.getString("PasswordHash");
-                // String email = rs.getString("Email");
-                String role = rs.getString("Role");
-
-                user = new User(userId, username, passwordHash, role);
+                String email = rs.getString("Email");
+                //String role = rs.getString("Role");
+                //edit here slash role
+                user = new User(userId, username, passwordHash);
             }
         } catch (SQLException e) {
             e.printStackTrace();

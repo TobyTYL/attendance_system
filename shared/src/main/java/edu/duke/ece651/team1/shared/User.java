@@ -19,7 +19,9 @@ public class User {
     public User(String username, String passwordHash, String role){
         this(null,username,passwordHash,role);
     }
-
+    public User(Integer userId, String username, String passwordHash){
+        this(userId,username,passwordHash,null);
+    }
     public int getUserId() {
         return userId;
     }

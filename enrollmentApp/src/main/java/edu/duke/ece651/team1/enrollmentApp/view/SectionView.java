@@ -123,7 +123,6 @@ public class SectionView {
     }
     out.println("Available Professors:");
     for (Professor professor : professors) {
-        // Assuming Professor class has getName() method or similar
         // edit here (Toby)
         int userId = professor.getUserId();
         String professorName = userDao.getUserById(userId).getUsername();
