@@ -3,14 +3,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
-
-import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
-import edu.duke.ece651.team1.shared.*;
+import edu.duke.ece651.team1.shared.Course;
 
 public class CourseDaoImp implements CourseDao{
    

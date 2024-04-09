@@ -1,1 +1,0 @@
-SELECT * FROM "attendanceentries" LIMIT 1000;

@@ -3,7 +3,8 @@ plugins {
     id 'application'
     // Spring Boot plugin for potential RESTful service or web functionality
     //id 'org.springframework.boot' version '2.7.10'
-    id 'io.spring.dependency-management' version '1.1.0'
+    // id 'io.spring.dependency-management' version '1.1.0'
+    id 'com.bmuschko.clover'
 }
 
 group = 'edu.duke.ece651.team1'
@@ -35,8 +36,33 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Use the latest version applicable
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.mockito:mockito-core:3.+'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
+}
+application {
+    // Define the main class for the application.
+    mainClass = 'edu.duke.ece651.team1.enrollmentApp.App'
 }
 
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+test {
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+}
+clover {
+    report{
+        html = true
+    }
+    compiler {
+        debug = true }
+}
 run{
     standardInput = System.in
 }
