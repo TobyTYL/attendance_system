@@ -28,4 +28,10 @@ test {
     useJUnitPlatform()
 }
 
+application {
+    mainClassName = 'edu.duke.ece651.team1.user_admin_app.App'
+}
 
+run{
+    standardInput = System.in
+}
