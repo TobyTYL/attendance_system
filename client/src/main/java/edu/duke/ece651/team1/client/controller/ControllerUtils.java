@@ -2,8 +2,7 @@ package edu.duke.ece651.team1.client.controller;
 import org.springframework.http.*;
 import edu.duke.ece651.team1.client.model.UserSession;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
-import org.springframework.util.*;
+
 import org.springframework.web.client.*;
 public class ControllerUtils {
     private static RestTemplate restTemplate = new RestTemplate();

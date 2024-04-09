@@ -259,7 +259,9 @@ public class AttendanceController {
                         attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Tardy");
                         break;
                     } else {
-                        throw new IllegalArgumentException("That Attendance update option is in valid,");
+                        record.updateStudentStatus(s, AttendanceStatus.ABSENT);
+                        attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Absent");
+                        break;
                     }
                 } catch (IllegalArgumentException e) {
                     out.println("Invalid option. Please select A for Absent or P for present.");

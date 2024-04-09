@@ -57,6 +57,15 @@ public class AttendanceViewTest {
         assertEquals("P", response);
     }
     @Test
+    void testPromptForStudentAttendanceRetake() throws IOException {
+        when(inputReader.readLine()).thenReturn("P");
+        String studentName = "John Doe";
+        String response = attendanceView.promptForStudentAttendance(studentName,false);
+        verify(out).println("Student Name: " + studentName);
+        verify(out).println("Press 'A' to mark Absent, Press 'P' to mark Present, 'T' to mark Tardy:");
+        assertEquals("P", response);
+    }
+    @Test
     void testPromptForStudentAttendanceWithInvalidFormat() {
       String studentName = "John Doe";
       try {
@@ -110,14 +119,20 @@ public class AttendanceViewTest {
         Student student1 = new Student("John Doe", "John", "123");
         record.initializeAttendanceEntry(student1);
         record.markPresent(student1);
-
         attendanceView.showAttenceFinishMessage(record);
-        
         verify(out).println("Attendance marking completed.");
         verify(out).println("Attendance records List blow:");
-        // Verify that showFinalAttendanceRecord() correctly formats the final output,
-        // including calling println with "John Doe: PRESENT".
-        // This verification depends on the correct implementation of showFinalAttendanceRecord().
+    }
+    @Test
+    void testShowAttendanceUpdateMessage() {
+        LocalDate sessionDate = LocalDate.parse("2023-03-28");
+        AttendanceRecord record = new AttendanceRecord(sessionDate);
+        Student student1 = new Student("John Doe", "John", "123");
+        record.initializeAttendanceEntry(student1);
+        record.markPresent(student1);
+        attendanceView.showUpdateFinishMessage(record);
+        verify(out).println("Attendance update completed.");
+        verify(out).println("New Attendance records List blow:");
     }
 
     @Test
@@ -369,4 +384,46 @@ public class AttendanceViewTest {
         // Verify that the correct error message is printed to the user
         verify(out).println("Invalid option for Export format");
     }
+
+    @Test
+    void testUserSelects() throws IOException {
+        when(inputReader.readLine()).thenReturn("1","2");
+        assertEquals("retake", attendanceView.readModifyOption());
+        assertEquals("modify", attendanceView.readModifyOption());
+    }
+
+    @Test
+    void testUserEntersInvalidThenValidOption() throws IOException {
+        when(inputReader.readLine()).thenReturn("invalid", "2");
+        assertEquals("modify", attendanceView.readModifyOption());
+        verify(out).println("Invalid option for Modification");
+    }
+    @Test
+    void testShowModifyMenu() {
+        attendanceView.showModifyMenue();
+        verify(out).println("Would you like to:");
+        verify(out).println("1. Retake entire class attendance");
+        verify(out).println("2. Modify attendance for a specific student");
+    }
+
+    @Test
+    void testShowClassReport() {
+        String reportContent = "John Doe: Present";
+        attendanceView.showClassReport(reportContent);
+        verify(out).println("=============== Attendance Participation for class:  ===============");
+        verify(out).println();
+        verify(out).println(reportContent);
+        verify(out).println("=====================================================================");
+    }
+    
+    @Test
+    void testShowUpdateSuccessMessage() {
+        String studentName = "John Doe";
+        String status = "Present";
+        attendanceView.showUpdateSuccessMessage(studentName, status);
+        verify(out).println("You successfully update " + studentName + " attendance status to " + status);
+    }
+
 }
+
+    

@@ -22,6 +22,7 @@ public class User {
     public User(Integer userId, String username, String passwordHash){
         this(userId,username,passwordHash,null);
     }
+    
     public int getUserId() {
         return userId;
     }

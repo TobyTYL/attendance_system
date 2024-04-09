@@ -18,14 +18,13 @@ public class CourseController {
     private final BufferedReader inputReader;
     private final PrintStream out;
     private final CourseView view;
-    private final RestTemplate restTemplate;
+  
 
     public CourseController(String role, int id, BufferedReader inputReader, PrintStream out) {
         this.role = role;
         this.id = id;
         this.inputReader = inputReader;
         this.out = out;
-        this.restTemplate = new RestTemplate();
         this.view = new CourseView(inputReader, out);
     }
 
@@ -51,10 +50,7 @@ public class CourseController {
                     ProfessorMainMenuController nextController = new ProfessorMainMenuController(sectionId, classId, courseName, inputReader, out);
                     nextController.startMainMenu();
                 } else {
-                    // Implement student's next menu here
-                    
                     StudentController nexController = new StudentController(inputReader, out, sectionId, classId, courseName, id);
-
                     nexController.startStudentMenu();
                 }
             } catch (IllegalArgumentException e) {
@@ -63,18 +59,13 @@ public class CourseController {
         }
     }
 
-    private HttpHeaders getSessionTokenHeaders() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Cookie", UserSession.getInstance().getSessionToken());
-        return headers;
-    }
 
     public List<String> getCourses(String role) {
         String userTypePath = role.equals("Professor") ? "professor" : "student";
         return fetchCourses(userTypePath);
     }
 
-    private List<String> fetchCourses(String userTypePath) {
+    public List<String> fetchCourses(String userTypePath) {
         ParameterizedTypeReference<List<String>> responseType =new ParameterizedTypeReference<List<String>>() {
         };
         String url = String.format("http://%s:%s/api/class/%s/allclasses/?%sId=%d",

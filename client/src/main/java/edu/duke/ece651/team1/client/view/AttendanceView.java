@@ -87,7 +87,7 @@ public class AttendanceView {
      */
     public String promptForStudentAttendance(String studentName, boolean first) throws  IOException{
         out.println("Student Name: " + studentName);
-        String prompt = first?"Press 'P' to mark Present, 'A' to mark Absent:":"Press 'P' to mark Present, 'T' to mark Tardy:";
+        String prompt = first?"Press 'P' to mark Present, 'A' to mark Absent:":"Press 'A' to mark Absent, Press 'P' to mark Present, 'T' to mark Tardy:";
         out.println(prompt);
         String s = inputReader.readLine();
         if (s == null) {
@@ -131,15 +131,6 @@ public class AttendanceView {
             } catch (NumberFormatException e) {
                 out.println("Please enter a valid number.");
             }
-            // if (dates.contains(input)) {
-            //     return input;
-            // } else {
-            //     out.println("Invalid date or date not available. Please try again.");
-            // }
-                
-            // catch(IllegalArgumentException e){
-            //         out.println("Invalid option for Modify Attendance.");
-            // }
         }
     }
 
