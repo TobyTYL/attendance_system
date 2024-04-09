@@ -1,12 +1,8 @@
 package edu.duke.ece651.team1.client.view;
-
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.BufferedReader;
 import java.util.List;
 import org.json.*;
-
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 
@@ -27,7 +23,7 @@ public class CourseView {
     public void showNoCourseMessge(String role) {
         if ("Professor".equalsIgnoreCase(role)) {
             out.println("No courses available for you to manage at this time.");
-        } else if ("Student".equalsIgnoreCase(role)) {
+        } else  {
             out.println("You are not currently enrolled in any courses.");
         }
     }

@@ -99,15 +99,14 @@ public class UserDaoImp implements UserDao {
             if (rs.next()) {
                 int userId = rs.getInt("UserID");
                 String passwordHash = rs.getString("PasswordHash");
-                String email = rs.getString("Email");
-                //String role = rs.getString("Role");
-                //edit here slash role
-                user = new User(userId, username, passwordHash);
+                String role = rs.getString("Role");
+                user = new User(userId, username, passwordHash, role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
+
     }
 
 }

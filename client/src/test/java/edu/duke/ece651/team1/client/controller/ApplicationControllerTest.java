@@ -1,100 +1,87 @@
-// package edu.duke.ece651.team1.client.controller;
+package edu.duke.ece651.team1.client.controller;
 
-// // <<<<<<< HEAD
-// // import static org.junit.jupiter.api.Assertions.*;
-// // import static org.mockito.Mockito.mock;
-// // import static org.mockito.Mockito.times;
-// // import static org.mockito.Mockito.verify;
-// // import static org.mockito.Mockito.when;
 
-// // import java.io.BufferedReader;
-// // import java.io.ByteArrayOutputStream;
-// // import java.io.PrintStream;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-// // import org.junit.jupiter.api.Test;
+import edu.duke.ece651.team1.client.model.UserSession;
 
-// // public class ApplicationControllerTest {
-// //     @Test
-// //     void testStartApplication() throws Exception {
-// //         BufferedReader readerMock = mock(BufferedReader.class);
-// //         PrintStream outMock = new PrintStream(new ByteArrayOutputStream());
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintStream;
 
-// //         // Mocking LoginSignupController and MainMenuController might be tricky without direct support for dependency injection.
-// //         // Instead, we simulate the user input and output for authentication success on first attempt
-// //         when(readerMock.readLine())
-// //             .thenReturn("userInput1") // Simulate user inputs
-// //             .thenReturn("userInput2");
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.json.*;;
 
-// //         // Assume these methods are public and can be mocked (you might need to adjust visibility or refactor for testing)
-// //         LoginSignupController loginSignupControllerMock = mock(LoginSignupController.class);
-// //         MainMenuController mainMenuControllerMock = mock(MainMenuController.class);
+@ExtendWith(MockitoExtension.class)
+public class ApplicationControllerTest {
 
-// //         // Simulate successful authentication
-// //         when(loginSignupControllerMock.authenticateOrRegister()).thenReturn(true);
+    @Mock
+    private BufferedReader inputReader;
 
-// //         ApplicationController appController = new ApplicationController(readerMock, outMock);
-// //         // Need to set the mocked controllers after instantiation due to the current design
-// //         // This is a limitation of the direct instantiation approach in the constructor
-// //         appController.loginSignupController = loginSignupControllerMock;
-// //         appController.mainMenuController = mainMenuControllerMock;
+    @Mock
+    private PrintStream out;
 
-// //         appController.startApplication();
+    @Mock
+    private LoginSignupController loginSignupController;
 
-// //         verify(loginSignupControllerMock, times(1)).authenticateOrRegister();
-// //         verify(mainMenuControllerMock, times(1)).startMainMenu();
-// //     }
-// // }
-// // =======
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.Mock;
-// import org.mockito.junit.jupiter.MockitoExtension;
-// import java.io.BufferedReader;
-// import java.io.PrintStream;
-// import static org.mockito.Mockito.*;
+    @Mock
+    private CourseController controller;
+   
 
-// @ExtendWith(MockitoExtension.class)
-// public class ApplicationControllerTest {
+    private ApplicationController applicationController;
 
-//     @Mock
-//     private BufferedReader inputReader;
+    @BeforeEach
+    void setUp() {
+        applicationController = new ApplicationController(inputReader, out);
+        applicationController.loginSignupController = loginSignupController;
+        // ApplicationController appController = new ApplicationController(inputReader, out) {
+        //     @Override
+        //     CourseController getCourseController(String message) {
+        //         return mockedCourseController;
+        //     }
+        // };
+    }
 
-//     @Mock
-//     private PrintStream out;
+   
 
-//     @Mock
-//     private LoginSignupController loginSignupController;
+    // @Test
+    // void testStartApplicationLoginFailureAndException() throws IOException {
+    //     BufferedReader mockedInputReader = mock(BufferedReader.class);
+    //     PrintStream mockedOut = mock(PrintStream.class);
+    //     LoginSignupController mockedLoginSignupController = mock(LoginSignupController.class);
 
-//     @Mock
-//     private ProfessorMainMenuController mainMenuController;
+    //     // Simulate a login failure and an exception in the login/signup process
+    //     when(mockedLoginSignupController.authenticateOrRegister()).thenReturn("LoginFailed");
+    //     doThrow(new RuntimeException("Login error")).when(mockedLoginSignupController).authenticateOrRegister();
 
-//     private ApplicationController applicationController;
+    //     ApplicationController appController = new ApplicationController(mockedInputReader, mockedOut);
+    //     appController.startApplication();
 
-//     @BeforeEach
-//     void setUp() {
-//         applicationController = new ApplicationController(inputReader, out);
-//         applicationController.loginSignupController = loginSignupController;
-//         applicationController.mainMenuController = mainMenuController;
-//     }
+    //     // Verify that the error message is printed to the out stream
+        
+    // }
 
-//     @Test
-//     public void testStartApplicationWhenAuthenticatedThenMainMenuStarted() {
-//         when(loginSignupController.authenticateOrRegister()).thenReturn(true);
-//         applicationController.startApplication();
-//         verify(loginSignupController, times(1)).authenticateOrRegister();
-//         verify(mainMenuController, times(1)).startMainMenu();
-//     }
+    @Test
+    public void testStartApplicationWhenAuthenticatedThenMainMenuStarted() throws IOException {
+        when(loginSignupController.authenticateOrRegister()).thenReturn("LoginSuccess");
+        applicationController.startApplication();
+        verify(loginSignupController, times(1)).authenticateOrRegister();
+       
+    }
 
-//     @Test
-//     public void testStartApplicationWhenNotAuthenticatedThenAuthenticated() {
-//         when(loginSignupController.authenticateOrRegister())
-//                 .thenReturn(false)
-//                 .thenReturn(true);
+    @Test
+    public void testStartApplicationWhenNotAuthenticatedThenAuthenticated() throws IOException {
+        when(loginSignupController.authenticateOrRegister())
+                .thenReturn("LoginFailed")
+                .thenReturn("LoginSuccess");
+        applicationController.startApplication();
+        verify(loginSignupController, times(2)).authenticateOrRegister();
+    }
 
-//         applicationController.startApplication();
-//         verify(loginSignupController, times(2)).authenticateOrRegister();
-//         verify(mainMenuController, times(1)).startMainMenu();
-//     }
-// }
-// //>>>>>>> 7be3cd028a99cb75392013d74f5e02831a617b12
+}

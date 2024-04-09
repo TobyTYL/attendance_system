@@ -11,11 +11,7 @@ import edu.duke.ece651.team1.data_access.DB_connect;
 import java.util.Optional;
 
 public class SectionDaoImpl implements SectionDao{
-    // private Connection connection;
-    
-    // public SectionDaoImpl(Connection connection) {
-    //     this.connection = connection;
-    // }
+   
     @Override
     public List<Section> getAllSections() {
         List<Section> sections = new ArrayList<>();

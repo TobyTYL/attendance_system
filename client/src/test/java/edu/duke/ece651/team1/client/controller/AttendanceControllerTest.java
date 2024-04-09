@@ -100,4 +100,8 @@
 //         assertEquals(expectedStudents.get(0).getLegalName(), ((List<Student>) result).get(0).getLegalName());
 //     }
 
+<<<<<<< HEAD
 // }
+=======
+// }
+>>>>>>> 399eb98f3c19a9eb5bfa0ec66280b2422713a8c9

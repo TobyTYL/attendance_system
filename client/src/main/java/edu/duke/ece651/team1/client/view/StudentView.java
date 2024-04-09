@@ -13,14 +13,7 @@ import java.util.List;
  * It provides methods to display menus, prompts, messages, and handle user inputs related to student management.
  */
 public class StudentView {
-    public BufferedReader getInputReader() {
-        return inputReader;
-    }
-
-    public PrintStream getOut() {
-        return out;
-    }
-
+  
     private final BufferedReader inputReader;
     private final PrintStream out;
     /**
@@ -62,21 +55,7 @@ public class StudentView {
         } 
     }
 
-    public boolean displayNotificationAndPrompt(boolean notify,String className) throws IOException{
-        out.println("You are currently managing notifications for: " + className + ".");
-        String notiInfo = notify?"Enabled":"Disabled";
-        String action = notify?"Disable":"Enable";
-        out.println("Current notification setting: "+notify);
-        out.println("Would you like to "+action+" notifications for this course? (yes/no):");
-        String usrinput = ViewUtils.getUserInput(
-            "Please type 'yes' or 'no': ",
-            "Invalid input. Please type 'yes' or 'no': ",
-            inputReader,
-            out,
-            s -> s.equalsIgnoreCase("yes") || s.equalsIgnoreCase("no")
-         ).toLowerCase();
-        return usrinput.equals("yes")? true : false;
-    }
+  
 
     public void showReportMenue(String className) {
         out.println("You are viewing reports for: " + className + ".");
