@@ -4,17 +4,22 @@ public class Section {
     private int sectionId;
     private int classId;
     private int professorId;
+//    private String className; // Add className attribute
+
 
     public Section(int sectionId, int classId, int professorId) {
         this.sectionId = sectionId;
         this.classId = classId;
         this.professorId = professorId;
+//        this.className = ""; // Initialize className
+
     }
     public Section(int classId, int professorId){
         // edit here
 //        this(-1,classId, professorId);
         this.classId = classId;
         this.professorId = professorId;
+//        this.className = className; // Set className
     }
 
     // Getters
@@ -29,6 +34,10 @@ public class Section {
     public int getProfessorId() {
         return professorId;
     }
+//    public String getClassName() {
+//        return className;
+//    }
+
 
     // Setters
     public void setSectionId(int sectionId) {
@@ -42,4 +51,7 @@ public class Section {
     public void setProfessorId(int professorId) {
         this.professorId = professorId;
     }
+//    public void setClassName(String className) {
+//        this.className = className;
+//    }
 }

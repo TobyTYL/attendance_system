@@ -80,7 +80,7 @@ public class JsonAttendanceSerializer {
             String email = entryValue.get("Email").getAsString();
             String legalName =  entry.getKey();
             int studentId = entryValue.get("student Id").getAsInt();
-            Student student = new Student( studentId,legalName,displayName , email,null);
+            Student student = new Student( studentId,legalName,displayName , email);
             String status = entryValue.get("Attendance status").getAsString();
             AttendanceStatus attendanceStatus = AttendanceStatus.fromString(status);
             attendanceRecord.initializeAttendanceEntry(student);

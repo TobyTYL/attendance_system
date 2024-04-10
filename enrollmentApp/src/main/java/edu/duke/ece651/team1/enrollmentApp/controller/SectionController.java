@@ -104,30 +104,34 @@ public class SectionController {
             case 1:
                 List<Professor> professors = professorDao.findAllProfessors();
                 sectionView.showAllProfessors(professors);
-                String newProfessorIdOrName = sectionView.getNewProfessorName();
+                // edit here
+                String newProfessorName = sectionView.getNewProfessorName();
                 int sectitionIDInt = Integer.parseInt(sectionID);
+
+//                String newProfessorID = sectionView.getNewProfessorName();
+//                int sectitionIDInt = Integer.parseInt(sectionID);
                 if (!sectionDao.checkSectionExists(sectitionIDInt)) {
                     out.println("Section do not exists!");
                     return;
                 }
 
-                String newProfessorName = sectionView.getNewProfessorName();
+//                String newProfessorName = sectionView.getNewProfessorName();
+
                 Professor professor = professorDao.findProfessorByName(newProfessorName);
                 if (professor == null) {
                     out.println("Professor with name " + newProfessorName + " not found. Please add the professor first.");
                     return;
                 }
-                int newProfessorId = professor.getProfessorId();
-                sectionDao.updateSectionProfessor(sectionID, sectitionIDInt, Integer.toString(newProfessorId));
-                sectionView.showUpdateSectionSuccessMessage(String.valueOf(sectionID), newProfessorName);
+                // edit here
+//                String newProfessorID = String.valueOf(professor.getProfessorId());
+                Integer newProfessorID = professor.getProfessorId();
+                sectionDao.updateSectionProfessor(className, sectitionIDInt, newProfessorID);
+                sectionView.showUpdateSectionSuccessMessage(sectionID, newProfessorName);
+
+//                sectionDao.updateSectionProfessor(sectionID, sectitionIDInt, Integer.toString(newProfessorId));
+//                sectionView.showUpdateSectionSuccessMessage(String.valueOf(sectionID), newProfessorName);
                 break;
 
-                // sectionDao.updateSectionProfessor(className, sectitionIDInt, newProfessorIdOrName);
-                // if(sectionDao.checkSectionExists(sectitionIDInt)){
-                //     sectionView.showUpdateSectionSuccessMessage(sectionID, newProfessorIdOrName);
-                // }
-                // out.println("Action failed, please try again.");
-                // break;
         }
     }
     

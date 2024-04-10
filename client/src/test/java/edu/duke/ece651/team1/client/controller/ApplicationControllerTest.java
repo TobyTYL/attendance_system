@@ -45,32 +45,9 @@ public class ApplicationControllerTest {
         applicationController = new ApplicationController(inputReader, out);
         applicationController.loginSignupController = loginSignupController;
         
-        // ApplicationController appController = new ApplicationController(inputReader, out) {
-        //     @Override
-        //     CourseController getCourseController(String message) {
-        //         return mockedCourseController;
-        //     }
-        // };
+
     }
 
-   
-
-    // @Test
-    // void testStartApplicationLoginFailureAndException() throws IOException {
-    //     BufferedReader mockedInputReader = mock(BufferedReader.class);
-    //     PrintStream mockedOut = mock(PrintStream.class);
-    //     LoginSignupController mockedLoginSignupController = mock(LoginSignupController.class);
-
-    //     // Simulate a login failure and an exception in the login/signup process
-    //     when(mockedLoginSignupController.authenticateOrRegister()).thenReturn("LoginFailed");
-    //     doThrow(new RuntimeException("Login error")).when(mockedLoginSignupController).authenticateOrRegister();
-
-    //     ApplicationController appController = new ApplicationController(mockedInputReader, mockedOut);
-    //     appController.startApplication();
-
-    //     // Verify that the error message is printed to the out stream
-        
-    // }
 
     @Test
     public void testStartApplicationWhenAuthenticatedThenMainMenuStarted() throws IOException {

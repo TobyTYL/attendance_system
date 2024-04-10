@@ -11,7 +11,11 @@ import edu.duke.ece651.team1.data_access.DB_connect;
 import java.util.Optional;
 
 public class SectionDaoImpl implements SectionDao{
-   
+    // private Connection connection;
+    
+    // public SectionDaoImpl(Connection connection) {
+    //     this.connection = connection;
+    // }
     @Override
     public List<Section> getAllSections() {
         List<Section> sections = new ArrayList<>();
@@ -43,14 +47,16 @@ public class SectionDaoImpl implements SectionDao{
         }
         return null;
     }
-
+// edit this method
     @Override
     public void addSection(Section section) {
-        String sql = "INSERT INTO sections (sectionid, classid, professorid) VALUES (?, ?, ?)";
+        // edit here
+//        String sql = "INSERT INTO sections (sectionid, classid, professorid) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO sections (classid, professorid) VALUES (?, ?)";
+
         try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
-            ps.setInt(1, section.getSectionId());
-            ps.setInt(2, section.getClassId());
-            ps.setInt(3, section.getProfessorId());
+            ps.setInt(1, section.getClassId());
+            ps.setInt(2, section.getProfessorId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error adding section: " + e.getMessage());
@@ -105,7 +111,7 @@ public class SectionDaoImpl implements SectionDao{
             ps.setInt(1, professorId);
             ps.setInt(2, classId);
             try (ResultSet rs = ps.executeQuery()) {
-                if(rs.next()) {
+                if (rs.next()) {
                     Section section = new Section(rs.getInt("sectionid"), rs.getInt("classid"), rs.getInt("professorid"));
                     return Optional.of(section);
                 }
@@ -133,39 +139,83 @@ public class SectionDaoImpl implements SectionDao{
         }
         return sections;
     }
-    public void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException {
-        // Step 1: Retrieve the professor's userid using the professor's name.
-        String getUserIdSql = "SELECT userid FROM users WHERE username = ?";
-        int professorUserId = 0;
-        try (PreparedStatement psGetUserId = DB_connect.getConnection().prepareStatement(getUserIdSql)) {
-            psGetUserId.setString(1, professorName);
-            try (ResultSet rs = psGetUserId.executeQuery()) {
+
+    public void updateSectionProfessor(String className, int sectionID, Integer newProfessorID) throws SQLException {
+        //根据用户输入的classname先找到classid定位
+        String getClassIdSql = "SELECT classid FROM classes WHERE classname = ?";
+        int classId = 0;
+        try (PreparedStatement psGetClassId = DB_connect.getConnection().prepareStatement(getClassIdSql)) {
+            psGetClassId.setString(1, className);
+            try (ResultSet rs = psGetClassId.executeQuery()) {
                 if (rs.next()) {
-                    professorUserId = rs.getInt("userid");
+                    classId = rs.getInt("classid");
                 }
             }
         }
-        
-        // Step 2: Retrieve the professorid using the userid.
-        String getProfessorIdSql = "SELECT professorid FROM professors WHERE userid = ?";
-        int professorId = 0;
-        try (PreparedStatement psGetProfessorId = DB_connect.getConnection().prepareStatement(getProfessorIdSql)) {
-            psGetProfessorId.setInt(1, professorUserId);
-            try (ResultSet rs = psGetProfessorId.executeQuery()) {
-                if (rs.next()) {
-                    professorId = rs.getInt("professorid");
-                }
-            }
-        }
-        
-        // Step 3: Update the section with the new professorid.
-        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
+        //根据用户输入的sectionid定位到正确的section，然后对这个section的professor进行更改
+        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ? AND classid = ?";
         try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
-            psUpdateSection.setInt(1, professorId);
+            psUpdateSection.setInt(1, newProfessorID);
             psUpdateSection.setInt(2, sectionID);
-            psUpdateSection.executeUpdate();
+            psUpdateSection.setInt(3, classId);
+            int rowsAffected = psUpdateSection.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Section updated successfully.");
+            } else {
+                throw new SQLException("Failed to update section.");
+            }
         }
     }
+
+    //    public void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException {
+//        // Step 1: Retrieve the professor's userid using the professor's name.
+//        String getUserIdSql = "SELECT userid FROM users WHERE username = ?";
+//        //edit here
+//        //        int professorUserId = 0;
+//        Integer professorUserId = null;
+//        try (PreparedStatement psGetUserId = DB_connect.getConnection().prepareStatement(getUserIdSql)) {
+//            psGetUserId.setString(1, professorName);
+//            try (ResultSet rs = psGetUserId.executeQuery()) {
+//                if (rs.next()) {
+//                    professorUserId = rs.getInt("userid");
+//                }
+//            }
+//        }
+//
+//        // Step 2: Retrieve the professorid using the userid.
+//        String getProfessorIdSql = "SELECT professorid FROM professors WHERE userid = ?";
+//        //edit here, professorid is integer
+//        Integer professorId = null;
+////        int professorId = 0;
+//        try (PreparedStatement psGetProfessorId = DB_connect.getConnection().prepareStatement(getProfessorIdSql)) {
+//            psGetProfessorId.setInt(1, professorUserId);
+//            try (ResultSet rs = psGetProfessorId.executeQuery()) {
+//                if (rs.next()) {
+//                    professorId = rs.getInt("professorid");
+//                }
+//            }
+//        }
+//
+//        // Step 3: Update the section with the new professorid.
+////        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
+////        try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
+////            psUpdateSection.setInt(1, professorId);
+////            psUpdateSection.setInt(2, sectionID);
+////            psUpdateSection.executeUpdate();
+////        }
+//        // Check if professorId is null
+//
+//        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
+//        try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
+//            if (professorId != null) {
+//                psUpdateSection.setInt(1, professorId);
+//            } else {
+//                throw new SQLException("ProfessorId is null for professorName: " + professorName);
+//            }
+//            psUpdateSection.setInt(2, sectionID);
+//            psUpdateSection.executeUpdate();
+//        }
+//    }
     public boolean checkSectionExists(int sectionId) {
         String sql = "SELECT 1 FROM sections WHERE sectionid = ?";
         try (Connection conn = DB_connect.getConnection();
@@ -192,5 +242,5 @@ public class SectionDaoImpl implements SectionDao{
         }
         return -1; // Return an invalid value indicating not found
     }
-    
+
 }

@@ -84,7 +84,6 @@ class AttendanceControllerTest {
         record.initializeFromRoaster(mockedStudents);
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String recordStr = serializer.serialize(record);
-        System.out.println(recordStr);
         when(ControllerUtils.executeGetRequest(eq(url_report), any(ParameterizedTypeReference.class)))
                 .thenReturn("class report");
         when(ControllerUtils.executeGetRequest(eq(url_roster), any(ParameterizedTypeReference.class)))
