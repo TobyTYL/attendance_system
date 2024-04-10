@@ -9,9 +9,9 @@ import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDao;
 public class ApplicationController {
     private BufferedReader inputReader;
     private final PrintStream out;
-    private MainMenuController MainMenuController;
-    private CourseController courseController;
-    private EnrollmentController enrollmentController;
+    protected MainMenuController MainMenuController;
+    protected CourseController courseController;
+    protected EnrollmentController enrollmentController;
     //private EnrollmentController enrollmentController;
 
     public ApplicationController(BufferedReader inputReader, PrintStream out) {
