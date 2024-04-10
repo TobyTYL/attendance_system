@@ -32,7 +32,7 @@ public class Student {
         this.legalName = legalName;
         this.disPlayName = disPlayName;
         this.email = email;
-        this.userId = userId;
+        this.userId = uid;
     }
 
     /**
