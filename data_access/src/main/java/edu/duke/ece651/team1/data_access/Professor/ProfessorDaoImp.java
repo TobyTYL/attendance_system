@@ -12,10 +12,6 @@ import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Professor;
 
 public class ProfessorDaoImp implements ProfessorDao {
-    // private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
-    // private static final String USER = "ece651";
-    // private static final String PASSWORD = "passw0rd";
-
     @Override
     public void addProfessor(Professor professor) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -78,7 +74,6 @@ public class ProfessorDaoImp implements ProfessorDao {
 
     @Override
     public Professor findProfessorByUsrID(int userID) {
-        // TODO Auto-generated method stub
         Professor professor = null;
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "SELECT * FROM Professors WHERE UserID = ?";
@@ -109,7 +104,7 @@ public class ProfessorDaoImp implements ProfessorDao {
             return false;
         }
     }
-    private int getUserIDByProfessorName(Connection conn, String professorName) throws SQLException {
+    public int getUserIDByProfessorName(Connection conn, String professorName) throws SQLException {
         String sql = "SELECT UserID FROM Users WHERE Username = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, professorName);

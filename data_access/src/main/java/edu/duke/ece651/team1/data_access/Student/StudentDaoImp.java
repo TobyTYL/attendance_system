@@ -29,7 +29,7 @@ public class StudentDaoImp implements StudentDao {
         }
     }
 
-    private boolean userExists(Connection conn, int userId) throws SQLException {
+    public boolean userExists(Connection conn, int userId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM Users WHERE UserID = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setInt(1, userId);
@@ -67,7 +67,9 @@ public class StudentDaoImp implements StudentDao {
                 String displayName = rs.getString("DisplayName");
                 //String email = rs.getString("Email");
                 //optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
-                optionalStudent = Optional.of(new Student(studentID, legalName, displayName));
+//                optionalStudent = Optional.of(new Student(studentID, legalName, displayName));
+                optionalStudent = Optional.of(new Student(legalName, displayName));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,7 +167,5 @@ public class StudentDaoImp implements StudentDao {
             e.printStackTrace();
         }
     }
-
-
 }
 

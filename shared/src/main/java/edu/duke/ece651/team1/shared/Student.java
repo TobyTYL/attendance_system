@@ -8,7 +8,7 @@ public class Student {
     private final String legalName;
     private String disPlayName;
     private String email;
-    private int userId;
+    private Integer userId;
 
     /**
      * Constructs a Student with specified legal name, display name, and email.
@@ -16,13 +16,11 @@ public class Student {
      * @param disPlayName The name displayed in the application.
      * @param email The student's email address.
      */
-    public Student(Integer studentId, String legalName, String disPlayName, String email) {
-        this.studentId = studentId;
-        this.legalName = legalName;
-        this.disPlayName = disPlayName;
-        this.email = email;
-    }
-    public Student(Integer studentId, String legalName, String disPlayName, String email, int userId) {
+    // public Student(Integer studentId, String legalName, String disPlayName, String email) {
+    //     this(studentId, legalName,disPlayName,email,null);
+
+    // }
+    public Student(Integer studentId, String legalName, String disPlayName, String email, Integer userId) {
         this.studentId = studentId;
         this.legalName = legalName;
         this.disPlayName = disPlayName;
@@ -30,18 +28,13 @@ public class Student {
         this.userId = userId;
     }
 
-    public Student(int userId, String legalName, String disPlayName, String email) {
+    public Student(int uid,String legalName, String disPlayName, String email) {
         this.legalName = legalName;
         this.disPlayName = disPlayName;
         this.email = email;
         this.userId = userId;
     }
 
-    public Student(int userId, String legalName, String disPlayName) {
-        this.legalName = legalName;
-        this.disPlayName = disPlayName;
-        this.userId = userId;
-    }
     /**
      * Constructs a Student with a legal name and uses it as the display name; no email.
      * @param legalName The student's legal name and display name.
@@ -50,20 +43,20 @@ public class Student {
         // this.legalName = legalName;
         // this.disPlayName = legalName;
         // this.email = "";
-        this(null, legalName,legalName,"");
+        this(null, legalName,legalName,"",null);
     }
 
     public Student(String legalName, String displayName,String email){
-        this(null,legalName,displayName,email);
+        this(null,legalName,displayName,email,null);
     }
     public Student(String legalName, String email){
-        this(null,legalName,legalName,email);
+        this(null,legalName,legalName,email,null);
     }
 
 
 
     public Student(){
-        this(null, "", "", "");
+        this(null, "", "", "",null);
     }
 
     public Integer getStudentId() {
@@ -89,7 +82,7 @@ public class Student {
         this.email = email;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

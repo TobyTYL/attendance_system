@@ -1,5 +1,7 @@
 package edu.duke.ece651.team1.enrollmentApp.view;
 import edu.duke.ece651.team1.client.view.ViewUtils;
+import edu.duke.ece651.team1.data_access.Professor.ProfessorDao;
+import edu.duke.ece651.team1.data_access.Professor.ProfessorDaoImp;
 import edu.duke.ece651.team1.shared.Professor;
 import edu.duke.ece651.team1.shared.Section;
 import edu.duke.ece651.team1.shared.User;
@@ -15,12 +17,15 @@ public class SectionView {
     private BufferedReader inputReader;
     private final PrintStream out;
     private final UserDao userDao;
-
+    // add className
+//    private String className;
+    //new
+    private final ProfessorDao professorDao;
     public SectionView(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.userDao = new UserDaoImp();
-
+        this.professorDao = new ProfessorDaoImp();
     }
 
     public void showClassSectionOptions(String className) {
@@ -30,14 +35,26 @@ public class SectionView {
         out.println("3. Update a Section");
         out.println("5. Return to Previous Menu");
     }
+    // add classname into para
      public void showAllSections(List<Section> sections) {
         if (sections.isEmpty()) {
             out.println("No sections available.");
             return;
         }
+        // edit here
         out.println("Available sections:");
-        for (Section section : sections) {
-            out.println("Section ID: " + section.getSectionId() + ", Class ID: " + section.getClassId() + ", Professor ID: " + section.getProfessorId());
+//         out.println("Available sections for class " + className + ":");
+         for (Section section : sections) {
+//             if (section.getClassName().equals(className)) {
+                 String professorName = "";
+                 Integer professorID = section.getProfessorId();
+                 Professor professor = professorDao.getProfessorById(professorID);
+                 User professorUser = userDao.getUserById(professor.getUserId());
+                 professorName = professorUser.getUsername();
+                 out.println("Section ID: " + section.getSectionId() + ", Class ID: " + section.getClassId()
+                         + ", Professor ID: " + section.getProfessorId()
+                         + " (Professor Name: " + professorName + ")");
+//             }
         }
     }
     public int getSectionManageChoice() throws IOException {
@@ -46,7 +63,7 @@ public class SectionView {
 
     public int getSectionToRemove(String className) throws IOException {
         String ans = ViewUtils.getUserInput(
-                "Enter the SectionID/Professor name of the section you wish to remove from " + className + ": ",
+                "Enter the SectionID of the section you wish to remove from " + className + ": ",
                 "Invalid SectionID/Professor name. Please enter a valid one: ",
                 inputReader,
                 out,
