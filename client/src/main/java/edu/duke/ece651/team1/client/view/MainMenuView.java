@@ -46,7 +46,7 @@ public class MainMenuView {
                     return "back";
                 }
             } catch (IllegalArgumentException e) {
-                out.println("Invalid option. Please select 1 for Manage attendance or 2 for Go back.");
+                out.println("Invalid option. Please select 1 for Manage attendance or 2 for Manage Students.");
             }
         }
 

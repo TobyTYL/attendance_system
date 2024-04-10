@@ -64,17 +64,15 @@ public class StudentDaoImp implements StudentDao {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String legalName = rs.getString("LegalName");
-                int userId = rs.getInt("UserID");
                 String displayName = rs.getString("DisplayName");
-                String email = rs.getString("Email");
-                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email, userId));
-                // System.out.println("student id: "+studentID+" "+optionalStudent.get()+" "+optionalStudent.get().getStudentId());
+                //String email = rs.getString("Email");
+                //optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
+                optionalStudent = Optional.of(new Student(studentID, legalName, displayName));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return optionalStudent;
-
     }
 
     @Override
@@ -90,7 +88,7 @@ public class StudentDaoImp implements StudentDao {
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
                 String email = rs.getString("Email");
-                Student student = new Student(studentID, legalName, displayName, email,userID);
+                Student student = new Student(studentID, legalName, displayName, email);
                 studentList.add(student);
             }
         } catch (SQLException e) {
@@ -108,12 +106,11 @@ public class StudentDaoImp implements StudentDao {
             statement.setInt(1, userID);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-               
                 int studentID = rs.getInt("StudentID");
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
                 String email = rs.getString("Email");
-                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email,userID));
+                optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
             }
         } catch (SQLException e) {
             e.printStackTrace();

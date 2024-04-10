@@ -22,16 +22,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation project(':data_access')
     implementation project(':shared')
+
+
 }
 
 test {
     useJUnitPlatform()
 }
 
-application {
-    mainClassName = 'edu.duke.ece651.team1.user_admin_app.App'
-}
 
-run{
-    standardInput = System.in
-}

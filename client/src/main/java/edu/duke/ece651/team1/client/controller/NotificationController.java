@@ -52,10 +52,16 @@ public class NotificationController {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/students/notification/" + studentId + "/" + classID;
         HttpHeaders headers = new HttpHeaders();
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-        String responseBody = ControllerUtils.executeGetRequest(url, responseType);
-        JSONObject jsonObject = new JSONObject(responseBody);
+        HttpEntity<String> requestEntity = new HttpEntity<>(ControllerUtils.getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                String.class);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Failed to fetch Notification preference: " + response.getStatusCode());
+        }
+        JSONObject jsonObject = new JSONObject(response.getBody());
         boolean receiveNotifications = jsonObject.getBoolean("ReceiveNotifications");
         return receiveNotifications;
     }
@@ -63,9 +69,16 @@ public class NotificationController {
     public void updateNotification(boolean receiveNotifications) {
         String url = String.format("http://%s:%s/api/students/notification/%d/%d/?preference=%s",
         UserSession.getInstance().getHost(), UserSession.getInstance().getPort(), studentId, classID,receiveNotifications );
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-        ControllerUtils.executePostPutRequest(url, null, responseType, true);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(ControllerUtils.getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(
+            url,
+            HttpMethod.POST,
+            requestEntity,
+            String.class);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Failed to update Notification preference: " + response.getStatusCode());
+        }
         view.showSuccessUpdateMessage(className, receiveNotifications);
     }
 

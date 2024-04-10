@@ -18,7 +18,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.util.*;
 import org.springframework.web.client.*;
-import edu.duke.ece651.team1.client.controller.ControllerUtils.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ public class AttendanceController {
     BufferedReader inputReader;
     final PrintStream out;
     AttendanceView attendanceView;
-
+    RestTemplate restTemplate;
 
     /**
      * Constructor to initialize the AttendanceController with input and output
@@ -49,10 +49,28 @@ public class AttendanceController {
         this.inputReader = inputReader;
         this.out = out;
         this.attendanceView = new AttendanceView(inputReader, out);
+        this.restTemplate = new RestTemplate();
         this.sectionId = sectionId;
     }
 
-  
+    /**
+     * Sets a custom AttendanceView for this controller.
+     * 
+     * @param attendanceView The AttendanceView to be set.
+     */
+    public void setAttendanceView(AttendanceView attendanceView) {
+        this.attendanceView = attendanceView;
+    }
+
+    /**
+     * Sets a custom RestTemplate for this controller.
+     * 
+     * @param restTemplate The RestTemplate to be set.
+     */
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     /**
      * Displays the attendance management menu and handles user interaction for
      * taking attendance,
@@ -95,20 +113,42 @@ public class AttendanceController {
      * @return An iterable collection of Student objects.
      */
     protected Iterable<Student> getRoaster() {
+        // RestTemplate restTemplate = new RestTemplate();
         ParameterizedTypeReference<List<Student>> responseType = new ParameterizedTypeReference<List<Student>>() {
         };
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/allStudents/" + sectionId;
-        return ControllerUtils.executeGetRequest(url, responseType);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
+        try {
+            ResponseEntity<List<Student>> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    requestEntity,
+                    responseType);
+
+            return responseEntity.getBody();
+        } catch (HttpClientErrorException.NotFound ex) {
+            throw new IllegalArgumentException("No roster now, please load one first");
+        } catch (HttpServerErrorException ex) {
+            throw new RuntimeException("Server error occurred: " + ex.getMessage());
+        }
     }
 
     private String getClassReport(){
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/report/class/" + sectionId;
         HttpHeaders headers = new HttpHeaders();
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-       return ControllerUtils.executeGetRequest(url, responseType);   
+        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                String.class);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Failed to fetch report: " + response.getStatusCode());
+        }
+        return response.getBody();
     }
 
     
@@ -135,7 +175,17 @@ public class AttendanceController {
         };
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record-dates/" + sectionId;
-        return ControllerUtils.executeGetRequest(url, responseType);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
+        ResponseEntity<List<String>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                responseType);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Failed to fetch record dates: " + response.getStatusCode());
+        }
+        return response.getBody();
     }
 
     /**
@@ -147,11 +197,20 @@ public class AttendanceController {
     private AttendanceRecord getAttendanceRecord(String sessionDate) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record/" + sectionId + "/" + sessionDate;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-                };
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                String.class);
+
+        if (response.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException(
+                    "Failed to fetch record of " + sessionDate + " because" + response.getStatusCode());
+        }
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String record = ControllerUtils.executeGetRequest(url,  responseType);
-        return serializer.deserialize(record);
+        return serializer.deserialize(response.getBody());
     }
 
     /**
@@ -162,21 +221,29 @@ public class AttendanceController {
     private void sendAttendanceRecord(AttendanceRecord record) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record/" + sectionId;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-                };
+        ParameterizedTypeReference<AttendanceRecord> responseType = new ParameterizedTypeReference<AttendanceRecord>() {
+        };
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String recordToJsonString = serializer.serialize(record);
-        ControllerUtils.executePostPutRequest(url, recordToJsonString, responseType, true);
+        HttpEntity<String> requestEntity = new HttpEntity<>(recordToJsonString, getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            out.println(response.getBody());
+        }
     }
 
     private void updateAttendanceRecord(AttendanceRecord record) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record/" + sectionId;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
+        ParameterizedTypeReference<AttendanceRecord> responseType = new ParameterizedTypeReference<AttendanceRecord>() {
         };
         JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
         String recordToJsonString = serializer.serialize(record);
-        ControllerUtils.executePostPutRequest(url, recordToJsonString, responseType, false);
+        HttpEntity<String> requestEntity = new HttpEntity<>(recordToJsonString, getSessionTokenHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            out.println(response.getBody());
+        }
     }
 
     /**
@@ -188,7 +255,6 @@ public class AttendanceController {
         Iterable<Student> students;
         try {
             students = getRoaster();
-           
         } catch (IllegalArgumentException e) {
             attendanceView.showNoRosterMessage();
             return;
@@ -235,10 +301,10 @@ public class AttendanceController {
         // Prompt for new attendance status
         AttendanceStatus newStatus = attendanceView.promptForAttendanceStatus();
         try {
-            modifyAttendanceRecord(record.getSessionDate().toString(), selectedStudentName,
+            String modifyResult = modifyAttendanceRecord(record.getSessionDate().toString(), selectedStudentName,
                     newStatus);
             attendanceView.showModifySuccessMessage(selectedStudentName, newStatus.toString());
-            // out.println(modifyResult); // Show success or error message from the server
+            out.println(modifyResult); // Show success or error message from the server
         } catch (Exception e) {
             out.println("Failed to modify attendance record: " + e.getMessage());
         }
@@ -259,9 +325,7 @@ public class AttendanceController {
                         attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Tardy");
                         break;
                     } else {
-                        record.updateStudentStatus(s, AttendanceStatus.ABSENT);
-                        attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Absent");
-                        break;
+                        throw new IllegalArgumentException("That Attendance update option is in valid,");
                     }
                 } catch (IllegalArgumentException e) {
                     out.println("Invalid option. Please select A for Absent or P for present.");
@@ -298,19 +362,31 @@ public class AttendanceController {
         }else{
             modifyOneStudent(record);
         }
+        // String modificationResult = modifyAttendanceRecord(selectedDate,
+        // selectedStudentName, newStatus);
+        // // Display the result to the user
+        // out.println(modificationResult);
     }
 
-    private void modifyAttendanceRecord(String sessionDate, String studentName, AttendanceStatus newStatus) {
+    private String modifyAttendanceRecord(String sessionDate, String studentName, AttendanceStatus newStatus) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/modification/" + sectionId + "/" + sessionDate;
 
         // Construct the attendance entry JSON
         String attendanceEntryJson = String.format("{\"Legal Name\":\"%s\", \"Attendance Status\":\"%s\"}",
                 studentName, newStatus.name());
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-        ControllerUtils.executePostPutRequest(url, attendanceEntryJson, responseType, true);
-       
+
+        HttpHeaders headers = getSessionTokenHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> requestEntity = new HttpEntity<>(attendanceEntryJson, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return "Attendance record successfully modified.";
+        } else {
+            throw new RuntimeException("Failed to modify attendance record: " + response.getBody());
+        }
     }
 
     /**

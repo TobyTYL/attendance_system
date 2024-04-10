@@ -256,9 +256,6 @@ public class AttendanceService {
         List<Student> students = enrollments.stream()
                 .map(enrollment -> studentDao.findStudentByStudentID(enrollment.getStudentId()).get())
                 .collect(Collectors.toList());
-        for(Student s:students){
-                    System.out.println(s);
-        }
         return students;
 
     }
