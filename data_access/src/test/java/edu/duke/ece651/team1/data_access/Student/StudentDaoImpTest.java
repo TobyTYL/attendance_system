@@ -148,6 +148,7 @@ public class StudentDaoImpTest {
         List<Student> result = studentDao.getAllStudents();
         assertEquals(expectedStudents, result);
     }
+
     @Test
     public void testFindStudentByUserID() throws SQLException {
         when(conn.prepareStatement("SELECT * FROM Students WHERE UserID = ?")).thenReturn(ps);

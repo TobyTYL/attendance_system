@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
-
 public class StudentDaoImp implements StudentDao {
     @Override
     public void addStudent(Student student) {
@@ -65,9 +63,6 @@ public class StudentDaoImp implements StudentDao {
             if (rs.next()) {
                 String legalName = rs.getString("LegalName");
                 String displayName = rs.getString("DisplayName");
-                //String email = rs.getString("Email");
-                //optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email));
-//                optionalStudent = Optional.of(new Student(studentID, legalName, displayName));
                 optionalStudent = Optional.of(new Student(legalName, displayName));
 
             }
