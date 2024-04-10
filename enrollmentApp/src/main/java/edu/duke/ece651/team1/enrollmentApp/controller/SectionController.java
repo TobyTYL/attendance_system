@@ -23,7 +23,7 @@ public class SectionController {
     private final ProfessorDao professorDao; 
     private final BufferedReader inputReader;
     private final PrintStream out;
-    private final SectionView sectionView;
+    protected final SectionView sectionView;
 
     public SectionController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
@@ -31,9 +31,15 @@ public class SectionController {
         this.sectionView = new SectionView(inputReader, out);
         this.sectionDao = new SectionDaoImpl();
         this.courseDao = new CourseDaoImp();
-        this.professorDao = new ProfessorDaoImp() {
-            
-        };
+        this.professorDao = new ProfessorDaoImp();
+    }
+    public SectionController(BufferedReader inputReader, PrintStream out, SectionDao sectionDao, CourseDao courseDao, ProfessorDao professorDao) {
+        this.inputReader = inputReader;
+        this.out = out;
+        this.sectionView = new SectionView(inputReader, out);
+        this.sectionDao = sectionDao;
+        this.courseDao = courseDao;
+        this.professorDao = professorDao;
     }
 
     public void startSectionManagement(String className) throws IOException, SQLException {

@@ -9,11 +9,11 @@ import edu.duke.ece651.team1.enrollmentApp.view.MainMenuView;
 import edu.duke.ece651.team1.enrollmentApp.view.*;
 
 public class MainMenuController {
-     private BufferedReader inputReader;
+    private BufferedReader inputReader;
     private PrintStream out;
-    private MainMenuView mainMenuView;
-    private CourseController courseController;
-    private EnrollmentController enrollmentController;
+    MainMenuView mainMenuView;
+    CourseController courseController;
+    EnrollmentController enrollmentController;
 
     public MainMenuController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;

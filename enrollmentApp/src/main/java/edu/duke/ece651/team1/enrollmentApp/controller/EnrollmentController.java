@@ -147,10 +147,14 @@ public class EnrollmentController {
         int successfulEnrollments = 0;
         int failedEnrollments = 0;
         List<String> errors = new ArrayList<>();
-    
+        boolean isFirstLine = true;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
+                if (isFirstLine) { // Check if it's the first line
+                    isFirstLine = false; // Update the flag
+                    continue; // Skip processing for the first line
+                }
                 try {
                     String[] values = line.split(",");
                     if (values.length != 3) {
@@ -186,7 +190,7 @@ public class EnrollmentController {
         out.println("Batch enrollment process completed.");
         out.println("Results:");
         out.println("- Successfully enrolled " + successfulEnrollments + " students.");
-        out.println("- Encountered errors with " + failedEnrollments + " entries.");
+        out.println("- Encountered failed enrollment with " + failedEnrollments + " entries.");
         if (!errors.isEmpty()) {
             out.println("Error details:");
             errors.forEach(out::println);
