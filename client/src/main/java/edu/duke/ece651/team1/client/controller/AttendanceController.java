@@ -15,10 +15,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
-import org.springframework.util.*;
-import org.springframework.web.client.*;
-import edu.duke.ece651.team1.client.controller.ControllerUtils.*;
 import java.util.List;
 import java.util.Map;
 
@@ -105,25 +101,12 @@ public class AttendanceController {
     private String getClassReport(){
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/report/class/" + sectionId;
-        HttpHeaders headers = new HttpHeaders();
         ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
         };
        return ControllerUtils.executeGetRequest(url, responseType);   
     }
 
     
-
-    /**
-     * Helper method to construct the headers for HTTP requests, including session
-     * tokens.
-     * 
-     * @return HttpHeaders with session token included.
-     */
-    private HttpHeaders getSessionTokenHeaders() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Cookie", UserSession.getInstance().getSessionToken());
-        return headers;
-    }
 
     /**
      * Fetches the list of dates for which attendance records are available.

@@ -51,7 +51,6 @@ public class NotificationController {
     public boolean getReceiveNotification() {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/students/notification/" + studentId + "/" + classID;
-        HttpHeaders headers = new HttpHeaders();
         ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
         };
         String responseBody = ControllerUtils.executeGetRequest(url, responseType);

@@ -5,7 +5,7 @@ import org.springframework.core.ParameterizedTypeReference;
 
 import org.springframework.web.client.*;
 public class ControllerUtils {
-    private static RestTemplate restTemplate = new RestTemplate();
+    static RestTemplate restTemplate = new RestTemplate();
     public static HttpHeaders getSessionTokenHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie", UserSession.getInstance().getSessionToken());
@@ -16,7 +16,7 @@ public class ControllerUtils {
             HttpEntity<Object> requestEntity = new HttpEntity<>(getSessionTokenHeaders());
             ResponseEntity<T> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, responseType);
             return responseEntity.getBody();
-        } catch (HttpClientErrorException.NotFound ex) {
+        } catch (HttpClientErrorException ex) {
             throw new IllegalArgumentException("Resource not found: " + ex.getMessage());
         } catch (HttpServerErrorException ex) {
             throw new RuntimeException("Server error occurred: " + ex.getMessage());

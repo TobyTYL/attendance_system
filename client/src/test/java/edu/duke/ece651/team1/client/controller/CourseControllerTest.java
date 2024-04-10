@@ -1,26 +1,20 @@
 package edu.duke.ece651.team1.client.controller;
 
 import org.junit.jupiter.api.*;
-import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import static org.mockito.Mockito.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.*;
-// import static org.powermock.api.mockito.PowerMockito.*;
 import org.springframework.core.ParameterizedTypeReference;
-// import org.powermock.core.classloader.annotations.PrepareForTest;
-// import org.powermock.modules.junit4.PowerMockRunner;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
-import org.powermock.api.mockito.PowerMockito;
 import java.util.List;
 import edu.duke.ece651.team1.client.view.*;
 import edu.duke.ece651.team1.client.model.*;

@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.ParameterizedTypeReference;
+import java.util.*;
+import org.mockito.Mockito;
 
+import org.mockito.MockedStatic;
 import edu.duke.ece651.team1.client.model.UserSession;
 
 import java.io.BufferedReader;
@@ -40,6 +44,7 @@ public class ApplicationControllerTest {
     void setUp() {
         applicationController = new ApplicationController(inputReader, out);
         applicationController.loginSignupController = loginSignupController;
+        
         // ApplicationController appController = new ApplicationController(inputReader, out) {
         //     @Override
         //     CourseController getCourseController(String message) {
@@ -82,6 +87,22 @@ public class ApplicationControllerTest {
                 .thenReturn("LoginSuccess");
         applicationController.startApplication();
         verify(loginSignupController, times(2)).authenticateOrRegister();
+    }
+    @Test
+    void testHandleLoginSunceessAndContinue() throws IOException {
+        MockedStatic<ControllerUtils> utils = Mockito.mockStatic(ControllerUtils.class);
+        String jsonString = "{\"role\": \"Student\", \"id\": 123}";
+        when(loginSignupController.authenticateOrRegister())
+        .thenReturn(jsonString);
+        
+        ParameterizedTypeReference<List<String>> typeRef = new ParameterizedTypeReference<List<String>>() {
+        };
+        when(ControllerUtils.executeGetRequest(anyString(), eq(typeRef)))
+                .thenReturn(new ArrayList<>());
+        assertDoesNotThrow(()->applicationController.startApplication());
+        verify(out).println("See you next time.");
+        utils.close();
+
     }
 
 }
