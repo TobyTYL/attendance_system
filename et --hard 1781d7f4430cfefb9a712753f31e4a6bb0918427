@@ -1,0 +1,179 @@
+[33mcommit 1781d7f4430cfefb9a712753f31e4a6bb0918427[m[33m ([m[1;36mHEAD -> [m[1;32mtry_merge_v2[m[33m)[m
+Author: ht175 <ht175@duke.edu>
+Date:   Wed Apr 10 02:21:27 2024 -0400
+
+    test client done
+
+[33mcommit 399eb98f3c19a9eb5bfa0ec66280b2422713a8c9[m
+Merge: 2cfe01e e59ac0d
+Author: ht175 <ht175@duke.edu>
+Date:   Tue Apr 9 01:38:01 2024 -0400
+
+    Merge branch 'try_merge_v2' of gitlab.oit.duke.edu:kits/project-000-000-01-test/project-team-1 into try_merge_v2
+
+[33mcommit 2cfe01ef9b997f6f620d45d0cdaaac10463eccf7[m
+Author: ht175 <ht175@duke.edu>
+Date:   Tue Apr 9 01:37:49 2024 -0400
+
+     add test cases for client
+
+[33mcommit e59ac0d5a24bdd572bc9ae9af7fb61a52b4b6d0b[m
+Author: TobyTYL <tobytaott@gmail.com>
+Date:   Mon Apr 8 20:27:00 2024 -0400
+
+    update section done
+
+[33mcommit e0d1af644c6396189d352bdb64137f4e2ee8526d[m
+Author: ht175 <ht175@duke.edu>
+Date:   Mon Apr 8 17:23:19 2024 -0400
+
+    debug edit userdao finduserbyusername
+
+[33mcommit 0f15a1ad66ea99447dbcc9518cc1069119e39214[m
+Merge: da2091f 768b779
+Author: ht175 <ht175@duke.edu>
+Date:   Mon Apr 8 17:08:10 2024 -0400
+
+    Merge branch 'try_merge_v2' of gitlab.oit.duke.edu:kits/project-000-000-01-test/project-team-1 into try_merge_v2
+
+[33mcommit da2091f39d381d42b1e69c9d9a6f4bcca2d13901[m
+Author: ht175 <ht175@duke.edu>
+Date:   Mon Apr 8 17:07:59 2024 -0400
+
+    debug update studentDao and student and client refactor
+
+[33mcommit 768b7795f84f1a29db111fdc73ddbc742fcac5a8[m
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Mon Apr 8 17:06:50 2024 -0400
+
+    enrollment set notification true
+
+[33mcommit b0e4fe4bf183d73568761025a9c969571fa42d66[m
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Mon Apr 8 15:35:17 2024 -0400
+
+    fix batch enrollment
+
+[33mcommit e3e71656bea755e2f9cbe8afed88d199e9bdb7b5[m
+Author: ht175 <ht175@duke.edu>
+Date:   Mon Apr 8 11:49:40 2024 -0400
+
+    local save
+
+[33mcommit 1fa350a7ae34b964f8ecd855190d3d9c4c7ee188[m
+Author: hfeoq <zhangchenthu13@gmail.com>
+Date:   Mon Apr 8 04:02:53 2024 -0400
+
+    add additional tests
+
+[33mcommit 027a18fc2fc77c5d1f035faa29800e22299f6d6a[m
+Author: hfeoq <zhangchenthu13@gmail.com>
+Date:   Mon Apr 8 02:20:20 2024 -0400
+
+    update AttendanceEntryDAOTest
+
+[33mcommit 695daa1c179329f849c7f153b7eeb9aba92d0f06[m
+Merge: 9bb830a afc0e01
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Mon Apr 8 00:24:01 2024 -0400
+
+    enroll students manually
+
+[33mcommit 9bb830aa1a0d3b086651f947a25f20f7f84c6302[m
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Mon Apr 8 00:19:48 2024 -0400
+
+    enroll student manually
+
+[33mcommit afc0e01b452dd1d0d9bd394b29835b87f4ca1c33[m
+Merge: d9b8549 e03e585
+Author: TobyTYL <tobytaott@gmail.com>
+Date:   Sun Apr 7 22:39:27 2024 -0400
+
+    Merge remote-tracking branch 'origin/try_merge_v2' into try_merge_v2
+
+[33mcommit d9b85490ac95fe033123ead99e198b25e2e2c9fa[m
+Author: TobyTYL <tobytaott@gmail.com>
+Date:   Sun Apr 7 22:32:54 2024 -0400
+
+    update remove setion done
+
+[33mcommit e03e5853cab21b8e895fda1376f256c4c33d5dd8[m
+Merge: f5de9f1 353e757
+Author: ht175 <ht175@duke.edu>
+Date:   Sun Apr 7 21:17:51 2024 -0400
+
+    Merge branch 'huidan_v2' into 'try_merge_v2'
+    
+    Huidan v2
+    
+    See merge request kits/project-000-000-01-test/project-team-1!6
+
+[33mcommit 353e75765c999a373cd3209e79f0a2fbb58be5ca[m[33m ([m[1;31morigin/huidan_v2[m[33m)[m
+Merge: 47d0f53 f5de9f1
+Author: ht175 <ht175@duke.edu>
+Date:   Sun Apr 7 21:15:32 2024 -0400
+
+    Merge branch 'try_merge_v2' into 'huidan_v2'
+    
+    # Conflicts:
+    #   data_access/src/main/java/edu/duke/ece651/team1/data_access/Course/CourseDaoImp.java
+    #   data_access/src/main/java/edu/duke/ece651/team1/data_access/Section/SectionDao.java
+    #   data_access/src/main/java/edu/duke/ece651/team1/data_access/Section/SectionDaoImpl.java
+    #   shared/src/main/java/edu/duke/ece651/team1/shared/Student.java
+
+[33mcommit 47d0f53587a8f80e211f0a3ccc1ed5f48ab710d0[m[33m ([m[1;32mhuidan_v2[m[33m)[m
+Author: ht175 <ht175@duke.edu>
+Date:   Sun Apr 7 20:38:19 2024 -0400
+
+    finish modify client-server
+
+[33mcommit f5de9f1aaf3bf411897b396accc6d636e6c06790[m
+Author: TobyTYL <tobytaott@gmail.com>
+Date:   Sun Apr 7 20:23:13 2024 -0400
+
+    update section done
+
+[33mcommit 7174ce4d75675a300b47e07e6ad90e32e246fed4[m
+Merge: e3a5300 529ddec
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Sun Apr 7 17:42:40 2024 -0400
+
+    Merge branch 'try_merge_v2' of https://gitlab.oit.duke.edu/kits/project-000-000-01-test/project-team-1 into try_merge_v2
+
+[33mcommit e3a5300d3cdfd0d79c68dd227004366e0111ef1d[m
+Author: Wenzhuo Wu <ww202@duke.edu>
+Date:   Sun Apr 7 17:41:15 2024 -0400
+
+    course management
+
+[33mcommit 529ddecccb72cf8b67464e8f070a6dca4d9bcd20[m
+Author: hfeoq <zhangchenthu13@gmail.com>
+Date:   Sun Apr 7 04:43:43 2024 -0400
+
+    fix another test case
+
+[33mcommit d53e465ddde1cca0c25244e13757e6dc9f323f1b[m
+Author: hfeoq <zhangchenthu13@gmail.com>
+Date:   Sun Apr 7 03:27:15 2024 -0400
+
+    fix a test case in AttendanceEntryDAOTest
+
+[33mcommit fcae6ff1a9606a38929675537576cfe218d22761[m
+Merge: d995740 214f8e1
+Author: ht175 <ht175@duke.edu>
+Date:   Sun Apr 7 02:38:06 2024 -0400
+
+    Merge branch 'try_merge_v2' into huidan_v2
+
+[33mcommit 214f8e16b4302de5d5ee36ff2457b9f24500d18d[m
+Author: ht175 <ht175@duke.edu>
+Date:   Sun Apr 7 02:35:46 2024 -0400
+
+    finish client-server almost
+
+[33mcommit 113cfff1680a6b95a6658c586343df704fdf8549[m
+Author: hfeoq <zhangchenthu13@gmail.com>
+Date:   Sun Apr 7 01:38:47 2024 -0400
+
+    remove legacy codes
