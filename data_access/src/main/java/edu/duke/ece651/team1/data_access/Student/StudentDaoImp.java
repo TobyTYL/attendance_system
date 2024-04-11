@@ -7,8 +7,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * The StudentDaoImp class provides implementation for accessing student data in the database.
+ */
 public class StudentDaoImp implements StudentDao {
+    /**
+     * Adds a new student to the database.
+     *
+     * @param student The student to be added.
+     */
     @Override
     public void addStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -26,7 +33,14 @@ public class StudentDaoImp implements StudentDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Checks if a user exists in the database.
+     *
+     * @param conn   The connection to the database.
+     * @param userId The ID of the user to check.
+     * @return True if the user exists, false otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean userExists(Connection conn, int userId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM Users WHERE UserID = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -39,7 +53,11 @@ public class StudentDaoImp implements StudentDao {
             return false;
         }
     }
-
+    /**
+     * Removes a student from the database.
+     *
+     * @param student The student to be removed.
+     */
     @Override
     public void removeStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -51,7 +69,12 @@ public class StudentDaoImp implements StudentDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Finds a student in the database by student ID.
+     *
+     * @param studentID The ID of the student to find.
+     * @return An optional containing the student if found, empty otherwise.
+     */
     @Override
     public Optional<Student> findStudentByStudentID(int studentID) {
         Optional<Student> optionalStudent = Optional.empty();
@@ -66,15 +89,17 @@ public class StudentDaoImp implements StudentDao {
                 String displayName = rs.getString("DisplayName");
                 String email = rs.getString("Email");
                 optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email, userId));
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return optionalStudent;
     }
-
+    /**
+     * Retrieves all students from the database.
+     *
+     * @return A list of all students retrieved from the database.
+     */
     @Override
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
@@ -90,14 +115,18 @@ public class StudentDaoImp implements StudentDao {
                 String email = rs.getString("Email");
                 Student student = new Student(studentID, legalName, displayName, email,userID);
                 studentList.add(student);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return studentList;
     }
-
+    /**
+     * Finds a student in the database by user ID.
+     *
+     * @param userID The ID of the user associated with the student.
+     * @return An optional containing the student if found, empty otherwise.
+     */
     @Override
     public Optional<Student> findStudentByUserID(int userID) {
         Optional<Student> optionalStudent = Optional.empty();
@@ -112,13 +141,18 @@ public class StudentDaoImp implements StudentDao {
                 String displayName = rs.getString("DisplayName");
                 String email = rs.getString("Email");
                 optionalStudent = Optional.of(new Student(studentID, legalName, displayName, email,userID));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return optionalStudent;
     }
+    /**
+     * Checks if a student with the given name exists in the database.
+     *
+     * @param studentName The name of the student to check.
+     * @return True if the student exists, false otherwise.
+     */
     @Override
     public boolean checkStudentExists(String studentName) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -132,7 +166,12 @@ public class StudentDaoImp implements StudentDao {
             return false;
         }
     }
-    // new one
+    /**
+     * Finds a student in the database by name.
+     *
+     * @param studentName The name of the student to find.
+     * @return An optional containing the student if found, empty otherwise.
+     */
     @Override
     public Optional<Student> findStudentByName(String studentName) {
         Optional<Student> optionalStudent = Optional.empty();
@@ -154,6 +193,11 @@ public class StudentDaoImp implements StudentDao {
         }
         return optionalStudent;
     }
+    /**
+     * Updates a student's information in the database.
+     *
+     * @param student The student whose information to update.
+     */
     @Override
     public void updateStudent(Student student) {
         try (Connection conn = DB_connect.getConnection()) {

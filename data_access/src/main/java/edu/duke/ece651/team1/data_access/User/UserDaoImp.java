@@ -7,9 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The UserDaoImp class provides implementation for accessing user data in the database.
+ */
 public class UserDaoImp implements UserDao {
-
-
+    /**
+     * Adds a new user to the database.
+     *
+     * @param user The user to be added.
+     * @return The ID of the added user.
+     */
     @Override
     public int addUser(User user) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -25,7 +32,11 @@ public class UserDaoImp implements UserDao {
             return -1;
         }
     }
-
+    /**
+     * Removes a user from the database.
+     *
+     * @param userId The ID of the user to be removed.
+     */
     @Override
     public void removeUser(int userId) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -38,11 +49,17 @@ public class UserDaoImp implements UserDao {
         }
     }
 
-    @Override
-    public void updateUser(User user) {
-    // 后续需要update用户信息
-    }
+//    @Override
+//    public void updateUser(User user) {
+//    //  need update user's info later
+//    }
 
+    /**
+     * Retrieves a user from the database by ID.
+     *
+     * @param userId The ID of the user to retrieve.
+     * @return The user retrieved from the database.
+     */
     @Override
     public User getUserById(int userId) {
         User user = null;
@@ -66,7 +83,11 @@ public class UserDaoImp implements UserDao {
         }
         return user;
     }
-
+    /**
+     * Retrieves all users from the database.
+     *
+     * @return A list of all users retrieved from the database.
+     */
     @Override
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
@@ -79,7 +100,6 @@ public class UserDaoImp implements UserDao {
                 String passwordHash = rs.getString("PasswordHash");
                 String email = rs.getString("Email");
                 //String role = rs.getString("Role");
-
                 User user = new User(userId, username, passwordHash);
                 userList.add(user);
             }
@@ -88,6 +108,12 @@ public class UserDaoImp implements UserDao {
         }
         return userList;
     }
+    /**
+     * Finds a user in the database by username.
+     *
+     * @param username The username of the user to find.
+     * @return The user retrieved from the database.
+     */
     @Override
     public User findUserByUsername(String username) {
         User user = null;
@@ -101,12 +127,10 @@ public class UserDaoImp implements UserDao {
                 String passwordHash = rs.getString("PasswordHash");
                 String role = rs.getString("Role");
                 user = new User(userId, username, passwordHash, role);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
     }
-
 }

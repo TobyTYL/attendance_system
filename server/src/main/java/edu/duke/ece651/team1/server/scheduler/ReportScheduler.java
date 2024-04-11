@@ -71,7 +71,12 @@ public class ReportScheduler {
         }
 
     }
-
+    /**
+     * Retrieves the roster of students for a given section.
+     * 
+     * @param sectionId the unique identifier of the section
+     * @return a set of students enrolled in the specified section
+     */
     private Set<Student> getRoster(int sectionId){
         List<Student> students = enrollmentDao.getEnrollmentsBySectionId(sectionId).stream()
                 .map(enrollment -> studentDao.findStudentByStudentID(enrollment.getStudentId()).get())
@@ -79,7 +84,12 @@ public class ReportScheduler {
         Set<Student> roster = new HashSet<>(students);
         return roster;
     }
-
+     /**
+     * Retrieves the attendance manager for a section, responsible for compiling attendance records.
+     * 
+     * @param section the section for which the attendance manager is required
+     * @return an instance of AttendanceManager if records are available, otherwise null
+     */
     private AttendanceManager getAttendanceManager(Section section) throws SQLException{
         int sectionId = section.getSectionId();
         int courseId = section.getClassId();
@@ -90,12 +100,24 @@ public class ReportScheduler {
         AttendanceManager manager = new AttendanceManager(getRoster(sectionId), records);
         return manager;
     }
-
+     /**
+     * Checks whether a student prefers to receive notifications for a specific course.
+     * 
+     * @param studentId the unique identifier of the student
+     * @param courseId the unique identifier of the course
+     * @return true if the student prefers to receive notifications, otherwise false
+     */
     private boolean getNotificationPreference(int studentId, int courseId){
         NotificationPreference preference = notificationPreferenceDao.findNotificationPreferenceByStudentIdAndClassId(studentId, courseId);
         return preference.isReceiveNotifications();
     }
-
+    /**
+     * Distributes the attendance report to all students in a section based on their notification preferences.
+     * 
+     * @param sectionId the unique identifier of the section
+     * @param courseId the unique identifier of the course
+     * @param manager the AttendanceManager containing the attendance data
+     */
     private void handoutReport(int sectionId,int courseId,AttendanceManager manager){
         for (Student student : getRoster(sectionId)) {
             int studentId = student.getStudentId();

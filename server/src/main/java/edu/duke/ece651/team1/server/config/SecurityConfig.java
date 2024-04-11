@@ -27,7 +27,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import edu.duke.ece651.team1.server.service.UserService;
-
+/**
+ * SecurityConfig configures the security settings for the web application, 
+ * particularly focusing on user authentication and authorization. It utilizes Spring Security
+ * to manage security operations such as login and access restrictions.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -37,9 +41,12 @@ public class SecurityConfig {
     private  UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    private StudentDao studentDao;
-    private ProfessorDao professorDao;
-
+     /**
+     * Defines the security filter chain that specifies security settings.
+     * @param http HttpSecurity configuration builder
+     * @return SecurityFilterChain object that spring security will use to handle security.
+     * @throws Exception if an error occurs during configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -60,14 +67,21 @@ public class SecurityConfig {
         return http.build();
 
     }
-
+    /**
+     * Configures global settings for user authentication integrating with custom user service.
+     * @param auth the AuthenticationManagerBuilder to build the authentication manager.
+     * @throws Exception if an authentication configuration error occurs
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userService)
                 .passwordEncoder(passwordEncoder);
     }
-
+    /**
+     * Custom handler for successful authentication, providing additional user details and custom responses.
+     * @return AuthenticationSuccessHandler instance to handle successful authentication.
+     */
     public AuthenticationSuccessHandler successHandler() {
         return (request, response, authentication) -> {
             Object principal = authentication.getPrincipal();
@@ -76,13 +90,13 @@ public class SecurityConfig {
             Map<String, Object> data = new HashMap<>();
             data.put("role", role);
             if(role.equals("Professor")){
-                // ProfessorDao dao = new ProfessorDaoImp();
-                int professor_id = professorDao.findProfessorByUsrID(uid).getProfessorId();
+                ProfessorDao dao = new ProfessorDaoImp();
+                int professor_id = dao.findProfessorByUsrID(uid).getProfessorId();
                 data.put("id", professor_id);
 
             }else{
-                // StudentDao dao = new StudentDaoImp();
-                int professor_id = studentDao.findStudentByUserID(uid).get().getStudentId();
+                StudentDao dao = new StudentDaoImp();
+                int professor_id = dao.findStudentByUserID(uid).get().getStudentId();
                 data.put("id", professor_id);
             }
             response.setStatus(HttpStatus.FOUND.value());

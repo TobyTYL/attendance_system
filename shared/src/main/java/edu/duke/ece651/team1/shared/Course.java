@@ -18,24 +18,28 @@ public class Course {
     public Course(int id) {
         this.id = id;
     }
+    // Constructor to set the course name
     public Course(String name){
         this.name = name;
     }
+    // Constructor to set the course ID and name
     public Course(int id, String name){
         this.id = id;
         this.name = name;
     }
+    // Constructor to set the course ID and name
     public int getID() {
         return id;
     }
-
+    // Constructor to set the course ID and name
     public String getName() {
         return name;
     }
-
+    // Constructor to set the course ID and name
     public void setName(String s) {
         this.name = s;
     }
+    // Constructor to set the course ID and name
     public void setID(int id){
         this.id = id;
     }

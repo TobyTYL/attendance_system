@@ -11,14 +11,19 @@ public class ApplicationController {
     MainMenuController mainMenuController;
     StudentController studentController;
 
-
+    /**
+     * The ApplicationController class represents the main controller of the application.
+     * It manages the flow of the application and initializes other controllers.
+     */
     public ApplicationController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
         this.mainMenuController = new MainMenuController(inputReader, out);
         this.studentController = new StudentController(inputReader, out);
     }
-
+    /**
+     * Starts the application by displaying the main menu.
+     */
     public void startApplication(){
         mainMenuController.startMainMenu();
     }

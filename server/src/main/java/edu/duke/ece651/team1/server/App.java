@@ -12,18 +12,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+/**
+ * This class represents the main entry point of the Spring Boot application.
+ */
 @SpringBootApplication
 @RestController
 @EnableScheduling
 public class App {
+	/**
+     * Handles the root URL request.
+     *
+     * @return A greeting message.
+     */
     @GetMapping("/")
 	public String index() {
 		return "Greetings from Spring Boot!";
 	}
+	/**
+     * Retrieves a message with a personalized greeting.
+     *
+     * @return A personalized greeting message.
+     */
   public String getMessage() {
     return "Hello from the server for "+ MyName.getName();
   }
+  	/**
+     * The main method that starts the Spring Boot application.
+     *
+     * @param args The command line arguments.
+     */
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}

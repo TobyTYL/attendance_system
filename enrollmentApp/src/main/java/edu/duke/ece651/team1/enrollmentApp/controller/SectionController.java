@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.*;
 import java.util.List;
+/**
+ * Manages the operations related to sections including adding, removing, and updating section details.
+ */
 public class SectionController {
     private final SectionDao sectionDao;
     private final CourseDao courseDao;
@@ -24,7 +27,7 @@ public class SectionController {
     private final BufferedReader inputReader;
     private final PrintStream out;
     protected final SectionView sectionView;
-
+    
     public SectionController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
@@ -33,6 +36,15 @@ public class SectionController {
         this.courseDao = new CourseDaoImp();
         this.professorDao = new ProfessorDaoImp();
     }
+    /**
+     * Constructs a SectionController with necessary data access objects and I/O components.
+     *
+     * @param inputReader The BufferedReader to handle user input.
+     * @param out The PrintStream to handle output to the user.
+     * @param sectionDao An implementation of SectionDao for database operations related to sections.
+     * @param courseDao An implementation of CourseDao for database operations related to courses.
+     * @param professorDao An implementation of ProfessorDao for database operations related to professors.
+     */
     public SectionController(BufferedReader inputReader, PrintStream out, SectionDao sectionDao, CourseDao courseDao, ProfessorDao professorDao) {
         this.inputReader = inputReader;
         this.out = out;
@@ -41,7 +53,13 @@ public class SectionController {
         this.courseDao = courseDao;
         this.professorDao = professorDao;
     }
-
+    /**
+     * Initiates section management for a given class, allowing the addition, removal, and updating of sections.
+     *
+     * @param className The name of the class for which section management is to be performed.
+     * @throws IOException If an input or output exception occurred.
+     * @throws SQLException If a database access error occurs.
+     */
     public void startSectionManagement(String className) throws IOException, SQLException {
         // Assume class exists check has been done prior
         sectionView.showClassSectionOptions(className);
@@ -64,6 +82,12 @@ public class SectionController {
             }
         }
     }
+    /**
+     * Facilitates the addition of a new section under a given class name, allowing the user to select a professor.
+     *
+     * @param className The class name under which the section will be added.
+     * @throws IOException If an input or output exception occurred.
+     */
     public void addSection(String className) throws IOException {
         List<Professor> professors = professorDao.findAllProfessors();
         sectionView.showAllProfessors(professors);
@@ -88,7 +112,12 @@ public class SectionController {
         sectionView.showAddSectionSuccessMessage(className, professorName);
     }
    
-   
+    /**
+     * Handles the removal of a section based on user selection from a displayed list.
+     *
+     * @param className The class name under which sections are to be managed.
+     * @throws IOException If an input or output exception occurred.
+     */
     protected void removeSection(String className) throws IOException {
         // Code to handle removing a section
         List<Section> sections = sectionDao.getAllSections();
@@ -99,7 +128,13 @@ public class SectionController {
             sectionView.showRemoveSectionSuccessMessage(sectionID, className);
         }
     }
-
+    /**
+     * Manages updates to existing sections such as changing the professor.
+     *
+     * @param className The class name for which sections are managed.
+     * @throws IOException If an input or output exception occurred.
+     * @throws SQLException If a database access error occurs.
+     */
     protected void updateSection(String className) throws IOException, SQLException {
         // Code to handle updating a section
         List<Section> sections = sectionDao.getAllSections();

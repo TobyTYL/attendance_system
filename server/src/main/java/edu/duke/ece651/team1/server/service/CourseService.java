@@ -15,12 +15,20 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * This class provides services related to courses, such as retrieving course information for professors and students.
+ */
 @Service
 public class CourseService {
      CourseDao courseDao = new CourseDaoImp();
      SectionDao sectionDao = new SectionDaoImpl();
      EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
+    /**
+     * Retrieves information about courses taught by a professor.
+     *
+     * @param professorId The ID of the professor.
+     * @return A list of JSON strings containing course information.
+     */
     public List<String> getTaughtCoursesInfoForProfessor(int professorId){
         List<Section> sections = sectionDao.getSectionsByProfessorId(professorId);
         Gson gson = new Gson();
@@ -36,7 +44,12 @@ public class CourseService {
         .collect(Collectors.toList());
         return coursesJson;
     }
-
+     /**
+     * Retrieves information about courses registered by a student.
+     *
+     * @param studentID The ID of the student.
+     * @return A list of JSON strings containing course information.
+     */
     public List<String> getRegisteredCoursesInfoForStudent(int studentID){
         //getenrollement by student id
         List<Enrollment> enrollments = enrollmentDao.getEnrollmentsByStudentId(studentID);

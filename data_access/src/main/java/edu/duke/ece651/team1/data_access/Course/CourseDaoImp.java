@@ -9,9 +9,15 @@ import java.util.List;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Course;
-
+/**
+ * The CourseDaoImpl class provides implementation for accessing course data in the database.
+ */
 public class CourseDaoImp implements CourseDao{
-   
+    /**
+     * Retrieves a list of all courses from the database.
+     *
+     * @return A list of all courses.
+     */
     @Override
     public List<Course> getAllCourses() {
         List<Course> courses = new ArrayList<>();
@@ -28,7 +34,12 @@ public class CourseDaoImp implements CourseDao{
         }
         return courses;
     }
-
+    /**
+     * Retrieves a course by its ID from the database.
+     *
+     * @param id The ID of the course.
+     * @return The course with the specified ID, or null if not found.
+     */
     @Override
     public Course getCourseById(int id) {
         String sql = "SELECT classid, classname FROM classes WHERE classid = ?";
@@ -46,6 +57,12 @@ public class CourseDaoImp implements CourseDao{
         }
         return null;
     }
+    /**
+     * Retrieves the class ID by its name from the database.
+     *
+     * @param className The name of the class.
+     * @return The ID of the class, or -1 if not found.
+     */
     @Override
     public int getClassIdByName(String className) {
         String sql = "SELECT ClassID FROM classes WHERE ClassName = ?";
@@ -60,27 +77,26 @@ public class CourseDaoImp implements CourseDao{
         }
         return -1; // Indicating not found
     }
+    /**
+     * Adds a new course to the database.
+     *
+     * @param course The course to add.
+     * @throws IllegalArgumentException If the course name is null or empty.
+     */
     @Override
     public void addCourse(Course course) throws IllegalArgumentException {
         // Check if the course name is valid
         if (course.getName() == null || course.getName().isEmpty()) {
             throw new IllegalArgumentException("Course name cannot be null or empty");
         }
-        
-        // Modify the SQL query to only specify the classname column
         String sql = "INSERT INTO classes (classname) VALUES (?)";
         try (Connection conn = DB_connect.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            // Set the classname parameter
             ps.setString(1, course.getName());
-            
-            // Execute the update
             ps.executeUpdate();
-            
             // Retrieve the generated classid
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    // Set the generated id back to the course object
                     course.setID(generatedKeys.getInt(1));
                 } else {
                     throw new SQLException("Creating course failed, no ID obtained.");
@@ -92,7 +108,11 @@ public class CourseDaoImp implements CourseDao{
             // throw new RuntimeException("Database operation failed", e);
         }
     }
-
+    /**
+     * Updates an existing course in the database.
+     *
+     * @param course The course to update.
+     */
     @Override
     public void updateCourse(Course course) {
         String sql = "UPDATE classes SET classname = ? WHERE classid = ?";
@@ -104,7 +124,11 @@ public class CourseDaoImp implements CourseDao{
             e.printStackTrace();
         }
     }
-
+    /**
+     * Deletes a course by its ID from the database.
+     *
+     * @param id The ID of the course to delete.
+     */
     @Override
     public void deleteCourse(int id) {
         String sql = "DELETE FROM classes WHERE classid = ?";
@@ -115,6 +139,11 @@ public class CourseDaoImp implements CourseDao{
             e.printStackTrace();
         }
     }
+    /**
+     * Deletes a course by its name from the database.
+     *
+     * @param className The name of the course to delete.
+     */
     @Override
     public void deleteCourse(String className) {
         String sql = "DELETE FROM classes WHERE classname = ?";
@@ -126,6 +155,12 @@ public class CourseDaoImp implements CourseDao{
             System.err.println("Error deleting course: " + e.getMessage());
         }
     }
+    /**
+     * Checks if a course with the given name exists in the database.
+     *
+     * @param className The name of the course to check.
+     * @return True if the course exists, otherwise false.
+     */
     @Override
     public boolean checkCourseExists(String className) {
         String sql = "SELECT COUNT(*) FROM classes WHERE classname = ?";
@@ -142,6 +177,12 @@ public class CourseDaoImp implements CourseDao{
         }
         return false;
     }
+    /**
+     * Updates the class name in the database.
+     *
+     * @param oldClassName The old name of the class.
+     * @param newClassName The new name of the class.
+     */
     @Override
     public void updateClassName(String oldClassName, String newClassName) {
         String sql = "UPDATE classes SET classname = ? WHERE classname = ?";
@@ -154,6 +195,12 @@ public class CourseDaoImp implements CourseDao{
             System.err.println("Error updating class name: " + e.getMessage());
         }
     }
+    /**
+     * Retrieves a course by its name from the database.
+     *
+     * @param name The name of the course.
+     * @return The course with the specified name, or null if not found.
+     */
     @Override
     public Course getClassByName(String name) {
         Course course = null;
@@ -171,5 +218,4 @@ public class CourseDaoImp implements CourseDao{
         }
         return course;
     }
-
 }

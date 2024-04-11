@@ -16,12 +16,13 @@ import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import java.util.List;
 import edu.duke.ece651.team1.shared.Student;
-/**
- * The AttendanceController class handles HTTP requests related to attendance records.
- */
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+/**
+ * The AttendanceController class handles HTTP requests related to managing attendance records.
+ * It supports operations such as recording, updating, and retrieving attendance data.
+ */
 @RestController
 @RequestMapping("/api/attendance")
 public class AttendanceController {
@@ -45,7 +46,13 @@ public class AttendanceController {
         }
         return new ResponseEntity<>("Attendance record saved successfully", HttpStatus.OK);
     }
-
+    /**
+     * Updates an existing attendance record for a given section.
+     * 
+     * @param sectionID The identifier of the section.
+     * @param record The updated attendance record details in JSON format.
+     * @return ResponseEntity indicating the success or failure of the operation.
+     */
     @PutMapping("/record/{sectionID}")
     public ResponseEntity<String> updateAttendanceRecord(@PathVariable int sectionID, @RequestBody String record) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -60,10 +67,10 @@ public class AttendanceController {
 
 
     /**
-     * Handles GET requests to retrieve dates of recorded attendance.
-     *
-     * @return ResponseEntity containing a list of recorded attendance dates or an
-     *         empty list if none exist.
+     * Retrieves a list of dates for which attendance records are available for a specific section.
+     * 
+     * @param sectionID The identifier of the section.
+     * @return ResponseEntity containing a list of dates or an empty list if no records exist.
      */
     @GetMapping("/record-dates/{sectionID}")
     // fetch available record date
@@ -100,7 +107,15 @@ public class AttendanceController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * This method fetches the attendance entry for a specific student on a given date.
+     * It provides detailed information about the student's attendance status for that session.
+     *
+     * @param sessionDate The date of the session for which the attendance record is requested.
+     * @param studentName The name of the student whose record is being queried.
+     * @param sectionID The identifier of the section.
+     * @return ResponseEntity containing the attendance details or an error message if not found.
+     */
     // API for getting student attendance record based on sessionDate and name
     @GetMapping("/entry/{sectionID}/{sessionDate}/{studentName}")
     public ResponseEntity<String> getStudentRecordEntry(@PathVariable String sessionDate,
@@ -118,7 +133,15 @@ public class AttendanceController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * Modifies the attendance entry for a student. This method allows updating the attendance status
+     * such as marking a student tardy or absent.
+     *
+     * @param sessionDate The date of the session to modify.
+     * @param attendanceEntryJson JSON containing the attendance details to be updated.
+     * @param sectionID The identifier of the section where the record is maintained.
+     * @return ResponseEntity indicating the result of the update operation.
+     */
     // API for modify student attendance status,
     // Key: Legal Name: yitiao, Attendance Status: Tardy
     @PostMapping("/modification/{sectionID}/{sessionDate}")
@@ -134,7 +157,13 @@ public class AttendanceController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * Retrieves a list of all students enrolled in a specified section. This can be used to quickly view
+     * which students are part of a section.
+     *
+     * @param sectionID The identifier of the section.
+     * @return ResponseEntity containing a list of students or an empty list if none found.
+     */
     @GetMapping("/allStudents/{sectionID}")
     public ResponseEntity<List<Student>> getAllStudent(@PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -149,7 +178,13 @@ public class AttendanceController {
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    /**
+     * Generates a report of attendance records for a professor. This is useful for professors to get
+     * an overview of attendance in their sections.
+     *
+     * @param sectionID The identifier of the section for which the report is requested.
+     * @return ResponseEntity containing the attendance report or an error message if unable to generate.
+     */
     @GetMapping("/report/class/{sectionID}")
     public ResponseEntity<String> getReportForProfessor(@PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -160,7 +195,15 @@ public class AttendanceController {
             return new ResponseEntity<>("Get class Report error because " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+        /**
+     * Generates a detailed attendance report for a student. This report can include detailed
+     * information about the student's attendance, depending on the 'detail' parameter.
+     *
+     * @param studentID The identifier of the student for whom the report is generated.
+     * @param sectionID The identifier of the section.
+     * @param detail Boolean flag indicating whether detailed information should be included.
+     * @return ResponseEntity containing the attendance report or an error message.
+     */
     @GetMapping("/report/student/{studentID}/{sectionID}")
     public ResponseEntity<String> getReportForStudent(@PathVariable int studentID,@PathVariable int sectionID,@RequestParam(value = "detail") Boolean detail) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

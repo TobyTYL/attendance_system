@@ -10,8 +10,15 @@ import java.util.List;
 
 import edu.duke.ece651.team1.data_access.DB_connect;
 import edu.duke.ece651.team1.shared.Professor;
-
+/**
+ * The ProfessorDaoImp class provides implementation for accessing professor data in the database.
+ */
 public class ProfessorDaoImp implements ProfessorDao {
+    /**
+     * Adds a new professor to the database.
+     *
+     * @param professor The professor to be added.
+     */
     @Override
     public void addProfessor(Professor professor) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -23,7 +30,11 @@ public class ProfessorDaoImp implements ProfessorDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Removes a professor from the database.
+     *
+     * @param professorId The ID of the professor to be removed.
+     */
     @Override
     public void removeProfessor(int professorId) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -35,6 +46,11 @@ public class ProfessorDaoImp implements ProfessorDao {
             e.printStackTrace();
         }
     }
+    /**
+     * Retrieves all professors from the database.
+     *
+     * @return A list of all professors retrieved from the database.
+     */
     @Override
     public List<Professor> findAllProfessors() {
         List<Professor> professorList = new ArrayList<>();
@@ -53,7 +69,12 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professorList;
     }
-
+    /**
+     * Retrieves a professor from the database by ID.
+     *
+     * @param professorId The ID of the professor to retrieve.
+     * @return The professor retrieved from the database.
+     */
     @Override
     public Professor getProfessorById(int professorId) {
         Professor professor = null;
@@ -71,7 +92,12 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professor;
     }
-
+    /**
+     * Retrieves a professor from the database by user ID.
+     *
+     * @param userID The ID of the user associated with the professor.
+     * @return The professor retrieved from the database.
+     */
     @Override
     public Professor findProfessorByUsrID(int userID) {
         Professor professor = null;
@@ -89,7 +115,12 @@ public class ProfessorDaoImp implements ProfessorDao {
         }
         return professor;
     }
-
+    /**
+     * Checks if a professor exists in the database.
+     *
+     * @param professorName The name of the professor to check.
+     * @return True if the professor exists, false otherwise.
+     */
     @Override
     public boolean checkProfessorExists(String professorName) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -104,6 +135,14 @@ public class ProfessorDaoImp implements ProfessorDao {
             return false;
         }
     }
+    /**
+     * Retrieves the user ID associated with a professor name.
+     *
+     * @param conn          The connection to the database.
+     * @param professorName The name of the professor.
+     * @return The user ID associated with the professor name.
+     * @throws SQLException If a database access error occurs.
+     */
     public int getUserIDByProfessorName(Connection conn, String professorName) throws SQLException {
         String sql = "SELECT UserID FROM Users WHERE Username = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -115,6 +154,12 @@ public class ProfessorDaoImp implements ProfessorDao {
             throw new SQLException("No user found with the given professor name: " + professorName);
         }
     }
+    /**
+     * Finds a professor in the database by name.
+     *
+     * @param name The name of the professor to find.
+     * @return The professor found in the database.
+     */
     public Professor findProfessorByName(String name) {
         try (Connection conn = DB_connect.getConnection()) {
             // Assuming there's a Users table where professor names are stored.

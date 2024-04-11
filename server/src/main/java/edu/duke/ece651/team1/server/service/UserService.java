@@ -61,7 +61,16 @@ public class UserService implements UserDetailsService {
         Professor professor = new Professor(userDao.findUserByUsername(username).getUserId());
         professorDao.addProfessor(professor);
     }
-
+     /**
+     * Creates a new user account for a student.
+     *
+     * @param username   The username of the student.
+     * @param password   The password of the student.
+     * @param role       The role of the user.
+     * @param legalName  The legal name of the student.
+     * @param displayName The display name of the student.
+     * @param email      The email of the student.
+     */
     public void createUserStudent(String username, String password,String role,String legalName, String displayName,String email) {
         User user = new User(username,passwordEncoder.encode(password),role);
         int userId = userDao.addUser(user);
@@ -69,13 +78,15 @@ public class UserService implements UserDetailsService {
         studentDao.addStudent(student);
         
     }
-
+    /**
+     * Creates a new user account for a student by loading user name.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findUserByUsername(username);
         if(user!=null){
             return new CustomUserDetails(user);
         }
-        throw new UsernameNotFoundException("User not found with username: " + username);
+        throw new UsernameNotFoundException("User not found with username: " + username);//throw exception if user not found
     }
 }

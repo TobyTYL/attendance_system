@@ -41,7 +41,7 @@ public class AttendanceRecordDAOTest {
     @BeforeEach
     void setup(){
         MockitoAnnotations.openMocks(this);
-       AttendanceRecordDAO.studentDao = studentDao;
+        AttendanceRecordDAO.studentDao = studentDao;
     }
 
     @Test

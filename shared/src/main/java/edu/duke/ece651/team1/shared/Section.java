@@ -1,19 +1,31 @@
 package edu.duke.ece651.team1.shared;
-
+/**
+ * Represents a section of a course, with a unique section id, class id, and professor id.
+ 
+ */
 public class Section {
     private int sectionId;
     private int classId;
     private int professorId;
 //    private String className; // Add className attribute
 
-
+    /**
+     * Constructor to create a section with the given parameters.
+     * @param sectionId
+     * @param classId
+     * @param professorId
+     */
     public Section(int sectionId, int classId, int professorId) {
         this.sectionId = sectionId;
         this.classId = classId;
         this.professorId = professorId;
-//        this.className = ""; // Initialize className
 
     }
+    /**
+     * Constructor to create a section with the given parameters.
+     * @param classId
+     * @param professorId
+     */
     public Section(int classId, int professorId){
         // edit here
 //        this(-1,classId, professorId);

@@ -15,6 +15,10 @@ import edu.duke.ece651.team1.user_admin_app.view.ProfessorView;
 import edu.duke.ece651.team1.shared.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+/**
+ * The ProfessorController class manages professor-related actions in the application.
+ * It handles adding and removing professors.
+ */
 public class ProfessorController {
 
     private ProfessorDao professorDao;
@@ -25,7 +29,13 @@ public class ProfessorController {
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;
 
-
+    /**
+     * Constructs a ProfessorController object with the given input reader and output stream.
+     * Initializes the professor view, DAOs, and password encoder.
+     *
+     * @param inputReader The BufferedReader object for reading user input.
+     * @param out The PrintStream object for displaying messages to the user.
+     */
     public ProfessorController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
@@ -33,9 +43,12 @@ public class ProfessorController {
         this.professorDao = new ProfessorDaoImp();
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.userDao = new UserDaoImp();
-
     }
-
+    /**
+     * Starts the professor menu, allowing users to add or remove professors.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void startProfessorMenu() throws IOException {
         while (true) {
             try {
@@ -53,6 +66,11 @@ public class ProfessorController {
             }
         }
     }
+    /**
+     * Adds a new professor to the system.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     // edit from private to public
     public void addProfessor() throws IOException {
         String professorName = professorView.readProfessorName();
@@ -66,6 +84,11 @@ public class ProfessorController {
         professorDao.addProfessor(newProfessor);
         out.println("Professor added successfully.");
     }
+    /**
+     * Removes a professor from the system.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     // edit from private to public
     public void removeProfessor() throws IOException {
         String professorName = professorView.readProfessorName();
@@ -81,15 +104,27 @@ public class ProfessorController {
             out.println("Professor not found.");
         }
     }
-
+    /**
+     * Sets the professor DAO.
+     *
+     * @param professorDao The ProfessorDao object to be set.
+     */
     public void setProfessorDao(ProfessorDao professorDao) {
         this.professorDao = professorDao;
     }
-
+    /**
+     * Sets the user DAO.
+     *
+     * @param userDao The UserDao object to be set.
+     */
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-
+    /**
+     * Sets the professor view.
+     *
+     * @param professorView The ProfessorView object to be set.
+     */
     public void setProfessorView(ProfessorView professorView) {
         this.professorView = professorView;
     }
