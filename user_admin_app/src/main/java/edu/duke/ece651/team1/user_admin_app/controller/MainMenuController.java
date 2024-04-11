@@ -25,23 +25,21 @@ public class MainMenuController {
         while (true) {
             try{
                 mainMenuView.showMainMenu();
-                String option =mainMenuView.readMainOption();
-                if(option.equals("professors")){
+                String option = mainMenuView.readMainOption();
+                if (option.equals("professors")) {
                     professorController.startProfessorMenu();
                 }
                 else if (option.equals("students")) {
 //                    attendanceController.startStudentManager();
                     studentController.startStudentMenu();
                 }
-                else{
+                else {
                     out.println("GoodBye!");
                     break;
                 }
-            }catch(Exception e){
+            } catch (Exception e) {
                 out.println("Main Menu error because "+e.getMessage());
             }
-
-
         }
     }
 
