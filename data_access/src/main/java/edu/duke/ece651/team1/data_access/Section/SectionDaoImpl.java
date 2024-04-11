@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.duke.ece651.team1.data_access.DB_connect;
 import java.util.Optional;
-
+/**
+ * The SectionDaoImpl class provides implementation for accessing section data in the database.
+ */
 public class SectionDaoImpl implements SectionDao{
-    // private Connection connection;
-    
-    // public SectionDaoImpl(Connection connection) {
-    //     this.connection = connection;
-    // }
+    /**
+     * Retrieves all sections from the database.
+     *
+     * @return A list of all sections.
+     */
     @Override
     public List<Section> getAllSections() {
         List<Section> sections = new ArrayList<>();
@@ -31,7 +33,12 @@ public class SectionDaoImpl implements SectionDao{
         }
         return sections;
     }
-
+    /**
+     * Retrieves a section by its ID from the database.
+     *
+     * @param sectionId The ID of the section to retrieve.
+     * @return The section with the specified ID.
+     */
     @Override
     public Section getSectionById(int sectionId) {
         String sql = "SELECT sectionid, classid, professorid FROM sections WHERE sectionid = ?";
@@ -47,13 +54,16 @@ public class SectionDaoImpl implements SectionDao{
         }
         return null;
     }
-// edit this method
+    /**
+     * Adds a new section to the database.
+     *
+     * @param section The section to add.
+     */
     @Override
     public void addSection(Section section) {
         // edit here
 //        String sql = "INSERT INTO sections (sectionid, classid, professorid) VALUES (?, ?, ?)";
         String sql = "INSERT INTO sections (classid, professorid) VALUES (?, ?)";
-
         try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
             ps.setInt(1, section.getClassId());
             ps.setInt(2, section.getProfessorId());
@@ -62,7 +72,11 @@ public class SectionDaoImpl implements SectionDao{
             System.out.println("Error adding section: " + e.getMessage());
         }
     }
-
+    /**
+     * Updates an existing section in the database.
+     *
+     * @param section The section to update.
+     */
     @Override
     public void updateSection(Section section) {
         String sql = "UPDATE sections SET classid = ?, professorid = ? WHERE sectionid = ?";
@@ -75,7 +89,11 @@ public class SectionDaoImpl implements SectionDao{
             System.out.println("Error updating section: " + e.getMessage());
         }
     }
-
+    /**
+     * Deletes a section from the database.
+     *
+     * @param sectionId The ID of the section to delete.
+     */
     @Override
     public void deleteSection(int sectionId) {
         String sql = "DELETE FROM sections WHERE sectionid = ?";
@@ -86,6 +104,12 @@ public class SectionDaoImpl implements SectionDao{
             System.out.println("Error deleting section: " + e.getMessage());
         }
     }
+    /**
+     * Retrieves all sections associated with a specific professor from the database.
+     *
+     * @param professorId The ID of the professor.
+     * @return A list of sections associated with the professor.
+     */
     @Override
     public List<Section> getSectionsByProfessorId(int professorId) {
         List<Section> sections = new ArrayList<>();
@@ -103,7 +127,13 @@ public class SectionDaoImpl implements SectionDao{
         }
         return sections;
     }
-
+    /**
+     * Finds a section by professor ID and class ID from the database.
+     *
+     * @param professorId The ID of the professor.
+     * @param classId     The ID of the class.
+     * @return An Optional containing the section if found, otherwise empty.
+     */
     @Override
     public Optional<Section> findSectionByProfessorIdAndClassID(int professorId, int classId) {
         String sql = "SELECT sectionid, classid, professorid FROM sections WHERE professorid = ? AND ClassID = ?";
@@ -121,7 +151,12 @@ public class SectionDaoImpl implements SectionDao{
         }
         return Optional.empty();
     }
-
+    /**
+     * Retrieves all sections associated with a specific class from the database.
+     *
+     * @param classId The ID of the class.
+     * @return A list of sections associated with the class.
+     */
     @Override
     public List<Section> getSectionsByClassId(int classId) {
         List<Section> sections = new ArrayList<>();
@@ -139,7 +174,14 @@ public class SectionDaoImpl implements SectionDao{
         }
         return sections;
     }
-
+    /**
+     * Updates the professor of a section in the database.
+     *
+     * @param className      The name of the class associated with the section.
+     * @param sectionID      The ID of the section to update.
+     * @param newProfessorID The ID of the new professor for the section.
+     * @throws SQLException If an SQL exception occurs.
+     */
     public void updateSectionProfessor(String className, int sectionID, Integer newProfessorID) throws SQLException {
         //根据用户输入的classname先找到classid定位
         String getClassIdSql = "SELECT classid FROM classes WHERE classname = ?";
@@ -166,7 +208,12 @@ public class SectionDaoImpl implements SectionDao{
             }
         }
     }
-
+    /**
+     * Checks if a section exists in the database.
+     *
+     * @param sectionId The ID of the section to check.
+     * @return True if the section exists, otherwise false.
+     */
     public boolean checkSectionExists(int sectionId) {
         String sql = "SELECT 1 FROM sections WHERE sectionid = ?";
         try (Connection conn = DB_connect.getConnection();
@@ -179,6 +226,12 @@ public class SectionDaoImpl implements SectionDao{
             return false;
         }
     }
+    /**
+     * Retrieves the class ID associated with a section from the database.
+     *
+     * @param sectionId The ID of the section.
+     * @return The class ID associated with the section.
+     */
     public int getClassIdBySectionId(int sectionId) {
         String sql = "SELECT classid FROM sections WHERE sectionid = ?";
         try (Connection conn = DB_connect.getConnection();

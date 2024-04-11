@@ -8,14 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * The EnrollmentDaoImpl class provides implementation for accessing enrollment data in the database.
+ */
 public class EnrollmentDaoImpl implements EnrollmentDao {
-    // private Connection connection;
-
-    // public EnrollmentDaoImpl(Connection connection) {
-    //     this.connection = connection;
-    // }
-
+    /**
+     * Adds a new enrollment to the database.
+     *
+     * @param enrollment The enrollment to add.
+     */
     @Override
     public void addEnrollment(Enrollment enrollment) {
         String sql = "INSERT INTO enrollment (studentid, sectionid) VALUES (?, ?)";
@@ -35,7 +36,12 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Retrieves a list of enrollments associated with a student ID from the database.
+     *
+     * @param studentId The ID of the student.
+     * @return A list of enrollments associated with the student.
+     */
     @Override
     public List<Enrollment> getEnrollmentsByStudentId(int studentId) {
         List<Enrollment> enrollments = new ArrayList<>();
@@ -55,7 +61,12 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
         }
         return enrollments;
     }
-
+    /**
+     * Retrieves a list of enrollments associated with a section ID from the database.
+     *
+     * @param sectionId The ID of the section.
+     * @return A list of enrollments associated with the section.
+     */
     @Override
     public List<Enrollment> getEnrollmentsBySectionId(int sectionId) {
         List<Enrollment> enrollments = new ArrayList<>();
@@ -74,7 +85,11 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
         }
         return enrollments;
     }
-
+    /**
+     * Deletes an enrollment from the database.
+     *
+     * @param enrollmentId The ID of the enrollment to delete.
+     */
     @Override
     public void deleteEnrollment(int enrollmentId) {
         String sql = "DELETE FROM enrollment WHERE enrollmentid = ?";
@@ -86,7 +101,13 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Finds an enrollment by student ID and class ID in the database.
+     *
+     * @param studentId The ID of the student.
+     * @param classId   The ID of the class.
+     * @return An optional containing the enrollment if found, otherwise empty.
+     */
     @Override
     public Optional<Enrollment> findEnrollmentByStudentIdAndClassId(int studentId, int classId) {
         // TODO Auto-generated method stub
@@ -108,6 +129,13 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
         }
         return Optional.empty();
     }
+    /**
+     * Checks if a student is already enrolled in a section.
+     *
+     * @param studentId The ID of the student.
+     * @param sectionId The ID of the section.
+     * @return True if the student is already enrolled in the section, otherwise false.
+     */
     public boolean isStudentAlreadyEnrolled(int studentId, int sectionId) {
         String sql = "SELECT count(*) AS count FROM enrollment WHERE studentid = ? AND sectionid = ?";
         try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
@@ -122,6 +150,12 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
         }
         return false; // No enrollment found
     }
+    /**
+     * Checks if an enrollment exists in the database by its ID.
+     *
+     * @param enrollmentId The ID of the enrollment.
+     * @return True if the enrollment exists, otherwise false.
+     */
     public boolean existsById(int enrollmentId) {
         String sql = "SELECT count(*) AS count FROM enrollment WHERE enrollmentid = ?";
         try (PreparedStatement ps = DB_connect.getConnection().prepareStatement(sql)) {
