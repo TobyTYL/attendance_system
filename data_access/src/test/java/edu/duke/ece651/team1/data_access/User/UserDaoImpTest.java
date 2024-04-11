@@ -164,66 +164,96 @@ class UserDaoImpTest {
 
 
 }
-
+//
+//
+// import edu.duke.ece651.team1.data_access.DB_connect;
+// import edu.duke.ece651.team1.data_access.User.UserDao;
+// import edu.duke.ece651.team1.shared.Student;
 // import edu.duke.ece651.team1.shared.User;
+// import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.AfterEach;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.mockito.Mock;
+// import org.mockito.MockedStatic;
+// import org.mockito.Mockito;
+//
+// import java.sql.Connection;
+// import java.sql.PreparedStatement;
+// import java.sql.ResultSet;
+// import java.sql.SQLException;
+// import java.util.ArrayList;
+// import java.util.List;
+// import java.util.Optional;
+// import edu.duke.ece651.team1.data_access.DB_connect;
+// import edu.duke.ece651.team1.shared.Enrollment;
 // import org.junit.jupiter.api.AfterEach;
 // import org.junit.jupiter.api.BeforeEach;
 // import org.junit.jupiter.api.Test;
-
-// import java.sql.*;
-
-// class UserDaoImpTest {
-//     private Connection connection;
-//     private Statement statement;
+// import org.mockito.MockedStatic;
+// import org.mockito.Mockito;
+//
+// import java.sql.Connection;
+// import java.sql.DriverManager;
+// import java.sql.PreparedStatement;
+// import java.sql.SQLException;
+// import java.sql.Statement;
+// import java.util.List;
+//
+// import static org.junit.jupiter.api.Assertions.*;
+// import static org.mockito.ArgumentMatchers.anyInt;
+// import static org.mockito.ArgumentMatchers.anyString;
+// import static org.mockito.Mockito.atLeastOnce;
+// import static org.mockito.Mockito.mock;
+// import static org.mockito.Mockito.times;
+// import static org.mockito.Mockito.verify;
+// import static org.mockito.Mockito.when;
+//
+// import static org.junit.jupiter.api.Assertions.*;
+// import static org.mockito.Mockito.*;
+// import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
+//
+// public class UserDaoImpTest {
+//     @Mock
+//     private Connection conn;
+//     @Mock
+//     private PreparedStatement ps;
 //     private UserDaoImp userDao;
-
-//     private static final String URL = "jdbc:postgresql://localhost:5432/schoolmanagement";
-//     private static final String USER = "ece651";
-//     private static final String PASSWORD = "passw0rd";
+//     @Mock
+//     private MockedStatic<DB_connect> mockedDBConnect;
+//     @Mock
+//     private ResultSet rs;
+//
 //     @BeforeEach
-//     public void setUp() throws SQLException {
-//         connection = DriverManager.getConnection(URL, USER, PASSWORD);
-//         statement = connection.createStatement();
-//         userDao = new UserDaoImp(connection);
+//     void setUp() {
+//         conn = mock(Connection.class);
+//         rs = mock(ResultSet.class);
+//         ps = mock(PreparedStatement.class);
+//         mockedDBConnect = Mockito.mockStatic(DB_connect.class);
+//         mockedDBConnect.when(DB_connect::getConnection).thenReturn(conn);
+//         userDao = new UserDaoImp();
 //     }
+//
 //     @AfterEach
-//     public void tearDown() throws SQLException {
-//         statement.close();
-//         connection.close();
+//     void tearDown() {
+//         mockedDBConnect.close();
 //     }
-
+//
+//
 //     @Test
 //     public void testAddUser() throws SQLException {
-//         User user = new User(1, "username", "passwordHash", "email@example.com", "role");
-//         userDao.addUser(user);
-
+//         User user = new User("username", "passwordHash", "role");
+//         int userId = userDao.addUser(user);
+//
+//         when(conn.prepareStatement(anyString())).thenReturn(ps);
+//         when(ps.executeUpdate()).thenReturn(1); // 假设插入成功
+//         when(ps.getGeneratedKeys()).thenReturn(rs);
+//         when(rs.next()).thenReturn(true);
+//         when(rs.getInt(1)).thenReturn(1); // 假设返回的用户ID为1
+//
+//         // 调用被测试方法
+//
+//         // 检查返回的用户ID是否正确
+//         assertEquals(1, userId);
 //     }
-// //
-// //    @Test
-// //    void testAddUser() {
-// //        UserDaoImp userDaoImp = new UserDaoImp();
-// //        userDaoImp.addUser(new User(1, "Toby", "Password Hash", "jane.doe@example.org", "Student"));
-// //    }
-// //    @Test
-// //    void testRemoveUser() {
-// //        (new UserDaoImp()).removeUser(1);
-// //    }
-// //
-// //    @Test
-// //    void testUpdateUser() {
-// //        UserDaoImp userDaoImp = new UserDaoImp();
-// //        userDaoImp.updateUser(new User(1, "Test", "Password Hash", "jane.doe@example.org", "Professor"));
-// //    }
-// //
-// //    @Test
-// //    void testGetUserById() {
-// //        assertNull((new UserDaoImp()).getUserById(1));
-// //    }
-// //
-// //    @Test
-// //    void testGetAllUsers() {
-// //        assertTrue((new UserDaoImp()).getAllUsers().isEmpty());
-// //    }
-// //
-
+//
 // }

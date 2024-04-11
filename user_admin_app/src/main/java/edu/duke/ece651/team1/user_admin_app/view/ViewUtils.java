@@ -11,7 +11,7 @@ public class ViewUtils {
     public static int getUserOption(BufferedReader inputReader, PrintStream out, int maxOptio) throws  IOException{
         out.println("Enter your choice: ");
         String s = inputReader.readLine();
-        if (s == null) {
+        if (s == null|| s.trim().isEmpty()) {
           throw new EOFException("End of input reached");
         }
         int ans = Integer.parseInt(s);
