@@ -137,7 +137,9 @@ public class SectionController {
      */
     protected void updateSection(String className) throws IOException, SQLException {
         // Code to handle updating a section
-        List<Section> sections = sectionDao.getAllSections();
+        //List<Section> sections = sectionDao.getAllSections();
+        int classID = courseDao.getClassIdByName(className);
+        List<Section> sections = sectionDao.getSectionsByClassId(classID);
         sectionView.showAllSections(sections);
         String sectionID = sectionView.getSectionToUpdate(className);
         int detailOption = sectionView.getDetailToUpdateForSection();

@@ -133,13 +133,19 @@ public class AttendanceView {
             }
         }
     }
-
+    /**
+     * show the modify menue for user to choose
+     */
     public void showModifyMenue(){
         out.println("Would you like to:");
         out.println("1. Retake entire class attendance");
         out.println("2. Modify attendance for a specific student");
     }
-
+    /**
+     * read the user's choice for modify option
+     * @return
+     * @throws IOException
+     */
     public String readModifyOption() throws IOException{
         while (true) {
             try{
@@ -356,7 +362,9 @@ public class AttendanceView {
         out.println("You cannot take attendance Now, please back to Student Management Menue");
         out.println("Load a student Roster first");
     }
-
+    /**
+     * Displays a message indicating that attendance cannot be taken without loading a class roster.
+     */
     public void showClassReport(String report){
         out.println("=============== Attendance Participation for class:  ===============");
         out.println();

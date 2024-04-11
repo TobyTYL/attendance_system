@@ -79,7 +79,9 @@ public class AttendanceController {
 
         }
     }
-
+    /**
+     * Displays the class report.
+     */
     public void startReport(){
         String report = getClassReport();
         attendanceView.showClassReport(report);
@@ -97,7 +99,10 @@ public class AttendanceController {
                 + "/api/attendance/allStudents/" + sectionId;
         return ControllerUtils.executeGetRequest(url, responseType);
     }
-
+    /**
+     * Fetches the class report from the backend service.
+     * @return
+     */
     private String getClassReport(){
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/report/class/" + sectionId;
@@ -151,7 +156,10 @@ public class AttendanceController {
         String recordToJsonString = serializer.serialize(record);
         ControllerUtils.executePostPutRequest(url, recordToJsonString, responseType, true);
     }
-
+    /**
+     * Updates an attendance record in the backend service.
+     * @param record
+     */
     private void updateAttendanceRecord(AttendanceRecord record) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/record/" + sectionId;
@@ -205,7 +213,11 @@ public class AttendanceController {
         attendanceView.showAttenceFinishMessage(record);
 
     }
-
+    /**
+     * Modifies the attendance record for a specific student.
+     * @param record
+     * @throws IOException
+     */
     public void modifyOneStudent(AttendanceRecord record) throws IOException {
         if (record == null || record.getEntries().isEmpty()) {
             out.println("No attendance record available for this date.");
@@ -226,7 +238,11 @@ public class AttendanceController {
             out.println("Failed to modify attendance record: " + e.getMessage());
         }
     }
-
+    /**
+     * Modifies the attendance record for all students.
+     * @param record
+     * @throws IOException
+     */
     public void modifyAllStudents(AttendanceRecord record) throws IOException {
         for (Map.Entry<Student, AttendanceStatus> entry : record.getSortedEntries()) {
             Student s = entry.getKey();
@@ -282,7 +298,12 @@ public class AttendanceController {
             modifyOneStudent(record);
         }
     }
-
+    /**
+     * Modifies the attendance record for a specific student.
+     * @param sessionDate
+     * @param studentName
+     * @param newStatus
+     */
     private void modifyAttendanceRecord(String sessionDate, String studentName, AttendanceStatus newStatus) {
         String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
                 + "/api/attendance/modification/" + sectionId + "/" + sessionDate;
