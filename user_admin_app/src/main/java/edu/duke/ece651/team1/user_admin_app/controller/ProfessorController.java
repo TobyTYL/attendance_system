@@ -17,13 +17,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 public class ProfessorController {
 
-    private final ProfessorDao professorDao;
+    private ProfessorDao professorDao;
     // legal name, email, display name
     BufferedReader inputReader;
     final PrintStream out;
     ProfessorView professorView;
     private PasswordEncoder passwordEncoder;
-    private final UserDao userDao;
+    private UserDao userDao;
 
 
     public ProfessorController(BufferedReader inputReader, PrintStream out) {
@@ -46,7 +46,6 @@ public class ProfessorController {
                 } else if (option.equals("remove")) {
                     removeProfessor();
                 } else {
-                    //back to main menu
                     return;
                 }
             } catch (IllegalArgumentException e) {
@@ -54,8 +53,8 @@ public class ProfessorController {
             }
         }
     }
-
-    private void addProfessor() throws IOException {
+    // edit from private to public
+    public void addProfessor() throws IOException {
         String professorName = professorView.readProfessorName();
         User user = new User(professorName, passwordEncoder.encode("passw0rd"), "Professor");
         int userId = userDao.addUser(user);
@@ -67,11 +66,14 @@ public class ProfessorController {
         professorDao.addProfessor(newProfessor);
         out.println("Professor added successfully.");
     }
-    private void removeProfessor() throws IOException {
+    // edit from private to public
+    public void removeProfessor() throws IOException {
         String professorName = professorView.readProfessorName();
         int userId = userDao.findUserByUsername(professorName).getUserId();
         if (userId != -1) {
+//            int professorId = professorDao.findProfessorByUsrID(userId).getProfessorId();
             int professorId = professorDao.findProfessorByUsrID(userId).getProfessorId();
+
             professorDao.removeProfessor(professorId);
             userDao.removeUser(userId);
             out.println("Professor removed successfully.");
@@ -80,5 +82,15 @@ public class ProfessorController {
         }
     }
 
+    public void setProfessorDao(ProfessorDao professorDao) {
+        this.professorDao = professorDao;
+    }
 
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public void setProfessorView(ProfessorView professorView) {
+        this.professorView = professorView;
+    }
 }

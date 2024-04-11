@@ -35,6 +35,9 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Use the latest version applicable
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+
 }
 
 run{

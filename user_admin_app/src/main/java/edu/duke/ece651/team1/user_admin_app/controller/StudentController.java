@@ -19,9 +19,9 @@ import edu.duke.ece651.team1.user_admin_app.view.StudentView;
 import edu.duke.ece651.team1.shared.Student;
 
 public class StudentController {
-    private final StudentDao studentDao;
+    private StudentDao studentDao;
     // legal name, email, display name
-    private final UserDao userDao;
+    private UserDao userDao;
     BufferedReader inputReader;
     final PrintStream out;
     StudentView studentView;
@@ -58,7 +58,7 @@ public class StudentController {
         }
     }
 
-    private void addStudent() throws IOException {
+    public void addStudent() throws IOException {
         String studentName = studentView.readStudentName();
         String displayName = studentView.readStudentDisplayName();
         String email = studentView.readStudentEmail();
@@ -74,7 +74,7 @@ public class StudentController {
         out.println("Student added successfully.");
     }
 
-    private void removeStudent() throws IOException {
+    public void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
         Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
         if (optionalStudent.isPresent()) {
@@ -91,7 +91,7 @@ public class StudentController {
             out.println("Student not found.");
         }
     }
-    private void updateStudent() throws IOException {
+    public void updateStudent() throws IOException {
         String studentName = studentView.readStudentName();
         Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
         if (optionalStudent.isPresent()) {
@@ -112,6 +112,16 @@ public class StudentController {
         }
     }
 
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
 
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public void setStudentView(StudentView studentView) {
+        this.studentView = studentView;
+    }
 
 }

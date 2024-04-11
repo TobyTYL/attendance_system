@@ -21,28 +21,28 @@ public class ViewUtils {
         return ans;
     }
 
-    public static String getUserInput(
-            String prompt,
-            String redoPrompt,
-            BufferedReader inputReader,
-            PrintStream out,
-            Predicate<String> handle
-    ) throws IOException {
-        String input;
-        while (true) {
-            out.print(prompt);
-            input = inputReader.readLine();
-            if (input == null) {
-                throw new EOFException("End of input reached");
-            }
-            input = input.trim();
-            if (handle.test(input)) {
-                return input;
-            } else {
-                out.println(redoPrompt);
-            }
-        }
-    }
+//    public static String getUserInput(
+//            String prompt,
+//            String redoPrompt,
+//            BufferedReader inputReader,
+//            PrintStream out,
+//            Predicate<String> handle
+//    ) throws IOException {
+//        String input;
+//        while (true) {
+//            out.print(prompt);
+//            input = inputReader.readLine();
+//            if (input == null) {
+//                throw new EOFException("End of input reached");
+//            }
+//            input = input.trim();
+//            if (handle.test(input)) {
+//                return input;
+//            } else {
+//                out.println(redoPrompt);
+//            }
+//        }
+//    }
 
 }
 

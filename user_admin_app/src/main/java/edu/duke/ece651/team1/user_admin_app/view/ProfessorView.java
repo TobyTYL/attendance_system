@@ -60,12 +60,12 @@ public class ProfessorView {
         }
     }
 
-
-    public void showSuccessAddDisplayNameMessage(String professor, String status) {
-        out.println("You successfully added " + professor + " to this class " + status);
-    }
-    public void showSuccessRemoveMessage(String professor) {
-        out.println("You successfully removed " + professor);
-    }
+//
+//    public void showSuccessAddDisplayNameMessage(String professor, String status) {
+//        out.println("You successfully added " + professor + " to this class " + status);
+//    }
+//    public void showSuccessRemoveMessage(String professor) {
+//        out.println("You successfully removed " + professor);
+//    }
 
 }
