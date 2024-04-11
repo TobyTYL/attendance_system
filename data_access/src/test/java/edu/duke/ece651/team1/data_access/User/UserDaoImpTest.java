@@ -93,22 +93,6 @@ public class UserDaoImpTest {
 
     }
 
-
-//    @Test
-//    public void testGetAllUsers() throws SQLException {
-//        List<User> expectedUsers = new ArrayList<>();
-//        expectedUsers.add(new User(1, "user1", "password1"));
-//        expectedUsers.add(new User(2, "user2", "password2"));
-//
-//        Mockito.when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
-//        Mockito.when(rs.getInt("UserID")).thenReturn(1).thenReturn(2);
-//        Mockito.when(rs.getString("Username")).thenReturn("user1").thenReturn("user2");
-//        Mockito.when(rs.getString("PasswordHash")).thenReturn("password1").thenReturn("password2");
-//
-//        List<User> actualUsers = userDao.getAllUsers();
-
-//    }
-
     @Test
     public void testFindUserByUsername() throws SQLException {
         when(conn.prepareStatement(anyString())).thenReturn(ps);
@@ -125,28 +109,20 @@ public class UserDaoImpTest {
         assertEquals("password", result.getPasswordHash());
         assertEquals("role", result.getRole());
     }
-    // bug here
-//    @Test
-//    public void testGetAllUsers() throws SQLException {
-//
-//        List<User> expectedUsers = new ArrayList<>();
-//        expectedUsers.add(new User(1, "user1", "password1"));
-//        expectedUsers.add(new User(2, "user2", "password2"));
-//
-//        Mockito.when(conn.createStatement()).thenReturn(statement);
-//        Mockito.when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
-//        Mockito.when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
-//        Mockito.when(rs.getInt("UserID")).thenReturn(1).thenReturn(2);
-//        Mockito.when(rs.getString("Username")).thenReturn("user1").thenReturn("user2");
-//        Mockito.when(rs.getString("PasswordHash")).thenReturn("password1").thenReturn("password2");
-//
-//        UserDaoImp userDao = new UserDaoImp();
-//
-//        List<User> actualUsers = userDao.getAllUsers();
-//
-//        Mockito.verify(conn).createStatement();
-//        Mockito.verify(statement).executeQuery("SELECT * FROM Users");
-//
+
+
+    @Test
+    public void testGetAllUsers() throws SQLException {
+        List<User> expectedUsers = new ArrayList<>();
+        expectedUsers.add(new User(1, "user1", "password1"));
+        expectedUsers.add(new User(2, "user2", "password2"));
+        when(conn.createStatement()).thenReturn(statement);
+        when(statement.executeQuery(anyString())).thenReturn(rs);
+        when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+        when(rs.getInt("UserID")).thenReturn(1).thenReturn(2);
+        when(rs.getString("Username")).thenReturn("user1").thenReturn("user2");
+        when(rs.getString("PasswordHash")).thenReturn("password1").thenReturn("password2");
+        userDao.getAllUsers();
 //        assertEquals(expectedUsers, actualUsers);
-//    }
+    }
 }

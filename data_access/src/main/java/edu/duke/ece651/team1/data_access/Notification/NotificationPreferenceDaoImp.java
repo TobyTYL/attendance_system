@@ -51,7 +51,6 @@ public class NotificationPreferenceDaoImp implements NotificationPreferenceDao {
 
     @Override
     public void addNotificationPreference(int studentId, int classID, boolean receiveNotifications) {
-        // TODO Auto-generated method stub
         try (Connection conn = DB_connect.getConnection()) {
             String sql = "INSERT INTO NotificationPreference (StudentID, ClassID, ReceiveNotifications) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
