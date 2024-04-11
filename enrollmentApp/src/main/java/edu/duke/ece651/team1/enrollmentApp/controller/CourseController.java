@@ -14,11 +14,11 @@ import java.io.PrintStream;
 import java.util.List;
 import java.io.IOException;
 public class CourseController {
-    private final CourseDao courseDao;
+    final CourseDao courseDao;
     private final BufferedReader inputReader;
     private final PrintStream out;
-    private final CourseView CourseView;
-    private final SectionController sectionController;
+    final CourseView CourseView;
+    final SectionController sectionController;
 
     public CourseController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
@@ -27,6 +27,14 @@ public class CourseController {
         this.courseDao = new CourseDaoImp();
         this.sectionController = new SectionController(inputReader, out);
     }
+    public CourseController(BufferedReader inputReader, PrintStream out, CourseView courseiew, CourseDao courseDao, SectionController sectionController) {
+        this.inputReader = inputReader;
+        this.out = out;
+        this.CourseView = courseiew;
+        this.courseDao = courseDao;
+        this.sectionController = sectionController;
+    }
+
     public void startCourseManagement() throws IOException, SQLException {
         while (true) {
             CourseView.showClassManageOption();
@@ -49,7 +57,7 @@ public class CourseController {
         }
     }
 
-    private void createNewClass() throws IOException {
+    void createNewClass() throws IOException {
         try {
             String className = CourseView.getClassNameToCreate();
             if (courseDao.checkCourseExists(className)) {
@@ -69,7 +77,7 @@ public class CourseController {
         }
     }
 
-    private void updateClass() throws IOException, SQLException {
+    void updateClass() throws IOException, SQLException {
         // Use CourseView to ask which class to update
         showAllCourses();
         String ClassNameToUpdate = CourseView.getClassNameToUpdateOrRemove("update");
@@ -101,7 +109,7 @@ public class CourseController {
         
     }
 
-    private void removeClass() throws IOException {
+    void removeClass() throws IOException {
         showAllCourses();
         String className = CourseView.getClassNameToUpdateOrRemove("remove");
         if (!courseDao.checkCourseExists(className)) {
@@ -114,7 +122,7 @@ public class CourseController {
         }
     }
     
-    private void updateClassName(String oldClassName) throws IOException {
+    void updateClassName(String oldClassName) throws IOException {
         String newClassName = CourseView.getNewClassName();
         if (courseDao.checkCourseExists(newClassName)) {
             out.println("Class with the new name already exists!");

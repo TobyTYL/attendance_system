@@ -28,6 +28,13 @@ public class EnrollmentView {
         this.professorDao = new ProfessorDaoImp();
         this.userDao = new UserDaoImp();
     }
+    public EnrollmentView(BufferedReader inputReader, PrintStream out, ProfessorDao professorDaoImp, UserDao userDaoImp) {
+        this.inputReader = inputReader;
+        this.out = out;
+        this.professorDao = professorDaoImp;
+        this.userDao = userDaoImp;
+    }
+
     public void showEnrollmentOptions() throws IOException {
         out.println("\nEnrollment Options:");
         out.println("1. Manually Enroll a Student");

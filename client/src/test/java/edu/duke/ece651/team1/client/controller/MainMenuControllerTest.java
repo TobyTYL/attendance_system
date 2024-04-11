@@ -1,87 +1,80 @@
-// package edu.duke.ece651.team1.client.controller;
+package edu.duke.ece651.team1.client.controller;
 
-// import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Disabled;
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-// import edu.duke.ece651.team1.client.view.MainMenuView;
+import edu.duke.ece651.team1.client.view.AttendanceView;
+import edu.duke.ece651.team1.client.view.CourseView;
+import edu.duke.ece651.team1.client.view.MainMenuView;
 
-// import java.io.BufferedReader;
-// import java.io.IOException;
-// import java.io.PrintStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import edu.duke.ece651.team1.client.model.*;
 
-// import static org.mockito.Mockito.*;
-// @ExtendWith(MockitoExtension.class)
-// public class MainMenuControllerTest {
-//    @Mock
-//     private BufferedReader inputReader;
-    
-//     @Mock
-//     private PrintStream out;
-    
-//     @Mock
-//     private MainMenuView mainMenuView;
-    
-//     @Mock
-//     private AttendanceController attendanceController;
-    
-//     @Mock
-//     private StudentController studentController;
-    
-//     @InjectMocks
-//     private ProfessorMainMenuController mainMenuController;
+import static org.mockito.Mockito.*;
 
-//     @BeforeEach
-//     void setUp() {
-//         // Configure default behaviors for the mocked mainMenuView
-//         mainMenuController = new ProfessorMainMenuController(inputReader, out);
-//         mainMenuController.mainMenuView = mainMenuView; // Direct assignment as Mockito might not inject into non-setter public fields
-//         mainMenuController.attendanceController = attendanceController;
-//         mainMenuController.studentController = studentController;
-//     }
-//     @Test
-//     void testAttendanceOption() throws IOException {
-//         when(mainMenuView.readMainOption()).thenReturn("attendance", "exit");
+@ExtendWith(MockitoExtension.class)
+public class MainMenuControllerTest {
+    @Mock
+    private BufferedReader inputReader;
 
-//         mainMenuController.startMainMenu();
+    @Mock
+    private PrintStream out;
 
-//         verify(attendanceController).startAttendanceMenue();
-//         verify(out).println("GoodBye!");
-//     }
 
-//     @Test
-//     void testStudentsOption() throws IOException {
-//         when(mainMenuView.readMainOption()).thenReturn("students", "exit");
+    private ProfessorMainMenuController mainMenuController;
+    @Mock
+    private UserSession userSession;
 
-//         mainMenuController.startMainMenu();
+    @BeforeEach
+    void setUp() {
+        // Configure default behaviors for the mocked mainMenuView
+        int sectionId = 1;
+        int classId = 1;
+        String className = "ECE101";
+        userSession.setHost("localhost");
+        userSession.setPort("8080");
+        mainMenuController = new ProfessorMainMenuController(sectionId, classId, className, inputReader, out);
+    }
 
-//         verify(studentController).startStudentMenu();
-//         verify(out).println("GoodBye!");
-//     }
 
-//     @Test
-//     void testInvalidOption() throws IOException {
-//         when(mainMenuView.readMainOption()).thenReturn("invalid", "exit");
 
-//         mainMenuController.startMainMenu();
+    @Test
+    void testAttendanceOption_back() throws IOException {
+        when(inputReader.readLine()).thenReturn("1", "5", "2", "2");
+        mainMenuController.startMainMenu();
+        verify(out).println("1. Take attendance for today's class");
+        verify(out).println("2. Edit your previous attendance");
+        verify(out).println("3. Export attendance records");
+        verify(out).println("4. Obtain class Attendance report ");
+        verify(out).println("5. Go back");
+    }
 
-//         verify(out).println("GoodBye!");
-//     }
-//     @Disabled
-//     @Test
-//     void testExceptionHandlingInMenu() throws IOException {
-//         when(mainMenuView.readMainOption()).thenThrow(new IOException("Test Exception"));
+    @Test
+    void testInvalidOption() throws IOException {
+        when(inputReader.readLine()).thenReturn("invalid", "1", "5", "2", "2");
+        mainMenuController.startMainMenu();
+        verify(out).println("Invalid option. Please select 1 for Manage attendance or 2 for Go back.");
+    }
 
-//         mainMenuController.startMainMenu();
+    @Test
+    void testException() throws IOException {
+        when(inputReader.readLine())
+                .thenThrow(new IOException("Simulated IOException")).thenReturn("1", "5", "2", "2");
+        mainMenuController.startMainMenu();
+        verify(out).println("Main Menu error because Simulated IOException");
+    }
 
-//         verify(out).println("Main Menu error because Test Exception");
-//     }
-
-// }
+}

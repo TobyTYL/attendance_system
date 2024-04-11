@@ -51,15 +51,8 @@ public class StudentReportController {
     public String getReport(boolean detail){
         String url = String.format("http://%s:%s/api/attendance/report/student/%d/%d/?detail=%s",
         UserSession.getInstance().getHost(), UserSession.getInstance().getPort(), studentId, sectionId,detail);
-        HttpEntity<String> requestEntity = new HttpEntity<>(ControllerUtils.getSessionTokenHeaders());
-        ResponseEntity<String> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
-        if (response.getStatusCode() != HttpStatus.OK) {
-            throw new RuntimeException("Failed to fetch student report: " + response.getStatusCode());
-        }
-        return response.getBody();
+        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
+        };
+       return ControllerUtils.executeGetRequest(url, responseType);
     }
 }

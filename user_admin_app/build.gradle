@@ -11,6 +11,14 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+application {
+    // Update the main class to point to your application's entry point.
+    mainClassName = 'edu.duke.ece651.team1.user_admin_app.App'
+}
+
+run{
+    standardInput = System.in
+}
 
 repositories {
     mavenCentral()

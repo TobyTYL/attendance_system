@@ -26,12 +26,12 @@ import edu.duke.ece651.team1.shared.Section;
 import edu.duke.ece651.team1.shared.Student;
 
 public class EnrollmentController {
-    private EnrollmentView enrollmentView;
-    private CourseDao courseDao;
-    private SectionDao sectionDao;
-    private EnrollmentDaoImpl enrollmentDao;
-    private StudentDao studentDao;
-    private NotificationPreferenceDao notificationPreferenceDao;
+    EnrollmentView enrollmentView;
+    CourseDao courseDao;
+    SectionDao sectionDao;
+    EnrollmentDaoImpl enrollmentDao;
+    StudentDao studentDao;
+    NotificationPreferenceDao notificationPreferenceDao;
     private final PrintStream out; 
 
     public EnrollmentController(BufferedReader inputReader, PrintStream out) {
@@ -61,7 +61,7 @@ public class EnrollmentController {
                 break;
         }
     }
-    private boolean enrollStudent(int studentId, int sectionId) {
+    boolean enrollStudent(int studentId, int sectionId) {
         // Check if student already enrolled in the section
         if(enrollmentDao.isStudentAlreadyEnrolled(studentId, sectionId)) {
             out.println("Student ID " + studentId + " is already enrolled in Section ID: " + sectionId);
@@ -90,7 +90,7 @@ public class EnrollmentController {
         return true;
     }
 
-    private void manuallyEnrollStudent() throws IOException {
+    void manuallyEnrollStudent() throws IOException {
         String studentIdStr = enrollmentView.getStudentIDForEnrollment();
         int studentId;
         try {
@@ -139,7 +139,7 @@ public class EnrollmentController {
      * required csv format: StudentID,ClassName,SectionID
      * @throws IOException
      */
-    private void batchEnrollStudent() throws IOException {
+    void batchEnrollStudent() throws IOException {
         String csvFileName = enrollmentView.getCsvFilePath();
         String basePath = System.getProperty("user.dir");
         String filePath = basePath + "/src/test/resources/" + csvFileName;
@@ -147,10 +147,14 @@ public class EnrollmentController {
         int successfulEnrollments = 0;
         int failedEnrollments = 0;
         List<String> errors = new ArrayList<>();
-    
+        boolean isFirstLine = true;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
+                if (isFirstLine) { // Check if it's the first line
+                    isFirstLine = false; // Update the flag
+                    continue; // Skip processing for the first line
+                }
                 try {
                     String[] values = line.split(",");
                     if (values.length != 3) {
@@ -186,7 +190,7 @@ public class EnrollmentController {
         out.println("Batch enrollment process completed.");
         out.println("Results:");
         out.println("- Successfully enrolled " + successfulEnrollments + " students.");
-        out.println("- Encountered errors with " + failedEnrollments + " entries.");
+        out.println("- Encountered failed enrollment with " + failedEnrollments + " entries.");
         if (!errors.isEmpty()) {
             out.println("Error details:");
             errors.forEach(out::println);

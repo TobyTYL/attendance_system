@@ -33,6 +33,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.jsoup:jsoup:1.13.1'
 
 
     // Add Mockito for mocking in tests

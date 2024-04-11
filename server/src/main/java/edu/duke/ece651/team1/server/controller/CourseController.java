@@ -19,9 +19,6 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try{
             List<String> coursesinfo  = courseService.getTaughtCoursesInfoForProfessor(professorId);
-            if(coursesinfo.isEmpty()){
-                return new ResponseEntity<>(Collections.emptyList(), HttpStatus.NOT_FOUND);
-            }
             return new ResponseEntity<>(coursesinfo, HttpStatus.OK);
         
         }catch(Exception e){
@@ -33,9 +30,6 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try{
             List<String> coursesinfo  = courseService.getRegisteredCoursesInfoForStudent(studentId);
-            if(coursesinfo.isEmpty()){
-                return new ResponseEntity<>(Collections.emptyList(), HttpStatus.NOT_FOUND);
-            }
             return new ResponseEntity<>(coursesinfo, HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);

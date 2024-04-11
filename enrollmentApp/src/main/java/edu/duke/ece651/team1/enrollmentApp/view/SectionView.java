@@ -27,7 +27,12 @@ public class SectionView {
         this.userDao = new UserDaoImp();
         this.professorDao = new ProfessorDaoImp();
     }
-
+    public SectionView(BufferedReader inputReader, PrintStream out, UserDao userDaoImp, ProfessorDao professorDaoImp) {
+        this.inputReader = inputReader;
+        this.out = out;
+        this.userDao = userDaoImp;
+        this.professorDao = professorDaoImp;
+    }
     public void showClassSectionOptions(String className) {
         out.println("\nManage Sections for " + className + ":");
         out.println("1. Add a Section");
