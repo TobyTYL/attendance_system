@@ -13,9 +13,7 @@ public class ViewUtilsTest {
         BufferedReader inputReader = new BufferedReader(new StringReader(input));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
-
         int option = ViewUtils.getUserOption(inputReader, printStream, 5);
-
         assertEquals(3, option);
     }
 
@@ -25,7 +23,6 @@ public class ViewUtilsTest {
         BufferedReader inputReader = new BufferedReader(new StringReader(input));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
-
         assertThrows(NumberFormatException.class, () -> {
             ViewUtils.getUserOption(inputReader, printStream, 5);
         });
