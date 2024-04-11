@@ -29,6 +29,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
 import edu.duke.ece651.team1.server.service.AttendanceService;
+import edu.duke.ece651.team1.server.service.CourseService;
 import edu.duke.ece651.team1.server.service.StudentService;
 
 import static org.mockito.Mockito.*;
@@ -42,65 +43,65 @@ import java.util.Collections;
 import java.util.List;
 import java.sql.*;
 
-@WebMvcTest(StudentController.class)
+@WebMvcTest(CourseController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
-class StudentControllerTest {
+class CourseControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private StudentService studentService;
+    private CourseService courseService;
     int studentId = 1;
-    int classId = 101;
-    boolean preference = true;
+    Integer professorId = 1;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
     }
-
     @Test
     @WithMockUser
-    public void updateNotificationPreference_Success() throws Exception {
-        doNothing().when(studentService).updateNotificationPreference(studentId, classId, preference);
-        mockMvc.perform(post("/api/students/notification/{studentId}/{classId}", studentId, classId)
-                .param("preference", String.valueOf(preference)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Sucessfully update your notification preference"));
+    public void getAllclassesInfoForProfessor_Success() throws Exception {  
+        List<String> expectedClassesInfo = List.of("ECE651", "ECE650");
+        when(courseService.getTaughtCoursesInfoForProfessor(professorId)).thenReturn(expectedClassesInfo);
+        mockMvc.perform(get("/api/class/professor/allclasses/")
+                        .param("professorId", String.valueOf(professorId)))
+               .andExpect(status().isOk())
+               .andExpect(content().json("[\"ECE651\",\"ECE650\"]"));
     }
 
     @Test
     @WithMockUser
-    public void updateNotificationPreference_Error() throws Exception {
-        String errorMessage = "Database error";
-        doThrow(new RuntimeException(errorMessage)).when(studentService).updateNotificationPreference(studentId,
-                classId, preference);
-        mockMvc.perform(post("/api/students/notification/{studentId}/{classId}", studentId, classId)
-                .param("preference", String.valueOf(preference)))
-                .andExpect(status().isInternalServerError())
-                .andExpect(content().string(containsString("Error update notification preference")));
+    public void getAllclassesInfoForProfessor_InternalServerError() throws Exception {
+        when(courseService.getTaughtCoursesInfoForProfessor(professorId)).thenThrow(new RuntimeException("Service exception"));
+        mockMvc.perform(get("/api/class/professor/allclasses/")
+                        .param("professorId", String.valueOf(professorId)))
+               .andExpect(status().isInternalServerError())
+               .andExpect(content().string("[]"));
+    }
+
+    // Tests for the Student endpoint
+    @Test
+    @WithMockUser
+    public void getAllclassesInfoForStudent_Success() throws Exception {
+        List<String> expectedClassesInfo = List.of("ECE651", "ECE650");
+        when(courseService.getRegisteredCoursesInfoForStudent(studentId)).thenReturn(expectedClassesInfo);
+        mockMvc.perform(get("/api/class/student/allclasses/")
+                        .param("studentId", String.valueOf(studentId)))
+               .andExpect(status().isOk())
+               .andExpect(content().json("[\"ECE651\",\"ECE650\"]"));
     }
 
     @Test
     @WithMockUser
-    public void getNotificationPreference_Success() throws Exception {
-        String expectedInfo = "{\"ReciveNotification\":true}";
-        when(studentService.getNotificationPreference(studentId, classId)).thenReturn(expectedInfo);
-        mockMvc.perform(get("/api/students/notification/{studentId}/{classId}", studentId, classId))
-                .andExpect(status().isOk())
-                .andExpect(content().string(expectedInfo));
+    public void getAllclassesInfoForStudent_InternalServerError() throws Exception {
+        when(courseService.getRegisteredCoursesInfoForStudent(studentId)).thenThrow(new RuntimeException("Service exception"));
+        mockMvc.perform(get("/api/class/student/allclasses/")
+                        .param("studentId", String.valueOf(studentId)))
+               .andExpect(status().isInternalServerError())
+               .andExpect(content().string("[]"));
     }
-
-    @Test
-    @WithMockUser
-    public void getNotificationPreference_Error() throws Exception {
-        String errorMessage = "Database error";
-        when(studentService.getNotificationPreference(studentId, classId))
-                .thenThrow(new RuntimeException(errorMessage));
-        mockMvc.perform(get("/api/students/notification/{studentId}/{classId}", studentId, classId))
-                .andExpect(status().isInternalServerError())
-                .andExpect(content().string(containsString("Error get notification preference")));
-    }
-
 }
+
+   
+

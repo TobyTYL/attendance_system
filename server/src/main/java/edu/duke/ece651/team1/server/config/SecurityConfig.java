@@ -44,8 +44,6 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/api/signup/student", "/api/signup/professor").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN") // Only allow users with the "ADMIN" role to access
-                                                           // "/admin/**"
                 .anyRequest().authenticated() // Require authentication for any other request
                 .and()
                 .formLogin()

@@ -20,7 +20,6 @@ public class CourseController {
         try{
             List<String> coursesinfo  = courseService.getTaughtCoursesInfoForProfessor(professorId);
             return new ResponseEntity<>(coursesinfo, HttpStatus.OK);
-        
         }catch(Exception e){
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

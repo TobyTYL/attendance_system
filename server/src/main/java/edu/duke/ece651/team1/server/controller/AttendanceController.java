@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api/attendance")
 public class AttendanceController {
     @Autowired
-    private AttendanceService attendanceService;
+    AttendanceService attendanceService ;
 
     /**
      * Handles POST requests to submit an attendance record.
@@ -90,7 +90,7 @@ public class AttendanceController {
      */
     @GetMapping("/record/{sectionID}/{sessionDate}")
     // fetch attendance record for a specific date
-    public ResponseEntity<String> getMethodName(@PathVariable String sessionDate, @PathVariable int sectionID) {
+    public ResponseEntity<String> getAttendanceRecord(@PathVariable String sessionDate, @PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try {
             String record = attendanceService.getRecord(sectionID, sessionDate);
@@ -106,8 +106,6 @@ public class AttendanceController {
     public ResponseEntity<String> getStudentRecordEntry(@PathVariable String sessionDate,
             @PathVariable String studentName, @PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
-
         try {
             String responseMessage = attendanceService.getStudentRecordEntry(sectionID, sessionDate, studentName);
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
@@ -127,17 +125,11 @@ public class AttendanceController {
     public ResponseEntity<String> modifyAttendanceEntry(@PathVariable String sessionDate,
             @RequestBody String attendanceEntryJson, @PathVariable int sectionID) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userName = auth.getName(); // Assuming the user's name is obtained from the authentication context
         try {
             String responseMessage = attendanceService.modifyStudentEntryAndSendUpdates(sectionID, sessionDate,
                     attendanceEntryJson);
-            // System.out.println("error happened in modifying record");
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
         } catch (Exception e) {
-            // This generic catch block handles all exceptions and returns an
-            // INTERNAL_SERVER_ERROR status
-            // Consider handling different exceptions separately for more specific error
-            // messages and HTTP statuses
             return new ResponseEntity<>("Error modifying attendance entry: " + e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }

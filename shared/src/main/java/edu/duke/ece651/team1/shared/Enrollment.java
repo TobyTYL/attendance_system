@@ -19,7 +19,7 @@ public class Enrollment {
     }
    
 
-    public int getEnrollmentId() {
+    public Integer getEnrollmentId() {
         return enrollmentId;
     }
 

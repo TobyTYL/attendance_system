@@ -18,11 +18,10 @@ import java.util.Map;
 
 @Service
 public class CourseService {
-    private CourseDao courseDao = new CourseDaoImp();
-    private SectionDao sectionDao = new SectionDaoImpl();
-    private EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
+     CourseDao courseDao = new CourseDaoImp();
+     SectionDao sectionDao = new SectionDaoImpl();
+     EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
     public List<String> getTaughtCoursesInfoForProfessor(int professorId){
-        //getSections by professor id
         List<Section> sections = sectionDao.getSectionsByProfessorId(professorId);
         Gson gson = new Gson();
         List<String> coursesJson = sections.stream()

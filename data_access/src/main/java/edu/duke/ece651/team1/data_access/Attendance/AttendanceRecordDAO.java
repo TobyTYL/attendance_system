@@ -32,7 +32,7 @@ public class AttendanceRecordDAO {
     * @throws SQLException if there is a problem communicating with the database.
 
     */
-    private static StudentDao studentDao = new StudentDaoImp();
+    static StudentDao studentDao = new StudentDaoImp();
 
     public static void addAttendanceRecord(AttendanceRecord record, int sectionId) throws SQLException {
         String sql = "INSERT INTO AttendanceRecords (SectionId, SessionDate) VALUES (?, ?)";
