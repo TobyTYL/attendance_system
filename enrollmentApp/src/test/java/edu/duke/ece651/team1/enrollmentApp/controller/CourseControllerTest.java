@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 public class CourseControllerTest {
@@ -190,6 +191,39 @@ public class CourseControllerTest {
 
         verify(out).println("Invalid option for Class Management Menu.");
     }
+    @Test
+    void testCreateNewClass_SuccessMessageDisplayed() throws Exception {
+        String newClassName = "NewClass";
+        when(courseView.getClassNameToCreate()).thenReturn(newClassName);
+        when(courseDao.checkCourseExists(newClassName)).thenReturn(false, true); // First call returns false, second call returns true.
 
+        courseController.createNewClass();
+
+        verify(courseDao).addCourse(any(Course.class));
+        verify(courseView).showCreateNewClassSuccessMessage(newClassName);
+    }
+    @Test
+    void testRemoveClass_ClassDoesNotExist() throws IOException {
+        String classNameToRemove = "NonExistentClass";
+        when(courseView.getClassNameToUpdateOrRemove("remove")).thenReturn(classNameToRemove);
+        when(courseDao.checkCourseExists(classNameToRemove)).thenReturn(false);
+
+        courseController.removeClass();
+
+        verify(out).println("Class does not exist!");
+        verify(courseDao, never()).deleteCourse(anyString());
+        verify(courseView, never()).showActionConfirmation(anyString(), anyString());
+    }
+    @Test
+    void testShowAllCourses_CoursesAreAvailable() throws IOException {
+        List<Course> courses = Arrays.asList(new Course(1, "Course1"), new Course(2, "Course2"));
+        when(courseDao.getAllCourses()).thenReturn(courses);
+
+        courseController.showAllCourses();
+
+        verify(out).println("Available Courses:");
+        verify(out).println("ID: 1, Name: Course1");
+        verify(out).println("ID: 2, Name: Course2");
+    }
 
 }
