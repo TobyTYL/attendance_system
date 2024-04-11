@@ -90,7 +90,8 @@ public class CourseDaoImpTest {
 
     @Test
     public void testAddCourse() throws SQLException {
-        when(conn.prepareStatement(anyString())).thenReturn(ps);
+        when(conn.prepareStatement(anyString(), eq(Statement.RETURN_GENERATED_KEYS))).thenReturn(ps);
+        when(ps.getGeneratedKeys()).thenReturn(rs);
         
         Course newCourse = new Course(1, "New Course");
         //courseDao.addCourse(newCourse);
