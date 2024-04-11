@@ -211,11 +211,60 @@ public class AttendanceServiceTest {
         String attendanceEntryJson = "{\"Legal Name\":\"nonexistent\",\"Attendance Status\":\"PRESENT\"}";
         AttendanceRecord record = new AttendanceRecord(); // Assuming an empty record for simplicity
         when(AttendanceRecordDAO.findAttendanceRecordBySectionIDAndSessionDate(eq(sectionId),
-                            eq(LocalDate.parse(sessionDate))))
-                    .thenReturn(record);
+                eq(LocalDate.parse(sessionDate))))
+                .thenReturn(record);
         String result = attendanceService.modifyStudentEntryAndSendUpdates(sectionId, sessionDate,
-                    attendanceEntryJson);
-            assertEquals("Student not found in the attendance record for " + sessionDate, result);
-        }
+                attendanceEntryJson);
+        assertEquals("Student not found in the attendance record for " + sessionDate, result);
     }
 
+    @Test
+    public void getAllStudent_ReturnsStudentsList() throws SQLException {
+        List<Enrollment> mockEnrollments = Arrays.asList(
+                new Enrollment(1, 1, sectionId),
+                new Enrollment(2, 2, sectionId));
+        Student student1 = new Student(1, "John Doe", "John", "john@example.com", 1);
+        Student student2 = new Student(2, "Jane Doe", "Jane", "jane@example.com", 1);
+        when(enrollmentDao.getEnrollmentsBySectionId(sectionId)).thenReturn(mockEnrollments);
+        when(studentDao.findStudentByStudentID(1)).thenReturn(Optional.of(student1));
+        when(studentDao.findStudentByStudentID(2)).thenReturn(Optional.of(student2));
+        List<Student> students = attendanceService.getAllStudent(sectionId);
+        assertNotNull(students);
+        assertEquals(2, students.size());
+        assertTrue(students.containsAll(Arrays.asList(student1, student2)));
+    }
+
+    private void mocksetupForAttendanceManager() throws SQLException {
+        List<Enrollment> mockEnrollments = Arrays.asList(
+                new Enrollment(1, 1, sectionId),
+                new Enrollment(2, 2, sectionId));
+        Student student1 = new Student(1, "John Doe", "John", "john@example.com", 1);
+        Student student2 = new Student(2, "Jane Doe", "Jane", "jane@example.com", 1);
+        when(enrollmentDao.getEnrollmentsBySectionId(sectionId)).thenReturn(mockEnrollments);
+        when(studentDao.findStudentByStudentID(1)).thenReturn(Optional.of(student1));
+        when(studentDao.findStudentByStudentID(2)).thenReturn(Optional.of(student2));
+        AttendanceRecord record = new AttendanceRecord(LocalDate.parse("2024-04-11"));
+        record.addAttendanceEntry(student1, AttendanceStatus.PRESENT);
+        record.addAttendanceEntry(student2, AttendanceStatus.ABSENT);
+        List<AttendanceRecord> records = new ArrayList<>();
+        records.add(record);
+        when(AttendanceRecordDAO.findAttendanceRecordsBysectionID(sectionId)).thenReturn(records);
+    }
+
+    @Test
+    public void getAttendanceReportForStudent_ReturnsDetailedReport() throws SQLException {
+        mocksetupForAttendanceManager();
+        String report = attendanceService.getAttendanceReportForStudent(1, sectionId, true);
+        assertTrue(report.contains("2024-04-11: Present"));
+        String report_summary = attendanceService.getAttendanceReportForStudent(sectionId, sectionId, false);
+        assertTrue(!report_summary.contains("2024-04-11: Absent"));
+    }
+
+    @Test
+    public void getAttendanceReportForProfessor_ReturnsClassReport() throws SQLException {
+        mocksetupForAttendanceManager();
+        String classReport = attendanceService.getAttendanceReportForProfessor(sectionId);
+        assertTrue(classReport.contains("Class Attendance Report:"));
+    }
+
+}

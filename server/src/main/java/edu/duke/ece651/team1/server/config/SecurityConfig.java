@@ -37,6 +37,8 @@ public class SecurityConfig {
     private  UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    private StudentDao studentDao;
+    private ProfessorDao professorDao;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -74,13 +76,13 @@ public class SecurityConfig {
             Map<String, Object> data = new HashMap<>();
             data.put("role", role);
             if(role.equals("Professor")){
-                ProfessorDao dao = new ProfessorDaoImp();
-                int professor_id = dao.findProfessorByUsrID(uid).getProfessorId();
+                // ProfessorDao dao = new ProfessorDaoImp();
+                int professor_id = professorDao.findProfessorByUsrID(uid).getProfessorId();
                 data.put("id", professor_id);
 
             }else{
-                StudentDao dao = new StudentDaoImp();
-                int professor_id = dao.findStudentByUserID(uid).get().getStudentId();
+                // StudentDao dao = new StudentDaoImp();
+                int professor_id = studentDao.findStudentByUserID(uid).get().getStudentId();
                 data.put("id", professor_id);
             }
             response.setStatus(HttpStatus.FOUND.value());

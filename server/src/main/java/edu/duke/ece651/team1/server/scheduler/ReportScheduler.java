@@ -48,7 +48,7 @@ public class ReportScheduler {
      * Service for managing notifications. Initialized with a default instance.
      */
     private NotificationService notification = new NotificationService();
-    private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
+    private   Logger logger = LoggerFactory.getLogger(SecurityController.class);
     private SectionDao sectionDao = new SectionDaoImpl();
     private EnrollmentDao enrollmentDao = new EnrollmentDaoImpl();
     private StudentDao studentDao = new StudentDaoImp();
