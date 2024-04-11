@@ -17,7 +17,10 @@ import edu.duke.ece651.team1.shared.User;
 import edu.duke.ece651.team1.user_admin_app.view.StudentView;
 
 import edu.duke.ece651.team1.shared.Student;
-
+/**
+ * The StudentController class manages student-related actions in the application.
+ * It handles adding, removing, and updating student information.
+ */
 public class StudentController {
     private StudentDao studentDao;
     // legal name, email, display name
@@ -26,7 +29,13 @@ public class StudentController {
     final PrintStream out;
     StudentView studentView;
     private PasswordEncoder passwordEncoder;
-
+    /**
+     * Constructs a StudentController object with the given input reader and output stream.
+     * Initializes the student view, DAOs, and password encoder.
+     *
+     * @param inputReader The BufferedReader object for reading user input.
+     * @param out The PrintStream object for displaying messages to the user.
+     */
     public StudentController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
@@ -36,7 +45,11 @@ public class StudentController {
         this.passwordEncoder = new BCryptPasswordEncoder();
 
     }
-
+    /**
+     * Starts the student menu, allowing users to add, remove, or update students.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void startStudentMenu() throws IOException {
         while (true) {
             try {
@@ -57,12 +70,16 @@ public class StudentController {
             }
         }
     }
-
+    /**
+     * Adds a new student to the system.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void addStudent() throws IOException {
         String studentName = studentView.readStudentName();
         String displayName = studentView.readStudentDisplayName();
         String email = studentView.readStudentEmail();
-        // "student" 搞一个常量，默认密码搞常量
+        // "student" 需要一个常量，默认密码搞常量
         User user = new User(studentName, passwordEncoder.encode("passw0rd"), "Student");
         int uid = userDao.addUser(user);
         Student newStudent = new Student(uid, studentName, displayName, email);
@@ -73,7 +90,11 @@ public class StudentController {
         studentDao.addStudent(newStudent);
         out.println("Student added successfully.");
     }
-
+    /**
+     * Removes a student from the system.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void removeStudent() throws IOException {
         String studentName = studentView.readStudentName();
         Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
@@ -91,6 +112,11 @@ public class StudentController {
             out.println("Student not found.");
         }
     }
+    /**
+     * Updates student information in the system.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void updateStudent() throws IOException {
         String studentName = studentView.readStudentName();
         Optional<Student> optionalStudent = studentDao.findStudentByName(studentName);
@@ -111,15 +137,27 @@ public class StudentController {
             out.println("Student not found.");
         }
     }
-
+    /**
+     * Sets the student DAO.
+     *
+     * @param studentDao The StudentDao object to be set.
+     */
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
     }
-
+    /**
+     * Sets the user DAO.
+     *
+     * @param userDao The UserDao object to be set.
+     */
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-
+    /**
+     * Sets the studentView for test.
+     *
+     * @param studentView The StudentView object to be set.
+     */
     public void setStudentView(StudentView studentView) {
         this.studentView = studentView;
     }
