@@ -155,6 +155,16 @@ public class SectionControllerTest {
     void testConstructor(){
         SectionController testController = new SectionController(inputReader, out);
     }
+    @Test
+    void testRemoveSection_Success() throws IOException {
+        // Given
+        List<Section> sections = Arrays.asList(
+            new Section(1, 1, 1),
+            new Section(2, 2, 2)
+        );
+        when(sectionDao.getAllSections()).thenReturn(sections);
+        
+    }
 
     
 

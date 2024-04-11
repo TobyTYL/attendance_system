@@ -167,55 +167,6 @@ public class SectionDaoImpl implements SectionDao{
         }
     }
 
-    //    public void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException {
-//        // Step 1: Retrieve the professor's userid using the professor's name.
-//        String getUserIdSql = "SELECT userid FROM users WHERE username = ?";
-//        //edit here
-//        //        int professorUserId = 0;
-//        Integer professorUserId = null;
-//        try (PreparedStatement psGetUserId = DB_connect.getConnection().prepareStatement(getUserIdSql)) {
-//            psGetUserId.setString(1, professorName);
-//            try (ResultSet rs = psGetUserId.executeQuery()) {
-//                if (rs.next()) {
-//                    professorUserId = rs.getInt("userid");
-//                }
-//            }
-//        }
-//
-//        // Step 2: Retrieve the professorid using the userid.
-//        String getProfessorIdSql = "SELECT professorid FROM professors WHERE userid = ?";
-//        //edit here, professorid is integer
-//        Integer professorId = null;
-////        int professorId = 0;
-//        try (PreparedStatement psGetProfessorId = DB_connect.getConnection().prepareStatement(getProfessorIdSql)) {
-//            psGetProfessorId.setInt(1, professorUserId);
-//            try (ResultSet rs = psGetProfessorId.executeQuery()) {
-//                if (rs.next()) {
-//                    professorId = rs.getInt("professorid");
-//                }
-//            }
-//        }
-//
-//        // Step 3: Update the section with the new professorid.
-////        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
-////        try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
-////            psUpdateSection.setInt(1, professorId);
-////            psUpdateSection.setInt(2, sectionID);
-////            psUpdateSection.executeUpdate();
-////        }
-//        // Check if professorId is null
-//
-//        String updateSectionSql = "UPDATE sections SET professorid = ? WHERE sectionid = ?";
-//        try (PreparedStatement psUpdateSection = DB_connect.getConnection().prepareStatement(updateSectionSql)) {
-//            if (professorId != null) {
-//                psUpdateSection.setInt(1, professorId);
-//            } else {
-//                throw new SQLException("ProfessorId is null for professorName: " + professorName);
-//            }
-//            psUpdateSection.setInt(2, sectionID);
-//            psUpdateSection.executeUpdate();
-//        }
-//    }
     public boolean checkSectionExists(int sectionId) {
         String sql = "SELECT 1 FROM sections WHERE sectionid = ?";
         try (Connection conn = DB_connect.getConnection();

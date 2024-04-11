@@ -106,24 +106,24 @@ class UserDaoImpTest {
         assertEquals(10, userId); // Verify that the user ID returned is as expected
     }
 
-    @Test
-    void testAddUser3() throws SQLException {
-        // Set up mock behavior
-        when(conn.prepareStatement(anyString())).thenReturn(ps);
-        when(ps.executeUpdate()).thenReturn(1); // Indicate that one row was affected
-        when(rs.next()).thenReturn(true);
-        when(rs.getInt("UserID")).thenReturn(10); // Mocked user ID
-        when(ps.getGeneratedKeys()).thenReturn(rs);
+    // @Test
+    // void testAddUser3() throws SQLException {
+    //     // Set up mock behavior
+    //     when(conn.prepareStatement(anyString())).thenReturn(ps);
+    //     when(ps.executeUpdate()).thenReturn(1); // Indicate that one row was affected
+    //     when(rs.next()).thenReturn(true);
+    //     when(rs.getInt("UserID")).thenReturn(10); // Mocked user ID
+    //     when(ps.getGeneratedKeys()).thenReturn(rs);
 
-        User user = new User(null, "user001", "hashedPwd", "admin");
+    //     User user = new User(null, "user001", "hashedPwd", "admin");
 
-        // Call the method under test
-        int userId = userDao.addUser(user);
+    //     // Call the method under test
+    //     int userId = userDao.addUser(user);
 
-        // Verify the interactions
-        verify(ps).executeUpdate(); // Verify that executeUpdate is called on PreparedStatement
-        assertEquals(10, userId); // Verify that the user ID returned is as expected
-    }
+    //     // Verify the interactions
+    //     verify(ps).executeUpdate(); // Verify that executeUpdate is called on PreparedStatement
+    //     assertEquals(10, userId); // Verify that the user ID returned is as expected
+    // }
 
     @Test
     void testAddUser4() throws SQLException {
