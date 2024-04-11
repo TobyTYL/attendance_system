@@ -42,22 +42,5 @@ public class SecurityController {
         }
         return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
     }
-    /*
-     * Endpoint for accessing the admin page.
-     * @return String A welcome message for the admin page.
-     */
-    @GetMapping("/admin")
-    // @PreAuthorize("hasRole('ADMIN')")
-    public String adminPage() {
-        return "Welcome to admin page!"; 
-    }
-    /*
-     * Endpoint for testing purposes.
-     * @return String A welcome message for testing purposes.
-     */
-    @GetMapping("/test")
-    public String test() {
-        return "Welcome to admin page!"; 
-    }
 
 }

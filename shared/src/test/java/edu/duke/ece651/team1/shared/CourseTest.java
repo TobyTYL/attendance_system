@@ -20,4 +20,17 @@ public class CourseTest {
         course.setName(expectedName);
         assertEquals(expectedName, course.getName(), "getName should return the correct name.");
     }
+    @Test
+    public void testConstructor_name(){
+        Course c = new Course("course");
+        c.setID(1);
+        assertEquals("course", c.getName());
+        assertEquals(1, c.getID());
+    }
+    @Test
+    public void testConstructor_id_name(){
+        Course c = new Course(1,"course");
+        assertEquals("course", c.getName());
+        assertEquals(1, c.getID());
+    }
 }

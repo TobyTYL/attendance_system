@@ -38,17 +38,15 @@ import edu.duke.ece651.team1.shared.*;;
 @Service
 // Repository for managing user details
 public class UserService implements UserDetailsService {
-    // @Autowired
-    // private InMemoryUserRepository inMemoryUserRepository;
-    // @Autowired
+    @Autowired
     private PasswordEncoder passwordEncoder;
     private UserDao userDao = new UserDaoImp();
     private ProfessorDao professorDao = new ProfessorDaoImp();
     private StudentDao studentDao = new StudentDaoImp();
-    @Autowired
-    public UserService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+    // @Autowired
+    // public UserService(PasswordEncoder passwordEncoder) {
+    //     this.passwordEncoder = passwordEncoder;
+    // }
 
     /*
      * Creates a new user account with the specified username and password.
@@ -67,7 +65,6 @@ public class UserService implements UserDetailsService {
     public void createUserStudent(String username, String password,String role,String legalName, String displayName,String email) {
         User user = new User(username,passwordEncoder.encode(password),role);
         int userId = userDao.addUser(user);
-//        userDao.findUserByUsername(username).getUserId();
         Student student = new Student(userId, legalName,displayName,email);
         studentDao.addStudent(student);
         

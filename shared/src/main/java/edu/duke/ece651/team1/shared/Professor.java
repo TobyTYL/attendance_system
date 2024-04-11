@@ -32,7 +32,7 @@ public class Professor {
         this.professorName = professorName;
     }
 
-    public int getProfessorId() {
+    public Integer getProfessorId() {
         return professorId;
     }
 
