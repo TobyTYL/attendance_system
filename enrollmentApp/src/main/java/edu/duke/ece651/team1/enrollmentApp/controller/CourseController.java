@@ -13,13 +13,21 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 import java.io.IOException;
+/**
+ * Manages course-related functionalities such as creating, updating, and removing courses.
+ */
 public class CourseController {
     final CourseDao courseDao;
     private final BufferedReader inputReader;
     private final PrintStream out;
     final CourseView CourseView;
     final SectionController sectionController;
-
+    /**
+     * Initializes the CourseController with input/output streams and controllers for handling courses and sections.
+     *
+     * @param inputReader BufferedReader to read user input.
+     * @param out PrintStream to print outputs to the user.
+     */
     public CourseController(BufferedReader inputReader, PrintStream out) {
         this.inputReader = inputReader;
         this.out = out;
@@ -27,6 +35,7 @@ public class CourseController {
         this.courseDao = new CourseDaoImp();
         this.sectionController = new SectionController(inputReader, out);
     }
+    
     public CourseController(BufferedReader inputReader, PrintStream out, CourseView courseiew, CourseDao courseDao, SectionController sectionController) {
         this.inputReader = inputReader;
         this.out = out;
@@ -34,7 +43,12 @@ public class CourseController {
         this.courseDao = courseDao;
         this.sectionController = sectionController;
     }
-
+    /**
+     * Displays options to manage courses and handles user input to create, update, or remove courses.
+     *
+     * @throws IOException If an input or output exception occurred.
+     * @throws SQLException If a database access error occurs.
+     */
     public void startCourseManagement() throws IOException, SQLException {
         while (true) {
             CourseView.showClassManageOption();
@@ -56,7 +70,11 @@ public class CourseController {
             }
         }
     }
-
+    /**
+     * Handles the creation of a new class after checking for its existence to avoid duplicates.
+     *
+     * @throws IOException If an input or output exception occurred.
+     */
     void createNewClass() throws IOException {
         try {
             String className = CourseView.getClassNameToCreate();
@@ -76,7 +94,12 @@ public class CourseController {
             out.println("An error occurred: " + e.getMessage());
         }
     }
-
+    /**
+     * Handles updating existing classes including adding or removing sections or updating class details.
+     *
+     * @throws IOException If an input or output exception occurred.
+     * @throws SQLException If a database access error occurs.
+     */
     void updateClass() throws IOException, SQLException {
         // Use CourseView to ask which class to update
         showAllCourses();
@@ -108,7 +131,11 @@ public class CourseController {
         }
         
     }
-
+    /**
+     * Handles the removal of a class after confirmation from the user.
+     *
+     * @throws IOException If an input or output exception occurred.
+     */
     void removeClass() throws IOException {
         showAllCourses();
         String className = CourseView.getClassNameToUpdateOrRemove("remove");
@@ -121,7 +148,11 @@ public class CourseController {
             CourseView.showActionConfirmation("removed", className);
         }
     }
-    
+    /**
+     * Updates the name of an existing class after ensuring the new name does not lead to a duplicate.
+     *
+     * @throws IOException If an input or output exception occurred.
+     */
     void updateClassName(String oldClassName) throws IOException {
         String newClassName = CourseView.getNewClassName();
         if (courseDao.checkCourseExists(newClassName)) {
@@ -131,6 +162,11 @@ public class CourseController {
         courseDao.updateClassName(oldClassName, newClassName);
         CourseView.showUpdateClassNameConfirmation(oldClassName, newClassName);
     }
+    /**
+     * Displays all available courses from the database.
+     *
+     * @throws IOException If an input or output exception occurred.
+     */
     public void showAllCourses() throws IOException {
         List<Course> courses = courseDao.getAllCourses(); // Fetch the list of all courses
         

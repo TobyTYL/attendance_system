@@ -24,7 +24,9 @@ import edu.duke.ece651.team1.shared.Course;
 import edu.duke.ece651.team1.shared.Enrollment;
 import edu.duke.ece651.team1.shared.Section;
 import edu.duke.ece651.team1.shared.Student;
-
+/**
+ * Controls the enrollment processes including manual and batch enrollments for students into sections.
+ */
 public class EnrollmentController {
     EnrollmentView enrollmentView;
     CourseDao courseDao;
@@ -34,6 +36,12 @@ public class EnrollmentController {
     NotificationPreferenceDao notificationPreferenceDao;
     private final PrintStream out; 
 
+    /**
+     * Constructor to initialize the enrollment controller with necessary dependencies.
+     *
+     * @param inputReader the BufferedReader to read user input.
+     * @param out the PrintStream to output data to the user.
+     */
     public EnrollmentController(BufferedReader inputReader, PrintStream out) {
         this.enrollmentView = new EnrollmentView(inputReader, out);
         this.courseDao = new CourseDaoImp();
@@ -43,7 +51,10 @@ public class EnrollmentController {
         this.notificationPreferenceDao = new NotificationPreferenceDaoImp();
         this.out = out;
     }
-
+    /**
+     * Displays enrollment options and handles user input to navigate through enrollment choices.
+     * @throws IOException if an input or output error occurs.
+     */
     public void startEnrollment() throws IOException {
         enrollmentView.showEnrollmentOptions();
         int choice = enrollmentView.getEnrollmentChoice();
@@ -61,6 +72,13 @@ public class EnrollmentController {
                 break;
         }
     }
+    /**
+     * Enrolls a student in a specified section if they are not already enrolled.
+     *
+     * @param studentId the student's ID.
+     * @param sectionId the section's ID.
+     * @return true if the enrollment is successful, false otherwise.
+     */
     boolean enrollStudent(int studentId, int sectionId) {
         // Check if student already enrolled in the section
         if(enrollmentDao.isStudentAlreadyEnrolled(studentId, sectionId)) {
@@ -89,7 +107,10 @@ public class EnrollmentController {
         }
         return true;
     }
-
+    /**
+     * Manually processes enrollment for a single student by prompting user input for student ID and section selection.
+     * @throws IOException if an input or output error occurs.
+     */
     void manuallyEnrollStudent() throws IOException {
         String studentIdStr = enrollmentView.getStudentIDForEnrollment();
         int studentId;
@@ -136,8 +157,9 @@ public class EnrollmentController {
     }
 
     /**
+     * Processes batch enrollments from a CSV file, allowing multiple students to be enrolled at once.
      * required csv format: StudentID,ClassName,SectionID
-     * @throws IOException
+     * @throws IOException if an input or output error occurs.
      */
     void batchEnrollStudent() throws IOException {
         String csvFileName = enrollmentView.getCsvFilePath();
