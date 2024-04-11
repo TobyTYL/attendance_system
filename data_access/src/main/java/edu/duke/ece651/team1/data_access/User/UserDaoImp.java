@@ -38,10 +38,10 @@ public class UserDaoImp implements UserDao {
         }
     }
 
-    @Override
-    public void updateUser(User user) {
-    // 后续需要update用户信息
-    }
+//    @Override
+//    public void updateUser(User user) {
+//    // 后续需要update用户信息
+//    }
 
     @Override
     public User getUserById(int userId) {

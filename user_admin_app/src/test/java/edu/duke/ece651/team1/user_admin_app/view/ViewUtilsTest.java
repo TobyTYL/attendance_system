@@ -43,7 +43,7 @@ public class ViewUtilsTest {
     }
     @Test
     void testGetUserOption_OutOfRangeInput() {
-        String input = "6\n"; // 超出范围的选项
+        String input = "6\n";
         BufferedReader inputReader = new BufferedReader(new StringReader(input));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);

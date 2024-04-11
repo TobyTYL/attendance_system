@@ -1,27 +1,27 @@
 //package edu.duke.ece651.team1.user_admin_app;
 //
+//import edu.duke.ece651.team1.user_admin_app.controller.ApplicationController;
+//
+//import static org.junit.jupiter.api.Assertions.*;
+//import static org.mockito.Mockito.*;
+//
 //import org.junit.jupiter.api.Test;
 //
+//import java.io.BufferedReader;
 //import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
 //import java.io.PrintStream;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.when;
 //
 //public class AppTest {
 //    @Test
-//    public void testAppMain() {
-//        // Mock System.out
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(outputStream));
+//    public void testRun_NoUncaughtExceptions() throws IOException {
+//        BufferedReader inputReader = mock(BufferedReader.class);
+//        PrintStream out = mock(PrintStream.class);
+//        ApplicationController applicationController = mock(ApplicationController.class);
+//        App app = new App();
+//        app.main(new String[]{});
+//        when(inputReader.readLine()).thenReturn("3");
 //
-//        ByteArrayInputStream inputStream = new ByteArrayInputStream("1\n".getBytes());
-//        System.setIn(inputStream);
-//
-//        App.main(new String[]{});
-//
-//        assertEquals("Start Application!\n", outputStream.toString());
 //    }
 //}
