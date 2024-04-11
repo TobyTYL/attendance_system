@@ -6,13 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import edu.duke.ece651.team1.data_access.DB_connect;
-
+/**
+ * The NotificationPreferenceDaoImp class provides implementation for accessing notification preference data in the database.
+ */
 public class NotificationPreferenceDaoImp implements NotificationPreferenceDao {
-    // private static final String URL =
-    // "jdbc:postgresql://localhost:5432/schoolmanagement";
-    // private static final String USER = "ece651";
-    // private static final String PASSWORD = "passw0rd";
-
+    /**
+     * Updates the notification preference for a specific student and class.
+     *
+     * @param studentId           The ID of the student.
+     * @param classId             The ID of the class.
+     * @param receiveNotifications True if the student should receive notifications, false otherwise.
+     */
     @Override
     public void updateNotificationPreference(int studentId, int classId, boolean receiveNotifications) {
         try (Connection conn = DB_connect.getConnection()) {
@@ -26,7 +30,13 @@ public class NotificationPreferenceDaoImp implements NotificationPreferenceDao {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Finds the notification preference for a specific student and class.
+     *
+     * @param studentId The ID of the student.
+     * @param classId   The ID of the class.
+     * @return The notification preference found in the database.
+     */
     @Override
     public NotificationPreference findNotificationPreferenceByStudentIdAndClassId(int studentId, int classId) {
         // TODO Auto-generated method stub
@@ -37,7 +47,6 @@ public class NotificationPreferenceDaoImp implements NotificationPreferenceDao {
             statement.setInt(1, studentId);
             statement.setInt(2, classId);
             ResultSet rs = statement.executeQuery();
-
             if (rs.next()) {
                 boolean receiveNotifications = rs.getBoolean("ReceiveNotifications");
                 int PreferenceId = rs.getInt("PreferenceID");
@@ -48,7 +57,13 @@ public class NotificationPreferenceDaoImp implements NotificationPreferenceDao {
         }
         return preference;
     }
-
+    /**
+     * Adds a new notification preference for a student and class.
+     *
+     * @param studentId           The ID of the student.
+     * @param classID             The ID of the class.
+     * @param receiveNotifications True if the student should receive notifications, false otherwise.
+     */
     @Override
     public void addNotificationPreference(int studentId, int classID, boolean receiveNotifications) {
         try (Connection conn = DB_connect.getConnection()) {
