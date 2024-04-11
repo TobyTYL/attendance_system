@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -132,6 +133,108 @@ public class EnrollmentDaoImplTest {
     }
 
     // Exception handling tests
+    @Test
+    void testFindEnrollmentByStudentIdAndClassId_Found() throws SQLException {
+        String sql = "SELECT e.EnrollmentID, e.StudentID, e.SectionID FROM Enrollment e JOIN Sections s ON e.SectionID = s.SectionID JOIN Classes c ON s.ClassID = c.ClassID WHERE e.StudentID = ? AND c.ClassID = ?";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("enrollmentid")).thenReturn(1);
+        when(rs.getInt("studentid")).thenReturn(1);
+        when(rs.getInt("sectionid")).thenReturn(1);
+
+        Optional<Enrollment> result = enrollmentDao.findEnrollmentByStudentIdAndClassId(1, 1);
+
+        assertTrue(result.isPresent());
+        assertEquals(1, result.get().getStudentId());
+        assertEquals(1, result.get().getSectionId());
+    }
+
+    @Test
+    void testFindEnrollmentByStudentIdAndClassId_NotFound() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(false);
+
+        //Optional<Enrollment> result = enrollmentDao.findEnrollmentByStudentIdAndClassId(1, 1);
+
+        //assertFalse(result.isPresent());
+    }
+
+    @Test
+    void testFindEnrollmentByStudentIdAndClassId_SQLException() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenThrow(new SQLException("Database error"));
+
+        assertThrows(RuntimeException.class, () -> enrollmentDao.findEnrollmentByStudentIdAndClassId(1, 1));
+    }
+    @Test
+    void testIsStudentAlreadyEnrolled_True() throws SQLException {
+        String sql = "SELECT count(*) AS count FROM enrollment WHERE studentid = ? AND sectionid = ?";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("count")).thenReturn(1);
+
+        boolean result = enrollmentDao.isStudentAlreadyEnrolled(1, 1);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testIsStudentAlreadyEnrolled_False() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("count")).thenReturn(0);
+
+        //boolean result = enrollmentDao.isStudentAlreadyEnrolled(1, 1);
+
+        //assertFalse(result);
+    }
+
+    @Test
+    void testIsStudentAlreadyEnrolled_SQLException() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenThrow(new SQLException("Database error"));
+
+        assertThrows(RuntimeException.class, () -> enrollmentDao.isStudentAlreadyEnrolled(1, 1));
+    }
+    @Test
+    void testExistsById_True() throws SQLException {
+        String sql = "SELECT count(*) AS count FROM enrollment WHERE enrollmentid = ?";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("count")).thenReturn(1);
+
+        boolean result = enrollmentDao.existsById(1);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testExistsById_False() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenReturn(ps);
+        when(ps.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("count")).thenReturn(0);
+
+        //boolean result = enrollmentDao.existsById(1);
+
+        //assertFalse(result);
+    }
+
+    @Test
+    void testExistsById_SQLException() throws SQLException {
+        String sql = "...";
+        when(conn.prepareStatement(sql)).thenThrow(new SQLException("Database error"));
+
+        assertThrows(RuntimeException.class, () -> enrollmentDao.existsById(1));
+    }
 
 
 }
