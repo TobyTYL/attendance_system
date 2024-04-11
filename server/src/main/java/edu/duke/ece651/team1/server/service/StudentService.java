@@ -35,16 +35,30 @@ import org.springframework.beans.factory.annotation.Autowired;
  * This class provides services for managing student-related operations, such as saving, retrieving, adding, removing,
  * and editing student information.
  */
-
+/**
+ * This class provides services for managing notification preferences of students.
+ */
 @Service
 public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
     private NotificationPreferenceDao notificationDao = new NotificationPreferenceDaoImp();
-
+    /**
+     * Updates the notification preference of a student for a course.
+     *
+     * @param studentId The ID of the student.
+     * @param courseId  The ID of the course.
+     * @param preference The notification preference.
+     */
     public void updateNotificationPreference(int studentId, int coursId, boolean preference){
         notificationDao.updateNotificationPreference(studentId, coursId, preference);
     }
-
+    /**
+     * Retrieves the notification preference of a student for a course.
+     *
+     * @param studentId The ID of the student.
+     * @param courseId  The ID of the course.
+     * @return A JSON string containing the notification preference.
+     */
     public String getNotificationPreference(int studentId, int courseId){
         NotificationPreference preference=notificationDao.findNotificationPreferenceByStudentIdAndClassId(studentId, courseId);
         Gson gson = new Gson();

@@ -19,6 +19,11 @@ public enum AttendanceStatus {
         return status;
     }
     // Method to convert a string to a corresponding AttendanceStatus enum, ignoring case.
+    /**
+     *  convert a string to a corresponding AttendanceStatus enum, ignoring case.
+     * @param statusString
+     * @return
+     */
     public static AttendanceStatus fromString(String statusString) {
         for (AttendanceStatus status : AttendanceStatus.values()) {
             if (status.getStatus().equalsIgnoreCase(statusString)) {

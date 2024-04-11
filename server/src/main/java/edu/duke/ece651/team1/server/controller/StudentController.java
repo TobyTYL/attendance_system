@@ -23,14 +23,23 @@ import java.util.Set;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+/**
+ * The StudentController class manages student-specific functionalities such as updating and retrieving notification preferences.
+ */
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
-
+     /**
+     * Updates a student's notification preference for a specific class.
+     *
+     * @param studentId The ID of the student whose notification preference is to be updated.
+     * @param classId The ID of the class for which the notification setting is updated.
+     * @param preference The new notification preference (true for enabled, false for disabled).
+     * @return ResponseEntity indicating the success or failure of the update operation.
+     */
     @PostMapping("/notification/{studentId}/{classId}")
     public ResponseEntity<String> getAllStudent(@PathVariable int studentId, @PathVariable int classId, @RequestParam(value = "preference") boolean preference) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -41,6 +50,13 @@ public class StudentController {
             return new ResponseEntity<>("Error update notification preference: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    /**
+     * Retrieves the notification preference for a student regarding a specific class.
+     *
+     * @param studentId The ID of the student whose notification preference is being queried.
+     * @param classId The ID of the class for which the notification preference is queried.
+     * @return ResponseEntity containing the notification preference status or an error message.
+     */
     @GetMapping("/notification/{studentId}/{classId}")
     public ResponseEntity<String> getMethodName(@PathVariable int studentId, @PathVariable int classId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

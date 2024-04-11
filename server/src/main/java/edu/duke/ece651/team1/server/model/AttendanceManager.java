@@ -76,7 +76,11 @@ public class AttendanceManager {
             }
         }
     }
-
+    /**
+     * Get the attendance records of a student.
+     * @param records
+     * @return
+     */
     public String getDetailAttendanceInfor(Map<String, AttendanceStatus> records) {
         StringBuilder infoBuilder = new StringBuilder();
         for (Map.Entry<String, AttendanceStatus> entry : records.entrySet()) {
@@ -137,6 +141,10 @@ public class AttendanceManager {
 
     // showing, for each student in a class the attendance participation. Tardy
     // students will count towards 80% of participation that day.
+    /**
+     * Generates a class attendance report. This method calculates the attendance
+     * @return
+     */
     public String generateClassReport() {
         StringBuilder classReportBuilder = new StringBuilder("Class Attendance Report:\n");
         for (Map.Entry<Student, Map<String, AttendanceStatus>> studentRecord : studentAttendanceRecords.entrySet()) {

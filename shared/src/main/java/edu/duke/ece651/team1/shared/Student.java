@@ -27,7 +27,13 @@ public class Student {
         this.email = email;
         this.userId = userId;
     }
-
+    /**
+     * Constructs a Student with specified legal name, display name, and email.
+     * @param uid
+     * @param legalName
+     * @param disPlayName
+     * @param email
+     */
     public Student(int uid,String legalName, String disPlayName, String email) {
         this.legalName = legalName;
         this.disPlayName = disPlayName;
@@ -54,51 +60,85 @@ public class Student {
     }
 
 
-
+    /**
+     * Default constructor for a Student object.
+     */
     public Student(){
         this(null, "", "", "",null);
     }
-
+    /**
+     *  Get the student id.
+     * @return
+     */
     public Integer getStudentId() {
         return studentId;
     }
-
+    /**
+     * Set the student id.
+     * @param studentId
+     */
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-
+    /**
+     *  Get the legal name.
+     * @return
+     */
     public String getLegalName() {
         return legalName;
     }
-
+    /**
+     * Get the display name.
+     * @return
+     */
     public String getDisPlayName() {
         return disPlayName;
     }
-
+    /**
+     * Set the display name.
+     * @return
+     */
     public String getEmail() {
         return email;
     }
+    /**
+     * Set the display name.
+     * @param email
+     */
     public void setStudentEmail(String email) {
         this.email = email;
     }
-
+    /**
+     * Get the user id.
+     * @return
+     */
     public Integer getUserId() {
         return userId;
     }
-
+    /**
+     * Set the user id.
+     * @param userId
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
+    /**
+     * Update the display name.
+     * @param dispalyName
+     */
     public void updateDisplayName(String dispalyName){
         this.disPlayName = dispalyName;
     }
-
+    /**
+     * Update the email.
+     */
     @Override
     public int hashCode() {
         return toString().hashCode();
     }
-
+    /**
+     * Check if two students are equal.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj.getClass().equals(getClass())) {
@@ -107,7 +147,9 @@ public class Student {
         }
         return false;
     }
-
+    /**
+     * Get the string representation of a student.
+     */
     @Override
     public String toString() {
         return "Student [studentId=" + studentId + ", legalName=" + legalName + ", disPlayName=" + disPlayName + ", email=" + email + "]";

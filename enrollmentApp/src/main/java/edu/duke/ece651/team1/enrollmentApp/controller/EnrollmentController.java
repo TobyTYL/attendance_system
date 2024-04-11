@@ -115,15 +115,15 @@ public class EnrollmentController {
         String studentIdStr = enrollmentView.getStudentIDForEnrollment();
         int studentId;
         try {
-            studentId = Integer.parseInt(studentIdStr);
+            studentId = Integer.parseInt(studentIdStr);//parse the student ID
         } catch (NumberFormatException e) {
-            out.println("Invalid student ID format.");
+            out.println("Invalid student ID format.");//if the student ID is not a number
             return;
         }
         // Check if student exists in the database
         Optional<Student> studentOptional = studentDao.findStudentByStudentID(studentId);
         if (!studentOptional.isPresent()) {
-            out.println("Student ID not found. Please register the student first.");
+            out.println("Student ID not found. Please register the student first.");//if the student ID is not found
             return;
         }
 
@@ -132,12 +132,12 @@ public class EnrollmentController {
         
         String selectedCourseName = enrollmentView.getClassForEnrollment();
         Course course = courseDao.getClassByName(selectedCourseName);
-        if(course == null){
+        if(course == null){//if the course is not found in the database
             out.println("Course not found. Please try again.");
             return;
         }
     
-        List<Section> sections = sectionDao.getSectionsByClassId(course.getID());
+        List<Section> sections = sectionDao.getSectionsByClassId(course.getID());//get the sections of the course
         if (sections.isEmpty()) {
             out.println("There are no available sections for this class right now. You can add the section first.");
             return; 
@@ -145,12 +145,12 @@ public class EnrollmentController {
         enrollmentView.showAllSections(sections);
     
         int selectedSectionId = enrollmentView.getSectionChoice();
-        Section selectedSection = sectionDao.getSectionById(selectedSectionId);
+        Section selectedSection = sectionDao.getSectionById(selectedSectionId);//get the section by the section ID
         if(selectedSection == null){
             out.println("Section not found. Please try again.");
             return;
         }   
-        boolean success = enrollStudent(studentId, selectedSectionId);
+        boolean success = enrollStudent(studentId, selectedSectionId);//enroll the student
         if (!success) {
             out.println("Enrollment failed. Please try again.");
         }
@@ -170,14 +170,14 @@ public class EnrollmentController {
         int failedEnrollments = 0;
         List<String> errors = new ArrayList<>();
         boolean isFirstLine = true;
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {//read the csv file
             String line;
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) { // Check if it's the first line
                     isFirstLine = false; // Update the flag
                     continue; // Skip processing for the first line
                 }
-                try {
+                try {//parse the line
                     String[] values = line.split(",");
                     if (values.length != 3) {
                         errors.add("Invalid format in line: " + line);
@@ -192,7 +192,7 @@ public class EnrollmentController {
                     } else {
                         failedEnrollments++;
                     }
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {//if the number format is invalid
                     errors.add("Invalid number format in line: " + line);
                     failedEnrollments++;
                 } catch (Exception e) {
@@ -200,7 +200,7 @@ public class EnrollmentController {
                     failedEnrollments++;
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {//if the file is not found
             out.println("File not found: " + filePath);
             return;
         } catch (IOException e) {

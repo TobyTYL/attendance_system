@@ -91,7 +91,12 @@ public class AttendanceService {
         logger.info("debug here attendance");
         AttendanceRecordDAO.addAttendanceRecord(attendanceRecord, sectionId);
     }
-
+     /**
+     * Updates the attendance record.
+     *
+     * @param record The attendance record JSON string.
+     * @throws SQLException If an SQL error occurs.
+     */
     public void updateAttendanceRecord(String record) throws SQLException{
         AttendanceRecord attendanceRecord = serializer.deserialize(record);
         AttendanceRecordDAO.updateAttendanceRecord(attendanceRecord);
@@ -199,7 +204,13 @@ public class AttendanceService {
         String message = generateAttendanceNotification(studentName, sessionDate, attendanceStatus);
         nService.notifyObserver(message, studentEmail);
     }
-
+    /**
+     * This method sends an attendance notification message to a student.
+     * @param sectionId
+     * @param studentId
+     * @return
+     * @throws SQLException
+     */
     private boolean getNotificationPreference(int sectionId, int studentId) throws SQLException{
         int courseId = sectionDao.getSectionById(sectionId).getClassId();
         NotificationPreference preference=notificationPreferenceDao.findNotificationPreferenceByStudentIdAndClassId(studentId, courseId);
@@ -250,7 +261,12 @@ public class AttendanceService {
             return "Invalid JSON format for attendance entry: " + e.getMessage();
         }
     }
-
+    /**
+     * Retrieves all students enrolled in a section.
+     *
+     * @param sectionId The ID of the section.
+     * @return A list of all students enrolled in the section.
+     */
     public List<Student> getAllStudent(int sectionId)  {
         List<Enrollment> enrollments = enrollmentDao.getEnrollmentsBySectionId(sectionId);
         List<Student> students = enrollments.stream()
@@ -259,6 +275,13 @@ public class AttendanceService {
         return students;
 
     }
+    /**
+     * Retrieves the AttendanceManager for a section.
+     *
+     * @param sectionId The ID of the section.
+     * @return The AttendanceManager for the section.
+     * @throws SQLException If an SQL error occurs.
+     */
     private AttendanceManager getAttendanceManager(int sectionId) throws SQLException{
         Set<Student> roster = new HashSet<>(getAllStudent(sectionId));
         List<AttendanceRecord> records =AttendanceRecordDAO.findAttendanceRecordsBysectionID(sectionId);
@@ -266,7 +289,15 @@ public class AttendanceService {
     }
 
 
-
+    /**
+     * Generates an attendance report for a student.
+     *
+     * @param studentid The ID of the student.
+     * @param sectionId The ID of the section.
+     * @param detail    Indicates whether detailed report is required.
+     * @return The attendance report for the student.
+     * @throws SQLException If an SQL error occurs.
+     */
     public String getAttendanceReportForStudent(int studentid, int sectionId, boolean detail) throws SQLException{
         Student student = studentDao.findStudentByStudentID(studentid).get();
         AttendanceManager manager = getAttendanceManager(sectionId);
@@ -277,7 +308,13 @@ public class AttendanceService {
     }
 
 
-
+     /**
+     * Generates an attendance report for a professor.
+     *
+     * @param sectionId The ID of the section.
+     * @return The attendance report for the professor.
+     * @throws SQLException If an SQL error occurs.
+     */
     public String getAttendanceReportForProfessor(int sectionId) throws SQLException{
         AttendanceManager manager = getAttendanceManager(sectionId);
         return manager.generateClassReport();

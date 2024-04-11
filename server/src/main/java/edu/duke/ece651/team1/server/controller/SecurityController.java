@@ -9,18 +9,22 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import edu.duke.ece651.team1.server.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
+/**
+ * The SecurityController class manages user registration for different roles such as professors and students.
+ * It provides endpoints for registering users in the system.
+ */
 @RestController
 @RequestMapping("/api")
 public class SecurityController {
      
     @Autowired
     UserService userService;
-    /*
-     * Endpoint for user signup.
-     * @param username The username to be registered.
-     * @param password The password to be registered.
-     * @return ResponseEntity<String> A response indicating the success or failure of the signup process.
+    /**
+     * Registers a new professor with a username and password.
+     *
+     * @param userName The username for the new professor account.
+     * @param password The password for the new professor account.
+     * @return ResponseEntity indicating the success or failure of the registration process.
      */
     @PostMapping("/signup/professor")
     public ResponseEntity<String> ProfessorRegister(@RequestParam(value = "username") String userName,
@@ -32,6 +36,16 @@ public class SecurityController {
         }
         return new ResponseEntity<String>("Congrat! You have successfully signed up", HttpStatus.CREATED);
     }
+    /**
+     * Registers a new student with detailed information including username, password, legal name, display name, and email.
+     *
+     * @param userName The username for the new student account.
+     * @param password The password for the new student account.
+     * @param legalName The legal name of the student.
+     * @param displayName The display name of the student.
+     * @param email The email address of the student.
+     * @return ResponseEntity indicating the success or failure of the registration process.
+     */
     @PostMapping("/signup/student")
     public ResponseEntity<String> StudentRegister(@RequestParam(value = "username") String userName,
             @RequestParam(value = "password") String password, @RequestParam(value = "legalname") String legalName,@RequestParam(value = "displayname") String displayName,@RequestParam(value = "email") String email) {
