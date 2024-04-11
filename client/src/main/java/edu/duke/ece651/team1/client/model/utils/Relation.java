@@ -1,14 +1,22 @@
 package edu.duke.ece651.team1.client.model.utils;
 
 import java.util.*;
-
+/**
+ * Represents a relation with column names and tuples.
+ */
 public class Relation implements Iterable<Tuple>{
 
 
     private final Tuple columnNames;
     private final Tuple template;
     private final Set<Tuple> tuples;
-
+    /**
+     * Constructs a Relation object with given column names and template.
+     *
+     * @param columnNamesIterable An iterable containing the column names.
+     * @param templateIterable    An iterable containing the template for tuple types.
+     * @throws IllegalArgumentException if the size of column names does not match the size of the template.
+     */
     public Relation(Iterable<Object> columnNamesIterable, Iterable<Object> templateIterable) {
         Tuple columnNames = Tuples.asTuple(columnNamesIterable);
         Tuple template = Tuples.asTuple(templateIterable);
@@ -25,14 +33,23 @@ public class Relation implements Iterable<Tuple>{
     }
 
 
-
+    /**
+     * Adds a tuple to the relation.
+     *
+     * @param tuple The tuple to be added.
+     * @throws IllegalArgumentException if the structure of the tuple does not match the template.
+     */
     public void add(Tuple tuple) {
         if (!tuple.looksLike(this.template)) {
             throw new IllegalArgumentException("Tuple structure does not match the template");
         }
         tuples.add(tuple);
     }
-
+    /**
+     * Gets the number of tuples in the relation.
+     *
+     * @return The number of tuples in the relation.
+     */
     public int size() {
         return tuples.size();
     }
@@ -56,22 +73,37 @@ public class Relation implements Iterable<Tuple>{
             return ((Comparable) o1).compareTo(o2);
         }
     }
-
+    /**
+     * Gets the column names tuple of the relation.
+     *
+     * @return The column names tuple.
+     */
     public Tuple getColumnNames() {
         return columnNames;
     }
-
+     /**
+     * Gets the template tuple of the relation.
+     *
+     * @return The template tuple.
+     */
     public Tuple getTemplate() {
         return template;
     }
-
+    /**
+     * Returns an iterator over the tuples in the relation.
+     *
+     * @return An iterator.
+     */
     @Override
     public Iterator<Tuple> iterator() {
         return tuples.iterator();
     }
 
-
-
+    /**
+     * Returns a string representation of the relation.
+     *
+     * @return A string representation of the relation.
+     */
     @Override
     public String toString() {
         StringJoiner sj = new StringJoiner(System.lineSeparator());

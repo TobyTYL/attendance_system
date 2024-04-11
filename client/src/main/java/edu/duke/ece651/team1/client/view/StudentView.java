@@ -35,7 +35,12 @@ public class StudentView {
         out.println("2. View Attendance Reports");
         out.println("3. Go back");
     }
-   
+   /**
+     * Reads the user's choice from the student menu.
+     *
+     * @return A String representing the user's choice: "notification", "report", or "back".
+     * @throws IOException If an I/O error occurs while reading user input.
+     */
     public String readStudentOption() throws IOException {
         int optionNum;
         while (true) {
@@ -56,7 +61,11 @@ public class StudentView {
     }
 
   
-
+   /**
+     * Displays the menu for selecting the type of attendance report to view.
+     *
+     * @param className The name of the class for which the report is being viewed.
+     */
     public void showReportMenue(String className) {
         out.println("You are viewing reports for: " + className + ".");
         out.println("Please choose the type of report:");
@@ -64,7 +73,12 @@ public class StudentView {
         out.println("2. Detailed Report");
         out.println("3. Go back");
     }
-
+    /**
+     * Reads the user's choice for the type of attendance report to view.
+     *
+     * @return A String representing the user's choice: "summary", "detail", or "back".
+     * @throws IOException If an I/O error occurs while reading user input.
+     */
     public String readReportOpetion() throws IOException{
         int optionNum;
         while (true) {

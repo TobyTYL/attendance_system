@@ -1,8 +1,16 @@
 package edu.duke.ece651.team1.client.model.utils;
 
 import java.util.*;
-
+/**
+ * Provides utility methods for working with tuples.
+ */
 public class Tuples {
+     /**
+     * Converts an iterable to a Tuple.
+     *
+     * @param iterable An iterable containing the elements of the tuple.
+     * @return The created Tuple object.
+     */
     public static Tuple asTuple(Iterable<Object> iterable) {
         List<Object> elementsList = new ArrayList<>();
         for (Object element : iterable) {
@@ -10,7 +18,14 @@ public class Tuples {
         }
         return new Tuple(elementsList.toArray(new Object[0]));
     }
-
+      /**
+     * Reads a tuple from the given template and segmented line.
+     *
+     * @param template       The template defining the structure of the tuple.
+     * @param segmentedLine  The segmented line containing data for the tuple.
+     * @return The created Tuple object.
+     * @throws IllegalArgumentException if the data in the segmented line does not match the template.
+     */
     public static Tuple readTuple(Iterable<Object> template, Iterable<String> segmentedLine) {
         List<Object> values = new ArrayList<>();
         Iterator<String> lineIterator = segmentedLine.iterator();
@@ -26,7 +41,14 @@ public class Tuples {
         }
         return asTuple(values);
     }
-
+    /**
+     * Converts a string value to the type specified by the type sample.
+     *
+     * @param stringValue The string value to convert.
+     * @param typeSample  An object representing the type to convert to.
+     * @return The converted value.
+     * @throws IllegalArgumentException if the conversion fails.
+     */
     public static Object convertStringToType(String stringValue, Object typeSample) {
         if (typeSample instanceof Integer) {
             return Integer.parseInt(stringValue);
@@ -54,6 +76,12 @@ public class Tuples {
         }
     }
 
+    /**
+     * Checks if the column names in the tuple are valid.
+     *
+     * @param columnNames The tuple containing column names.
+     * @throws IllegalArgumentException if any column name is invalid.
+     */
     public static void checkColumnNames(Tuple columnNames) {
         Set<String> nameSet = new HashSet<>();
         for (Object colNameObj : columnNames) {

@@ -11,7 +11,13 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.json.*;
 
-
+/**
+ * The CourseController class manages the course-related functionality of the application.
+ * It handles operations such as retrieving course details based on the user's role (Professor or Student)
+ * and navigating to the main menu of a selected course.
+ * This controller interacts with the CourseView for user input and displays and utilizes a RestTemplate
+ * for HTTP requests to the backend service.
+ */
 public class CourseController {
     private final String role;
     private final int id;
@@ -19,7 +25,14 @@ public class CourseController {
     private final PrintStream out;
     private final CourseView view;
   
-
+    /**
+     * Constructs a CourseController with the specified role, user ID, input reader, and output stream.
+     *
+     * @param role         The role of the user (Professor or Student).
+     * @param id           The ID of the user.
+     * @param inputReader  The BufferedReader to read user input.
+     * @param out          The PrintStream to output data to the user.
+     */
     public CourseController(String role, int id, BufferedReader inputReader, PrintStream out) {
         this.role = role;
         this.id = id;
@@ -27,7 +40,13 @@ public class CourseController {
         this.out = out;
         this.view = new CourseView(inputReader, out);
     }
-
+    /**
+     * Starts the main menu for course selection based on the user's role.
+     * It retrieves the list of available courses, displays them to the user, and prompts for course selection.
+     * After selection, it navigates to the main menu of the chosen course.
+     *
+     * @throws IOException If an I/O error occurs during user interaction.
+     */
     public void startCourseMainMenu() throws IOException {
         view.showWelcomeMessage(role);
         while (true) {
@@ -59,12 +78,22 @@ public class CourseController {
         }
     }
 
-
+     /**
+     * Retrieves the list of courses based on the user's role (Professor or Student).
+     *
+     * @param role The role of the user (Professor or Student).
+     * @return A list of course details in JSON format.
+     */
     public List<String> getCourses(String role) {
         String userTypePath = role.equals("Professor") ? "professor" : "student";
         return fetchCourses(userTypePath);
     }
-
+    /**
+     * Fetches the list of courses from the backend service.
+     *
+     * @param userTypePath The path indicating the user type (professor or student).
+     * @return A list of course details in JSON format.
+     */
     public List<String> fetchCourses(String userTypePath) {
         ParameterizedTypeReference<List<String>> responseType =new ParameterizedTypeReference<List<String>>() {
         };

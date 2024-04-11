@@ -2,8 +2,9 @@ package edu.duke.ece651.team1.client.model.utils;
 import java.util.*;
 import java.util.stream.StreamSupport;
 
-// 230202 cz
-
+/**
+ * Represents a tuple containing elements of various types.
+ */
 public final class Tuple implements Iterable<Object> {
 
     public static final Integer INTEGER = 0;
@@ -17,7 +18,12 @@ public final class Tuple implements Iterable<Object> {
     public static final String STRING = "";
 
     private final Object[] elements;
-
+    /**
+     * Constructs a Tuple object with the given elements.
+     *
+     * @param elements The elements to be included in the tuple.
+     * @throws IllegalArgumentException if any element is not a boxed primitive or a String.
+     */
     public Tuple(Object... elements) {
 
         for (Object elem : elements) {
@@ -29,21 +35,42 @@ public final class Tuple implements Iterable<Object> {
         }
         this.elements = elements;
     }
-
+    /**
+     * Creates a new Tuple object with the given elements.
+     *
+     * @param elements The elements to be included in the tuple.
+     * @return The created Tuple object.
+     */
     public static Tuple of(Object... elements) {
         return new Tuple(elements);
     }
-
+     /**
+     * Creates a new Tuple object from an iterable.
+     *
+     * @param iterable An iterable containing the elements of the tuple.
+     * @return The created Tuple object.
+     * @deprecated This method is deprecated and will be removed in a future version.
+     */
     @Deprecated
     public static Tuple of(Iterable<Object> iterable) {
         return new Tuple(StreamSupport.stream(iterable.spliterator(), false).toArray());
     }
 
-
+    /**
+     * Gets the number of elements in the tuple.
+     *
+     * @return The number of elements in the tuple.
+     */
     public int size() {
         return elements.length;
     }
-
+     /**
+     * Gets the element at the specified index.
+     *
+     * @param index The index of the element to retrieve.
+     * @return The element at the specified index.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public Object get(int index) {
         if (index >= 0 && index < elements.length) {
             return elements[index];

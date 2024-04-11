@@ -27,9 +27,18 @@ import edu.duke.ece651.team1.client.controller.*;
 import edu.duke.ece651.team1.client.model.UserSession;
 import java.net.InetAddress;
 
-
+/**
+ * The App class represents the main entry point of the client application.
+ * It initializes the necessary components and starts the application.
+ */
 public class App {
-
+   /**
+     * The main method of the application.
+     * Initializes components and starts the application.
+     *
+     * @param args The command-line arguments passed to the application.
+     * @throws IOException If an I/O error occurs while reading user input.
+     */
   public static void main(String[] args) throws IOException{
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
     ApplicationController controller = new ApplicationController(inputReader, System.out);
