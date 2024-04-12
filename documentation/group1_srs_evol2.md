@@ -39,9 +39,12 @@ Faculty can amend attendance records post-class to account for late arrivals or 
 
 Replacing plain text files, the AMS now utilizes a Relational Database Management System (RDBMS), preferably MySQL, for robust and secure data storage. This shift ensures scalable data management and compliance with institutional standards.
 
+#### Data Management in Program Using the DAO Pattern
+The AMS employs the Data Access Object (DAO) pattern to effectively manage interactions with the underlying RDBMS. This architectural pattern provides a flexible framework for accessing data sources and manipulating persisted data, ensuring that the data access mechanisms are isolated from the business logic layer.
+
 #### Notifications and Communication Preferences
 
-Both students and faculty receive automatic notifications, with students having the option to customize their notification preferences per class. Notifications include email alerts about attendance status and weekly reports.
+Students will by default receive automatic notifications on a weekday. Notifications include email alerts about attendance status and weekly reports. Students have the flexibility to modify their preference regarding whether to receive email notifications. If students disable the notification for a class, they will not receive the attendance notification or the weekly report.
 
 #### Detailed Reporting
 
@@ -70,9 +73,11 @@ The following table provides definitions for terms and acronyms used within this
 
 
 | Term      | Definition                                                                                                                                                                                                        |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Professor | An individual responsible for delivering course content, managing and publishing courses, managing student information, managing classroom activities, and recording student attendance.                          |
 | Student   | An individual enrolled in the course who participates in classroom activities and whose attendance is tracked by the system. A student shall receive reports and notifications regarding their attendance status. |
+| User      | An individual with access to create, read, update, and delete (CRUD) all data within the system. This role typically encapsulates administrative privileges or specialized access rights.                         |
+
 
 ## Overall description
 
