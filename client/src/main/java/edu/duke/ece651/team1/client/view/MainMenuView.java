@@ -29,8 +29,7 @@ public class MainMenuView {
     public void showMainMenu() {
         out.println("Please select an option to begin:");
         out.println("1. Manage your attendance");
-        out.println("2. Manage your students");
-        out.println("3. Exit");
+        out.println("2. Go back");
     }
     /**
      * Reads the user's choice from the main menu options.
@@ -40,16 +39,14 @@ public class MainMenuView {
     public String readMainOption() throws IOException {
         while (true) {
             try {
-                int optionNum = ViewUtils.getUserOption(inputReader, out, 3);
+                int optionNum = ViewUtils.getUserOption(inputReader, out, 2);
                 if (optionNum == 1) {
                     return "attendance";
-                } if(optionNum==2) {
-                    return "students";
-                }else{
-                    return "exit";
+                } else{
+                    return "back";
                 }
             } catch (IllegalArgumentException e) {
-                out.println("Invalid option. Please select 1 for Manage attendance or 2 for Manage Students.");
+                out.println("Invalid option. Please select 1 for Manage attendance or 2 for Go back.");
             }
         }
 

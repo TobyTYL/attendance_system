@@ -11,15 +11,22 @@ import com.google.common.collect.Iterables;
  * Represents an attendance record for a single session on a specific date.
  * Allows initialization, updating, and querying of attendance status for students.
  */
+
 public class AttendanceRecord {
+    //id builder pattern 
+    private Integer recordId;
+    
     private final LocalDate sessionDate;
     private final HashMap<Student, AttendanceStatus> entries;
+ 
    
    /**
     * for each session, record the session date and the student and the corresponding status.
     * @param sessionDate
     */
     public AttendanceRecord(LocalDate sessionDate) {
+        // not insert to database yet, use null to represent.
+         this.recordId = null;
          this.sessionDate = sessionDate;
         this.entries = new HashMap<>();
     }
@@ -49,6 +56,14 @@ public class AttendanceRecord {
         }
     }
     /**
+     * Adds an attendance entry for a student with a specific status.
+     * @param student
+     * @param status
+     */
+    public void addAttendanceEntry(Student student, AttendanceStatus status){
+        entries.put(student, status);
+    }
+    /**
      * Checks if a student is in the attendance record.
      * @param student The student to check.
      * @throws IllegalArgumentException if the student does not exist in the attendance record.
@@ -68,14 +83,26 @@ public class AttendanceRecord {
         return entries.get(student);
     }
      // Methods to mark a student's attendance status as PRESENT, TARDY, or ABSENT.
+     /**
+      * Marks a student as present for the session.
+      * @param student
+      */
     public void markPresent(Student student){
         checkStudentInRecord(student);
         entries.put(student, AttendanceStatus.PRESENT);
     }
+    /**
+     * Marks a student as tardy for the session.
+     * @param student
+     */
     public void markTardy(Student student){
         checkStudentInRecord(student);
         entries.put(student, AttendanceStatus.TARDY);
     }
+    /**
+     * Marks a student as absent for the session.
+     * @param student
+     */
     public void markAbsent(Student student){
         checkStudentInRecord(student);
         entries.put(student, AttendanceStatus.ABSENT);
@@ -112,13 +139,40 @@ public class AttendanceRecord {
     //     ans.append("----------------------------");
     //     return ans.toString();
     // }
-
+    /**
+     * Returns the session date of the attendance record.
+     * @return The session date.
+     */
     public LocalDate getSessionDate() {
         return sessionDate;
     }
-
+    /**
+     * Returns the attendance entries in the record.
+     * @return
+     */
     public Map<Student, AttendanceStatus> getEntries() {
         return Collections.unmodifiableMap(entries);
+    }
+    /**
+     * Set the record id.
+     * @param recordId
+     */
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
+    }
+    /**
+     * Get the record id.
+     * @return
+     */
+    public Integer getRecordId() {
+        return recordId;
+    }
+    /**
+     * Get the attendance status of a student.
+     */
+    @Override
+    public String toString() {
+        return "AttendanceRecord [recordId=" + recordId + ", sessionDate=" + sessionDate + ", entries=" + entries + "]";
     }
     
 }

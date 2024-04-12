@@ -52,6 +52,10 @@ public class AttendanceView {
     public void showMarkSuccessMessage(String student, String status){
         out.println("You successfully marked " + student + " to "+status);
     }
+
+    public void showUpdateSuccessMessage(String student, String status){
+        out.println("You successfully update " + student + " attendance status to "+status);
+    }
     /**
      * Displays a message indicating completion of attendance marking along with the final attendance records.
      * @param records The AttendanceRecord containing the final attendance records.
@@ -60,6 +64,12 @@ public class AttendanceView {
         out.println("Attendance marking completed.");
         out.println("Attendance records List blow:");
         showFinalAttendanceRecord(records);
+    }
+
+    public void showUpdateFinishMessage(AttendanceRecord record){
+        out.println("Attendance update completed.");
+        out.println("New Attendance records List blow:");
+        showFinalAttendanceRecord(record);
     }
     /**
      * show the successful modification message
@@ -75,9 +85,10 @@ public class AttendanceView {
      * @return The attendance status entered by the user.
      * @throws IOException If an I/O error occurs.
      */
-    public String promptForStudentAttendance(String studentName) throws  IOException{
+    public String promptForStudentAttendance(String studentName, boolean first) throws  IOException{
         out.println("Student Name: " + studentName);
-        out.println("Press 'P' to mark Present, 'A' to mark Absent:");
+        String prompt = first?"Press 'P' to mark Present, 'A' to mark Absent:":"Press 'A' to mark Absent, Press 'P' to mark Present, 'T' to mark Tardy:";
+        out.println(prompt);
         String s = inputReader.readLine();
         if (s == null) {
             throw new EOFException("End of input reached");
@@ -120,15 +131,35 @@ public class AttendanceView {
             } catch (NumberFormatException e) {
                 out.println("Please enter a valid number.");
             }
-            // if (dates.contains(input)) {
-            //     return input;
-            // } else {
-            //     out.println("Invalid date or date not available. Please try again.");
-            // }
-                
-            // catch(IllegalArgumentException e){
-            //         out.println("Invalid option for Modify Attendance.");
-            // }
+        }
+    }
+    /**
+     * show the modify menue for user to choose
+     */
+    public void showModifyMenue(){
+        out.println("Would you like to:");
+        out.println("1. Retake entire class attendance");
+        out.println("2. Modify attendance for a specific student");
+    }
+    /**
+     * read the user's choice for modify option
+     * @return
+     * @throws IOException
+     */
+    public String readModifyOption() throws IOException{
+        while (true) {
+            try{
+                int option = ViewUtils.getUserOption(inputReader, out, 2);
+                if(option ==1){
+                    return "retake";
+                }else{
+                    return "modify";
+                }
+            }catch(IllegalArgumentException e){
+                out.println("Invalid option for Modification");
+            }
+            
+            
         }
     }
     /**
@@ -211,13 +242,15 @@ public class AttendanceView {
      * @throws IOException If an I/O error occurs.
      */
     public String readAttendanceOption() throws IOException{
-        int option = ViewUtils.getUserOption(inputReader, out, 4);
+        int option = ViewUtils.getUserOption(inputReader, out, 5);
         if(option == 1){
             return "take";
         }else if(option==2){
             return "modify";
         }else if(option==3){
             return "export";
+        }else if(option==4){
+            return "report";
         }else{
             return "back";
         }
@@ -230,7 +263,8 @@ public class AttendanceView {
         out.println("1. Take attendance for today's class");
         out.println("2. Edit your previous attendance");
         out.println("3. Export attendance records");
-        out.println("4. Back to Main Menu");
+        out.println("4. Obtain class Attendance report ");
+        out.println("5. Go back");
     }
     /**
      * Displays the options for exporting attendance records.
@@ -241,6 +275,7 @@ public class AttendanceView {
         out.println("2. Export as XML");
         out.println("3. Export as CSV");
         out.println("4. Back to attendance Record List");
+        
     }
     /**
      * Displays a success message after exporting attendance records.
@@ -326,6 +361,15 @@ public class AttendanceView {
     public void showNoRosterMessage(){
         out.println("You cannot take attendance Now, please back to Student Management Menue");
         out.println("Load a student Roster first");
+    }
+    /**
+     * Displays a message indicating that attendance cannot be taken without loading a class roster.
+     */
+    public void showClassReport(String report){
+        out.println("=============== Attendance Participation for class:  ===============");
+        out.println();
+        out.println(report);
+        out.println("=====================================================================");
     }
     
     

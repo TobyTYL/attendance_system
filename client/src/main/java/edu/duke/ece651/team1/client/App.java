@@ -27,88 +27,18 @@ import edu.duke.ece651.team1.client.controller.*;
 import edu.duke.ece651.team1.client.model.UserSession;
 import java.net.InetAddress;
 
-
+/**
+ * The App class represents the main entry point of the client application.
+ * It initializes the necessary components and starts the application.
+ */
 public class App {
-  // final private ApplicationController controller;
-  // final private AttendanceClient attendanceClient;
-  // final private Iterable<Student> students;
-
-  // public App(AttendanceClient attendanceClient) {
-  //   this.attendanceClient = attendanceClient;
-  //   // this.students = students;
-  // }
-
-  
-
-  // public String getMessage() {
-  //   return "Hello from the client for " + MyName.getName();
-  // }
-
-  // public int getUserOption(String prompt, PrintStream out, BufferedReader inputReader) throws IOException {
-  //   out.println(prompt);
-  //   String s = inputReader.readLine();
-  //   if (s == null) {
-  //     throw new EOFException("End of input reached");
-  //   }
-  //   int ans = Integer.parseInt(s);
-  //   if (ans <= 0 || ans > 7) {
-  //     throw new IllegalArgumentException("That action is invalid: it does not have the correct format.");
-  //   }
-  //   return ans;
-  // }
-
-  // public void start(PrintStream out, BufferedReader inputReader) throws IOException {
-  //   out.println("Welcome to the Attendance Management System (AMS)");
-
-  //   while (true) {
-  //     out.println("Please select an option to begin:");
-  //     out.println("1. Load student roster from a CSV file");
-  //     out.println("2. Take attendance for today's class");
-  //     out.println("3. Modify a student's attendance record");
-  //     out.println("4. Update a student's display name");
-  //     out.println("5. Configure notification settings");
-  //     out.println("6. Send weekly attendance report to students");
-  //     out.println("7. Exit");
-  //     try{
-  //       int choice = getUserOption("Enter your choice: ", out, inputReader);
-
-  //     switch (choice) {
-  //       case 1:
-  //         // loadStudentRoster();
-  //         break;
-  //       case 2:
-  //         AttendanceClient attendanceClient = new AttendanceClient(inputReader, out);
-  //         attendanceClient.startAttendance();
-  //         break;
-  //       case 3:
-  //         // modifyAttendanceRecord();
-  //         break;
-  //       case 4:
-  //         // updateDisplayName();
-  //         break;
-  //       case 5:
-  //         // configureNotificationSettings();
-  //         break;
-  //       case 6:
-  //         // sendWeeklyAttendanceReport();
-  //         // break;
-  //       case 7:
-  //         // System.out.println("Exiting...");
-  //         return;
-       
-  //     }
-  //     }catch(IllegalArgumentException e){
-  //       out.println(e.getMessage());
-  //     }
-      
-  //   }
-  // }
-
-  
-  // public App(ApplicationController controller) {
-  //   this.controller = controller;
-  // }
-
+   /**
+     * The main method of the application.
+     * Initializes components and starts the application.
+     *
+     * @param args The command-line arguments passed to the application.
+     * @throws IOException If an I/O error occurs while reading user input.
+     */
   public static void main(String[] args) throws IOException{
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
     ApplicationController controller = new ApplicationController(inputReader, System.out);

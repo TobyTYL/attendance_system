@@ -26,29 +26,15 @@ public class MainMenuViewTest {
         mainMenuView.showMainMenu();
         verify(out).println("Please select an option to begin:");
         verify(out).println("1. Manage your attendance");
-        verify(out).println("2. Manage your students");
-        verify(out).println("3. Exit");
+        verify(out).println("2. Go back");
     }
     @Test
     void testReadMainOptionAttendance() throws IOException {
-        when(inputReader.readLine()).thenReturn("1");
-        String result = mainMenuView.readMainOption();
-        assertEquals("attendance", result);
+        when(inputReader.readLine()).thenReturn("1","2");
+        assertEquals("attendance", mainMenuView.readMainOption());
+        assertEquals("back", mainMenuView.readMainOption());
     }
 
-    @Test
-    void testReadMainOptionStudents() throws IOException {
-        when(inputReader.readLine()).thenReturn("2");
-        String result = mainMenuView.readMainOption();
-        assertEquals("students", result);
-    }
-
-    @Test
-    void testReadMainOptionExit() throws IOException {
-        when(inputReader.readLine()).thenReturn("3");
-        String result = mainMenuView.readMainOption();
-        assertEquals("exit", result);
-    }
     @Test
     void testReadMainOptionInvalidThenValid() throws IOException {
         when(inputReader.readLine())
@@ -56,7 +42,7 @@ public class MainMenuViewTest {
             .thenReturn("1"); // Simulate valid input on retry
         String result = mainMenuView.readMainOption();
         assertEquals("attendance", result);
-        verify(out).println("Invalid option. Please select 1 for Manage attendance or 2 for Manage Students.");
+        verify(out).println("Invalid option. Please select 1 for Manage attendance or 2 for Go back.");
     }
 
 }

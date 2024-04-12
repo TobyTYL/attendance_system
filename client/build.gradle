@@ -29,13 +29,20 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Boot Web Starter 包含了 RestTemplate
     implementation 'org.json:json:20210307'
+    implementation 'com.google.code.gson:gson:2.8.8'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.jsoup:jsoup:1.13.1'
+
 
     // Add Mockito for mocking in tests
     testImplementation 'org.mockito:mockito-core:3.+' // Use the latest version 3.x.x
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     testImplementation 'org.mockito:mockito-core:3.3.3'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.6.0'
+    
+
 
 }
 

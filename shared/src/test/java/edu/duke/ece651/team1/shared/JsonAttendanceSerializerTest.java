@@ -29,13 +29,41 @@ public class JsonAttendanceSerializerTest {
         assertEquals(expected, serializer.serialize(record));
     }
     @Test
-    public void testExport(){
+    public void testSerializeWithRecordId() {
+        // Create AttendanceRecord and Students
+        AttendanceRecord record = new AttendanceRecord(LocalDate.parse("2024-04-10"));
+        List<Student> students = new ArrayList<>();
+        Student student1 = new Student(1, "John", "Doe", "john.doe@example.com",null);
+       
 
+        students.add(student1);
+       
+        // Initialize the record with the list of students and set attendance
+        record.initializeFromRoaster(students);
+        record.markPresent(student1);
+        
+
+        // Set a non-null recordId on the AttendanceRecord object
+        int recordId = 1; // Example record ID
+        record.setRecordId(recordId); // Method to set record ID
+
+        // Define formatter for date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String now = LocalDate.now().format(formatter);
+
+        // Expected JSON string should include the "Record Id"
+        String expected = "{\"Record Id\":1,\"sessionDate\":\"" + "2024-04-10" + "\",\"Entries\":{" +
+        "\"John\":{\"student Id\":1,\"Display Name\":\"Doe\",\"Email\":\"john.doe@example.com\",\"Attendance status\":\"Present\"}" +
+        "}}";
+
+        // Serialize the record and assert that it matches the expected JSON string
+        assertEquals(expected, serializer.serialize(record));
+        
     }
     @Test
     public void testDeserialize(){
-        Student student1 = new Student("John", "Doe","john.com");
-        Student student2 = new Student("Alice", "Smith","alice.com");
+        Student student1 = new Student(1,"John", "Doe","john.com",null);
+        Student student2 = new Student(2,"Alice", "Smith","alice.com",null);
         students.add(student1);
         students.add(student2);
         record.initializeFromRoaster(students);
@@ -45,4 +73,20 @@ public class JsonAttendanceSerializerTest {
         AttendanceRecord record2 = serializer.deserialize(serilizedString);
         assertEquals(serilizedString, serializer.serialize(record2));
     }
+
+    @Test
+    public void testDeserializeWithId(){
+        Student student1 = new Student(1,"John", "Doe","john.com",null);
+        Student student2 = new Student(2,"Alice", "Smith","alice.com",null);
+        students.add(student1);
+        students.add(student2);
+        record.initializeFromRoaster(students);
+        record.markPresent(student1);
+        record.markAbsent(student2);
+        record.setRecordId(1);
+        String serilizedString = serializer.serialize(record);
+        AttendanceRecord record2 = serializer.deserialize(serilizedString);
+        assertEquals(serilizedString, serializer.serialize(record2));
+    }
+
 }

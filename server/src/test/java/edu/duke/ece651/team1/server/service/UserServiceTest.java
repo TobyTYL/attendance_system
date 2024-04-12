@@ -1,69 +1,89 @@
-package edu.duke.ece651.team1.server.service;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+package edu.duke.ece651.team1.server.service;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.security.core.userdetails.User;
-
-import edu.duke.ece651.team1.server.repository.InMemoryUserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import edu.duke.ece651.team1.shared.*;
+import edu.duke.ece651.team1.data_access.User.*;
+import edu.duke.ece651.team1.data_access.Professor.*;
+import edu.duke.ece651.team1.data_access.Student.*;
+import edu.duke.ece651.team1.server.model.*;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UserServiceTest {
+import org.springframework.security.core.userdetails.UserDetails;
 
-    @Mock
-    private InMemoryUserRepository inMemoryUserRepository;
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private UserDao userDao;
+
+    @Mock
+    private ProfessorDao professorDao;
+
+    @Mock
+    private StudentDao studentDao;
+
     @InjectMocks
     private UserService userService;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
-    @Test
-    public void testCreateUser() {
-        String username = "testuser";
-        String password = "testpassword";
-        when(passwordEncoder.encode(password)).thenReturn("encodedPassword");
-        userService.createUser(username, password);
-        verify(inMemoryUserRepository, times(1)).createUser(any(User.class));
-        verify(passwordEncoder, times(1)).encode(password);
-    }
+    String username = "username";
+    String password = "password";
+    String encodedPassword = "encodedPassword";
+   
 
     @Test
-    public void testCreateUserWhenValidUsernameAndPasswordThenUserCreated() {
-        String username = "testuser";
-        String password = "testpassword";
-        when(passwordEncoder.encode(password)).thenReturn("encodedPassword");
-
-        userService.createUser(username, password);
-
-        verify(inMemoryUserRepository, times(1)).createUser(any(UserDetails.class));
-        verify(passwordEncoder, times(1)).encode(password);
+    void createUserProfessor_CreatesNewUser() {
+       
+        String role = "Professor";
+        int userId = 1;
+        when(passwordEncoder.encode(password)).thenReturn(encodedPassword);
+        when(userDao.addUser(any(User.class))).thenReturn(userId);
+        when(userDao.findUserByUsername(username)).thenReturn(new User(userId, username, encodedPassword));
+        userService.createUserProfessor(username, password, role);
+        verify(userDao, times(1)).addUser(any(User.class));
+        verify(professorDao, times(1)).addProfessor(any(Professor.class));
     }
 
     @Test
-    public void testCreateUserWhenNullUsernameThenUserNotCreated() {
-        String password = "testpassword";
-        assertThrows(IllegalArgumentException.class, () -> userService.createUser(null, password));
-
-        verify(inMemoryUserRepository, never()).createUser(any(UserDetails.class));
-        verify(passwordEncoder, never()).encode(password);
+    void createUserStudent_CreatesNewUser() {
+        String role = "Student";
+        String legalName = "huidan";
+        String displayName = "tan";
+        String email = "huidan@example.com";
+        int userId = 1;
+        when(passwordEncoder.encode(password)).thenReturn(encodedPassword);
+        when(userDao.addUser(any(User.class))).thenReturn(userId);
+        userService.createUserStudent(username, password, role, legalName, displayName, email);
+        verify(userDao, times(1)).addUser(any(User.class));
+        verify(studentDao, times(1)).addStudent(any(Student.class));
     }
 
     @Test
-    public void testCreateUserWhenNullPasswordThenUserNotCreated() {
-        String username = "testuser";
-        assertThrows(IllegalArgumentException.class, () -> userService.createUser(username, null));
+    void loadUserByUsername_ReturnsCustomUserDetails() {
+        String username = "userUsername";
+        User mockUser = new User(1, username, "password", "ROLE_USER");
+        when(userDao.findUserByUsername(username)).thenReturn(mockUser);
+        UserDetails userDetails = userService.loadUserByUsername(username);
+        assertNotNull(userDetails);
+        assertEquals(username, userDetails.getUsername());
+    }
 
-        verify(inMemoryUserRepository, never()).createUser(any(UserDetails.class));
-        verify(passwordEncoder, never()).encode(anyString());
+    @Test
+    void loadUserByUsername_ThrowsUsernameNotFoundException() {
+        String username = "nonexistentUser";
+        when(userDao.findUserByUsername(username)).thenReturn(null);
+        assertThrows(UsernameNotFoundException.class, () -> {
+            userService.loadUserByUsername(username);
+        });
     }
 }

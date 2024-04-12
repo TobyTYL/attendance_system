@@ -20,6 +20,8 @@ subprojects{
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+
     dependencies {
         // Use JUnit Jupiter for testing.
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
@@ -69,11 +71,17 @@ subprojects{
 }
 
 // Project specific stuff
+project(':data_access'){
+    dependencies {
+        implementation project(':shared')
+    }
+}
 project (':shared'){
 }
 project (':server'){
     dependencies {
         implementation project(':shared')
+        implementation project(':data_access')
 //        testImplementation project(path: ':shared', configuration: "testPkg")
     }
 }

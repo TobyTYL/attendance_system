@@ -15,7 +15,20 @@ public class StudentTest {
     assertEquals("Jimmy", student.getLegalName());
     assertEquals("Jim", student.getDisPlayName());
     assertEquals("jimmy@duke.edu", student.getEmail());
+    student2.setStudentEmail("new email");
+    assertEquals("new email", student2.getEmail());
+    student2.setUserId(1);
+    assertEquals(1, student2.getUserId());
   }
+
+  @Test
+  public void test_student_Constuctor_Uid(){
+    Student student = new Student(1,"Jimmy", "Jim", "jimmy@duke.edu");
+    student.setStudentId(2);
+    assertEquals(1, student.getUserId());
+    assertEquals(2, student.getStudentId());
+  }
+  
   @Test
     public void testEqual(){
         Student s1 = new Student("ABC","ABC","ABC@email.com");

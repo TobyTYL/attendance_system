@@ -9,26 +9,39 @@ import java.util.Set;
  * Additional properties and behavior can be added as needed.
  */
 public class Course {
-    private final long id;
+    private int id;
     private String name;
   //private Professor headInstructor;
   //private Set<User> coInstructors = new LinkedHashSet<>();
 
      // Constructor to set the course ID
-    public Course(long id) {
+    public Course(int id) {
         this.id = id;
     }
-
-    public long getID() {
+    // Constructor to set the course name
+    public Course(String name){
+        this.name = name;
+    }
+    // Constructor to set the course ID and name
+    public Course(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+    // Constructor to set the course ID and name
+    public int getID() {
         return id;
     }
-
+    // Constructor to set the course ID and name
     public String getName() {
         return name;
     }
-
+    // Constructor to set the course ID and name
     public void setName(String s) {
-        name = s;
+        this.name = s;
+    }
+    // Constructor to set the course ID and name
+    public void setID(int id){
+        this.id = id;
     }
   //ignore the user part for attendance
   /**
