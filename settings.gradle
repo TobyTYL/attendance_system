@@ -8,6 +8,7 @@
  */
 
 rootProject.name = 'attendanceManagement'
-include('client', 'server', 'shared','data_access', 'user_admin_app', 'enrollmentApp')
-
+include('client', 'server', 'shared','data_access', 'user_admin_app', 'enrollmentApp', 'JavaFX_demo')
+include 'JavaFX_demo'
+include 'JavaFX_gradle'
 
