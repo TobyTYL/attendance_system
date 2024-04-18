@@ -7,7 +7,6 @@ import edu.duke.ece651.team1.shared.Section;
 import edu.duke.ece651.team1.shared.User;
 import edu.duke.ece651.team1.data_access.User.UserDao;
 import edu.duke.ece651.team1.data_access.User.UserDaoImp;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -106,7 +105,7 @@ public class SectionView {
     public int getSectionToRemove(String className) throws IOException {
         String ans = ViewUtils.getUserInput(
                 "Enter the SectionID of the section you wish to remove from " + className + ": ",
-                "Invalid SectionID/Professor name. Please enter a valid one: ",
+                "Invalid SectionID. Please enter a valid one: ",
                 inputReader,
                 out,
                 input -> !input.trim().isEmpty() // Validate that the input is not empty
@@ -122,8 +121,8 @@ public class SectionView {
      */
     public String getSectionToUpdate(String className) throws IOException {
         return ViewUtils.getUserInput(
-                "Enter the SectionID/professorName of the section you wish to update in " + className + ": ",
-                "Invalid SectionID/Professor name. Please enter a valid one: ",
+                "Enter the SectionID of the section you wish to update in " + className + ": ",
+                "Invalid SectionID. Please enter a valid one: ",
                 inputReader,
                 out,
                 input -> !input.trim().isEmpty() // Validate that the input is not empty

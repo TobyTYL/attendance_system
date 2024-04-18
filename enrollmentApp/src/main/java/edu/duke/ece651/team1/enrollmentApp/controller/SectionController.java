@@ -120,7 +120,12 @@ public class SectionController {
      */
     protected void removeSection(String className) throws IOException {
         // Code to handle removing a section
-        List<Section> sections = sectionDao.getAllSections();
+        int classID = courseDao.getClassIdByName(className);
+        List<Section> sections = sectionDao.getSectionsByClassId(classID);
+        if(sections.isEmpty()){
+            out.println("No sections available for class " + className);
+            return;
+        }
         sectionView.showAllSections(sections);
         int sectionID = sectionView.getSectionToRemove(className);
         if (sectionView.confirmAction("remove", sectionID)) {
@@ -140,14 +145,21 @@ public class SectionController {
         //List<Section> sections = sectionDao.getAllSections();
         int classID = courseDao.getClassIdByName(className);
         List<Section> sections = sectionDao.getSectionsByClassId(classID);
+        if(sections.isEmpty()){
+            out.println("No sections available for class " + className);
+            return;
+        }
         sectionView.showAllSections(sections);
         String sectionID = sectionView.getSectionToUpdate(className);
         int detailOption = sectionView.getDetailToUpdateForSection();
         switch (detailOption) {
             case 1:
                 List<Professor> professors = professorDao.findAllProfessors();
+               
                 sectionView.showAllProfessors(professors);
-                // edit here
+                if(professors.isEmpty()){
+                    return;
+                }
                 String newProfessorName = sectionView.getNewProfessorName();
                 int sectitionIDInt = Integer.parseInt(sectionID);
 
