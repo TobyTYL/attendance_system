@@ -26,7 +26,7 @@
                </children>
             </AnchorPane>
          </children></AnchorPane>
-      <Button fx:id="button_manage_professor" layoutX="169.0" layoutY="224.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Manage Professor Users">
+      <Button fx:id="button_manage_professor" layoutX="169.0" layoutY="224.0" mnemonicParsing="false" onAction="#manageProfessorButtonClicked" text="Manage Professor Users">
          <font>
             <Font size="20.0" />
          </font>
