@@ -14,20 +14,14 @@ import java.io.IOException;
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
-    @FXML
     private Button button_manage_student;
     @FXML
     private Button button_manage_professor;
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     private void manageStudentButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu/duke/ece651/team1/javafx_test/Student/student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_manage_student.getScene().getWindow();
@@ -41,7 +35,7 @@ public class HelloController {
     @FXML
     private void manageProfessorButtonClicked (ActionEvent event){
         try {
-            FXMLLoader professor_loader = new FXMLLoader(getClass().getResource("professor-view.fxml"));
+            FXMLLoader professor_loader = new FXMLLoader(getClass().getResource("/edu/duke/ece651/team1/javafx_test/Professor/professor-view.fxml"));
             Parent root = professor_loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_manage_professor.getScene().getWindow();

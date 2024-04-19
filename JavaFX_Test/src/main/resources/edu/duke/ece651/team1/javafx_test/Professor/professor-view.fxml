@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.javafx_test.HelloController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.javafx_test.ProfessorController">
     <children>
         <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: #0577B1;">
             <children>
@@ -18,13 +18,13 @@
                 </Label>
             <ImageView fitHeight="69.0" fitWidth="55.0" layoutX="52.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../icons/user-admin-svgrepo-com.png" />
+                  <Image url="@../../../../../../icons/user-admin-svgrepo-com.png" />
                </image>
             </ImageView>
             </children>
         </AnchorPane>
-        <Button layoutX="230.0" layoutY="254.0" mnemonicParsing="false" text="Update Professor" textAlignment="CENTER" />
-        <Button layoutX="228.0" layoutY="188.0" mnemonicParsing="false" text="Remove Professor" textAlignment="CENTER" />
-        <Button layoutX="239.0" layoutY="132.0" mnemonicParsing="false" text="Add Professor" textAlignment="CENTER" />
+        <Button fx:id="button_remove_professor" layoutX="228.0" layoutY="252.0" mnemonicParsing="false" onAction="#removeProfessorButtonClicked" text="Remove Professor" textAlignment="CENTER" />
+        <Button fx:id="button_add_professor" layoutX="239.0" layoutY="188.0" mnemonicParsing="false" onAction="#addProfessorButtonClicked" text="Add Professor" textAlignment="CENTER" />
+        <Button fx:id="button_back_to_main_view" layoutX="519.0" layoutY="342.0" mnemonicParsing="false" onAction="#backMainPageButtonClicked" text="Back" />
     </children>
 </AnchorPane>
