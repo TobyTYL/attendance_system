@@ -155,7 +155,6 @@ public class SectionController {
         switch (detailOption) {
             case 1:
                 List<Professor> professors = professorDao.findAllProfessors();
-               
                 sectionView.showAllProfessors(professors);
                 if(professors.isEmpty()){
                     return;
