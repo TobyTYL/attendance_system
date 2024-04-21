@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-  <link href="/css/simple-sider.css" rel="stylesheet">
+    <link href="/css/sider.css" rel="stylesheet">
 
 </head>
 
@@ -16,12 +16,12 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Main Menue</div>
+    <div class="border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading bg-light ">Attendance Men</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Take Attendance</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Previous Attendance</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Attendance Report</a>
+        <a th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action">Take Attendance</a>
+        <a href="#" class="list-group-item list-group-item-action ">Previous Attendance</a>
+        <a href="#" class="list-group-item list-group-item-action ">Attendance Report</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -42,14 +42,17 @@
             <li class="nav-item active">
               <a class="nav-link" href="#">Courses</a>
             </li>
+          
+      
           </ul>
         </div>
       </nav>
       <div class="container-fluid">
-        <h1 th:text="'Course' + ${courseName}">Course</h1>
-        <h2 class="mt-4">Welcome, Professor</h1>
-        <p>Manage your class attendance efficiently and effortlessly.</p>
-        <p>Use the sidebar to navigate through the attendance management tasks.</p>
+        <h1 class="mt-4" th:text="'Course' + ${courseName}">Course</h1>
+        <h2 >Welcome, Professor</h2>
+       
+        <p>Manage your class attendance efficiently and effortlessly. Use the sidebar to navigate through the attendance management tasks.</p>
+       
       </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -58,8 +61,9 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-rBXm4tuQ3+5zGzLG3w9b5/RYO5JpJ6+nq4Hj5p1t3FDz1WUsVXKcpIc/a6V9iIzT" crossorigin="anonymous"></script>
 
   <!-- Menu Toggle Script -->
   <script>
