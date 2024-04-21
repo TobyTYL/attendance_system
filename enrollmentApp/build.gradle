@@ -4,16 +4,6 @@ plugins {
     // Spring Boot plugin for potential RESTful service or web functionality
     //id 'org.springframework.boot' version '2.7.10'
     id 'io.spring.dependency-management' version '1.1.0'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
-}
-javafx {
-    version = "22"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
 }
 
 group = 'edu.duke.ece651.team1'
@@ -23,7 +13,7 @@ targetCompatibility = JavaVersion.VERSION_11
 
 application {
     // Update the main class to point to your application's entry point.
-    mainClassName = 'edu.duke.ece651.team1.enrollmentApp.MainApp'
+    mainClassName = 'edu.duke.ece651.team1.enrollmentApp.App'
 }
 
 repositories {
@@ -33,9 +23,6 @@ repositories {
 dependencies {
     //implementation 'org.springframework.boot:spring-boot-starter-web'
     // JSON processing dependency
-    //testImplementation libs.junit.jupiter
-
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.json:json:20210307'
     implementation project(':data_access')
     implementation project(':client')
@@ -49,33 +36,10 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Use the latest version applicable
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
-    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'   
-    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
-    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
-    implementation 'org.slf4j:slf4j-api:1.7.30'
-    runtimeOnly 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'com.google.guava:guava:30.1.1-jre'
-    testImplementation "org.mockito:mockito-core:2.+"
-    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
-    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
-    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
-    testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
 
- 
-    //implementation files("/Users/wenzhuowu/Downloads/javafx-sdk-22.0.1/lib")
-}   
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-    //systemProperty 'java.awt.headless', 'true'
 }
+
 run{
     standardInput = System.in
-    // jvmArgs = [
-    //     '--module-path', '/Users/wenzhuowu/Downloads/javafx-sdk-22.0.1/lib',
-    //     '--add-modules', 'javafx.controls,javafx.fxml',
-    // ]
-    jvmArgs += ["-Dprism.order=sw"]  // Forces software rendering
 }
