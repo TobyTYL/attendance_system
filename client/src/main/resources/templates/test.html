@@ -59,27 +59,26 @@
                       <div class="table-responsive">
                           <table class="table align-items-center table-flush">
                               <thead class="thead-light">
-                                  <tr>
-                                      <th scope="col">Student</th>
-                                      <th scope="col">Present Time</th>
-                                      <th scope="col">Absent Time</th>
-                                      <th scope="col">Tardy Time</th>
-                                      <th scope="col">Attendance Rate</th>
-                                      <th scope="col"></th>
-                                  </tr>
+                                <tr>
+                                  <th scope="col">Student</th>
+                                  <th scope="col">Present Time</th>
+                                  <th scope="col">Absent Time</th>
+                                  <th scope="col">Tardy Time</th>
+                                  <th scope="col">Attendance Rate</th>
+                                </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <td> huidan </td>
-                                      <td> 4</td>
-                                      <td>1</td>
-                                      <td>0</td>
+                                <tr th:each="summary,iterStat : ${summaries}">
+                                    <td th:text="${summary.displayName}">displayName</td>
+                                    <td th:text="${summary.attendedCount}"> attendedCount</td>
+                                    <td th:text="${summary.absentCount}"> absentCount</td>
+                                    <td th:text="${summary.tardyCount}">tardyCount</td>
                                       <td>
                                           <div class="d-flex align-items-center">
-                                              <span class="mr-2" style="margin-right: 1rem;">50%   </span>
+                                            <span class="mr-2" th:text="${summary.attendanceRate} + '%'" style="margin-right: 1rem;">attendanceRate</span>
                                               <div>
                                                   <div class="progress">
-                                                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+                                                      <div class="progress-bar bg-success" role="progressbar"  aria-valuemin="0" aria-valuemax="100" th:style="'width: ' + ${summary.attendanceRate} + '%;'"></div>
                                                   </div>
                                               </div>
                                           </div>

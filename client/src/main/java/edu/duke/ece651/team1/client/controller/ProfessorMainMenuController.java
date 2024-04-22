@@ -31,6 +31,7 @@ public class ProfessorMainMenuController {
     public String showCourseMenu(@PathVariable String classname, @PathVariable int sectionId, Model model) {
         model.addAttribute("className", classname);
         model.addAttribute("sectionId", sectionId);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
         return "professormenue";
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -20,8 +21,8 @@
       <div class="sidebar-heading bg-light ">Attendance Men</div>
       <div class="list-group list-group-flush">
         <a th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action">Take Attendance</a>
-        <a href="#" class="list-group-item list-group-item-action ">Previous Attendance</a>
-        <a href="#" class="list-group-item list-group-item-action ">Attendance Report</a>
+        <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
+        <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -40,7 +41,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Courses</a>
+              <a class="nav-link" th:href="@{/course/allcourses/Professor/{id}(id=${uid})}">Courses</a>
             </li>
           
       
@@ -48,8 +49,8 @@
         </div>
       </nav>
       <div class="container-fluid">
-        <h1 class="mt-4" th:text="'Course' + ${courseName}">Course</h1>
-        <h2 >Welcome, Professor</h2>
+        <h1 class="mt-4" th:text="${className}"></h1>
+        <h2 >Welcome, Professor</h2> 
        
         <p>Manage your class attendance efficiently and effortlessly. Use the sidebar to navigate through the attendance management tasks.</p>
        

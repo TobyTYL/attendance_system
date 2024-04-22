@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.service.UserService;
 
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class SecurityController {
             String role = jsonObject.getString("role");
             int id = jsonObject.getInt("id");
             logger.info("login sucess");
+            UserSession.getInstance().setUid(id);
             return "redirect:/course/allcourses/"+role+"/"+id;
         }
         redirectAttributes.addFlashAttribute("loginError", "Login failed");

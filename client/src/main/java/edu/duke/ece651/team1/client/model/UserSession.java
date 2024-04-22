@@ -9,6 +9,13 @@ public class UserSession {
     private String sessionToken;
     private String host;
     private String port;
+    private int uid;
+    public int getUid() {
+        return uid;
+    }
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
     private UserSession() {
     }
     /**
