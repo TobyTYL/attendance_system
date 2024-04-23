@@ -19,7 +19,7 @@ public class HelloController {
     @FXML
     private void manageStudentButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Student/student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/Student/student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_manage_student.getScene().getWindow();
@@ -33,7 +33,7 @@ public class HelloController {
     @FXML
     private void manageProfessorButtonClicked (ActionEvent event){
         try {
-            FXMLLoader professor_loader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Professor/professor-view.fxml"));
+            FXMLLoader professor_loader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/Professor/professor-view.fxml"));
             Parent root = professor_loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_manage_professor.getScene().getWindow();

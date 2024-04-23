@@ -21,7 +21,7 @@ public class ProfessorController {
     @FXML
     private void addProfessorButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Professor/add-professor-view.fxml"));
+            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/Professor/add-professor-view.fxml"));
             Parent root = professorLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_add_professor.getScene().getWindow();
@@ -33,7 +33,7 @@ public class ProfessorController {
     @FXML
     private void removeProfessorButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Professor/remove-professor-view.fxml"));
+            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/Professor/remove-professor-view.fxml"));
             Parent root = professorLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_remove_professor.getScene().getWindow();
@@ -45,7 +45,7 @@ public class ProfessorController {
     @FXML
     private void backProfessorPageButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Professor/professor-view.fxml"));
+            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/Professor/professor-view.fxml"));
             Parent root = professorLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_back_to_professor_view.getScene().getWindow();
@@ -57,7 +57,7 @@ public class ProfessorController {
     @FXML
     private void backMainPageButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/hello-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/enrollmentApp_javafx/hello-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_back_to_main_view.getScene().getWindow();
