@@ -4,6 +4,7 @@ plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'java-library'
 }
 
 group 'edu.duke.ece651.team1'
@@ -17,8 +18,8 @@ ext {
     junitVersion = '5.10.0'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import edu.duke.ece651.team1.shared.Student;
 public class HelloController {
     @FXML
     private Button button_manage_student;

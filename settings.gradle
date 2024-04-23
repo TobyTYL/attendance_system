@@ -8,7 +8,4 @@
  */
 
 rootProject.name = 'attendanceManagement'
-include('client', 'server', 'shared','data_access', 'user_admin_app', 'enrollmentApp')
-include 'useradmin_javafx'
-include 'enrollmentApp_javafx'
-
+include('client', 'server', 'shared','data_access', 'user_admin_app', 'enrollmentApp', 'useradmin_javafx')
