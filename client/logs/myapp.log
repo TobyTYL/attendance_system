@@ -1,76 +1,438 @@
-2024-04-22 00:02:53.344  INFO 290004 --- [http-nio-8081-exec-2] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:05:00.700  INFO 295206 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 295206 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-22 00:05:00.704  INFO 295206 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-22 00:05:01.840  INFO 295206 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2024-04-22 00:05:01.850  INFO 295206 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-22 00:05:01.852  INFO 295206 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-22 00:05:01.977  INFO 295206 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-22 00:05:01.979  INFO 295206 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1190 ms
-2024-04-22 00:05:02.582  INFO 295206 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-22 00:05:02.594  INFO 295206 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.424 seconds (JVM running for 2.956)
-2024-04-22 00:05:08.667  INFO 295206 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-22 00:05:08.672  INFO 295206 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-22 00:05:08.675  INFO 295206 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-04-22 00:05:14.866  INFO 295206 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login sucess
-2024-04-22 00:05:14.905  INFO 295206 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:05:37.237  INFO 295206 --- [http-nio-8081-exec-10] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:06:51.437  INFO 295206 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-22 00:06:51.439  INFO 295206 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-04-22 00:06:54.538  INFO 296754 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 296754 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-22 00:06:54.543  INFO 296754 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-22 00:06:55.538  INFO 296754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2024-04-22 00:06:55.560  INFO 296754 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-22 00:06:55.561  INFO 296754 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-22 00:06:55.701  INFO 296754 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-22 00:06:55.704  INFO 296754 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1089 ms
-2024-04-22 00:06:56.132  INFO 296754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-22 00:06:56.143  INFO 296754 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.103 seconds (JVM running for 2.661)
-2024-04-22 00:06:59.071  INFO 296754 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-22 00:06:59.072  INFO 296754 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-22 00:06:59.073  INFO 296754 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-22 00:07:04.621  INFO 296754 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login sucess
-2024-04-22 00:07:04.664  INFO 296754 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:07:32.708  INFO 297340 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 297340 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-22 00:07:32.713  INFO 297340 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-22 00:07:33.593  INFO 297340 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2024-04-22 00:07:33.601  INFO 297340 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-22 00:07:33.601  INFO 297340 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-22 00:07:33.680  INFO 297340 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-22 00:07:33.683  INFO 297340 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 887 ms
-2024-04-22 00:07:34.103  INFO 297340 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-22 00:07:34.114  INFO 297340 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.981 seconds (JVM running for 2.428)
-2024-04-22 00:07:37.136  INFO 297340 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-22 00:07:37.137  INFO 297340 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-22 00:07:37.139  INFO 297340 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-22 00:07:43.982  INFO 297340 --- [http-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : login sucess
-2024-04-22 00:07:44.033  INFO 297340 --- [http-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:09:23.273  INFO 297340 --- [http-nio-8081-exec-2] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:12:15.680  INFO 301071 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 301071 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-22 00:12:15.683  INFO 301071 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-22 00:12:16.725  INFO 301071 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2024-04-22 00:12:16.737  INFO 301071 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-22 00:12:16.738  INFO 301071 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-22 00:12:16.835  INFO 301071 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-22 00:12:16.835  INFO 301071 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1113 ms
-2024-04-22 00:12:17.277  INFO 301071 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-22 00:12:17.292  INFO 301071 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.893 seconds (JVM running for 2.274)
-2024-04-22 00:12:37.847  INFO 301071 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-22 00:12:37.847  INFO 301071 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-22 00:12:37.848  INFO 301071 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-22 00:12:43.721  INFO 301071 --- [http-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : login sucess
-2024-04-22 00:12:43.765  INFO 301071 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:12:59.304  INFO 301071 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-22 00:18:44.597  INFO 305666 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 305666 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-22 00:18:44.599  INFO 305666 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-22 00:18:45.364  INFO 305666 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2024-04-22 00:18:45.384  INFO 305666 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-22 00:18:45.385  INFO 305666 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-22 00:18:45.510  INFO 305666 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-22 00:18:45.511  INFO 305666 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 835 ms
-2024-04-22 00:18:45.948  INFO 305666 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-22 00:18:45.961  INFO 305666 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.656 seconds (JVM running for 2.208)
-2024-04-22 00:18:51.925  INFO 305666 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-22 00:18:51.926  INFO 305666 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-22 00:18:51.928  INFO 305666 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-22 00:18:59.192  INFO 305666 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
-2024-04-22 00:18:59.238  INFO 305666 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 02:54:47.449  INFO 49358 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 02:54:54.257  INFO 58303 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 58303 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 02:54:54.261  INFO 58303 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 02:54:55.064  INFO 58303 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 02:54:55.072  INFO 58303 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 02:54:55.072  INFO 58303 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 02:54:55.153  INFO 58303 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 02:54:55.159  INFO 58303 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 862 ms
+2024-04-23 02:54:55.535  INFO 58303 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 02:54:55.552  INFO 58303 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.624 seconds (JVM running for 2.05)
+2024-04-23 02:55:02.148  INFO 58303 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 02:55:02.149  INFO 58303 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 02:55:02.151  INFO 58303 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 02:55:08.276  INFO 58303 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 02:55:08.320  INFO 58303 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 02:55:40.962  INFO 58303 --- [http-nio-8081-exec-2] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 02:55:46.074 ERROR 58303 --- [http-nio-8081-exec-7] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8081-exec-7] Exception processing template "detailReport": An error happened during template parsing (template: "class path resource [templates/detailReport.html]")
+
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/detailReport.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366) ~[thymeleaf-spring5-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190) ~[thymeleaf-spring5-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1406) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1150) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Caused by: org.attoparser.ParseException: Could not parse as expression: "${entry.value} == 'Absent' ? 'Absent ❌' : (${entry.value} == 'Tardy' ? 'Tardy ⏰' : 'Present ✅')}" (template: "detailReport" - line 92, col 57)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	... 48 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as expression: "${entry.value} == 'Absent' ? 'Absent ❌' : (${entry.value} == 'Tardy' ? 'Tardy ⏰' : 'Present ✅')}" (template: "detailReport" - line 92, col 57)
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:131) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:62) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:44) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.EngineEventUtils.parseAttributeExpression(EngineEventUtils.java:220) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.EngineEventUtils.computeAttributeExpression(EngineEventUtils.java:207) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:125) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	... 50 common frames omitted
+
+2024-04-23 02:55:46.083 ERROR 58303 --- [http-nio-8081-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/detailReport.html]")] with root cause
+
+org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as expression: "${entry.value} == 'Absent' ? 'Absent ❌' : (${entry.value} == 'Tardy' ? 'Tardy ⏰' : 'Present ✅')}" (template: "detailReport" - line 92, col 57)
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:131) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:62) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.expression.StandardExpressionParser.parseExpression(StandardExpressionParser.java:44) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.EngineEventUtils.parseAttributeExpression(EngineEventUtils.java:220) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.EngineEventUtils.computeAttributeExpression(EngineEventUtils.java:207) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:125) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366) ~[thymeleaf-spring5-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190) ~[thymeleaf-spring5-3.0.15.RELEASE.jar:3.0.15.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1406) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1150) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-04-23 02:57:06.484  INFO 58303 --- [http-nio-8081-exec-8] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:01:41.475  INFO 63178 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 63178 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:01:41.477  INFO 63178 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:01:42.193  INFO 63178 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:01:42.200  INFO 63178 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:01:42.201  INFO 63178 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:01:42.275  INFO 63178 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:01:42.280  INFO 63178 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 748 ms
+2024-04-23 03:01:42.656  INFO 63178 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:01:42.667  INFO 63178 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.563 seconds (JVM running for 2.101)
+2024-04-23 03:01:45.552  INFO 63178 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:01:45.554  INFO 63178 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:01:45.558  INFO 63178 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-04-23 03:01:51.202  INFO 63178 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:01:51.240  INFO 63178 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:05:50.748  INFO 63178 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:06:11.757  INFO 66768 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 66768 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:06:11.760  INFO 66768 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:06:12.509  INFO 66768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:06:12.522  INFO 66768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:06:12.522  INFO 66768 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:06:12.629  INFO 66768 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:06:12.630  INFO 66768 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 822 ms
+2024-04-23 03:06:12.982  INFO 66768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:06:12.993  INFO 66768 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.567 seconds (JVM running for 1.852)
+2024-04-23 03:06:21.624  INFO 66768 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:06:21.625  INFO 66768 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:06:21.626  INFO 66768 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 03:06:27.451  INFO 66768 --- [http-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:06:27.488  INFO 66768 --- [http-nio-8081-exec-8] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:07:49.156  INFO 68053 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 68053 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:07:49.158  INFO 68053 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:07:49.904  INFO 68053 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:07:49.912  INFO 68053 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:07:49.912  INFO 68053 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:07:49.996  INFO 68053 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:07:49.996  INFO 68053 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 803 ms
+2024-04-23 03:07:50.400  INFO 68053 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:07:50.408  INFO 68053 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.514 seconds (JVM running for 1.878)
+2024-04-23 03:07:52.709  INFO 68053 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:07:52.711  INFO 68053 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:07:52.712  INFO 68053 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-23 03:07:56.810  INFO 68053 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:07:56.852  INFO 68053 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:10:56.369  INFO 70361 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 70361 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:10:56.371  INFO 70361 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:10:57.068  INFO 70361 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:10:57.076  INFO 70361 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:10:57.077  INFO 70361 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:10:57.148  INFO 70361 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:10:57.148  INFO 70361 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 743 ms
+2024-04-23 03:10:57.456  INFO 70361 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:10:57.469  INFO 70361 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.445 seconds (JVM running for 1.9)
+2024-04-23 03:11:05.139  INFO 70361 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:11:05.140  INFO 70361 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:11:05.141  INFO 70361 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-23 03:11:10.836  INFO 70361 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:11:10.886  INFO 70361 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:16:23.941  INFO 70361 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 03:16:23.945  INFO 70361 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-04-23 03:16:26.310  INFO 74371 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 74371 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:16:26.312  INFO 74371 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:16:27.108  INFO 74371 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:16:27.116  INFO 74371 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:16:27.116  INFO 74371 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:16:27.187  INFO 74371 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:16:27.190  INFO 74371 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 823 ms
+2024-04-23 03:16:27.490  INFO 74371 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:16:27.505  INFO 74371 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.587 seconds (JVM running for 1.991)
+2024-04-23 03:16:32.194  INFO 74371 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:16:32.195  INFO 74371 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:16:32.196  INFO 74371 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-23 03:16:38.209  INFO 74371 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:16:38.265  INFO 74371 --- [http-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:18:56.700  INFO 74371 --- [http-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:25:03.528  INFO 80516 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 80516 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:25:03.544  INFO 80516 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:25:04.444  INFO 80516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:25:04.457  INFO 80516 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:25:04.457  INFO 80516 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:25:04.543  INFO 80516 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:25:04.556  INFO 80516 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 935 ms
+2024-04-23 03:25:04.905  INFO 80516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:25:04.915  INFO 80516 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.831 seconds (JVM running for 2.305)
+2024-04-23 03:25:10.243  INFO 80516 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:25:10.246  INFO 80516 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:25:10.247  INFO 80516 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 03:25:15.257  INFO 80516 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:25:15.298  INFO 80516 --- [http-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:27:34.815  INFO 82455 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 82455 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:27:34.818  INFO 82455 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:27:35.525  INFO 82455 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:27:35.539  INFO 82455 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:27:35.539  INFO 82455 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:27:35.625  INFO 82455 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:27:35.625  INFO 82455 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 751 ms
+2024-04-23 03:27:36.030  INFO 82455 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:27:36.040  INFO 82455 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.607 seconds (JVM running for 2.12)
+2024-04-23 03:27:40.595  INFO 82455 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:27:40.595  INFO 82455 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:27:40.596  INFO 82455 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 03:27:45.909  INFO 82455 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:27:45.953  INFO 82455 --- [http-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:29:50.509  INFO 82455 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:33:48.430  INFO 82455 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 03:33:48.440  INFO 82455 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-04-23 03:33:51.014  INFO 86837 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 86837 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:33:51.017  INFO 86837 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:33:51.684  INFO 86837 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:33:51.698  INFO 86837 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:33:51.699  INFO 86837 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:33:51.801  INFO 86837 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:33:51.802  INFO 86837 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 731 ms
+2024-04-23 03:33:52.164  INFO 86837 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:33:52.180  INFO 86837 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.551 seconds (JVM running for 1.944)
+2024-04-23 03:33:56.976  INFO 86837 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:33:56.981  INFO 86837 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:33:56.983  INFO 86837 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 03:34:11.451  INFO 86837 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:34:11.494  INFO 86837 --- [http-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 03:35:52.584  WARN 86837 --- [http-nio-8081-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "${sectionId}"]
+2024-04-23 03:39:47.308  INFO 90955 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 90955 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 03:39:47.312  INFO 90955 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 03:39:48.181  INFO 90955 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 03:39:48.189  INFO 90955 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 03:39:48.189  INFO 90955 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 03:39:48.279  INFO 90955 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 03:39:48.280  INFO 90955 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 919 ms
+2024-04-23 03:39:48.594  INFO 90955 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 03:39:48.604  INFO 90955 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.686 seconds (JVM running for 2.074)
+2024-04-23 03:39:51.593  INFO 90955 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 03:39:51.596  INFO 90955 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 03:39:51.597  INFO 90955 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 03:39:55.898  INFO 90955 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 03:39:55.938  INFO 90955 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:09:34.286  INFO 90955 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 04:09:34.291  INFO 90955 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-04-23 04:09:36.418  INFO 111087 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 111087 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:09:36.420  INFO 111087 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:09:37.223  INFO 111087 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:09:37.231  INFO 111087 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:09:37.231  INFO 111087 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:09:37.307  INFO 111087 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:09:37.309  INFO 111087 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 853 ms
+2024-04-23 04:09:37.692  INFO 111087 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:09:37.700  INFO 111087 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.563 seconds (JVM running for 1.82)
+2024-04-23 04:09:40.502  INFO 111087 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:09:40.505  INFO 111087 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:09:40.507  INFO 111087 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:09:45.708  INFO 111087 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:09:45.749  INFO 111087 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:10:49.401  INFO 111087 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 04:10:51.701  INFO 112086 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 112086 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:10:51.708  INFO 112086 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:10:52.479  INFO 112086 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:10:52.487  INFO 112086 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:10:52.488  INFO 112086 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:10:52.556  INFO 112086 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:10:52.556  INFO 112086 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 770 ms
+2024-04-23 04:10:52.924  INFO 112086 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:10:52.935  INFO 112086 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.562 seconds (JVM running for 1.968)
+2024-04-23 04:10:59.803  INFO 112337 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 112337 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:10:59.809  INFO 112337 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:11:00.583  INFO 112337 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:11:00.592  INFO 112337 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:11:00.592  INFO 112337 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:11:00.666  INFO 112337 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:11:00.671  INFO 112337 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 808 ms
+2024-04-23 04:11:01.015  INFO 112337 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:11:01.029  INFO 112337 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.579 seconds (JVM running for 1.856)
+2024-04-23 04:11:03.373  INFO 112337 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:11:03.373  INFO 112337 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:11:03.374  INFO 112337 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:11:08.109  INFO 112337 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:11:08.156  INFO 112337 --- [http-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:14:29.732  INFO 112337 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 04:14:29.733  INFO 112337 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-04-23 04:14:32.340  INFO 114924 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 114924 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:14:32.350  INFO 114924 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:14:33.353  INFO 114924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:14:33.374  INFO 114924 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:14:33.375  INFO 114924 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:14:33.473  INFO 114924 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:14:33.473  INFO 114924 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1039 ms
+2024-04-23 04:14:33.899  INFO 114924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:14:33.910  INFO 114924 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.946 seconds (JVM running for 2.324)
+2024-04-23 04:14:43.229  INFO 114924 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:14:43.229  INFO 114924 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:14:43.230  INFO 114924 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-23 04:14:48.153  INFO 114924 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:14:48.195  INFO 114924 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:16:22.364  INFO 114924 --- [http-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:16:30.503  INFO 114924 --- [http-nio-8081-exec-8] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:22:32.279  INFO 120822 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 120822 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:22:32.281  INFO 120822 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:22:32.940  INFO 120822 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:22:32.949  INFO 120822 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:22:32.950  INFO 120822 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:22:33.028  INFO 120822 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:22:33.028  INFO 120822 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 711 ms
+2024-04-23 04:22:33.418  INFO 120822 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:22:33.427  INFO 120822 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.412 seconds (JVM running for 1.987)
+2024-04-23 04:22:42.909  INFO 120822 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:22:42.912  INFO 120822 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:22:42.913  INFO 120822 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:22:47.632  INFO 120822 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:22:47.675  INFO 120822 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:23:38.465  INFO 121805 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 121805 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:23:38.472  INFO 121805 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:23:39.199  INFO 121805 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:23:39.207  INFO 121805 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:23:39.208  INFO 121805 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:23:39.276  INFO 121805 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:23:39.279  INFO 121805 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 771 ms
+2024-04-23 04:23:39.671  INFO 121805 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:23:39.679  INFO 121805 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.601 seconds (JVM running for 1.984)
+2024-04-23 04:23:43.978  INFO 121805 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:23:43.979  INFO 121805 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:23:43.981  INFO 121805 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:23:48.698  INFO 121805 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:23:48.738  INFO 121805 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:25:07.381  INFO 121805 --- [http-nio-8081-exec-10] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:25:54.233  INFO 123625 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 123625 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:25:54.241  INFO 123625 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:25:54.991  INFO 123625 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:25:55.001  INFO 123625 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:25:55.001  INFO 123625 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:25:55.098  INFO 123625 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:25:55.098  INFO 123625 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 807 ms
+2024-04-23 04:25:55.485  INFO 123625 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:25:55.494  INFO 123625 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.548 seconds (JVM running for 1.833)
+2024-04-23 04:26:00.226  INFO 123625 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:26:00.229  INFO 123625 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:26:00.231  INFO 123625 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:26:06.503  INFO 123625 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:26:06.541  INFO 123625 --- [http-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:26:48.273  INFO 123625 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 04:26:50.643  INFO 124584 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 124584 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-23 04:26:50.646  INFO 124584 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:26:51.351  INFO 124584 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2024-04-23 04:26:51.366  INFO 124584 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:26:51.367  INFO 124584 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-23 04:26:51.450  INFO 124584 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:26:51.456  INFO 124584 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 759 ms
+2024-04-23 04:26:51.755  INFO 124584 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2024-04-23 04:26:51.766  INFO 124584 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.502 seconds (JVM running for 1.905)
+2024-04-23 04:27:00.681  INFO 124584 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 04:27:00.682  INFO 124584 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-23 04:27:00.684  INFO 124584 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-23 04:27:05.165  INFO 124584 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login sucess
+2024-04-23 04:27:05.199  INFO 124584 --- [http-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:27:14.514  INFO 124584 --- [http-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:27:25.650  INFO 124584 --- [http-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:27:30.333  INFO 124584 --- [http-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : course controller begin
+2024-04-23 04:27:39.656  INFO 124584 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-23 04:27:39.658  INFO 124584 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'

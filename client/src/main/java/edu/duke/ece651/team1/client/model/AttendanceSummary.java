@@ -32,6 +32,18 @@ public class AttendanceSummary {
         }   
     }
 
+    public AttendanceSummary(String line, String displayName){
+        String pattern ="(\\w+) \\w+: (\\d+)/(\\d+) \\((\\d+\\.\\d+)% attendance rate\\), Tardy Count: (\\d+)";
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(line);
+        if(matcher.find()){
+            this.displayName = displayName;
+            parse(matcher);
+        }else {
+            throw new IllegalArgumentException("Invalid input line: " + line);
+        }   
+    }
+
     private void parse(Matcher matcher){
         this.attendedCount = Integer.parseInt(matcher.group(2));
         this.totalCount = Integer.parseInt(matcher.group(3));

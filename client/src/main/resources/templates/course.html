@@ -36,6 +36,9 @@
                         <a th:if="${role == 'Professor'}"
                             th:href="@{/professor/class/{classname}/{sectionId}(classname=${course.courseName}, sectionId=${course.sectionId})}"
                             class="btn btn-primary">Manage</a>
+                        <a th:if="${role == 'Student'}"
+                            th:href="@{/student/class/{classname}/{classId}/{sectionId}(classname=${course.courseName}, sectionId=${course.sectionId}, classId =${course.id})}"
+                            class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
