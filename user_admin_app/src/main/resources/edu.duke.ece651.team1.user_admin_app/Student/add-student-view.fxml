@@ -30,7 +30,7 @@
       <TextField fx:id="studentDisplayName" layoutX="296.0" layoutY="200.0" />
       <Text layoutX="41.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of the student:" />
       <TextField fx:id="studentEmail" layoutX="296.0" layoutY="274.0" />
-        <Button layoutX="350.0" layoutY="342.0" mnemonicParsing="false" text="Confirm" />
+        <Button fx:id="confirmButton" layoutX="350.0" layoutY="342.0" mnemonicParsing="false" onAction="#confirmButtonClicked" text="Confirm" />
         <Button fx:id="button_back_to_student_view" layoutX="519.0" layoutY="342.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" />
     </children>
 </AnchorPane>
