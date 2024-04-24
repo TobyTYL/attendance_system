@@ -27,10 +27,10 @@
       <Text layoutX="54.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the name of the student:" />
       <Text layoutX="33.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the display name of the student:" />
       <Text layoutX="54.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of the student:" />
-      <TextField layoutX="300.0" layoutY="154.0" />
-      <TextField layoutX="300.0" layoutY="216.0" />
-      <TextField layoutX="300.0" layoutY="291.0" />
-      <Button layoutX="350.0" layoutY="342.0" mnemonicParsing="false" text="Confirm" />
+      <TextField fx:id="update_student_legalName" layoutX="300.0" layoutY="154.0" />
+      <TextField fx:id="update_student_display_name" layoutX="300.0" layoutY="216.0" />
+      <TextField fx:id="update_student_email" layoutX="300.0" layoutY="291.0" />
+      <Button layoutX="350.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateConfirmButtonClicked" text="Confirm" />
       <Button fx:id="button_back_to_student_view" layoutX="519.0" layoutY="342.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" />
 
     </children>
