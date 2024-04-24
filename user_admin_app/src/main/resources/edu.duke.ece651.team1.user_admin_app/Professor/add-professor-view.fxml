@@ -24,9 +24,9 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <TextField layoutX="307.0" layoutY="196.0" />
+        <TextField fx:id="add_professor_name" layoutX="307.0" layoutY="196.0" />
         <Text layoutX="29.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the name of the professor " />
-        <Button layoutX="350.0" layoutY="342.0" mnemonicParsing="false" text="Confirm" />
+        <Button layoutX="350.0" layoutY="342.0" mnemonicParsing="false" onAction="#addProfessorConfirmButtonClicked" text="Confirm" />
         <Button fx:id="button_back_to_professor_view" layoutX="519.0" layoutY="342.0" mnemonicParsing="false" onAction="#backProfessorPageButtonClicked" text="Back" />
     </children>
 </AnchorPane>
