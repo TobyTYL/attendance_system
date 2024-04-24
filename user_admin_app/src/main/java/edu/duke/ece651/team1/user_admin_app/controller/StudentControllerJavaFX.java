@@ -1,22 +1,18 @@
-package edu.duke.ece651.team1.useradmin_javafx;
+package edu.duke.ece651.team1.user_admin_app.controller;
 
-//import edu.duke.ece651.team1.data_access;
-//import edu.duke.ece651.team1.data_access.*;
-
-
+import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StudentController {
-//    private StudentDaoImp studentDao = new StudentDaoImp();
+public class StudentControllerJavaFX {
+    private StudentDaoImp studentDao = new StudentDaoImp();
 
     @FXML
     private Button button_add_student;
@@ -37,7 +33,7 @@ public class StudentController {
     @FXML
     private void addStudentButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Student/add-student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/add-student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_add_student.getScene().getWindow();
@@ -53,7 +49,7 @@ public class StudentController {
     @FXML
     private void removeStudentButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Student/remove-student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/remove-student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_remove_student.getScene().getWindow();
@@ -65,7 +61,7 @@ public class StudentController {
     @FXML
     private void updateStudentButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Student/update-student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/update-student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_update_student.getScene().getWindow();
@@ -77,7 +73,7 @@ public class StudentController {
     @FXML
     private void backButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/Student/student-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/student-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_back_to_student_view.getScene().getWindow();
@@ -90,7 +86,7 @@ public class StudentController {
     @FXML
     private void backMainPageButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.useradmin_javafx/hello-view.fxml"));
+            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
             Parent root = studentLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_back_to_main_view.getScene().getWindow();

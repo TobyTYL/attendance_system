@@ -19,6 +19,7 @@ subprojects{
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
 
 
@@ -91,6 +92,15 @@ project (':client'){
 //        testImplementation project(path: ':shared', configuration: "testPkg")
     }
 }
+
+project(':useradmin_javafx'){
+    dependencies {
+        implementation project(':data_access')
+        implementation project(':shared')
+    }
+}
+
+
 clover {
     report{
         xml=true
