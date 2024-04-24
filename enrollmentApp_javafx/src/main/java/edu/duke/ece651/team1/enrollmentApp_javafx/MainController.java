@@ -12,43 +12,42 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    private Button manageStudentsButton;
+    private Button manageCoursesButton;
 
     @FXML
-    private Button manageProfessorsButton;
+    private Button enrollStudentsButton;
 
     @FXML
     private Button exitButton;
 
     @FXML
-    protected void onManageStudentsClick() {
-        // Add navigation or functionality to manage students
+    protected void onManageCoursesClick() {
+        // Add navigation or functionality to manage courses
+        changeScene("/CourseMgmtNavi.fxml", manageCoursesButton);
     }
 
     @FXML
-    protected void onManageProfessorsClick() {
-        try {
-            // Load the professor management FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfessorManagement.fxml"));
-            Parent professorManagementRoot = loader.load();
-
-            // Get the current stage (window) using the manageProfessorsButton
-            Stage stage = (Stage) manageProfessorsButton.getScene().getWindow();
-
-            // Create a new scene with the professor management layout
-            Scene professorManagementScene = new Scene(professorManagementRoot);
-
-            // Set the new scene on the current stage
-            stage.setScene(professorManagementScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
-        }
+    protected void onEnrollStudentsClick() {
+        // Add navigation or functionality to enroll students
+        changeScene("/EnrollmentPanel.fxml", enrollStudentsButton);
     }
-
 
     @FXML
     protected void onExitClick() {
         System.exit(0);
+    }
+
+    // Helper method to change scene
+    private void changeScene(String fxmlFile, Button button) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+            Stage stage = (Stage) button.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle the exception as appropriate
+        }
     }
 }

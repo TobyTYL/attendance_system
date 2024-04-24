@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:controller="edu.duke.ece651.team1.enrollmentApp_javafx.UpdateCourseController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="coursesListView" layoutX="21.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" editable="false" />
+      <ListView fx:id="sectionsListView" layoutX="244.0" layoutY="69.0" prefHeight="200.0" prefWidth="122.0" editable="false" />
+      <ListView fx:id="professorsListView" layoutX="386.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" editable="false" />
+      <!-- Other UI components -->
+      <Label layoutX="21.0" layoutY="50.0" text="Courses" />
+      <Label layoutX="244.0" layoutY="50.0" text="Sections" />
+      <Label layoutX="386.0" layoutY="50.0" text="Professors" />
+      <Button fx:id="addButton" layoutX="21.0" layoutY="281.0" mnemonicParsing="false" onAction="#onAddClick" text="Add a section" />
+      <Button fx:id="removeButton" layoutX="244.0" layoutY="281.0" mnemonicParsing="false" onAction="#onRemoveClick" text="Remove" />
+      <Button fx:id="assignButton" layoutX="386.0" layoutY="281.0" mnemonicParsing="false" onAction="#onAssignClick" text="Assign to selected" />
+      <Button fx:id="returnButton" layoutX="505.0" layoutY="21.0" mnemonicParsing="false" onAction="#onReturnClick" text="Return" />
+      <TextField fx:id="resultText" editable="false" layoutX="21.0" layoutY="357.0" />
+      <Label layoutX="21.0" layoutY="338.0" text="Result" />
+   </children>
+</AnchorPane>

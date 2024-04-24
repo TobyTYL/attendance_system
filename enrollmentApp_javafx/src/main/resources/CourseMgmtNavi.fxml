@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:controller="edu.duke.ece651.team1.enrollmentApp_javafx.CourseMgmtNaviController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="createClassButton" layoutX="102.0" layoutY="81.0" mnemonicParsing="false" onAction="#onCreateClassClick" prefHeight="29.0" prefWidth="160.0" text="Create a new class" />
+      <Button fx:id="updateClassButton" layoutX="102.0" layoutY="162.0" mnemonicParsing="false" onAction="#onUpdateClassClick" prefHeight="29.0" prefWidth="160.0" text="Update a class" />
+      <Button fx:id="removeClassButton" layoutX="102.0" layoutY="247.0" mnemonicParsing="false" onAction="#onRemoveClassClick" prefHeight="29.0" prefWidth="160.0" text="Remove a class" />
+      <Button fx:id="returnButton" layoutX="102.0" layoutY="332.0" mnemonicParsing="false" onAction="#onReturnClick" text="Back to main menu" />
+   </children>
+</AnchorPane>

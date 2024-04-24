@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.enrollmentApp_javafx.ManualStudentEnrollController">
+   <children>
+      <TextField fx:id="inputStudentID" layoutX="45.0" layoutY="83.0" />
+      <Label layoutX="14.0" layoutY="5.0" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="45.0" layoutY="54.0" text="Insert student ID:" />
+      <Button fx:id="lookupStudentButton" layoutX="232.0" layoutY="83.0" mnemonicParsing="false" onAction="#onLookupStudentClick" text="Lookup" />
+      <TextField fx:id="studentQueryResult" editable="false" layoutX="45.0" layoutY="152.0" />
+      <Label layoutX="45.0" layoutY="126.0" text="Student query result:" />
+      <TextArea fx:id="availCourses" editable="false" layoutX="369.0" layoutY="81.0" prefHeight="93.0" prefWidth="200.0" />
+      <Label layoutX="369.0" layoutY="54.0" text="Available Courses:" />
+      <TextField fx:id="inputCourseName" layoutX="45.0" layoutY="228.0" />
+      <Label layoutX="45.0" layoutY="200.0" text="Insert course name:" />
+      <Button fx:id="findSecButton" layoutX="232.0" layoutY="228.0" mnemonicParsing="false" onAction="#onFindSecClick" text="Find Sections" />
+      <TextArea fx:id="availSections" editable="false" layoutX="369.0" layoutY="261.0" prefHeight="121.0" prefWidth="200.0" />
+      <Label layoutX="369.0" layoutY="228.0" text="Available Sections:" />
+      <TextField fx:id="inputSecID" layoutX="45.0" layoutY="307.0" />
+      <Label layoutX="45.0" layoutY="276.0" text="Insert section id:" />
+      <Button fx:id="enrollButton" layoutX="232.0" layoutY="307.0" mnemonicParsing="false" onAction="#onEnrollClick" text="Enroll" />
+      <Label layoutX="45.0" layoutY="346.0" text="Enroll result:" />
+      <TextField fx:id="enrollResult" editable="false" layoutX="45.0" layoutY="368.0" />
+      <Button fx:id="returnButton" layoutX="235.0" layoutY="368.0" mnemonicParsing="false" onAction="#onReturnClick" text="Return" />
+   </children>
+</AnchorPane>
