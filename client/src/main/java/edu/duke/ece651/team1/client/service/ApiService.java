@@ -3,6 +3,7 @@ import org.springframework.http.*;
 import edu.duke.ece651.team1.client.model.UserSession;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.*;
+
 public class ApiService {
     static RestTemplate restTemplate = new RestTemplate();
     /**

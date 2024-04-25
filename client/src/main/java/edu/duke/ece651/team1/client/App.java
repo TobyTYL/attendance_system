@@ -5,6 +5,7 @@ package edu.duke.ece651.team1.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.duke.ece651.team1.client.model.*;
@@ -18,6 +19,7 @@ import javax.el.ELException;
  * This class represents the main entry point of the Spring Boot application.
  */
 @SpringBootApplication
+@EnableScheduling
 @RestController
 public class App {
 	/**

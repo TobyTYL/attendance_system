@@ -19,10 +19,15 @@ import edu.duke.ece651.team1.shared.Student;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.NoSuchElementException;
+
 /**
  * The AttendanceController class handles HTTP requests related to managing attendance records.
  * It supports operations such as recording, updating, and retrieving attendance data.
  */
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 @RestController
 @RequestMapping("/api/attendance")
 public class AttendanceController {
@@ -214,5 +219,23 @@ public class AttendanceController {
             return new ResponseEntity<>("Get student Report error because " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/mark/{sectionID}/{sessionDate}/{studentId}")
+    public ResponseEntity<String> markPresent(@PathVariable String sessionDate,
+ @PathVariable int sectionID, @PathVariable int studentID) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    try{
+        attendanceService.updateStudentAttendance(sessionDate, sectionID, studentID);
+        return ResponseEntity.ok("Attendance marked successfully.");
+    }catch(IllegalArgumentException e){
+        return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+
+    }catch(NoSuchElementException e){
+        return ResponseEntity.notFound().build();
+    }catch(Exception e){
+        return ResponseEntity.internalServerError().body("An unexpected error occurred: " + e.getMessage());
+    }
+    }
+    
     
 }

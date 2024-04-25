@@ -141,6 +141,11 @@ public class AttendanceController {
         model.addAttribute("summaries", summaries);
         return "classReport";
     }
+    @GetMapping("/test")
+    public String getMethodName() {
+        return "test";
+    }
+    
 
 
 }

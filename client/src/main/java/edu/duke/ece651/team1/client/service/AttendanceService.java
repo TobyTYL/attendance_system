@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletResponse;
 import edu.duke.ece651.team1.client.model.*;
 import java.util.*;
-import java.io.*;;
+import java.io.*;
+import org.springframework.web.client.*;
+
 
 @Service
 public class AttendanceService {
@@ -121,24 +123,25 @@ public class AttendanceService {
                 }
                 // File file = new File(filePath + fileName + "." + format);
                 // try (OutputStream out = new BufferedOutputStream(response.getOutputStream());
-                //                 FileInputStream in = new FileInputStream(file)) {
-                //         response.setContentType("application/octet-stream");
-                //         response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
-                //         response.setContentLength((int) file.length());
+                // FileInputStream in = new FileInputStream(file)) {
+                // response.setContentType("application/octet-stream");
+                // response.setHeader("Content-Disposition", "attachment; filename=" +
+                // file.getName());
+                // response.setContentLength((int) file.length());
 
-                //         byte[] buffer = new byte[1024];
-                //         int numBytesRead;
-                //         while ((numBytesRead = in.read(buffer)) > 0) {
-                //                 out.write(buffer, 0, numBytesRead);
-                //         }
+                // byte[] buffer = new byte[1024];
+                // int numBytesRead;
+                // while ((numBytesRead = in.read(buffer)) > 0) {
+                // out.write(buffer, 0, numBytesRead);
+                // }
                 // } catch (Exception e) {
-                //         e.printStackTrace();
+                // e.printStackTrace();
                 // }
 
         }
 
-        public List<AttendanceSummary> getAttendancestatistic(int sectionId){
-                String report= getClassReport(sectionId);
+        public List<AttendanceSummary> getAttendancestatistic(int sectionId) {
+                String report = getClassReport(sectionId);
                 String[] lines = report.split("\n");
                 List<AttendanceSummary> summaries = new ArrayList<>();
                 for (int i = 1; i < lines.length; i++) {
@@ -146,7 +149,21 @@ public class AttendanceService {
                         summaries.add(new AttendanceSummary(line));
                 }
                 return summaries;
+        }
 
+        public String updateStudentAttendance(int sectionId, String sessionDate, int studentId) {
+
+                String url = String.format("http://%s:%s/api/attendance/mark/%d/%s/%d",
+                                UserSession.getInstance().getHost(), UserSession.getInstance().getPort(), sectionId,
+                                sessionDate, studentId);
+                ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
+                };
+                try{
+                        ApiService.executePostPutRequest(url, null, responseType, true);
+                        return "success";
+                }catch(HttpClientErrorException e){
+                        return "Authen failed: You are not student in this class, Your attendance cannot be marked";
+                }
         }
 
 }

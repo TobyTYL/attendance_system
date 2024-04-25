@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.duke.ece651.team1.client.model.UserSession;
+import edu.duke.ece651.team1.client.service.TokenService;
 import edu.duke.ece651.team1.client.service.UserService;
 
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.*;
-
+import java.time.Instant;
 import org.json.*;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * The SecurityController class manages user registration for different roles
@@ -23,6 +27,8 @@ import org.json.*;
 public class SecurityController {
     @Autowired
     UserService userService;
+    @Autowired
+    TokenService tokenService;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     @GetMapping("/login")
@@ -32,18 +38,40 @@ public class SecurityController {
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
-            @RequestParam("password") String password,RedirectAttributes redirectAttributes) {
+            @RequestParam("password") String password,
+            RedirectAttributes redirectAttributes) {
         String response = userService.authenticate(username, password);
-        if (response!="loginFailed") {
+        if (!"loginFailed".equals(response)) {
             JSONObject jsonObject = new JSONObject(response);
             String role = jsonObject.getString("role");
             int id = jsonObject.getInt("id");
-            logger.info("login sucess");
+            logger.info("login success");
             UserSession.getInstance().setUid(id);
-            return "redirect:/course/allcourses/"+role+"/"+id;
+            return "redirect:/course/allcourses/" + role + "/" + id;
         }
         redirectAttributes.addFlashAttribute("loginError", "Login failed");
         return "redirect:/login";
+    }
+
+    @GetMapping("markattendance/authenticate")
+    public String authen() {
+        return "login";
+    }
+
+    @PostMapping("markattendance/authenticate")
+    public String postMethodName(@RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam(value = "token") String token) {
+        String response = userService.authenticate(username, password);
+        if (!"loginFailed".equals(response)) {
+            if(tokenService.validateToken(token)){
+                return "successmark";
+            }else{
+                return "expire";
+            }
+        }
+        return  "redirect:/authenticate";
+
     }
 
 }
