@@ -5,11 +5,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="manageStudentButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.useradmin_javafx.HelloController">
-   <children>
-      <AnchorPane prefHeight="73.0" prefWidth="600.0" style="-fx-background-color: HEX #0577B1;">
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.useradmin_javafx.HelloController">
+   <top>
+      <AnchorPane prefHeight="73.0" prefWidth="600.0" style="-fx-background-color: HEX #0577B1;" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: #0577B1;">
                <children>
@@ -25,17 +27,21 @@
                   </ImageView>
                </children>
             </AnchorPane>
-         </children></AnchorPane>
-      <Button fx:id="button_manage_professor" layoutX="169.0" layoutY="224.0" mnemonicParsing="false" onAction="#manageProfessorButtonClicked" text="Manage Professor Users">
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <Button fx:id="button_manage_student" mnemonicParsing="false" onAction="#manageStudentButtonClicked" text="Manage Student Users" BorderPane.alignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="button_manage_student" layoutX="176.0" layoutY="147.0" mnemonicParsing="false" onAction="#manageStudentButtonClicked" text="Manage Student Users">
+   </center>
+   <right>
+      <Button fx:id="button_manage_professor" mnemonicParsing="false" onAction="#manageProfessorButtonClicked" text="Manage Professor Users" BorderPane.alignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="welcomeText" layoutX="270.0" layoutY="298.0" text="Label" />
-   </children>
-</AnchorPane>
+   </right>
+</BorderPane>
