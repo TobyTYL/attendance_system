@@ -65,6 +65,10 @@ public class AddSectionController_javafx {
             }
             int professorId = professor.getProfessorId();
             int classId = courseDao.getClassIdByName(courseName);
+            if (sectionDao.existsSectionWithProfessor(classId, professorId)) {
+                showAlert("Error", "This professor already teaches a section of this course.");
+                return;
+            }
             Section section = new Section(classId, professorId);
             sectionDao.addSection(section);
             showAlert("Success", "Section added successfully!");

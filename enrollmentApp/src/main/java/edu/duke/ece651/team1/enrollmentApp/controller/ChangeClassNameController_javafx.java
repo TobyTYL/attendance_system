@@ -8,9 +8,12 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
+import edu.duke.ece651.team1.enrollmentApp.Model;
+import edu.duke.ece651.team1.shared.Course;
 
 import java.io.IOException;
-
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 
 public class ChangeClassNameController_javafx {
@@ -19,20 +22,39 @@ public class ChangeClassNameController_javafx {
     @FXML
     private TextField newClassNameField;
 
+    private CourseDaoImp courseDao = new CourseDaoImp();
     // This method can be called during the initialization to set the current class name
     public void initialize() {
-        // Simulating fetching the current class name from a database
-        String currentClassName = "Introduction to Java";
-        currentClassNameLabel.setText(currentClassName);
+        Course selectedCourse = Model.getSelectedCourse();
+        if (selectedCourse != null) {
+            currentClassNameLabel.setText(selectedCourse.getName());
+        } else {
+            currentClassNameLabel.setText("No course selected");
+        }
+        
     }
 
     @FXML
     private void onChangeClassName(ActionEvent event) {
+        String oldClassName = currentClassNameLabel.getText();
         String newClassName = newClassNameField.getText();
         if (!newClassName.isEmpty()) {
-            // Logic to update the class name in the database or wherever it's stored
-            System.out.println("Class name updated from " + currentClassNameLabel.getText() + " to " + newClassName);
-            currentClassNameLabel.setText(newClassName); // Update the label to reflect the change
+            try {
+                if (courseDao.checkCourseExists(newClassName)) {
+                    System.out.println("The class name already exists!");
+                    return;
+                }
+        
+                courseDao.updateClassName(oldClassName, newClassName);
+                // Update the selected course name in the model after successful database update
+                Course updatedCourse = Model.getSelectedCourse();//also modify the course name in model
+                if (updatedCourse != null) {
+                    updatedCourse.setName(newClassName);
+                }
+                currentClassNameLabel.setText(newClassName); // Update the label to reflect the change
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         } else {
             System.out.println("New class name cannot be empty");
         }
