@@ -229,7 +229,6 @@ public class AttendanceController {
         return ResponseEntity.ok("Attendance marked successfully.");
     }catch(IllegalArgumentException e){
         return ResponseEntity.badRequest().body("Error: " + e.getMessage());
-
     }catch(NoSuchElementException e){
         return ResponseEntity.notFound().build();
     }catch(Exception e){

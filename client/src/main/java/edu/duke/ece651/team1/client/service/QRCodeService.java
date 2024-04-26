@@ -20,14 +20,14 @@ import org.springframework.util.Base64Utils;
 public class QRCodeService {
     @Autowired
     TokenService tokenService;
-    public String generateExpiringQRCodeURL(String baseUrl, long validityInSeconds) {
-        String token = tokenService.createToken();
+    public String generateExpiringQRCodeURLwithLocation(String baseUrl, long validityInSeconds,double latitude, double longitude) {
+        String token = tokenService.createToken(latitude,longitude);
         return baseUrl + "?token=" + token;
     }
 
-    public String generateQRCodeImage(String url) throws WriterException, IOException {
+    public String generateQRCodeImage(String url, double latitude, double longitude) throws WriterException, IOException {
         MultiFormatWriter barcodeWriter = new MultiFormatWriter();
-        String urlWithExpiry = generateExpiringQRCodeURL(url, 30);
+        String urlWithExpiry = generateExpiringQRCodeURLwithLocation(url, 30,latitude,longitude);
         BitMatrix bitMatrix = barcodeWriter.encode(urlWithExpiry, BarcodeFormat.QR_CODE, 200, 200);
 
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();

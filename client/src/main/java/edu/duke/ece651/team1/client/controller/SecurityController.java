@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class SecurityController {
     @Autowired
     UserService userService;
-    @Autowired
-    TokenService tokenService;
+    
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     @GetMapping("/login")
@@ -53,25 +52,6 @@ public class SecurityController {
         return "redirect:/login";
     }
 
-    @GetMapping("markattendance/authenticate")
-    public String authen() {
-        return "login";
-    }
-
-    @PostMapping("markattendance/authenticate")
-    public String postMethodName(@RequestParam("username") String username,
-            @RequestParam("password") String password,
-            @RequestParam(value = "token") String token) {
-        String response = userService.authenticate(username, password);
-        if (!"loginFailed".equals(response)) {
-            if(tokenService.validateToken(token)){
-                return "successmark";
-            }else{
-                return "expire";
-            }
-        }
-        return  "redirect:/authenticate";
-
-    }
+   
 
 }

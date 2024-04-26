@@ -1,27 +1,13 @@
-2024-04-25 01:11:56.487  INFO 28388 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 28388 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-25 01:11:56.511  INFO 28388 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-25 01:11:57.765  INFO 28388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-25 01:11:57.785  INFO 28388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-25 01:11:57.787  INFO 28388 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-25 01:11:57.970  INFO 28388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-25 01:11:57.970  INFO 28388 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1395 ms
-2024-04-25 01:11:58.869  INFO 28388 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-25 01:11:58.943  INFO 28388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-25 01:11:58.958  INFO 28388 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.849 seconds (JVM running for 3.178)
-2024-04-25 01:12:11.079  INFO 28388 --- [https-jsse-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-25 01:12:11.080  INFO 28388 --- [https-jsse-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-25 01:12:11.082  INFO 28388 --- [https-jsse-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-25 01:12:20.637  WARN 28388 --- [https-jsse-nio-8081-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'param' for method parameter type String is not present]
-2024-04-25 01:12:50.956  INFO 29260 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 29260 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-25 01:12:50.958  INFO 29260 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-25 01:12:51.658  INFO 29260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-25 01:12:51.666  INFO 29260 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-25 01:12:51.668  INFO 29260 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-25 01:12:51.758  INFO 29260 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-25 01:12:51.759  INFO 29260 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 755 ms
-2024-04-25 01:12:52.290  INFO 29260 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-25 01:12:52.303  INFO 29260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-25 01:12:52.315  INFO 29260 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.613 seconds (JVM running for 1.865)
-2024-04-25 01:12:55.180  INFO 29260 --- [https-jsse-nio-8081-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-25 01:12:55.183  INFO 29260 --- [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-25 01:12:55.185  INFO 29260 --- [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-26 00:06:18.695  INFO 22829 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 22829 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
+2024-04-26 00:06:18.707  INFO 22829 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
+2024-04-26 00:06:19.561  INFO 22829 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
+2024-04-26 00:06:19.570  INFO 22829 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-26 00:06:19.570  INFO 22829 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-04-26 00:06:19.658  INFO 22829 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-26 00:06:19.659  INFO 22829 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 888 ms
+2024-04-26 00:06:20.304  INFO 22829 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
+2024-04-26 00:06:20.323  INFO 22829 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
+2024-04-26 00:06:20.332  INFO 22829 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.906 seconds (JVM running for 2.198)
+2024-04-26 00:06:22.943  INFO 22829 --- [https-jsse-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 00:06:22.943  INFO 22829 --- [https-jsse-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-26 00:06:22.944  INFO 22829 --- [https-jsse-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
