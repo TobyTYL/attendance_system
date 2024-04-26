@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.duke.ece651.team1.data_access.DB_connect;
+import edu.duke.ece651.team1.data_access.Course.CourseDao;
+import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.shared.Course;
+import edu.duke.ece651.team1.data_access.DB_connect;
+
 /**
  * The CourseDaoImpl class provides implementation for accessing course data in the database.
  */

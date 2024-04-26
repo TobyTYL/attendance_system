@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp_javafx.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,8 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
+import edu.duke.ece651.team1.shared.Course;
 
-public class CreateCourseController {
+
+public class CreateCourseController_javafx {
 
     @FXML
     private Button createCourseButton;
@@ -29,10 +32,32 @@ public class CreateCourseController {
     // Handler for the 'Create' button action
     @FXML
     private void onCreateClick() {
-        String courseName = userInputCourseName.getText();
-        // Here, add your logic to create a course using the name provided
-        // For now, it just simulates a course creation
-        createCourseResult.setText("Course '" + courseName + "' created successfully.");
+        String courseName = userInputCourseName.getText().trim();
+        if(courseName.isEmpty()){
+            createCourseResult.setText("Course name cannot be empty.");
+            return;
+        }
+        try{
+            CourseDaoImp courseDao = new CourseDaoImp();
+            if (courseDao.checkCourseExists(courseName)) {
+                createCourseResult.setText("Course '" + courseName + "' already exists.");
+                return;
+            }
+            Course newCourse = new Course();
+            newCourse.setName(courseName);
+
+            // Add to database
+            courseDao.addCourse(newCourse);
+
+            // Update the result text field in the GUI
+            createCourseResult.setText("Course '" + courseName + "' created successfully.");
+        }catch(IllegalArgumentException e){
+            createCourseResult.setText("Invalid course name: " + e.getMessage());
+        }catch(Exception e){
+            createCourseResult.setText("Failed to create course: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
     }
 
     // Handler for the 'Return' button action

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane fx:controller="edu.duke.ece651.team1.enrollmentApp_javafx.CreateCourseController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="edu.duke.ece651.team1.enrollmentApp.controller.CreateCourseController_javafx" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="createCourseButton" layoutX="263.0" layoutY="87.0" mnemonicParsing="false" onAction="#onCreateClick" text="Create" />
       <Button fx:id="returnButton" layoutX="415.0" layoutY="87.0" mnemonicParsing="false" onAction="#onReturnClick" text="Return" />

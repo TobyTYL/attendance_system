@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="edu.duke.ece651.team1.enrollmentApp.controller.SelectCourseController_javafx" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER">
+    <Label text="Select a Class to Manage:" />
+    <ComboBox fx:id="classComboBox" />
+    <Button text="Select" onAction="#onSelectClass" />
+    <Button text="Return" onAction="#onReturn" />
+</VBox>

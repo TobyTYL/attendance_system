@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManualStudentEnrollController {
+public class ManualStudentEnrollController_javafx {
     @FXML
     private TextField studentQueryResult;
     @FXML

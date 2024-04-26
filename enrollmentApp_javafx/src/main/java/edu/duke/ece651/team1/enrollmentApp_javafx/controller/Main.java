@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp_javafx.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

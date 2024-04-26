@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CourseMgmtNaviController {
+public class CourseMgmtNaviController_javafx {
 
     @FXML
     private Button createClassButton;
@@ -20,6 +20,9 @@ public class CourseMgmtNaviController {
     @FXML
     private Button removeClassButton;
 
+    @FXML
+    private Button changeClassNameButton;
+    
     @FXML
     private Button returnButton;
 
@@ -50,7 +53,7 @@ public class CourseMgmtNaviController {
         // Handle the update class action
         try {
             // Load the Remove Course FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateCourse.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SelectCourse.fxml"));
             Parent removeCourseRoot = loader.load();
 
             // Get the current stage (window) using any node that is part of the scene

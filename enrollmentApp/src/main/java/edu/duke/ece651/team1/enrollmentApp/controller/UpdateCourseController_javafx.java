@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UpdateCourseController {
+public class UpdateCourseController_javafx {
 
     @FXML
     private ListView<String> coursesListView;

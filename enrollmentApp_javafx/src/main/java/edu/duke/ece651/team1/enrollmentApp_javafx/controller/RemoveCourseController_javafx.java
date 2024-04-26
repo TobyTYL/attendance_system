@@ -1,4 +1,4 @@
-package edu.duke.ece651.team1.enrollmentApp_javafx;
+package edu.duke.ece651.team1.enrollmentApp_javafx.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
-public class RemoveCourseController {
+public class RemoveCourseController_javafx {
 
     @FXML
     private ListView<String> listCurrCourses;
