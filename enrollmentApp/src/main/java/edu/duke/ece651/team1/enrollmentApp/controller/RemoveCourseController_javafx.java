@@ -3,7 +3,9 @@ package edu.duke.ece651.team1.enrollmentApp.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
 
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.shared.Course;
-
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 public class RemoveCourseController_javafx {
 
     @FXML
@@ -47,20 +49,26 @@ public class RemoveCourseController_javafx {
     private void onRemoveClick() {
         // Get the selected course
         String selectedCourse = listCurrCourses.getSelectionModel().getSelectedItem();
-
-        if (selectedCourse != null) {
-            // Remove the course from the database
-            if (courseDao.checkCourseExists(selectedCourse)) {
-                // Remove the course from the database
-                courseDao.deleteCourse(selectedCourse);
-                listCurrCourses.getItems().remove(selectedCourse);
-                removeResult.setText("Removed: " + selectedCourse);
-            }else{
-                removeResult.setText("Course '" + selectedCourse + "' does not exist.");
-            }
-        } else {
-            removeResult.setText("No course selected!");
+         if (selectedCourse == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", null, "No course selected!");
+            return;
         }
+
+        // Confirmation dialog to ensure that the user wants to proceed with deletion
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove '" + selectedCourse + "'?", ButtonType.YES, ButtonType.NO);
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                // Proceed with deletion if user confirms
+                if (courseDao.checkCourseExists(selectedCourse)) {
+                    courseDao.deleteCourse(selectedCourse);
+                    listCurrCourses.getItems().remove(selectedCourse);
+                    showAlert(Alert.AlertType.INFORMATION, "Course Removed", null, "Removed: " + selectedCourse);
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Error", null, "Course '" + selectedCourse + "' does not exist.");
+                }
+            }
+        });
+        
     }
 
     @FXML
@@ -69,17 +77,12 @@ public class RemoveCourseController_javafx {
             // Load the previous panel's FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CourseMgmtNavi.fxml")); // Replace with actual FXML filename
             Parent root = loader.load();
-
-            // Get the current stage from the return button
             Stage stage = (Stage) returnButton.getScene().getWindow();
-
-            // Create a new scene with the root layout
             Scene scene = new Scene(root);
-
-            // Set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Loading Error", null, "Failed to load the navigation panel: " + e.getMessage());
             e.printStackTrace(); // Or handle the exception as appropriate
         }
     }

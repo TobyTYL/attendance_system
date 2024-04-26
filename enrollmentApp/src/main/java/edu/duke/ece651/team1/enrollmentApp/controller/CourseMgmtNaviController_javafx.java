@@ -4,9 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 import java.io.IOException;
 
 public class CourseMgmtNaviController_javafx {
@@ -26,90 +27,36 @@ public class CourseMgmtNaviController_javafx {
     @FXML
     private Button returnButton;
 
-    @FXML
+   @FXML
     private void onCreateClassClick() {
-        try {
-            // Load the Create Course FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateCourse.fxml"));
-            Parent createCourseRoot = loader.load();
-
-            // Get the current stage (window) using any node that is part of the scene
-            Stage stage = (Stage) createClassButton.getScene().getWindow(); // Replace 'createClassButton' if it's not in the current context
-
-            // Create a new scene with the Create Course layout
-            Scene createCourseScene = new Scene(createCourseRoot);
-
-            // Set the new scene on the current stage
-            stage.setScene(createCourseScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
-        }
+        loadScene("/CreateCourse.fxml", createClassButton);
     }
-
 
     @FXML
     private void onUpdateClassClick() {
-        // Handle the update class action
-        try {
-            // Load the Remove Course FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SelectCourse.fxml"));
-            Parent removeCourseRoot = loader.load();
-
-            // Get the current stage (window) using any node that is part of the scene
-            Stage stage = (Stage) removeClassButton.getScene().getWindow(); // replace 'removeClassButton' with an actual node from your scene if needed
-
-            // Create a new scene with the Remove Course layout
-            Scene removeCourseScene = new Scene(removeCourseRoot);
-
-            // Set the new scene on the current stage
-            stage.setScene(removeCourseScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
-        }
+        loadScene("/SelectCourse.fxml", updateClassButton);
     }
 
     @FXML
     private void onRemoveClassClick() {
-        try {
-            // Load the Remove Course FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RemoveCourse.fxml"));
-            Parent removeCourseRoot = loader.load();
-
-            // Get the current stage (window) using any node that is part of the scene
-            Stage stage = (Stage) removeClassButton.getScene().getWindow(); // replace 'removeClassButton' with an actual node from your scene if needed
-
-            // Create a new scene with the Remove Course layout
-            Scene removeCourseScene = new Scene(removeCourseRoot);
-
-            // Set the new scene on the current stage
-            stage.setScene(removeCourseScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
-        }
+        loadScene("/RemoveCourse.fxml", removeClassButton);
     }
 
     @FXML
-    protected void onReturnClick() {
+    private void onReturnClick() {
+        loadScene("/Main.fxml", returnButton);
+    }
+
+    private void loadScene(String fxmlPath, Button buttonContext) {
         try {
-            // Load the Main FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main.fxml"));
-            Parent mainRoot = loader.load();
-
-            // Get the current stage (window) from the return button
-            Stage stage = (Stage) returnButton.getScene().getWindow();
-
-            // Create a new scene with the Main layout
-            Scene mainScene = new Scene(mainRoot);
-
-            // Set the new scene on the current stage
-            stage.setScene(mainScene);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = (Stage) buttonContext.getScene().getWindow();
+            stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
+            showAlert(Alert.AlertType.ERROR, "Loading Error", null, "Failed to load the screen: " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 }

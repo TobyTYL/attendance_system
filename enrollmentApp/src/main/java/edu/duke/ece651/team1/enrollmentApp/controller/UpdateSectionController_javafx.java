@@ -56,10 +56,7 @@ public class UpdateSectionController_javafx {
             User professorUser = userDao.getUserById(professor.getUserId());
             return "Section " + section.getSectionId() + ": " + professorUser.getUsername();
         }).toList()));
-        // professorComboBox.setItems(FXCollections.observableArrayList(professorDao.findAllProfessors().stream().map(professor -> {;
-        //     return professorDao.getProfessorById(professor.getProfessorId()).getDisplayName();
-        // })
-        // .toList()));
+       
             List<String> professorNames = new ArrayList<>();
         for (Professor professor : professorDao.findAllProfessors()) {
             User professorUser = userDao.getUserById(professor.getUserId());

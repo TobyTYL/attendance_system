@@ -2,6 +2,7 @@ package edu.duke.ece651.team1.enrollmentApp.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -16,12 +17,13 @@ import edu.duke.ece651.team1.data_access.Course.CourseDao;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.enrollmentApp.Model;
 import edu.duke.ece651.team1.shared.Course;
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 
 public class SelectCourseController_javafx {
     @FXML
     private ComboBox<String> classComboBox;
     private CourseDao courseDao = new CourseDaoImp(); //
-    private Course selectedCourse; // Store the selected course here
+    private List<Course> courses;
 
     @FXML
     private void initialize() {
@@ -34,6 +36,7 @@ public class SelectCourseController_javafx {
         classComboBox.setItems(FXCollections.observableArrayList(courseNames));
     }
 
+    
     @FXML
     private void onSelectClass() {
         String selectedClass = classComboBox.getSelectionModel().getSelectedItem();
@@ -49,18 +52,10 @@ public class SelectCourseController_javafx {
         }
     }
 
+
     @FXML
     private void onReturn() {
-        // Return to the main menu or previous screen
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CourseMgmtNavi.fxml")); // Adjust the FXML file name as necessary
-            Parent root = loader.load();
-            Stage stage = (Stage) classComboBox.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadScene("/CourseMgmtNavi.fxml");
     }
     private void loadScene(String fxmlPath) {
         try {
@@ -71,7 +66,7 @@ public class SelectCourseController_javafx {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Optionally, display an error message to the user if the FXML file cannot be loaded.
+            showAlert(Alert.AlertType.ERROR, "Loading Error", null, "Failed to load the screen: " + e.getMessage());
         }
     }
 }

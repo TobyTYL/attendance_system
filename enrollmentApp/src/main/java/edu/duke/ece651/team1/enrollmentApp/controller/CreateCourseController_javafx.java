@@ -1,6 +1,7 @@
 package edu.duke.ece651.team1.enrollmentApp.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.data_access.Course.*;
 import edu.duke.ece651.team1.shared.*;
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 
 public class CreateCourseController_javafx {
 
@@ -34,23 +36,23 @@ public class CreateCourseController_javafx {
     private void onCreateClick() {
         String courseName = userInputCourseName.getText().trim();
         if (courseName.isEmpty()) {
-            createCourseResult.setText("Course name cannot be empty.");
+            showAlert(Alert.AlertType.WARNING, "Input Required", null, "Course name cannot be empty.");
             return;
         }
     
         try{
             // Check if the course already exists
             if (courseDao.checkCourseExists(courseName)) {
-                createCourseResult.setText("Course '" + courseName + "' already exists.");
+                showAlert(Alert.AlertType.ERROR, "Duplicate Error", null, "Course '" + courseName + "' already exists.");
                 return;
             }
             Course newCourse = new Course(courseName);
             courseDao.addCourse(newCourse);
             createCourseResult.setText("Course '" + courseName + "' created successfully.");
         }catch(IllegalArgumentException e){
-            createCourseResult.setText("Invalid course name.");
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Invalid course name.");
         }catch(Exception e){
-            createCourseResult.setText("Error creating the course: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database Error", null, "Error creating the course: " + e.getMessage());
             e.printStackTrace();
         }
     
@@ -76,6 +78,7 @@ public class CreateCourseController_javafx {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Loading Error", null, "Failed to load the navigation panel: " + e.getMessage());
             e.printStackTrace(); // Or handle the exception as appropriate
         }
     }

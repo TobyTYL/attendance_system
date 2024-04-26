@@ -23,6 +23,7 @@ import edu.duke.ece651.team1.shared.Course;
 import edu.duke.ece651.team1.shared.Professor;
 import java.util.List;
 import java.util.ArrayList;
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 
 import java.io.IOException;
 
@@ -60,22 +61,22 @@ public class AddSectionController_javafx {
             String courseName = selectedCourse.getName();
             Professor professor = professorDao.findProfessorByName(professorName);
             if (professor == null) {
-                showAlert("Error", "Professor not found.");
+                showAlert(Alert.AlertType.ERROR, "Error", null, "Professor not found.");
                 return;
             }
             int professorId = professor.getProfessorId();
             int classId = courseDao.getClassIdByName(courseName);
             if (sectionDao.existsSectionWithProfessor(classId, professorId)) {
-                showAlert("Error", "This professor already teaches a section of this course.");
+                showAlert(Alert.AlertType.ERROR, "Error", null, "This professor already teaches a section of this course.");
                 return;
             }
             Section section = new Section(classId, professorId);
             sectionDao.addSection(section);
-            showAlert("Success", "Section added successfully!");
+            showAlert(Alert.AlertType.INFORMATION, "Success", null, "Section added successfully!");
             
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Database Error", "Failed to add the section to the database.");
+            showAlert(Alert.AlertType.ERROR, "Database Error", null, "Failed to add the section to the database.");
         }
     }
 
@@ -91,12 +92,5 @@ public class AddSectionController_javafx {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -7,10 +7,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.enrollmentApp.Model;
 import edu.duke.ece651.team1.shared.Course;
+import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -52,11 +54,12 @@ public class ChangeClassNameController_javafx {
                     updatedCourse.setName(newClassName);
                 }
                 currentClassNameLabel.setText(newClassName); // Update the label to reflect the change
+                showAlert(Alert.AlertType.INFORMATION, "Success", null, "Class name changed successfully!");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Invalid Name", null, e.getMessage());
             }
         } else {
-            System.out.println("New class name cannot be empty");
+            showAlert(Alert.AlertType.WARNING, "Warning", null, "New class name cannot be empty");
         }
     }
     @FXML
