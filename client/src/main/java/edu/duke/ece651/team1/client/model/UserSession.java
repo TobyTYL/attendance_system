@@ -10,6 +10,27 @@ public class UserSession {
     private String host;
     private String port;
     private int uid;
+    private boolean isScaned;
+   
+    public void setScaned(boolean isScaned) {
+        this.isScaned = isScaned;
+    }
+    public double getProfesssorLatitude() {
+        return professsorLatitude;
+    }
+    public void setProfesssorLatitude(double professsorLatitude) {
+        this.professsorLatitude = professsorLatitude;
+    }
+
+    private double professsorLatitude;
+    public double getProfessorLongitude() {
+        return professorLongitude;
+    }
+    public void setProfessorLongitude(double professorLongitude) {
+        this.professorLongitude = professorLongitude;
+    }
+
+    private double professorLongitude;
     public int getUid() {
         return uid;
     }
@@ -57,5 +78,8 @@ public class UserSession {
 
     public void setPort(String port) {
         this.port = port;
+    }
+    public boolean isScaned() {
+        return isScaned;
     }
 }

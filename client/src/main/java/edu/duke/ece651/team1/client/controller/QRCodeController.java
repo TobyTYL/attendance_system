@@ -13,80 +13,104 @@ import org.springframework.stereotype.Controller;
 import edu.duke.ece651.team1.client.model.*;
 import org.springframework.ui.Model;
 import edu.duke.ece651.team1.client.model.*;
+import org.slf4j.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/qrcode")
 public class QRCodeController {
+    private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
+
     @Autowired
     private QRCodeService qrCodeService;
     @Autowired
     UserService userService;
     @Autowired
     TokenService tokenService;
+    @Autowired
+    AttendanceService attendanceService;
 
     @GetMapping("/{sectionId}")
     public String getQRCode(@PathVariable int sectionId, Model model) {
         try {
-            String targetUrl = "/student/markattendance/" + sectionId;
             String redirectUrl = "https://" + UserSession.getInstance().getHost() + ":" + "8081"
-                    + "/markattendance/authenticate";
-            Double latitude = (Double) model.asMap().get("latitude");
-            Double longitude = (Double) model.asMap().get("longitude");
-            String qr = qrCodeService.generateQRCodeImage(redirectUrl, latitude, longitude);
+                    + "/qrcode/markattendance/authenticate/"+sectionId;
+            String qr = qrCodeService.generateQRCodeImage(redirectUrl);
             model.addAttribute("qr", qr);
-            return "test";
+            return "qrCode";
         } catch (Exception e) {
             return "";
         }
     }
 
-    @GetMapping("markattendance/authenticate")
-    public String authen() {
+    @GetMapping("markattendance/authenticate/{sectionId}")
+    public String authen(@PathVariable int sectionId) {
         return "qrAuthenticate";
     }
+
     @GetMapping("/markattendance/result")
     public String showResult(Model model) {
-        if (model.containsAttribute("success")) {
-            model.addAttribute("message", "Attendance successfully marked!");
-            model.addAttribute("success", true);
-        } else {
-            String errorMessage = (String) model.asMap().get("errorMessage");
-            if (errorMessage != null) {
-                model.addAttribute("message", errorMessage);
-            } else {
-                model.addAttribute("message", "An unknown error occurred.");
-            }
-            model.addAttribute("success", false);
-        }
-        return "attendanceResult"; 
+        return "attendanceResult";
     }
-    
 
-    @PostMapping("markattendance/authenticate")
-    public String postMethodName(@RequestParam("username") String username,
+    @PostMapping("markattendance/authenticate/{sectionId}")
+    public String authenticateAndMarkAttendance(@RequestParam("username") String username,
             @RequestParam("password") String password,
-            @RequestParam(value = "token") String token, @RequestParam("latitude") double latitude,
-            @RequestParam("longitude") double longitude, RedirectAttributes redirectAttributes) {
+            @RequestParam("token") String token,
+            @RequestParam("latitude") double latitude,
+            @RequestParam("longitude") double longitude,
+            @PathVariable int sectionId,
+            RedirectAttributes redirectAttributes) {
+        AuthenticationResult authResult = authenticateUser(username, password, redirectAttributes);
+        if (!authResult.isSuccessful()) {
+            return "redirect:/qrcode/markattendance/authenticate";
+        }
+        if (!validateToken(token, redirectAttributes)) {
+            return "redirect:/qrcode/markattendance/result";
+        }
+        if (!validateLocation(latitude, longitude, redirectAttributes)) {
+            return "redirect:/qrcode/markattendance/result";
+        }
+        updateAttendance(sectionId,authResult.getMessage(), redirectAttributes);
+        return "redirect:/qrcode/markattendance/result";
+    }
+
+    private AuthenticationResult authenticateUser(String username, String password,
+            RedirectAttributes redirectAttributes) {
         String response = userService.authenticate(username, password);
         if ("loginFailed".equals(response)) {
             redirectAttributes.addFlashAttribute("loginError", "Login failed");
-            return "redirect:/qrcode/markattendance/authenticate";
+            return new AuthenticationResult(false, null);
         }
-        if (tokenService.validateToken(token)) {
-            double threshold = 2;
-            if (tokenService.validateLocation(token, latitude, longitude, threshold)) {
-                // call server service to update
-                JSONObject jsonObject = new JSONObject(response);
-                int studentId = jsonObject.getInt("id");
-                redirectAttributes.addFlashAttribute("success", true);
-            } else {
-                redirectAttributes.addFlashAttribute("errorMessage", "You are not in the classRoom, Attendance mark Failed");
-            }
-        } else {
-            redirectAttributes.addFlashAttribute("errorMessage", "The QR code has been expired, Attendance mark Failed");
+        return new AuthenticationResult(true, response);
+    }
+
+    private boolean validateToken(String token, RedirectAttributes redirectAttributes) {
+        if (!tokenService.validateToken(token)) {
+            redirectAttributes.addFlashAttribute("message", "The QR code has been expired, Attendance mark Failed");
+            return false;
         }
+        return true;
+    }
 
-        return "redirect:/qrcode/markattendance/result";
+    private boolean validateLocation(double latitude, double longitude, RedirectAttributes redirectAttributes) {
+        if (!qrCodeService.validateLocation(latitude, longitude)) {
+            redirectAttributes.addFlashAttribute("message", "You are not in the classRoom, Attendance mark Failed");
+            return false;
+        }
+        return true;
+    }
 
+    private void updateAttendance(int sectionId,String response, RedirectAttributes redirectAttributes) {
+        JSONObject jsonObject = new JSONObject(response);
+        int studentId = jsonObject.getInt("id");
+        String result = attendanceService.updateStudentAttendance(sectionId, studentId);
+        if (!result.equals("success")) {
+            redirectAttributes.addFlashAttribute("message", result);
+            return;
+        }
+        redirectAttributes.addFlashAttribute("success", true);
+        redirectAttributes.addFlashAttribute("message", "Attendance successfully marked!");
     }
 }

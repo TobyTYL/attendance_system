@@ -11,6 +11,7 @@ import edu.duke.ece651.team1.client.model.CourseDetail;
 import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.service.AttendanceService;
 import edu.duke.ece651.team1.client.service.CourseService;
+import edu.duke.ece651.team1.client.service.QRCodeService;
 import edu.duke.ece651.team1.client.view.CourseView;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,14 @@ import java.util.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+
 @Controller
 @RequestMapping("/attendance")
 public class AttendanceController {
     @Autowired
     AttendanceService attendanceService;
+    @Autowired
+    private QRCodeService qrCodeService;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     @GetMapping("/new/{sectionId}")
@@ -106,10 +110,10 @@ public class AttendanceController {
 
     @GetMapping("/record/download/{sectionId}/{sessionDate}")
     public String dowonload(@PathVariable int sectionId, @PathVariable String sessionDate,
-            @RequestParam(value = "format") String format, RedirectAttributes redirectAttributes) {
-        attendanceService.exportRecord(sessionDate, sectionId, format);
+            @RequestParam(value = "format") String format, RedirectAttributes redirectAttributes, HttpServletResponse response) {
+        attendanceService.exportRecord(sessionDate, sectionId, format,response);
         redirectAttributes.addFlashAttribute("successMessage",
-                "You successfully download file please check client/../src/data");
+                "You successfully download file please check ");
         return "redirect:/attendance/records/" + sectionId;
 
     }
@@ -131,41 +135,62 @@ public class AttendanceController {
     }
 
     @GetMapping("/record/report/class/{sectionId}")
-    public String getClassReport(@PathVariable int sectionId, Model model){
+    public String getClassReport(@PathVariable int sectionId, Model model) {
         List<AttendanceSummary> summaries = attendanceService.getAttendancestatistic(sectionId);
         model.addAttribute("uid", UserSession.getInstance().getUid());
         model.addAttribute("summaries", summaries);
         return "classReport";
     }
+
     @GetMapping("/test")
     public String getMethodName() {
         return "test";
     }
 
     @GetMapping("/new/auto/{sectionId}")
-    public String beginTakeAttendanceAuto(@PathVariable int sectionId,Model model) {
-        model.addAttribute("sectionId", sectionId);
-        model.addAttribute("uid", UserSession.getInstance().getUid());
+    public String beginTakeAttendanceAuto(@PathVariable int sectionId, Model model) {
+        try{
+            model.addAttribute("sectionId", sectionId);
+            model.addAttribute("uid", UserSession.getInstance().getUid());
+            String redirectUrl = "https://" + UserSession.getInstance().getHost() + ":" + "8081"
+                    + "/attendance/submitPosition/"+sectionId;
+            String qr = qrCodeService.generateQRCodeImage(redirectUrl);
+            model.addAttribute("qr", qr);
+        }catch(Exception e){
+            logger.info(e.getMessage());
+        }
+      
         return "takeAttendanceAuto";
     }
 
     @PostMapping("/new/auto/{sectionId}")
-    public String sendInitialAttendance(@PathVariable int sectionId,@RequestParam("latitude") double latitude,
-            @RequestParam("longitude") double longitude, RedirectAttributes redirectAttributes) {
-       //initial attendance record
-       List<Student> students = attendanceService.getRoaster(sectionId);
-        AttendanceRecord record = new AttendanceRecord();
-        record.initializeFromRoaster(students);
-        // attendanceService.sendAttendanceRecord(record, sectionId);
-        //redirect to qr code http
-        redirectAttributes.addFlashAttribute("latitude", latitude);
-        redirectAttributes.addFlashAttribute("longitude", longitude);
-        return "redirect:/qrcode/"+sectionId;
+    public String sendInitialAttendance(@PathVariable int sectionId, RedirectAttributes redirectAttributes) {
+        List<Student> students = attendanceService.getRoaster(sectionId);
+        AttendanceRecord attendance = new AttendanceRecord();
+        attendance.initializeFromRoaster(students);
+        attendanceService.sendAttendanceRecord(attendance, sectionId);
+        if(UserSession.getInstance().isScaned()){
+            UserSession.getInstance().setScaned(false);
+            return "redirect:/qrcode/" + sectionId;
+        }
+        redirectAttributes.addFlashAttribute("notScanned", false);
+        return "redirect:/attendance/new/auto/"+sectionId;
+        
+    }
+
+    @GetMapping("/submitPosition/{sectionId}")
+    public String showSubmitLocation() {
+        return "submitLocation";
     }
     
-    
-
-    
-
+    @PostMapping("/submitPosition/{sectionId}")
+    public String submitLocation(@PathVariable int sectionId, @RequestParam("latitude") double latitude,
+            @RequestParam("longitude") double longitude, RedirectAttributes redirectAttributes) {
+        UserSession.getInstance().setProfessorLongitude(longitude);
+        UserSession.getInstance().setProfesssorLatitude(latitude);
+        redirectAttributes.addFlashAttribute("message", "You successfully submit your location");
+        UserSession.getInstance().setScaned(true);
+        return "redirect:/attendance/submitPosition/"+sectionId;
+    }
 
 }

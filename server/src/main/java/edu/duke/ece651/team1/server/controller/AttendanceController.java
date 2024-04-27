@@ -222,10 +222,10 @@ public class AttendanceController {
 
     @PostMapping("/mark/{sectionID}/{sessionDate}/{studentId}")
     public ResponseEntity<String> markPresent(@PathVariable String sessionDate,
- @PathVariable int sectionID, @PathVariable int studentID) {
+ @PathVariable int sectionID, @PathVariable int studentId) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     try{
-        attendanceService.updateStudentAttendance(sessionDate, sectionID, studentID);
+        attendanceService.updateStudentAttendance(sessionDate, sectionID, studentId);
         return ResponseEntity.ok("Attendance marked successfully.");
     }catch(IllegalArgumentException e){
         return ResponseEntity.badRequest().body("Error: " + e.getMessage());

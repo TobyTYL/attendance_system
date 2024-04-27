@@ -8,7 +8,9 @@ import edu.duke.ece651.team1.client.model.*;
 import java.util.*;
 import java.io.*;
 import org.springframework.web.client.*;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.nio.file.*;
 
 @Service
 public class AttendanceService {
@@ -97,7 +99,7 @@ public class AttendanceService {
                 ApiService.executePostPutRequest(url, recordToJsonString, responseType, false);
         }
 
-        public void exportRecord(String sessionDate, int sectionId, String format) {
+        public void exportRecord(String sessionDate, int sectionId, String format, HttpServletResponse response) {
                 AttendanceRecord record = getAttendanceRecord(sessionDate, sectionId);
                 AttendanceRecordExporterFactory factory = new AttendanceRecordExporterFactory();
                 String filePath = "src/data/";
@@ -121,24 +123,30 @@ public class AttendanceService {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
-                // File file = new File(filePath + fileName + "." + format);
-                // try (OutputStream out = new BufferedOutputStream(response.getOutputStream());
-                // FileInputStream in = new FileInputStream(file)) {
-                // response.setContentType("application/octet-stream");
-                // response.setHeader("Content-Disposition", "attachment; filename=" +
-                // file.getName());
-                // response.setContentLength((int) file.length());
+                try{
+                        Path path = Paths.get("src", "data", "Attendance-" + sessionDate + "." + format);
+                        sendFileInResponse(path, response);
 
-                // byte[] buffer = new byte[1024];
-                // int numBytesRead;
-                // while ((numBytesRead = in.read(buffer)) > 0) {
-                // out.write(buffer, 0, numBytesRead);
-                // }
-                // } catch (Exception e) {
-                // e.printStackTrace();
-                // }
+                }catch(Exception e){
+                        e.printStackTrace();
+                }
 
         }
+        private void sendFileInResponse(Path filePath, HttpServletResponse response) throws IOException {
+                File file = filePath.toFile();
+                response.setContentType("application/octet-stream");
+                response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
+                response.setContentLength((int) file.length());
+                try (OutputStream out = response.getOutputStream();
+                     FileInputStream in = new FileInputStream(file)) {
+                    byte[] buffer = new byte[1024];
+                    int numBytesRead;
+                    while ((numBytesRead = in.read(buffer)) > 0) {
+                        out.write(buffer, 0, numBytesRead);
+                    }
+                }
+            }
+            
 
         public List<AttendanceSummary> getAttendancestatistic(int sectionId) {
                 String report = getClassReport(sectionId);
@@ -151,7 +159,10 @@ public class AttendanceService {
                 return summaries;
         }
 
-        public String updateStudentAttendance(int sectionId, String sessionDate, int studentId) {
+        public String updateStudentAttendance(int sectionId, int studentId) {
+                LocalDate today = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String sessionDate = today.format(formatter);
 
                 String url = String.format("http://%s:%s/api/attendance/mark/%d/%s/%d",
                                 UserSession.getInstance().getHost(), UserSession.getInstance().getPort(), sectionId,
