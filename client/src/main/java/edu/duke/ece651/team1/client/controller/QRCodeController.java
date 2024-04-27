@@ -88,6 +88,7 @@ public class QRCodeController {
 
     private boolean validateToken(String token, RedirectAttributes redirectAttributes) {
         if (!tokenService.validateToken(token)) {
+            redirectAttributes.addFlashAttribute("success", false);
             redirectAttributes.addFlashAttribute("message", "The QR code has been expired, Attendance mark Failed");
             return false;
         }
@@ -96,6 +97,7 @@ public class QRCodeController {
 
     private boolean validateLocation(double latitude, double longitude, RedirectAttributes redirectAttributes) {
         if (!qrCodeService.validateLocation(latitude, longitude)) {
+            redirectAttributes.addFlashAttribute("success", false);
             redirectAttributes.addFlashAttribute("message", "You are not in the classRoom, Attendance mark Failed");
             return false;
         }
@@ -107,6 +109,7 @@ public class QRCodeController {
         int studentId = jsonObject.getInt("id");
         String result = attendanceService.updateStudentAttendance(sectionId, studentId);
         if (!result.equals("success")) {
+            redirectAttributes.addFlashAttribute("success", false);
             redirectAttributes.addFlashAttribute("message", result);
             return;
         }

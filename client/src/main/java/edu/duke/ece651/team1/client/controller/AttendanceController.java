@@ -165,15 +165,16 @@ public class AttendanceController {
 
     @PostMapping("/new/auto/{sectionId}")
     public String sendInitialAttendance(@PathVariable int sectionId, RedirectAttributes redirectAttributes) {
-        List<Student> students = attendanceService.getRoaster(sectionId);
-        AttendanceRecord attendance = new AttendanceRecord();
-        attendance.initializeFromRoaster(students);
-        attendanceService.sendAttendanceRecord(attendance, sectionId);
+        
         if(UserSession.getInstance().isScaned()){
+            List<Student> students = attendanceService.getRoaster(sectionId);
+            AttendanceRecord attendance = new AttendanceRecord();
+            attendance.initializeFromRoaster(students);
+            attendanceService.sendAttendanceRecord(attendance, sectionId);
             UserSession.getInstance().setScaned(false);
             return "redirect:/qrcode/" + sectionId;
         }
-        redirectAttributes.addFlashAttribute("notScanned", false);
+        redirectAttributes.addFlashAttribute("notScanned", true);
         return "redirect:/attendance/new/auto/"+sectionId;
         
     }
