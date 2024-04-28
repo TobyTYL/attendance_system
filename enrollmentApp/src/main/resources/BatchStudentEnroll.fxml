@@ -13,7 +13,6 @@
               <TextField fx:id="userInputText" layoutX="208.0" layoutY="176.0" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="176.0" />
               <Label layoutX="188.0" layoutY="146.0" text="Please enter the Input CSV file name:" AnchorPane.leftAnchor="188.0" AnchorPane.topAnchor="146.0" />
               <Button fx:id="importButton" layoutX="394.0" layoutY="176.0" mnemonicParsing="false" onAction="#onImportClick" text="Import" AnchorPane.leftAnchor="394.0" AnchorPane.topAnchor="176.0" />
-              <Label fx:id="importResult" layoutX="222.0" layoutY="226.0" AnchorPane.leftAnchor="222.0" AnchorPane.topAnchor="226.0" />
             <Button fx:id="returnButton" layoutX="488.0" layoutY="340.0" mnemonicParsing="false" onAction="#onReturnClick" text="Back" />
           </children>
       </AnchorPane>

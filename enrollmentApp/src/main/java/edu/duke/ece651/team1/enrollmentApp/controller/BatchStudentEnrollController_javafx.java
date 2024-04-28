@@ -44,20 +44,19 @@ public class BatchStudentEnrollController_javafx {
                 }
             }
         } catch (FileNotFoundException e) {
-            importResult.setText("File not found: " + filePath);
+            UtilController.showAlert(Alert.AlertType.ERROR, "File Not Found", null, "The specified file was not found: " + filePath);
             return;
         } catch (IOException e) {
-            importResult.setText("Error reading file: " + filePath);
+            UtilController.showAlert(Alert.AlertType.ERROR, "File Error", null, "An error occurred while reading the file: " + filePath);
             return;
         }
-        importResult.setText("Batch enrollment process completed.\n");
         if (!errors.isEmpty()) {
-            StringBuilder errorDetails = new StringBuilder("Error details:\n");
-            errors.forEach(error -> errorDetails.append(error).append("\n"));
-            importResult.setText(errorDetails.toString());
+            UtilController.showAlert(Alert.AlertType.ERROR, "Import Error", null, "Errors occurred during the import process.");
+        } else {
+            UtilController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Batch enrollment process completed successfully.");
+            userInputText.clear();
         }
     }
-
 
 
     @FXML

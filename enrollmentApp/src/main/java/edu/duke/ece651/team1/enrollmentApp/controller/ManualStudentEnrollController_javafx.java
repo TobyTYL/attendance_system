@@ -7,6 +7,8 @@ import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDaoImpl;
 import edu.duke.ece651.team1.data_access.Section.SectionDao;
 import edu.duke.ece651.team1.data_access.Section.SectionDaoImpl;
+import edu.duke.ece651.team1.data_access.Student.StudentDao;
+import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
 import edu.duke.ece651.team1.shared.Course;
 import edu.duke.ece651.team1.enrollmentApp.controller.CourseController;
 import edu.duke.ece651.team1.enrollmentApp.controller.EnrollmentController;
@@ -18,10 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 
@@ -33,6 +32,8 @@ import java.util.List;
 import static java.lang.System.out;
 
 public class ManualStudentEnrollController_javafx {
+    private StudentDao studentDao = new StudentDaoImp();
+
     private CourseDao courseDao = new CourseDaoImp();
     private SectionDao sectionDao = new SectionDaoImpl();
     private EnrollmentDaoImpl enrollmentDao = new EnrollmentDaoImpl();
@@ -75,10 +76,32 @@ public class ManualStudentEnrollController_javafx {
 
     @FXML
     protected void onLookupStudentClick(ActionEvent event) {
-        int studentID = Integer.parseInt(inputStudentID.getText());
-        displayAllCoursesForStudent(studentID);
+        int studentID;
+        try {
+            studentID = Integer.parseInt(inputStudentID.getText());
+        } catch (NumberFormatException e) {
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid student ID.");
+            return;
+        }
+        if (!studentExists(studentID)) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Student Not Found", null, "Student with ID " + studentID + " not found in the database.");
+            availCourses.setText(""); // Clear the availCourses TextArea
 
+            return;
+        }
+        List<Course> availableCourses = courseDao.getAllCourses();
+        if (availableCourses.isEmpty()) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "No Available Courses", null, "There are no available courses.");
+            availCourses.setText("");
+            return;
+        }
+        displayAllCoursesForStudent(studentID);
     }
+
+    private boolean studentExists(int studentID) {
+        return studentDao.findStudentByStudentID(studentID).isPresent();
+    }
+
     private void displayAllCoursesForStudent(int studentId) {
         List<Course> availableCourses = courseDao.getAllCourses();
         StringBuilder coursesText = new StringBuilder();
@@ -91,15 +114,34 @@ public class ManualStudentEnrollController_javafx {
     @FXML
     protected void onFindSecClick(ActionEvent event) {
         String courseName = inputCourseName.getText();
+        if (!checkClassExist(courseName)) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Class Name Not Found", null, "Class Name is not found in the database.");
+            availSections.setText("");
+            return;
+        }
         int classID = courseDao.getClassIdByName(courseName);
+        if (classID == -1) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Invalid Input", null, "Please enter a valid course name.");
+            return;
+        }
         StringBuilder sectionsText = new StringBuilder();
         List <Section> sections = sectionDao.getSectionsByClassId(classID);
+        if (sections.isEmpty()) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "No Available Sections", null, "There are no available sections for the selected course.");
+            availSections.setText("");
+            return;
+        }
         for (Section section : sections) {
-            sectionsText.append("Section ID: ").append(section.getSectionId()).append(", Course ID: ").append(section.getClassId()).append(", Professor ID: ").append(section.getProfessorId()).append("\n");
+            sectionsText.append("Section ID: ").append(section.getSectionId()).append(", Course Name: ").append(inputCourseName.getText()).append(", Professor ID: ").append(section.getProfessorId()).append("\n");
         }
         availSections.setText(sectionsText.toString());
     }
-
+    private boolean checkClassExist(String className) {
+        return courseDao.checkCourseExists(className);
+    }
+//    private boolean checkClassExist(int studentID) {
+//        return studentDao.findStudentByStudentID(studentID).isPresent();
+//    }
     @FXML
     protected void onEnrollClick(ActionEvent event) {
         String sectionIdStr = inputSecID.getText();
@@ -108,6 +150,7 @@ public class ManualStudentEnrollController_javafx {
             sectionId = Integer.parseInt(sectionIdStr);
         } catch (NumberFormatException e) {
             enrollResult.setText("Invalid section ID format.");
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid section ID.");
             return;
         }
         String studentIdStr = inputStudentID.getText();
@@ -115,40 +158,34 @@ public class ManualStudentEnrollController_javafx {
         try {
             studentId = Integer.parseInt(studentIdStr);
         } catch (NumberFormatException e) {
-            enrollResult.setText("Invalid student ID format.");
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid student ID.");
             return;
         }
         if (!sectionDao.checkSectionExists(sectionId)) {
-            enrollResult.setText("Section with ID " + sectionId + " does not exist.");
+            UtilController.showAlert(Alert.AlertType.ERROR, "Section Not Found", null, "Section with ID " + sectionId + " does not exist.");
             return;
         }
         EnrollmentController enrollmentController = new EnrollmentController(new BufferedReader(new StringReader("")), System.out);
         boolean success = enrollmentController.enrollStudent(studentId, sectionId);
         if (success) {
-            enrollResult.setText("Student with ID " + studentId + " successfully enrolled in section with ID " + sectionId + ".");
+            UtilController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Enrollment successful!");
         } else {
-            enrollResult.setText("Student with ID " + studentId + " already in this section. Failed to enroll student with ID " + studentId + " in section with ID " + sectionId + ".");
+            UtilController.showAlert(Alert.AlertType.WARNING, "Enrollment Failed", null, "Student with ID " + studentId + " is already enrolled in this section.");
         }
+
     }
 
     @FXML
     protected void onReturnClick(ActionEvent actionEvent) {
         try {
-            // Load the previous panel's FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EnrollmentPanel.fxml")); // Replace with actual FXML filename
             Parent root = loader.load();
-
-            // Get the current stage from the return button
             Stage stage = (Stage) returnButton.getScene().getWindow();
-
-            // Create a new scene with the root layout
             Scene scene = new Scene(root);
-
-            // Set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
+            e.printStackTrace();
         }
     }
 }
