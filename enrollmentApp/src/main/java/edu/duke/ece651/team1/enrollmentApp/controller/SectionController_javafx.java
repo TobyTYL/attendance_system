@@ -36,7 +36,7 @@ public class SectionController_javafx {
 
     @FXML
     private void onReturnToClassClick() {
-        loadFXML("/CourseMgmtNavi.fxml");  // Assume PreviousMenu.fxml is the return FXML
+        loadFXML("/CourseMgmtNavi.fxml");
     }
 
     @FXML

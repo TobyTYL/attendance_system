@@ -40,30 +40,7 @@ public class UpdateSectionController_javafx {
     private UserDao userDao = new UserDaoImp();
     @FXML
     private void initialize() {
-        Course selectedCourse = Model.getSelectedCourse();
-        String courseName = selectedCourse.getName();
-        int classID = courseDao.getClassIdByName(courseName);
-        List<Section> sections = sectionDao.getSectionsByClassId(classID);//get all sections
-        if(sections.isEmpty()){
-            System.out.println("No sections available for class " + courseName);
-            return;
-        }
-
-        // Populate these from a database or service
-        sectionListView.setItems(FXCollections.observableArrayList(sections.stream().map(section -> {
-            Integer professorID = section.getProfessorId();
-            Professor professor = professorDao.getProfessorById(professorID);
-            User professorUser = userDao.getUserById(professor.getUserId());
-            return "Section " + section.getSectionId() + ": " + professorUser.getUsername();
-        }).toList()));
-       
-            List<String> professorNames = new ArrayList<>();
-        for (Professor professor : professorDao.findAllProfessors()) {
-            User professorUser = userDao.getUserById(professor.getUserId());
-            professorNames.add(professorUser.getUsername());
-        }
-
-        professorComboBox.setItems(FXCollections.observableArrayList(professorNames));
+        refreshSectionList();
     }
 
     @FXML
@@ -87,7 +64,8 @@ public class UpdateSectionController_javafx {
                     }else {
                         sectionDao.updateSectionProfessor(Model.getSelectedCourse().getName(), sectionId, professorId);
                         UtilController.showAlert(Alert.AlertType.INFORMATION, "Update Success", "Section Updated", "Updated section " + sectionId + " to have professor " + selectedProfessor);
-                        System.out.println("Updated section " + sectionId + " to have professor " + selectedProfessor);
+                        //////////////////edit here
+                        refreshSectionList();
                     }
                 }else {
                     UtilController.showAlert(Alert.AlertType.ERROR, "Update Error", "Invalid Selection", "Invalid section or professor selected.");
@@ -124,5 +102,31 @@ public class UpdateSectionController_javafx {
             System.out.println("Failed to parse section ID: " + e.getMessage());
             return -1; // Return -1 as an indication of failure
         }
+    }
+    private void refreshSectionList(){
+        Course selectedCourse = Model.getSelectedCourse();
+        String courseName = selectedCourse.getName();
+        int classID = courseDao.getClassIdByName(courseName);
+        List<Section> sections = sectionDao.getSectionsByClassId(classID);//get all sections
+        if(sections.isEmpty()){
+            System.out.println("No sections available for class " + courseName);
+            return;
+        }
+
+        // Populate these from a database or service
+        sectionListView.setItems(FXCollections.observableArrayList(sections.stream().map(section -> {
+            Integer professorID = section.getProfessorId();
+            Professor professor = professorDao.getProfessorById(professorID);
+            User professorUser = userDao.getUserById(professor.getUserId());
+            return "Section " + section.getSectionId() + ": " + professorUser.getUsername();
+        }).toList()));
+       
+            List<String> professorNames = new ArrayList<>();
+        for (Professor professor : professorDao.findAllProfessors()) {
+            User professorUser = userDao.getUserById(professor.getUserId());
+            professorNames.add(professorUser.getUsername());
+        }
+
+        professorComboBox.setItems(FXCollections.observableArrayList(professorNames));
     }
 }

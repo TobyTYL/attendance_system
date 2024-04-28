@@ -20,13 +20,14 @@
       </VBox>
    </center>
    <top>
-      <Label text="Enrollment Center" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets top="50.0" />
-         </BorderPane.margin>
-      </Label>
+      <BorderPane prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0577B1;" BorderPane.alignment="CENTER">
+         <center>
+                <Label text="Enrollment Center" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="33.0" />
+                    </font>
+            </Label>
+         </center>
+      </BorderPane>
    </top>
 </BorderPane>

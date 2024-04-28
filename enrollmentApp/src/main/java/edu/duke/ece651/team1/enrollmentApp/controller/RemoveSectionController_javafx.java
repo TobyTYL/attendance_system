@@ -26,7 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-public class RemoveSectionController_java {
+public class RemoveSectionController_javafx {
     @FXML
     private ListView<String> sectionListView;
     private SectionDaoImpl sectionDao = new SectionDaoImpl();
