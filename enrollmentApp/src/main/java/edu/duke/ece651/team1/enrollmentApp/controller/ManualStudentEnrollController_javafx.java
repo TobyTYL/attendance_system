@@ -1,18 +1,43 @@
 package edu.duke.ece651.team1.enrollmentApp.controller;
 
+import edu.duke.ece651.team1.data_access.Course.CourseDao;
+import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
+
+
+import edu.duke.ece651.team1.data_access.Enrollment.EnrollmentDaoImpl;
+import edu.duke.ece651.team1.data_access.Section.SectionDao;
+import edu.duke.ece651.team1.data_access.Section.SectionDaoImpl;
+import edu.duke.ece651.team1.data_access.Student.StudentDao;
+import edu.duke.ece651.team1.data_access.Student.StudentDaoImp;
+import edu.duke.ece651.team1.shared.Course;
+import edu.duke.ece651.team1.enrollmentApp.controller.CourseController;
+import edu.duke.ece651.team1.enrollmentApp.controller.EnrollmentController;
+import edu.duke.ece651.team1.shared.Enrollment;
+
+import edu.duke.ece651.team1.shared.Section;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.List;
+
+import static java.lang.System.out;
 
 public class ManualStudentEnrollController_javafx {
+    private StudentDao studentDao = new StudentDaoImp();
+
+    private CourseDao courseDao = new CourseDaoImp();
+    private SectionDao sectionDao = new SectionDaoImpl();
+    private EnrollmentDaoImpl enrollmentDao = new EnrollmentDaoImpl();
+
     @FXML
     private TextField studentQueryResult;
     @FXML
@@ -40,52 +65,127 @@ public class ManualStudentEnrollController_javafx {
     private Button enrollButton;
 
     @FXML
-    private TextField enrollResult;
+    private Label enrollResult;
 
     @FXML
     private TextField inputStudentID;
 
     public void initialize() {
         // Placeholder text to display at instantiation time
-        availCourses.setText("Before any operations, call DB and display available courses to the user");
     }
 
     @FXML
     protected void onLookupStudentClick(ActionEvent event) {
-        // Display text from "Insert student ID" in "Student query result"
-        studentQueryResult.setText("call DB and look for student: " + inputStudentID.getText());
+        int studentID;
+        try {
+            studentID = Integer.parseInt(inputStudentID.getText());
+        } catch (NumberFormatException e) {
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid student ID.");
+            return;
+        }
+        if (!studentExists(studentID)) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Student Not Found", null, "Student with ID " + studentID + " not found in the database.");
+            availCourses.setText(""); // Clear the availCourses TextArea
+
+            return;
+        }
+        List<Course> availableCourses = courseDao.getAllCourses();
+        if (availableCourses.isEmpty()) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "No Available Courses", null, "There are no available courses.");
+            availCourses.setText("");
+            return;
+        }
+        displayAllCoursesForStudent(studentID);
+    }
+
+    private boolean studentExists(int studentID) {
+        return studentDao.findStudentByStudentID(studentID).isPresent();
+    }
+
+    private void displayAllCoursesForStudent(int studentId) {
+        List<Course> availableCourses = courseDao.getAllCourses();
+        StringBuilder coursesText = new StringBuilder();
+        for (Course course : availableCourses) {
+            coursesText.append("ID: ").append(course.getID()).append(", Name: ").append(course.getName()).append("\n");
+        }
+        availCourses.setText(coursesText.toString());
     }
 
     @FXML
     protected void onFindSecClick(ActionEvent event) {
-        // Display text from "Insert course name" in "Available Sections"
-        availSections.setText("look for course:" + inputCourseName.getText());
+        String courseName = inputCourseName.getText();
+        if (!checkClassExist(courseName)) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Class Name Not Found", null, "Class Name is not found in the database.");
+            availSections.setText("");
+            return;
+        }
+        int classID = courseDao.getClassIdByName(courseName);
+        if (classID == -1) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Invalid Input", null, "Please enter a valid course name.");
+            return;
+        }
+        StringBuilder sectionsText = new StringBuilder();
+        List <Section> sections = sectionDao.getSectionsByClassId(classID);
+        if (sections.isEmpty()) {
+            UtilController.showAlert(Alert.AlertType.WARNING, "No Available Sections", null, "There are no available sections for the selected course.");
+            availSections.setText("");
+            return;
+        }
+        for (Section section : sections) {
+            sectionsText.append("Section ID: ").append(section.getSectionId()).append(", Course Name: ").append(inputCourseName.getText()).append(", Professor ID: ").append(section.getProfessorId()).append("\n");
+        }
+        availSections.setText(sectionsText.toString());
     }
-
+    private boolean checkClassExist(String className) {
+        return courseDao.checkCourseExists(className);
+    }
+//    private boolean checkClassExist(int studentID) {
+//        return studentDao.findStudentByStudentID(studentID).isPresent();
+//    }
     @FXML
     protected void onEnrollClick(ActionEvent event) {
-        // Inject text from "Insert section id" into "Enroll result"
-        enrollResult.setText("show enrollment results for stuID, CourseID and SecID: " + inputSecID.getText());
+        String sectionIdStr = inputSecID.getText();
+        int sectionId;
+        try {
+            sectionId = Integer.parseInt(sectionIdStr);
+        } catch (NumberFormatException e) {
+            enrollResult.setText("Invalid section ID format.");
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid section ID.");
+            return;
+        }
+        String studentIdStr = inputStudentID.getText();
+        int studentId;
+        try {
+            studentId = Integer.parseInt(studentIdStr);
+        } catch (NumberFormatException e) {
+            UtilController.showAlert(Alert.AlertType.ERROR, "Invalid Input", null, "Please enter a valid student ID.");
+            return;
+        }
+        if (!sectionDao.checkSectionExists(sectionId)) {
+            UtilController.showAlert(Alert.AlertType.ERROR, "Section Not Found", null, "Section with ID " + sectionId + " does not exist.");
+            return;
+        }
+        EnrollmentController enrollmentController = new EnrollmentController(new BufferedReader(new StringReader("")), System.out);
+        boolean success = enrollmentController.enrollStudent(studentId, sectionId);
+        if (success) {
+            UtilController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Enrollment successful!");
+        } else {
+            UtilController.showAlert(Alert.AlertType.WARNING, "Enrollment Failed", null, "Student with ID " + studentId + " is already enrolled in this section.");
+        }
+
     }
 
     @FXML
     protected void onReturnClick(ActionEvent actionEvent) {
         try {
-            // Load the previous panel's FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EnrollmentPanel.fxml")); // Replace with actual FXML filename
             Parent root = loader.load();
-
-            // Get the current stage from the return button
             Stage stage = (Stage) returnButton.getScene().getWindow();
-
-            // Create a new scene with the root layout
             Scene scene = new Scene(root);
-
-            // Set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Or handle the exception as appropriate
+            e.printStackTrace();
         }
     }
 }
