@@ -36,7 +36,7 @@ public class QRCodeController {
         try {
             String redirectUrl = "https://" + UserSession.getInstance().getHost() + ":" + "8081"
                     + "/qrcode/markattendance/authenticate/"+sectionId;
-            String qr = qrCodeService.generateQRCodeImage(redirectUrl);
+            String qr = qrCodeService.generateQRCodeImage(redirectUrl,true);
             model.addAttribute("qr", qr);
             return "qrCode";
         } catch (Exception e) {

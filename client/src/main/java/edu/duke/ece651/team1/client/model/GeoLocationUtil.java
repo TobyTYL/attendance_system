@@ -3,8 +3,12 @@ package edu.duke.ece651.team1.client.model;
 public class GeoLocationUtil {
 
   
-    public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+    public static double calculateDistance(Location location1, Location location2) {
         final double R = 6371e3; 
+        double lat1 = location1.latitude;
+        double lat2 = location2.latitude;
+        double lon1 = location1.longitude;
+        double lon2 = location2.longitude;
         double lat1Rad = Math.toRadians(lat1);
         double lat2Rad = Math.toRadians(lat2);
         double deltaLat = Math.toRadians(lat2 - lat1);
@@ -19,8 +23,8 @@ public class GeoLocationUtil {
     }
 
    
-    public static boolean areLocationsClose(double lat1, double lon1, double lat2, double lon2, double threshold) {
-        return calculateDistance(lat1, lon1, lat2, lon2) <= threshold;
+    public static boolean areLocationsClose(Location location1, Location location2, double threshold) {
+        return calculateDistance(location1,location2) <= threshold;
     }
 
     public static void main(String[] args) {
@@ -29,13 +33,15 @@ public class GeoLocationUtil {
         double lon1 = 35.9647835; // 
         double lat2 = 35.964753627810595; // student
         double lon2 =-78.96632619209491; 
+        Location location1 = new Location(lat1, lon1);
+        Location location2 = new Location(lat2, lon2);
 
-        double distance = GeoLocationUtil.calculateDistance(lat1, lon1, lat2, lon2);
+        double distance = GeoLocationUtil.calculateDistance(location1,location2);
         System.out.println("The distance between Student and Professor is: " + distance + " meters");
 
         // 检查两点是否靠近，这里我们设置阈值为 1000 公里
         double threshold = 10; // 1000 km in meters
-        boolean isClose = GeoLocationUtil.areLocationsClose(lat1, lon1, lat2, lon2, threshold);
+        boolean isClose = GeoLocationUtil.areLocationsClose(location1,location2, threshold);
         System.out.println("Are the two locations within 1000 km of each other? " + isClose);
     }
 

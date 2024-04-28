@@ -11,7 +11,14 @@ public class UserSession {
     private String port;
     private int uid;
     private boolean isScaned;
+    private double threshold;
    
+    public double getThreshold() {
+        return threshold;
+    }
+    public void setThreshold(double threshold) {
+        this.threshold = threshold;
+    }
     public void setScaned(boolean isScaned) {
         this.isScaned = isScaned;
     }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import edu.duke.ece651.team1.client.model.CourseDetail;
 import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.service.CourseService;
-import edu.duke.ece651.team1.client.view.CourseView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

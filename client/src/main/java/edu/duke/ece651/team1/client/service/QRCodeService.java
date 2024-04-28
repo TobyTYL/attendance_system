@@ -7,6 +7,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 
 import edu.duke.ece651.team1.client.model.GeoLocationUtil;
+import edu.duke.ece651.team1.client.model.Location;
 import edu.duke.ece651.team1.client.model.UserSession;
 
 import java.time.Instant;
@@ -30,11 +31,12 @@ public class QRCodeService {
         return baseUrl + "?token=" + token;
     }
 
-    public String generateQRCodeImage(String url) throws WriterException, IOException {
+    public String generateQRCodeImage(String url,boolean urlWithExpire) throws WriterException, IOException {
         MultiFormatWriter barcodeWriter = new MultiFormatWriter();
-        String urlWithExpiry = generateExpiringQRCodeURLwithLocation(url, 30);
-        BitMatrix bitMatrix = barcodeWriter.encode(urlWithExpiry, BarcodeFormat.QR_CODE, 200, 200);
-
+        if(urlWithExpire){
+          url = generateExpiringQRCodeURLwithLocation(url, 30);
+        }
+        BitMatrix bitMatrix = barcodeWriter.encode(url, BarcodeFormat.QR_CODE, 200, 200);
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
         byte[] pngData = pngOutputStream.toByteArray();
@@ -42,10 +44,11 @@ public class QRCodeService {
     }
 
     public boolean validateLocation(double s_Latitude, double s_Longtitude) {
-        double threshold = 10;
+        double threshold = UserSession.getInstance().getThreshold();
         double professorLongitude = UserSession.getInstance().getProfessorLongitude();
         double professsorLatitude = UserSession.getInstance().getProfesssorLatitude();
-        return GeoLocationUtil.areLocationsClose(professsorLatitude, professorLongitude, s_Latitude, s_Longtitude,
+
+        return GeoLocationUtil.areLocationsClose(new Location(professsorLatitude, professorLongitude),new Location(s_Latitude, s_Longtitude),
                 threshold);
     }
 

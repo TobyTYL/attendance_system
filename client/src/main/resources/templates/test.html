@@ -8,16 +8,19 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <link href="/css/report.css" rel="stylesheet">
   <link href="/css/sider.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    div class="border-right" id="sidebar-wrapper">
+    <div class="border-right" id="sidebar-wrapper">
       <div class="sidebar-heading bg-light ">Attendance Men</div>
       <div class="list-group list-group-flush">
         <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
         <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
+        <a th:href="@{/test/location/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Distance Measurement</a>
         <div class="list-group-item list-group-item-action dropdown">
           <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Take Attendance
@@ -49,11 +52,19 @@
         </div>
       </nav>
       <div class="container-fluid">
-        <h1>Scan QR Code</h1>
-        <div>
-          <img th:src="@{'data:image/png;base64,' + ${qr}}" alt="QR Code" />
-          <div id="timer" class="alert alert-warning">The code will expire in 30s</div>
-        </div>
+        <div class="container mt-4">
+          <h2>Scan the QR Codes at different locations</h2>
+          <div>
+              <h4>Scan at the podium:</h4>
+              <img th:src="@{'data:image/png;base64,' + ${qr1}}" alt="QR Code1" />
+          </div>
+          <div>
+              <h4>Scan at the back of the classroom:</h4>
+              <img th:src="@{'data:image/png;base64,' + ${qr2}}" alt="QR Code2" />
+          </div>
+          <button id="calculateDistanceBtn" class="btn btn-primary">Calculate Distance</button>
+          <p id="result" class="mt-3"></p>
+      </div>
       </div>
       <!-- /#wrapper -->
 
@@ -70,21 +81,18 @@
           e.preventDefault();
           $("#wrapper").toggleClass("toggled");
         });
-        window.onload = function () {
-          var timeLeft = 30; // seconds
-          var timerElement = document.getElementById('timer');
-          var timer = setInterval(function() {
-              if (timeLeft <= 0) {
-                  clearInterval(timer);
-                  timerElement.innerHTML = 'The code has expired!';
-                  location.reload();
-              } else {
-                  timerElement.innerHTML = 'The code will expire in ' + timeLeft + 's';
-              }
-              timeLeft -= 1;
-          }, 1000);
-      };
-
+        document.getElementById('calculateDistanceBtn').addEventListener('click', function() {
+          fetch('/calculate-distance')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('result').innerText = data;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  document.getElementById('result').innerText = 'Error calculating distance. Make sure both locations are scanned.';
+              });
+      });
+      
        
 
       </script>

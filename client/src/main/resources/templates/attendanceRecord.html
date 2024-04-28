@@ -19,11 +19,21 @@
         <div class="border-right" id="sidebar-wrapper">
             <div class="sidebar-heading bg-light ">Attendance Men</div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action">Take Attendance</a>
-                <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
-                <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
+              <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
+              <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
+              <a th:href="@{/test/location/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Distance Measurement</a>
+              <div class="list-group-item list-group-item-action dropdown">
+                <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Take Attendance
+                </span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}">Manually</a></li>
+                  <li><a class="dropdown-item" th:href="@{/attendance/new/auto/{sectionId}(sectionId=${sectionId})}">Automatically</a></li>
+                </ul>
+              </div>
+      
             </div>
-        </div>
+          </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->

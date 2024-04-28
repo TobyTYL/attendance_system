@@ -3,10 +3,8 @@ package edu.duke.ece651.team1.client.controller;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.IOException;
-import edu.duke.ece651.team1.client.view.MainMenuView;
 import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.service.CourseService;
-import edu.duke.ece651.team1.client.view.CourseView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

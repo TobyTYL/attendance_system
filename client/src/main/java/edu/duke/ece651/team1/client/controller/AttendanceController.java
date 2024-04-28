@@ -12,7 +12,6 @@ import edu.duke.ece651.team1.client.model.UserSession;
 import edu.duke.ece651.team1.client.service.AttendanceService;
 import edu.duke.ece651.team1.client.service.CourseService;
 import edu.duke.ece651.team1.client.service.QRCodeService;
-import edu.duke.ece651.team1.client.view.CourseView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -142,10 +141,7 @@ public class AttendanceController {
         return "classReport";
     }
 
-    @GetMapping("/test")
-    public String getMethodName() {
-        return "test";
-    }
+   
 
     @GetMapping("/new/auto/{sectionId}")
     public String beginTakeAttendanceAuto(@PathVariable int sectionId, Model model) {
@@ -154,7 +150,7 @@ public class AttendanceController {
             model.addAttribute("uid", UserSession.getInstance().getUid());
             String redirectUrl = "https://" + UserSession.getInstance().getHost() + ":" + "8081"
                     + "/attendance/submitPosition/"+sectionId;
-            String qr = qrCodeService.generateQRCodeImage(redirectUrl);
+            String qr = qrCodeService.generateQRCodeImage(redirectUrl,false);
             model.addAttribute("qr", qr);
         }catch(Exception e){
             logger.info(e.getMessage());
@@ -164,7 +160,7 @@ public class AttendanceController {
     }
 
     @PostMapping("/new/auto/{sectionId}")
-    public String sendInitialAttendance(@PathVariable int sectionId, RedirectAttributes redirectAttributes) {
+    public String sendInitialAttendance(@RequestParam("threshold") double threshold,@PathVariable int sectionId, RedirectAttributes redirectAttributes) {
         
         if(UserSession.getInstance().isScaned()){
             List<Student> students = attendanceService.getRoaster(sectionId);
@@ -172,6 +168,8 @@ public class AttendanceController {
             attendance.initializeFromRoaster(students);
             attendanceService.sendAttendanceRecord(attendance, sectionId);
             UserSession.getInstance().setScaned(false);
+            UserSession.getInstance().setThreshold(threshold);
+            System.out.println("thredshod:***"+threshold);
             return "redirect:/qrcode/" + sectionId;
         }
         redirectAttributes.addFlashAttribute("notScanned", true);

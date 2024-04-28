@@ -32,7 +32,7 @@ public class StudentReportService {
     
     public Map<String, String> getDetailReport(int sectionId){
         String report = getReport(sectionId, true);
-        Map<String, String> attendanceMap = new HashMap<>();
+        Map<String, String> attendanceMap = new TreeMap<>();
         String pattern = "(\\d{4}-\\d{2}-\\d{2}): (Present|Tardy|Absent)";
         Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(report);
