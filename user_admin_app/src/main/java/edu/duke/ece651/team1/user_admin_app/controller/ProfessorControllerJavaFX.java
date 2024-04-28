@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -57,11 +58,12 @@ public class ProfessorControllerJavaFX {
         int userId = userDao.addUser(user);
         Professor newProfessor = new Professor(userId, professorName);
         if (professorDao.checkProfessorExists(professorName)) {
-            out.println("Professor Already exists!");
+            AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Professor Already exists!");
             return;
         }
         professorDao.addProfessor(newProfessor);
-        out.println("Professor added successfully.");    }
+        AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Professor add Successful!");
+    }
     @FXML
     private void removeProfessorButtonClicked(ActionEvent event) {
         try {
@@ -82,9 +84,9 @@ public class ProfessorControllerJavaFX {
             int professorId = professorDao.findProfessorByUsrID(userId).getProfessorId();
             professorDao.removeProfessor(professorId);
             userDao.removeUser(userId);
-            out.println("Professor removed successfully.");
+            AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Professor removed successfully!");
         } else {
-            out.println("Professor not found.");
+            AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Professor not found.");
         }
     }
     @FXML

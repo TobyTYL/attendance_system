@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -61,8 +62,6 @@ public class StudentControllerJavaFX {
             Scene scene = new Scene(root);
             Stage stage = (Stage) button_add_student.getScene().getWindow();
             stage.setScene(scene);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,8 +75,18 @@ public class StudentControllerJavaFX {
         User user = new User(legalName, passwordEncoder.encode("passw0rd"), "Student");
         int uid = userDao.addUser(user);
         Student student = new Student(uid, legalName, displayName, email);
+        if (studentDao.checkStudentExists(legalName)) {
+            AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Student already exists!");
+            add_student_legalName.setText("");
+            add_student_display_name.setText("");
+            add_student_email.setText("");
+            return;
+        }
         studentDao.addStudent(student);
-        out.println("Student added successfully.");
+        AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Student add successful!");
+        add_student_legalName.setText("");
+        add_student_display_name.setText("");
+        add_student_email.setText("");
     }
     @FXML
     private void removeStudentButtonClicked(ActionEvent event) {
@@ -101,12 +110,15 @@ public class StudentControllerJavaFX {
             if (studentId != null) {
                 studentDao.removeStudent(student);
                 userDao.removeUser(student.getUserId());
-                out.println("Student removed successfully.");
+                AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Student remove successful!");
+                remove_student_name.setText("");
             } else {
-                out.println("Student ID is null.");
+                AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Student ID is null!");
+                remove_student_name.setText("");
             }
         } else {
-            out.println("Student not found.");
+            AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Can't find the Student Name!");
+            remove_student_name.setText("");
         }
     }
     @FXML
@@ -134,12 +146,21 @@ public class StudentControllerJavaFX {
                 student.updateDisplayName(newDisplayName);
                 student.setStudentEmail(newEmail);
                 studentDao.updateStudent(student);
-                out.println("Student updated successfully.");
+                AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Student update successful!");
+                update_student_legalName.setText("");
+                update_student_display_name.setText("");
+                update_student_email.setText("");
             } else {
-                out.println("Student ID is null.");
+                AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Student ID is null!");
+                update_student_legalName.setText("");
+                update_student_display_name.setText("");
+                update_student_email.setText("");
             }
         } else {
-            out.println("Student not found.");
+            AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Can't find the Student ID!");
+            update_student_legalName.setText("");
+            update_student_display_name.setText("");
+            update_student_email.setText("");
         }
     }
     @FXML
@@ -167,5 +188,4 @@ public class StudentControllerJavaFX {
             e.printStackTrace();
         }
     }
-
 }
