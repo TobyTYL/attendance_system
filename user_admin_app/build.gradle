@@ -38,6 +38,16 @@ dependencies {
     implementation project(':data_access')
     implementation project(':shared')
 
+    implementation 'org.openjfx:javafx-controls:17'
+    implementation 'org.openjfx:javafx-swing:17'
+    // JUnit Jupiter API and engine for running the tests
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+
+    testImplementation 'org.testfx:testfx-core:4.0.4-alpha'
+    testImplementation 'org.testfx:testfx-junit:4.0.4-alpha'
+    implementation 'org.openjfx:javafx-controls:17'
+    implementation 'org.openjfx:javafx-swing:17'
+
 }
 
 test {
