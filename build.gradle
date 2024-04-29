@@ -7,6 +7,8 @@
 plugins {
     id 'com.bmuschko.clover' version '2.2.3'
     id 'java'
+
+
 }
 
 
@@ -19,7 +21,6 @@ subprojects{
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-
     }
 
 
@@ -46,9 +47,6 @@ subprojects{
         testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
         testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
 
-
-        // This is required for JUnit 5 tests to run in Gradle
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
 
     }
     clover{
@@ -92,6 +90,15 @@ project (':client'){
     dependencies {
         implementation project(':shared')
 //        testImplementation project(path: ':shared', configuration: "testPkg")
+    }
+}
+
+
+// new
+project (':user_admin_app'){
+    dependencies {
+        implementation project(':shared')
+        implementation project(':data_access')
     }
 }
 

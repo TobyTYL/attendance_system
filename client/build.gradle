@@ -18,6 +18,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+
 application {
     // Define the main class for the application.
     mainClassName = 'edu.duke.ece651.team1.client.App'
