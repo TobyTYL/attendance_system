@@ -1,388 +1,384 @@
-2024-04-27 13:23:06.058  INFO 6197 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 6197 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 13:23:06.065  INFO 6197 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 13:23:07.246  INFO 6197 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 13:23:07.256  INFO 6197 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 13:23:07.257  INFO 6197 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 13:23:07.373  INFO 6197 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 13:23:07.374  INFO 6197 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1240 ms
-2024-04-27 13:23:08.107  INFO 6197 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 13:23:08.117  INFO 6197 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 13:23:08.130  INFO 6197 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.43 seconds (JVM running for 2.871)
-2024-04-27 13:23:45.821  INFO 6197 --- [https-jsse-nio-8081-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 13:23:45.822  INFO 6197 --- [https-jsse-nio-8081-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 13:23:45.824  INFO 6197 --- [https-jsse-nio-8081-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 13:23:51.981  INFO 6197 --- [https-jsse-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 13:23:52.024  INFO 6197 --- [https-jsse-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 13:25:24.870  WARN 6197 --- [https-jsse-nio-8081-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'double'; nested exception is java.lang.NumberFormatException: empty String]
-2024-04-27 13:25:30.219  WARN 6197 --- [https-jsse-nio-8081-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'double'; nested exception is java.lang.NumberFormatException: empty String]
-2024-04-27 13:26:52.041 ERROR 6197 --- [https-jsse-nio-8081-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot create a session after the response has been committed] with root cause
+2024-04-28 22:56:48.866  WARN 47568 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
 
-java.lang.IllegalStateException: Cannot create a session after the response has been committed
-	at org.apache.catalina.connector.Request.doGetSession(Request.java:2966) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.Request.getSession(Request.java:2422) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:650) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:657) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.servlet.support.SessionFlashMapManager.getFlashMapsMutex(SessionFlashMapManager.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.support.AbstractFlashMapManager.saveOutputFlashMap(AbstractFlashMapManager.java:205) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.support.RequestContextUtils.saveOutputFlashMap(RequestContextUtils.java:283) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.view.RedirectView.renderMergedOutputModel(RedirectView.java:311) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1406) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1150) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Found multiple occurrences of org.json.JSONObject on the class path:
 
-2024-04-27 13:26:52.047 ERROR 6197 --- [https-jsse-nio-8081-exec-6] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/attendance/record/download/1/2024-04-27] and exception [Cannot create a session after the response has been committed] as the response has already been committed. As a result, the response may have the wrong status code.
-2024-04-27 13:27:03.628 ERROR 6197 --- [https-jsse-nio-8081-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot create a session after the response has been committed] with root cause
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
 
-java.lang.IllegalStateException: Cannot create a session after the response has been committed
-	at org.apache.catalina.connector.Request.doGetSession(Request.java:2966) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.Request.getSession(Request.java:2422) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:650) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:657) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.servlet.support.SessionFlashMapManager.getFlashMapsMutex(SessionFlashMapManager.java:67) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.support.AbstractFlashMapManager.saveOutputFlashMap(AbstractFlashMapManager.java:205) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.support.RequestContextUtils.saveOutputFlashMap(RequestContextUtils.java:283) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.view.RedirectView.renderMergedOutputModel(RedirectView.java:311) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:316) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1406) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1150) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+You may wish to exclude one of them to ensure predictable runtime behavior
 
-2024-04-27 13:27:03.632 ERROR 6197 --- [https-jsse-nio-8081-exec-1] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/attendance/record/download/1/2024-04-27] and exception [Cannot create a session after the response has been committed] as the response has already been committed. As a result, the response may have the wrong status code.
-2024-04-27 13:27:45.679  WARN 6197 --- [https-jsse-nio-8081-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'double'; nested exception is java.lang.NumberFormatException: empty String]
-2024-04-27 13:27:59.238  INFO 6197 --- [https-jsse-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 13:28:23.302  INFO 6197 --- [https-jsse-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 13:28:34.229  INFO 6197 --- [https-jsse-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 13:28:34.258  INFO 6197 --- [https-jsse-nio-8081-exec-8] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 13:29:21.285  INFO 6197 --- [https-jsse-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 13:29:45.525  WARN 6197 --- [https-jsse-nio-8081-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'double'; nested exception is java.lang.NumberFormatException: empty String]
-2024-04-27 13:29:48.811  WARN 6197 --- [https-jsse-nio-8081-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'double'; nested exception is java.lang.NumberFormatException: empty String]
-2024-04-27 22:13:51.118  INFO 35799 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 35799 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:13:51.123  INFO 35799 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:13:52.104  INFO 35799 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:13:52.115  INFO 35799 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:13:52.116  INFO 35799 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:13:52.257  INFO 35799 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:13:52.258  INFO 35799 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1070 ms
-2024-04-27 22:13:53.234  INFO 35799 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:13:53.250  INFO 35799 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:13:53.262  INFO 35799 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.549 seconds (JVM running for 2.893)
-2024-04-27 22:14:41.498  INFO 35799 --- [https-jsse-nio-8081-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:14:41.500  INFO 35799 --- [https-jsse-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:14:41.501  INFO 35799 --- [https-jsse-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-27 22:16:31.231  INFO 35799 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-27 22:16:34.038  INFO 37130 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 37130 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:16:34.042  INFO 37130 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:16:34.922  INFO 37130 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:16:34.931  INFO 37130 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:16:34.932  INFO 37130 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:16:35.017  INFO 37130 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:16:35.018  INFO 37130 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 923 ms
-2024-04-27 22:16:35.593  INFO 37130 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:16:35.603  INFO 37130 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:16:35.615  INFO 37130 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.952 seconds (JVM running for 2.327)
-2024-04-27 22:16:36.282  INFO 37130 --- [https-jsse-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:16:36.282  INFO 37130 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:16:36.283  INFO 37130 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-27 22:16:55.139  WARN 37130 --- [https-jsse-nio-8081-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'param' for method parameter type String is not present]
-2024-04-27 22:17:16.949  INFO 37130 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-27 22:17:16.950  INFO 37130 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-04-27 22:17:20.206  INFO 37647 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 37647 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:17:20.209  INFO 37647 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:17:20.969  INFO 37647 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:17:20.977  INFO 37647 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:17:20.978  INFO 37647 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:17:21.053  INFO 37647 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:17:21.054  INFO 37647 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 784 ms
-2024-04-27 22:17:21.595  INFO 37647 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:17:21.608  INFO 37647 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:17:21.619  INFO 37647 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.787 seconds (JVM running for 2.132)
-2024-04-27 22:17:25.204  INFO 37647 --- [https-jsse-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:17:25.205  INFO 37647 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:17:25.206  INFO 37647 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 22:17:36.519  WARN 37647 --- [https-jsse-nio-8081-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'code' for method parameter type String is not present]
-2024-04-27 22:19:35.442  INFO 39045 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 39045 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:19:35.445  INFO 39045 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:19:36.170  INFO 39045 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:19:36.178  INFO 39045 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:19:36.179  INFO 39045 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:19:36.256  INFO 39045 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:19:36.257  INFO 39045 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 759 ms
-2024-04-27 22:19:36.860  INFO 39045 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:19:36.870  INFO 39045 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:19:36.882  INFO 39045 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.805 seconds (JVM running for 2.135)
-2024-04-27 22:19:44.952  INFO 39045 --- [https-jsse-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:19:44.952  INFO 39045 --- [https-jsse-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:19:44.953  INFO 39045 --- [https-jsse-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-27 22:26:29.180  INFO 42862 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 42862 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:26:29.183  INFO 42862 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:26:29.906  INFO 42862 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:26:29.915  INFO 42862 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:26:29.916  INFO 42862 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:26:30.007  INFO 42862 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:26:30.008  INFO 42862 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 771 ms
-2024-04-27 22:26:30.656  INFO 42862 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:26:30.666  INFO 42862 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:26:30.680  INFO 42862 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.862 seconds (JVM running for 2.199)
-2024-04-27 22:26:33.914  INFO 42862 --- [https-jsse-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:26:33.917  INFO 42862 --- [https-jsse-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:26:33.919  INFO 42862 --- [https-jsse-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 22:31:03.519  INFO 42862 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-27 22:31:03.523  INFO 42862 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-04-27 22:31:06.279  INFO 45349 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 45349 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:31:06.283  INFO 45349 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:31:07.189  INFO 45349 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:31:07.198  INFO 45349 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:31:07.199  INFO 45349 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:31:07.286  INFO 45349 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:31:07.288  INFO 45349 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 945 ms
-2024-04-27 22:31:08.047  INFO 45349 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:31:08.086  INFO 45349 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:31:08.097  INFO 45349 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.131 seconds (JVM running for 2.403)
-2024-04-27 22:31:18.304  INFO 45349 --- [https-jsse-nio-8081-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:31:18.306  INFO 45349 --- [https-jsse-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:31:18.308  INFO 45349 --- [https-jsse-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 22:55:55.716  INFO 54333 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 54333 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 22:55:55.719  INFO 54333 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 22:55:56.383  INFO 54333 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 22:55:56.392  INFO 54333 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 22:55:56.393  INFO 54333 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 22:55:56.503  INFO 54333 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 22:55:56.504  INFO 54333 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 741 ms
-2024-04-27 22:55:57.120  INFO 54333 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 22:55:57.130  INFO 54333 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 22:55:57.139  INFO 54333 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.78 seconds (JVM running for 2.169)
-2024-04-27 22:56:19.327  INFO 54333 --- [https-jsse-nio-8081-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 22:56:19.330  INFO 54333 --- [https-jsse-nio-8081-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 22:56:19.333  INFO 54333 --- [https-jsse-nio-8081-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-04-27 22:56:27.888  INFO 54333 --- [https-jsse-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 22:56:27.931  INFO 54333 --- [https-jsse-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 22:59:00.968  INFO 54333 --- [https-jsse-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 22:59:01.006  INFO 54333 --- [https-jsse-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:00:11.226  INFO 57754 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 57754 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:00:11.232  INFO 57754 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:00:12.079  INFO 57754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:00:12.088  INFO 57754 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:00:12.089  INFO 57754 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:00:12.175  INFO 57754 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:00:12.177  INFO 57754 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 883 ms
-2024-04-27 23:00:12.777  INFO 57754 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:00:12.817  INFO 57754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:00:12.835  INFO 57754 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.01 seconds (JVM running for 2.412)
-2024-04-27 23:00:17.455  INFO 57754 --- [https-jsse-nio-8081-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:00:17.455  INFO 57754 --- [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:00:17.457  INFO 57754 --- [https-jsse-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:03:59.807  INFO 60236 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 60236 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:03:59.813  INFO 60236 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:04:00.591  INFO 60236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:04:00.601  INFO 60236 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:04:00.603  INFO 60236 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:04:00.687  INFO 60236 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:04:00.689  INFO 60236 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 808 ms
-2024-04-27 23:04:01.434  INFO 60236 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:04:01.445  INFO 60236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:04:01.458  INFO 60236 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.061 seconds (JVM running for 2.418)
-2024-04-27 23:04:07.074  INFO 60236 --- [https-jsse-nio-8081-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:04:07.075  INFO 60236 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:04:07.076  INFO 60236 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:04:12.995  INFO 60236 --- [https-jsse-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:04:13.035  INFO 60236 --- [https-jsse-nio-8081-exec-8] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:06:04.366  INFO 60236 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-27 23:06:04.369  INFO 60236 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-04-27 23:13:56.816  INFO 64132 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 64132 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:13:56.822  INFO 64132 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:13:57.505  INFO 64132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:13:57.514  INFO 64132 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:13:57.515  INFO 64132 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:13:57.589  INFO 64132 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:13:57.590  INFO 64132 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 712 ms
-2024-04-27 23:13:58.290  INFO 64132 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:13:58.301  INFO 64132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:13:58.314  INFO 64132 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.895 seconds (JVM running for 2.192)
-2024-04-27 23:13:58.635  INFO 64132 --- [https-jsse-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:13:58.637  INFO 64132 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:13:58.639  INFO 64132 --- [https-jsse-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:14:10.294  INFO 64132 --- [https-jsse-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:14:10.353  INFO 64132 --- [https-jsse-nio-8081-exec-4] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:14:33.171  WARN 64132 --- [https-jsse-nio-8081-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "report"]
-2024-04-27 23:19:26.424  INFO 68397 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 68397 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:19:26.434  INFO 68397 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:19:27.379  INFO 68397 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:19:27.392  INFO 68397 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:19:27.394  INFO 68397 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:19:27.515  INFO 68397 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:19:27.516  INFO 68397 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1011 ms
-2024-04-27 23:19:28.330  INFO 68397 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:19:28.346  INFO 68397 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:19:28.357  INFO 68397 --- [main] edu.duke.ece651.team1.client.App         : Started App in 2.208 seconds (JVM running for 2.481)
-2024-04-27 23:20:23.340  INFO 68397 --- [https-jsse-nio-8081-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:20:23.342  INFO 68397 --- [https-jsse-nio-8081-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:20:23.347  INFO 68397 --- [https-jsse-nio-8081-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:20:33.776  INFO 68397 --- [https-jsse-nio-8081-exec-3] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:20:33.811  INFO 68397 --- [https-jsse-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:20:38.445 ERROR 68397 --- [https-jsse-nio-8081-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Optional int parameter 'sectionId' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.] with root cause
+2024-04-28 22:56:48.909  INFO 47568 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 47568 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 22:56:48.914  INFO 47568 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 22:56:51.853  INFO 47568 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 22:56:51.857  INFO 47568 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 22:56:51.859  INFO 47568 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 22:56:51.912  INFO 47568 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.584 seconds (JVM running for 6.392)
+2024-04-28 23:04:29.758  WARN 56377 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
 
-java.lang.IllegalStateException: Optional int parameter 'sectionId' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.handleNullValue(AbstractNamedValueMethodArgumentResolver.java:263) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:116) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Found multiple occurrences of org.json.JSONObject on the class path:
 
-2024-04-27 23:21:46.160  INFO 70083 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 70083 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:21:46.162  INFO 70083 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:21:46.813  INFO 70083 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:21:46.821  INFO 70083 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:21:46.822  INFO 70083 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:21:46.894  INFO 70083 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:21:46.894  INFO 70083 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 690 ms
-2024-04-27 23:21:47.399  INFO 70083 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:21:47.412  INFO 70083 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:21:47.422  INFO 70083 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.567 seconds (JVM running for 1.818)
-2024-04-27 23:21:51.225  INFO 70083 --- [https-jsse-nio-8081-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:21:51.230  INFO 70083 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:21:51.233  INFO 70083 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:22:00.339  INFO 70083 --- [https-jsse-nio-8081-exec-5] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:22:00.388  INFO 70083 --- [https-jsse-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:22:13.526  INFO 70083 --- [https-jsse-nio-8081-exec-10] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:23:01.079  INFO 70083 --- [https-jsse-nio-8081-exec-6] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:23:01.116  INFO 70083 --- [https-jsse-nio-8081-exec-2] e.d.e.t.c.controller.SecurityController  : course controller begin
-2024-04-27 23:24:32.322  INFO 70083 --- [SpringApplicationShutdownHook] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-04-27 23:24:32.324  INFO 70083 --- [SpringApplicationShutdownHook] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-04-27 23:24:35.366  INFO 72411 --- [main] edu.duke.ece651.team1.client.App         : Starting App using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 72411 (/home/ht175/project-team-1/client/build/classes/java/main started by ht175 in /home/ht175/project-team-1/client)
-2024-04-27 23:24:35.371  INFO 72411 --- [main] edu.duke.ece651.team1.client.App         : No active profile set, falling back to 1 default profile: "default"
-2024-04-27 23:24:36.055  INFO 72411 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (https)
-2024-04-27 23:24:36.065  INFO 72411 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-27 23:24:36.066  INFO 72411 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2024-04-27 23:24:36.152  INFO 72411 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-27 23:24:36.155  INFO 72411 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 745 ms
-2024-04-27 23:24:36.710  INFO 72411 --- [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8081], TLS virtual host [_default_], certificate type [UNDEFINED] configured from [file:/home/ht175/project-team-1/client/build/resources/main/server.p12] using alias [tomcat] and with trust store [null]
-2024-04-27 23:24:36.725  INFO 72411 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (https) with context path ''
-2024-04-27 23:24:36.741  INFO 72411 --- [main] edu.duke.ece651.team1.client.App         : Started App in 1.659 seconds (JVM running for 1.923)
-2024-04-27 23:24:44.228  INFO 72411 --- [https-jsse-nio-8081-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-27 23:24:44.229  INFO 72411 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-27 23:24:44.230  INFO 72411 --- [https-jsse-nio-8081-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-27 23:24:49.570  INFO 72411 --- [https-jsse-nio-8081-exec-1] e.d.e.t.c.controller.SecurityController  : login success
-2024-04-27 23:24:49.617  INFO 72411 --- [https-jsse-nio-8081-exec-7] e.d.e.t.c.controller.SecurityController  : course controller begin
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:04:29.812  INFO 56377 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 56377 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:04:29.821  INFO 56377 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:04:34.751  INFO 56377 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:04:34.751  INFO 56377 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:04:34.753  INFO 56377 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:04:34.842  INFO 56377 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 6.427 seconds (JVM running for 8.872)
+2024-04-28 23:05:15.418  WARN 56778 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:05:15.480  INFO 56778 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 56778 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:05:15.481  INFO 56778 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:05:19.909  INFO 56778 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:05:19.910  INFO 56778 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:05:19.914  INFO 56778 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2024-04-28 23:05:19.973  INFO 56778 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 5.927 seconds (JVM running for 8.919)
+2024-04-28 23:09:34.541  WARN 59852 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:09:34.570  INFO 59852 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 59852 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:09:34.575  INFO 59852 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:09:37.597  INFO 59852 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:09:37.599  INFO 59852 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:09:37.601  INFO 59852 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:09:37.651  INFO 59852 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.924 seconds (JVM running for 6.019)
+2024-04-28 23:13:04.302  WARN 61337 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:13:04.322  INFO 61337 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 61337 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:13:04.323  INFO 61337 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:13:07.384  INFO 61337 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:13:07.385  INFO 61337 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:13:07.388  INFO 61337 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:13:07.441  INFO 61337 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.904 seconds (JVM running for 5.788)
+2024-04-28 23:15:30.004  WARN 62318 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:15:30.024  INFO 62318 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 62318 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:15:30.031  INFO 62318 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:15:32.595  INFO 62318 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:15:32.596  INFO 62318 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:15:32.599  INFO 62318 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:15:32.651  INFO 62318 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.371 seconds (JVM running for 5.308)
+2024-04-28 23:16:49.470  WARN 62944 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:16:49.482  INFO 62944 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 62944 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:16:49.485  INFO 62944 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:16:52.055  INFO 62944 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:16:52.056  INFO 62944 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:16:52.058  INFO 62944 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:16:52.088  INFO 62944 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.182 seconds (JVM running for 5.023)
+2024-04-28 23:17:11.874  WARN 63231 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:17:11.907  INFO 63231 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 63231 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:17:11.909  INFO 63231 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:17:14.516  INFO 63231 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:17:14.517  INFO 63231 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:17:14.519  INFO 63231 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:17:14.549  INFO 63231 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.576 seconds (JVM running for 5.282)
+2024-04-28 23:17:34.275  WARN 63569 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:17:34.290  INFO 63569 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 63569 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:17:34.292  INFO 63569 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:17:36.882  INFO 63569 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:17:36.883  INFO 63569 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:17:36.884  INFO 63569 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-04-28 23:17:36.929  INFO 63569 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.307 seconds (JVM running for 5.216)
+2024-04-28 23:18:50.345  WARN 64265 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:18:50.365  INFO 64265 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 64265 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:18:50.367  INFO 64265 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:18:52.969  INFO 64265 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:18:52.970  INFO 64265 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:18:52.973  INFO 64265 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:18:53.027  INFO 64265 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.134 seconds (JVM running for 5.04)
+2024-04-28 23:23:46.309  WARN 66205 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:23:46.324  INFO 66205 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 66205 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:23:46.325  INFO 66205 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:23:48.836  INFO 66205 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:23:48.837  INFO 66205 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:23:48.838  INFO 66205 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-04-28 23:23:48.868  INFO 66205 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.076 seconds (JVM running for 4.999)
+2024-04-28 23:31:01.629  WARN 68347 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:31:01.653  INFO 68347 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 68347 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:31:01.655  INFO 68347 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:31:04.291  INFO 68347 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:31:04.292  INFO 68347 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:31:04.295  INFO 68347 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:31:04.358  INFO 68347 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.434 seconds (JVM running for 5.241)
+2024-04-28 23:32:13.082  WARN 69031 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:32:13.104  INFO 69031 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 69031 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:32:13.109  INFO 69031 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:32:15.645  INFO 69031 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:32:15.646  INFO 69031 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:32:15.649  INFO 69031 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:32:15.697  INFO 69031 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.214 seconds (JVM running for 5.133)
+2024-04-28 23:35:48.953  WARN 70673 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:35:48.963  INFO 70673 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 70673 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:35:48.964  INFO 70673 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:35:51.830  INFO 70673 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:35:51.830  INFO 70673 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:35:51.833  INFO 70673 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:35:51.871  INFO 70673 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.429 seconds (JVM running for 5.171)
+2024-04-28 23:35:59.915  WARN 70878 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:35:59.934  INFO 70878 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 70878 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:35:59.935  INFO 70878 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:36:02.642  INFO 70878 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:36:02.643  INFO 70878 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:36:02.645  INFO 70878 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:36:02.693  INFO 70878 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.119 seconds (JVM running for 4.868)
+2024-04-28 23:36:21.665  WARN 71232 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:36:21.701  INFO 71232 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 71232 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:36:21.702  INFO 71232 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:36:24.448  INFO 71232 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:36:24.449  INFO 71232 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:36:24.450  INFO 71232 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:36:24.497  INFO 71232 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.383 seconds (JVM running for 5.123)
+2024-04-28 23:37:19.097  WARN 71744 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:37:19.124  INFO 71744 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 71744 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:37:19.125  INFO 71744 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:37:21.990  INFO 71744 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:37:21.992  INFO 71744 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:37:21.996  INFO 71744 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2024-04-28 23:37:22.047  INFO 71744 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.73 seconds (JVM running for 5.705)
+2024-04-28 23:43:24.626  WARN 74397 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:43:24.650  INFO 74397 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 74397 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:43:24.651  INFO 74397 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:43:27.276  INFO 74397 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:43:27.278  INFO 74397 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:43:27.281  INFO 74397 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:43:27.332  INFO 74397 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.142 seconds (JVM running for 4.887)
+2024-04-28 23:43:47.754  WARN 74648 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:43:47.783  INFO 74648 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 74648 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:43:47.784  INFO 74648 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:43:50.402  INFO 74648 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:43:50.403  INFO 74648 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:43:50.405  INFO 74648 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:43:50.463  INFO 74648 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.078 seconds (JVM running for 4.917)
+2024-04-28 23:44:06.863  WARN 74902 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:44:06.910  INFO 74902 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 74902 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:44:06.914  INFO 74902 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:44:09.421  INFO 74902 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:44:09.423  INFO 74902 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:44:09.426  INFO 74902 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:44:09.476  INFO 74902 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.341 seconds (JVM running for 5.008)
+2024-04-28 23:45:21.426  WARN 75714 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:45:21.440  INFO 75714 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 75714 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:45:21.441  INFO 75714 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:45:24.096  INFO 75714 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:45:24.101  INFO 75714 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:45:24.104  INFO 75714 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2024-04-28 23:45:24.153  INFO 75714 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.196 seconds (JVM running for 4.896)
+2024-04-28 23:45:31.706  WARN 75934 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:45:31.740  INFO 75934 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 75934 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:45:31.747  INFO 75934 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:45:34.461  INFO 75934 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:45:34.461  INFO 75934 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:45:34.463  INFO 75934 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:45:34.552  INFO 75934 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.222 seconds (JVM running for 4.585)
+2024-04-28 23:50:03.014  WARN 77882 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:50:03.032  INFO 77882 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 77882 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:50:03.037  INFO 77882 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:50:05.686  INFO 77882 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:50:05.688  INFO 77882 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:50:05.689  INFO 77882 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-28 23:50:05.749  INFO 77882 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.034 seconds (JVM running for 3.803)
+2024-04-28 23:50:27.512  WARN 78233 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/ht175/.gradle/caches/modules-2/files-2.1/org.json/json/20211205/47032dcf2f69880f07dab3dc60b4b0ad97318308/json-20211205.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2024-04-28 23:50:27.533  INFO 78233 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Starting AttendanceControllerTest using Java 17.0.10 on vcm-37154.vm.duke.edu with PID 78233 (started by ht175 in /home/ht175/project-team-1/client)
+2024-04-28 23:50:27.534  INFO 78233 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-28 23:50:30.128  INFO 78233 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-28 23:50:30.129  INFO 78233 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-28 23:50:30.131  INFO 78233 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-04-28 23:50:30.181  INFO 78233 --- [main] e.d.e.t.c.c.AttendanceControllerTest     : Started AttendanceControllerTest in 3.103 seconds (JVM running for 4.811)

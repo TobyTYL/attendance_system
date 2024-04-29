@@ -40,6 +40,9 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     testImplementation 'org.mockito:mockito-core:3.3.3'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.6.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 }
 
 run{

@@ -30,6 +30,8 @@ public class QRCodeController {
     TokenService tokenService;
     @Autowired
     AttendanceService attendanceService;
+    @Autowired
+    LocationService locationService;
 
     @GetMapping("/{sectionId}")
     public String getQRCode(@PathVariable int sectionId, Model model) {
@@ -96,7 +98,7 @@ public class QRCodeController {
     }
 
     private boolean validateLocation(double latitude, double longitude, RedirectAttributes redirectAttributes) {
-        if (!qrCodeService.validateLocation(latitude, longitude)) {
+        if (!locationService.validateLocation(latitude, longitude)) {
             redirectAttributes.addFlashAttribute("success", false);
             redirectAttributes.addFlashAttribute("message", "You are not in the classRoom, Attendance mark Failed");
             return false;
@@ -116,4 +118,5 @@ public class QRCodeController {
         redirectAttributes.addFlashAttribute("success", true);
         redirectAttributes.addFlashAttribute("message", "Attendance successfully marked!");
     }
+    
 }

@@ -24,6 +24,7 @@ public class GeoLocationUtil {
 
    
     public static boolean areLocationsClose(Location location1, Location location2, double threshold) {
+        System.out.println( calculateDistance(location1,location2));
         return calculateDistance(location1,location2) <= threshold;
     }
 

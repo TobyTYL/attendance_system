@@ -37,7 +37,7 @@ public class AttendanceController {
     @Autowired
     AttendanceService attendanceService;
     @Autowired
-    private QRCodeService qrCodeService;
+    QRCodeService qrCodeService;
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     @GetMapping("/new/{sectionId}")
@@ -87,7 +87,7 @@ public class AttendanceController {
     }
 
     @PostMapping("/record/{sectionId}/{sessionDate}")
-    public String postMethodName(@PathVariable int sectionId, @PathVariable String sessionDate,
+    public String updateAttendanceRecord(@PathVariable int sectionId, @PathVariable String sessionDate,
             @RequestParam Map<String, String> allParams, RedirectAttributes redirectAttributes) {
         AttendanceRecord record = attendanceService.getAttendanceRecord(sessionDate, sectionId);
         for (Map.Entry<Student, AttendanceStatus> entry : record.getSortedEntries()) {
@@ -191,5 +191,7 @@ public class AttendanceController {
         UserSession.getInstance().setScaned(true);
         return "redirect:/attendance/submitPosition/"+sectionId;
     }
+
+    
 
 }

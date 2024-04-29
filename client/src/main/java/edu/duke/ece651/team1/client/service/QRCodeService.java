@@ -43,13 +43,6 @@ public class QRCodeService {
         return Base64Utils.encodeToString(pngData);
     }
 
-    public boolean validateLocation(double s_Latitude, double s_Longtitude) {
-        double threshold = UserSession.getInstance().getThreshold();
-        double professorLongitude = UserSession.getInstance().getProfessorLongitude();
-        double professsorLatitude = UserSession.getInstance().getProfesssorLatitude();
-
-        return GeoLocationUtil.areLocationsClose(new Location(professsorLatitude, professorLongitude),new Location(s_Latitude, s_Longtitude),
-                threshold);
-    }
+    
 
 }
