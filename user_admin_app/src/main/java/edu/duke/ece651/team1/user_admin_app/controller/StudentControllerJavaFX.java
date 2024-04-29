@@ -31,31 +31,31 @@ public class StudentControllerJavaFX {
     private UserDao userDao = new UserDaoImp();
 
     @FXML
-    private Button button_add_student;
+    Button button_add_student;
     @FXML
-    private Button button_remove_student;
+    Button button_remove_student;
     @FXML
-    private Button button_update_student;
+    Button button_update_student;
     @FXML
-    private Button button_back_to_student_view;
+    Button button_back_to_student_view;
     @FXML
-    private Button button_back_to_main_view;
+    Button button_back_to_main_view;
     @FXML
-    private TextField add_student_legalName;
+    TextField add_student_legalName;
     @FXML
-    private TextField add_student_display_name;
+    TextField add_student_display_name;
     @FXML
-    private TextField add_student_email;
+    TextField add_student_email;
     @FXML
-    private TextField remove_student_name;
+    TextField remove_student_name;
     @FXML
-    private TextField update_student_legalName;
+    TextField update_student_legalName;
     @FXML
-    private TextField update_student_display_name;
+    TextField update_student_display_name;
     @FXML
-    private TextField update_student_email;
+    TextField update_student_email;
     @FXML
-    private void addStudentButtonClicked(ActionEvent event) {
+    void addStudentButtonClicked(ActionEvent event) {
         try {
             FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/add-student-view.fxml"));
             Parent root = studentLoader.load();
@@ -68,7 +68,7 @@ public class StudentControllerJavaFX {
     }
 
     @FXML
-    private void addConfirmButtonClicked(ActionEvent event) {
+    void addConfirmButtonClicked(ActionEvent event) {
         String legalName = add_student_legalName.getText();
         String displayName = add_student_display_name.getText();
         String email = add_student_email.getText();
@@ -89,7 +89,7 @@ public class StudentControllerJavaFX {
         add_student_email.setText("");
     }
     @FXML
-    private void removeStudentButtonClicked(ActionEvent event) {
+    void removeStudentButtonClicked(ActionEvent event) {
         try {
             FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/remove-student-view.fxml"));
             Parent root = studentLoader.load();
@@ -101,7 +101,7 @@ public class StudentControllerJavaFX {
         }
     }
     @FXML
-    private void removeConfirmButtonClicked(ActionEvent event) {
+    void removeConfirmButtonClicked(ActionEvent event) {
         String legalName = remove_student_name.getText();
         Optional<Student> optionalStudent = studentDao.findStudentByName(legalName);
         if (optionalStudent.isPresent()) {
@@ -122,7 +122,7 @@ public class StudentControllerJavaFX {
         }
     }
     @FXML
-    private void updateStudentButtonClicked(ActionEvent event) {
+    void updateStudentButtonClicked(ActionEvent event) {
         try {
             FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/update-student-view.fxml"));
             Parent root = studentLoader.load();
@@ -134,7 +134,7 @@ public class StudentControllerJavaFX {
         }
     }
     @FXML
-    private void updateConfirmButtonClicked(ActionEvent event) {
+    void updateConfirmButtonClicked(ActionEvent event) {
         String legalName = update_student_legalName.getText();
         Optional<Student> optionalStudent = studentDao.findStudentByName(legalName);
         if (optionalStudent.isPresent()) {
@@ -164,7 +164,7 @@ public class StudentControllerJavaFX {
         }
     }
     @FXML
-    private void backButtonClicked(ActionEvent event) {
+    void backButtonClicked(ActionEvent event) {
         try {
             FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/student-view.fxml"));
             Parent root = studentLoader.load();
@@ -177,7 +177,7 @@ public class StudentControllerJavaFX {
     }
 
     @FXML
-    private void backMainPageButtonClicked(ActionEvent event) {
+    void backMainPageButtonClicked(ActionEvent event) {
         try {
             FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
             Parent root = studentLoader.load();
