@@ -91,26 +91,51 @@ public class ProfessorControllerJavaFX {
     }
     @FXML
     void backProfessorPageButtonClicked(ActionEvent event) {
-        try {
-            FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Professor/professor-view.fxml"));
-            Parent root = professorLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button_back_to_professor_view.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+        // 获取按钮所在的场景
+        Scene buttonScene = button_back_to_professor_view.getScene();
+        if (buttonScene != null) {
+            // 获取场景的舞台
+            Stage stage = (Stage) buttonScene.getWindow();
+            if (stage != null) {
+                try {
+                    // 加载新的场景并设置到舞台
+                    FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Professor/professor-view.fxml"));
+                    Parent root = professorLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.err.println("Stage is null!");
+            }
+        } else {
+            System.err.println("Scene is null!");
         }
     }
+
     @FXML
     void backMainPageButtonClicked(ActionEvent event) {
-        try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
-            Parent root = studentLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button_back_to_main_view.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+        // 获取按钮所在的场景
+        Scene buttonScene = button_back_to_main_view.getScene();
+        if (buttonScene != null) {
+            // 获取场景的舞台
+            Stage stage = (Stage) buttonScene.getWindow();
+            if (stage != null) {
+                try {
+                    // 加载新的场景并设置到舞台
+                    FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
+                    Parent root = studentLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.err.println("Stage is null!");
+            }
+        } else {
+            System.err.println("Scene is null!");
         }
     }
 }

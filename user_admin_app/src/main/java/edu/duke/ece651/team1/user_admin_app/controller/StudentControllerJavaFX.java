@@ -29,7 +29,6 @@ public class StudentControllerJavaFX {
     private StudentDaoImp studentDao = new StudentDaoImp();
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private UserDao userDao = new UserDaoImp();
-
     @FXML
     Button button_add_student;
     @FXML
@@ -121,18 +120,40 @@ public class StudentControllerJavaFX {
             remove_student_name.setText("");
         }
     }
+//    @FXML
+//    void updateStudentButtonClicked(ActionEvent event) {
+//        try {
+//            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/update-student-view.fxml"));
+//            Parent root = studentLoader.load();
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) button_update_student.getScene().getWindow();
+//            stage.setScene(scene);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     @FXML
     void updateStudentButtonClicked(ActionEvent event) {
-        try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/update-student-view.fxml"));
-            Parent root = studentLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button_update_student.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+        Scene buttonScene = button_update_student.getScene();
+        if (buttonScene != null) {
+            Stage stage = (Stage) buttonScene.getWindow();
+            if (stage != null) {
+                try {
+                    FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/update-student-view.fxml"));
+                    Parent root = studentLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.err.println("Stage is null!");
+            }
+        } else {
+            System.err.println("Scene is null!");
         }
     }
+
     @FXML
     void updateConfirmButtonClicked(ActionEvent event) {
         String legalName = update_student_legalName.getText();
@@ -163,29 +184,73 @@ public class StudentControllerJavaFX {
             update_student_email.setText("");
         }
     }
-    @FXML
-    void backButtonClicked(ActionEvent event) {
-        try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/student-view.fxml"));
-            Parent root = studentLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button_back_to_student_view.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+//    @FXML
+//    void backButtonClicked(ActionEvent event) {
+//        try {
+//            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/student-view.fxml"));
+//            Parent root = studentLoader.load();
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) button_back_to_student_view.getScene().getWindow();
+//            stage.setScene(scene);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+@FXML
+void backButtonClicked(ActionEvent event) {
+    Scene buttonScene = button_back_to_student_view.getScene();
+    if (buttonScene != null) {
+        Stage stage = (Stage) buttonScene.getWindow();
+        if (stage != null) {
+            try {
+                FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Student/student-view.fxml"));
+                Parent root = studentLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("Stage is null!");
         }
+    } else {
+        System.err.println("Scene is null!");
     }
+}
 
-    @FXML
-    void backMainPageButtonClicked(ActionEvent event) {
-        try {
-            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
-            Parent root = studentLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button_back_to_main_view.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+//    @FXML
+//    void backMainPageButtonClicked(ActionEvent event) {
+//        try {
+//            FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
+//            Parent root = studentLoader.load();
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) button_back_to_main_view.getScene().getWindow();
+//            stage.setScene(scene);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+@FXML
+void backMainPageButtonClicked(ActionEvent event) {
+    Scene buttonScene = button_back_to_main_view.getScene();
+    if (buttonScene != null) {
+        Stage stage = (Stage) buttonScene.getWindow();
+        if (stage != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("Stage is null!");
         }
+    } else {
+        System.err.println("Scene is null!");
     }
+}
+
+
 }
