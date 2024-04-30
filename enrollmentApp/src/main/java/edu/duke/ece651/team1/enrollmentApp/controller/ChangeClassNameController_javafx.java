@@ -19,12 +19,10 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 
 public class ChangeClassNameController_javafx {
-    @FXML
-    private Label currentClassNameLabel;
-    @FXML
-    private TextField newClassNameField;
+    @FXML Label currentClassNameLabel;
+    @FXML TextField newClassNameField;
 
-    private CourseDaoImp courseDao = new CourseDaoImp();
+    CourseDaoImp courseDao = new CourseDaoImp();
     // This method can be called during the initialization to set the current class name
     public void initialize() {
         Course selectedCourse = Model.getSelectedCourse();
@@ -36,8 +34,7 @@ public class ChangeClassNameController_javafx {
         
     }
 
-    @FXML
-    private void onChangeClassName(ActionEvent event) {
+    @FXML void onChangeClassName(ActionEvent event) {
         String oldClassName = currentClassNameLabel.getText();
         String newClassName = newClassNameField.getText();
         if (!newClassName.isEmpty()) {
@@ -62,8 +59,7 @@ public class ChangeClassNameController_javafx {
             showAlert(Alert.AlertType.WARNING, "Warning", null, "New class name cannot be empty");
         }
     }
-    @FXML
-    private void onReturn() {
+    @FXML void onReturn() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CourseChoice.fxml"));
             Parent root = loader.load();

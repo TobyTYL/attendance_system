@@ -15,17 +15,13 @@ import java.util.List;
 
 public class BatchStudentEnrollController_javafx {
 
-    @FXML
-    private TextField userInputText;
+    @FXML TextField userInputText;
 
-    @FXML
-    private Button importButton;
+    @FXML Button importButton;
 
-    @FXML
-    private Label importResult;
+    @FXML Label importResult;
 
-    @FXML
-    private Button returnButton;
+    @FXML Button returnButton;
 
     // This method will be called when the 'Import' button is clicked.
     @FXML

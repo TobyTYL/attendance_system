@@ -24,22 +24,31 @@ import edu.duke.ece651.team1.shared.Professor;
 import java.util.List;
 import java.util.ArrayList;
 import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
-
 import java.io.IOException;
 
 import javafx.collections.FXCollections;
 
 public class AddSectionController_javafx {
-    @FXML
-    private ComboBox<String> professorComboBox;
+    @FXML ComboBox<String> professorComboBox;
 
-    private ProfessorDao professorDao = new ProfessorDaoImp(); 
-    private SectionDao sectionDao = new SectionDaoImpl();
-    private CourseDao courseDao = new CourseDaoImp();
-    private UserDao userDao = new UserDaoImp();
-
-    @FXML
-    private void initialize() {
+    private ProfessorDao professorDao;
+    private SectionDao sectionDao;
+    private CourseDao courseDao;
+    private UserDao userDao;
+    // Constructor that accepts DAOs
+    public AddSectionController_javafx() {
+        this.professorDao = new ProfessorDaoImp();
+        this.sectionDao = new SectionDaoImpl();
+        this.courseDao = new CourseDaoImp();
+        this.userDao = new UserDaoImp();
+    }
+    public AddSectionController_javafx(ProfessorDao professorDao, SectionDao sectionDao, CourseDao courseDao, UserDao userDao) {
+        this.professorDao = professorDao;
+        this.sectionDao = sectionDao;
+        this.courseDao = courseDao;
+        this.userDao = userDao;
+    }
+    @FXML void initialize() {
         // Populate the comboBox with professors (this should come from a database or similar source)
         List<Professor> professors = professorDao.findAllProfessors();
         List<String> profNames = new ArrayList<>();
@@ -53,8 +62,7 @@ public class AddSectionController_javafx {
         professorComboBox.setItems(FXCollections.observableArrayList(profNames));
     }
 
-    @FXML
-    private void onAddSection() {
+    @FXML void onAddSection() {
         String professorName = professorComboBox.getSelectionModel().getSelectedItem();
         try {
             Course selectedCourse = Model.getSelectedCourse();
@@ -80,8 +88,7 @@ public class AddSectionController_javafx {
         }
     }
 
-    @FXML
-    private void onReturn() {
+    @FXML void onReturn() {
         // Code to return to the main screen or previous screen
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CourseChoice.fxml"));

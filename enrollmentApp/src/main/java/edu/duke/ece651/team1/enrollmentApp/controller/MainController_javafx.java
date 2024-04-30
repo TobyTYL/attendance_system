@@ -11,19 +11,18 @@ import java.io.IOException;
 
 public class MainController_javafx {
 
-    @FXML
-    private Button manageCoursesButton;
+    @FXML Button manageCoursesButton;
 
-    @FXML
-    private Button enrollStudentsButton;
+    @FXML Button enrollStudentsButton;
 
-    @FXML
-    private Button exitButton;
-
+    @FXML Button exitButton;
+    
+    private ExitStrategy exitStrategy = () -> System.exit(0);
     @FXML
     protected void onManageCoursesClick() {
         // Add navigation or functionality to manage courses
         changeScene("/CourseMgmtNavi.fxml", manageCoursesButton);
+        System.out.println("Manage Courses clicked");
     }
 
     @FXML
@@ -34,11 +33,11 @@ public class MainController_javafx {
 
     @FXML
     protected void onExitClick() {
-        System.exit(0);
+        exitStrategy.exit();
     }
 
     // Helper method to change scene
-    private void changeScene(String fxmlFile, Button button) {
+    void changeScene(String fxmlFile, Button button) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
@@ -49,5 +48,9 @@ public class MainController_javafx {
         } catch (IOException e) {
             e.printStackTrace(); // Or handle the exception as appropriate
         }
+    }
+      // Method to set the exit strategy
+    public void setExitStrategy(ExitStrategy exitStrategy) {
+        this.exitStrategy = exitStrategy;
     }
 }

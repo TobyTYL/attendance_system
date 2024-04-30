@@ -12,42 +12,34 @@ import java.io.IOException;
 
 public class CourseMgmtNaviController_javafx {
 
-    @FXML
-    private Button createClassButton;
+    @FXML Button createClassButton;
 
-    @FXML
-    private Button updateClassButton;
+    @FXML Button updateClassButton;
 
-    @FXML
-    private Button removeClassButton;
+    @FXML Button removeClassButton;
 
     @FXML
     private Button changeClassNameButton;
     
-    @FXML
-    private Button returnButton;
+    @FXML Button returnButton;
 
-   @FXML
-    private void onCreateClassClick() {
+   @FXML void onCreateClassClick() {
         loadScene("/CreateCourse.fxml", createClassButton);
     }
 
-    @FXML
-    private void onUpdateClassClick() {
+    @FXML void onUpdateClassClick() {
         loadScene("/SelectCourse.fxml", updateClassButton);
     }
 
-    @FXML
-    private void onRemoveClassClick() {
+    @FXML void onRemoveClassClick() {
         loadScene("/RemoveCourse.fxml", removeClassButton);
     }
 
-    @FXML
-    private void onReturnClick() {
+    @FXML void onReturnClick() {
         loadScene("/Main.fxml", returnButton);
     }
 
-    private void loadScene(String fxmlPath, Button buttonContext) {
+    void loadScene(String fxmlPath, Button buttonContext) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
