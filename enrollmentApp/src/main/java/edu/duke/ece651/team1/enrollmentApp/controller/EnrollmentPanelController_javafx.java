@@ -8,7 +8,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * Controller class for the enrollment panel in the enrollment application.
+ * This controller manages the navigation between manual enrollment, batch enrollment, and the main screen.
+ */
 public class EnrollmentPanelController_javafx {
 
     @FXML
@@ -19,7 +22,10 @@ public class EnrollmentPanelController_javafx {
 
     @FXML
     private Button returnButton;
-
+    /**
+     * Handles the action when the 'Manual Enrollment' button is clicked.
+     * Navigates to the manual student enrollment screen.
+     */
     @FXML
     protected void onManualEnrollClick() {
         // Placeholder for manual enrollment logic
@@ -41,7 +47,10 @@ public class EnrollmentPanelController_javafx {
             e.printStackTrace(); // Or handle the exception as appropriate
         }
     }
-
+     /**
+     * Handles the action when the 'Batch Enrollment' button is clicked.
+     * Navigates to the batch student enrollment screen.
+     */
     @FXML
     protected void onBatchEnrollClick() {
         // Placeholder for batch enrollment logic
@@ -63,7 +72,10 @@ public class EnrollmentPanelController_javafx {
             e.printStackTrace(); // Or handle the exception as appropriate
         }
     }
-
+    /**
+     * Handles the action when the 'Return' button is clicked.
+     * Returns to the main screen.
+     */
     @FXML
     protected void onReturnClick() {
         try {

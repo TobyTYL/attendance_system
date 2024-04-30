@@ -17,13 +17,19 @@ import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.show
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
-
+/**
+ * Controller class for changing the class name in the enrollment application.
+ * This controller manages the interaction between the user interface and the CourseDao implementation.
+ */
 public class ChangeClassNameController_javafx {
     @FXML Label currentClassNameLabel;
     @FXML TextField newClassNameField;
 
     CourseDaoImp courseDao = new CourseDaoImp();
-    // This method can be called during the initialization to set the current class name
+    /**
+     * Initializes the controller.
+     * Sets the current class name label with the name of the selected course.
+     */
     public void initialize() {
         Course selectedCourse = Model.getSelectedCourse();
         if (selectedCourse != null) {
@@ -33,7 +39,12 @@ public class ChangeClassNameController_javafx {
         }
         
     }
-
+    /**
+     * Handles the action when the 'Change Class Name' button is clicked.
+     * Changes the class name of the selected course to the new name entered by the user.
+     * Shows appropriate alerts for success or failure.
+     * @param event The action event triggered by clicking the 'Change Class Name' button.
+     */
     @FXML void onChangeClassName(ActionEvent event) {
         String oldClassName = currentClassNameLabel.getText();
         String newClassName = newClassNameField.getText();
@@ -59,6 +70,10 @@ public class ChangeClassNameController_javafx {
             showAlert(Alert.AlertType.WARNING, "Warning", null, "New class name cannot be empty");
         }
     }
+    /**
+     * Handles the action when the 'Return' button is clicked.
+     * Returns to the course choice screen.
+     */
     @FXML void onReturn() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CourseChoice.fxml"));

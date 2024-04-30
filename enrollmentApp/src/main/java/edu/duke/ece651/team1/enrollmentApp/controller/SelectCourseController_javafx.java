@@ -18,13 +18,18 @@ import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.enrollmentApp.Model;
 import edu.duke.ece651.team1.shared.Course;
 import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
-
+/**
+ * Controller class responsible for handling user interactions related to selecting a course.
+ * Allows users to choose a course from a ComboBox and navigate to the course-specific functionalities.
+ */
 public class SelectCourseController_javafx {
     @FXML
     private ComboBox<String> classComboBox;
     private CourseDao courseDao = new CourseDaoImp(); //
     private List<Course> courses;
-
+    /**
+     * Initializes the ComboBox with course names from the database.
+     */
     @FXML
     private void initialize() {
         // Populate the ComboBox with class names from the database
@@ -36,7 +41,10 @@ public class SelectCourseController_javafx {
         classComboBox.setItems(FXCollections.observableArrayList(courseNames));
     }
 
-    
+     /**
+     * Handles the action of selecting a course from the ComboBox.
+     * Sets the selected course in the Model and loads the Course Choice view.
+     */
     @FXML
     private void onSelectClass() {
         String selectedClass = classComboBox.getSelectionModel().getSelectedItem();
@@ -52,11 +60,19 @@ public class SelectCourseController_javafx {
         }
     }
 
-
+    /**
+     * Handles the action of clicking the "Return" button.
+     * Returns to the Course Management Navigation view.
+     */
     @FXML
     private void onReturn() {
         loadScene("/CourseMgmtNavi.fxml");
     }
+    /**
+     * Loads the specified FXML file and sets it as the scene of the stage.
+     * 
+     * @param fxmlPath The path of the FXML file to load.
+     */
     private void loadScene(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

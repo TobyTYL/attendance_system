@@ -14,7 +14,10 @@ import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.data_access.Course.*;
 import edu.duke.ece651.team1.shared.*;
 import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
-
+/**
+ * Controller class for creating a new course in the enrollment application.
+ * This controller manages the interaction between the user interface and the CourseDao implementation.
+ */
 public class CreateCourseController_javafx {
 
     @FXML
@@ -31,7 +34,10 @@ public class CreateCourseController_javafx {
     private CourseDaoImp courseDao = new CourseDaoImp();
 
 
-    // Handler for the 'Create' button action
+    /**
+     * Handles the action when the 'Create' button is clicked.
+     * Creates a new course with the name entered by the user.
+     */
     @FXML
     private void onCreateClick() {
         String courseName = userInputCourseName.getText().trim();
@@ -60,7 +66,10 @@ public class CreateCourseController_javafx {
         createCourseResult.setText("Course '" + courseName + "' created successfully.");
     }
 
-    // Handler for the 'Return' button action
+     /**
+     * Handles the action when the 'Return' button is clicked.
+     * Returns to the course management navigation panel.
+     */
     @FXML
     private void onReturnClick() {
         try {

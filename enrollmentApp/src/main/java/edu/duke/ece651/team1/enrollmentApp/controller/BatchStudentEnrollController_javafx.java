@@ -12,7 +12,10 @@ import javafx.scene.Node;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Controller class for batch student enrollment in the enrollment application.
+ * This controller manages the interaction between the user interface and the data access objects (DAOs).
+ */
 public class BatchStudentEnrollController_javafx {
 
     @FXML TextField userInputText;
@@ -24,6 +27,12 @@ public class BatchStudentEnrollController_javafx {
     @FXML Button returnButton;
 
     // This method will be called when the 'Import' button is clicked.
+     /**
+     * Handles the action when the 'Import' button is clicked.
+     * Reads the specified CSV file and processes student enrollment.
+     * Shows appropriate alerts for success or failure.
+     * @param actionEvent The action event triggered by clicking the 'Import' button.
+     */
     @FXML
     protected void onImportClick(ActionEvent actionEvent) {
         String csvFileName = userInputText.getText();
@@ -54,7 +63,11 @@ public class BatchStudentEnrollController_javafx {
         }
     }
 
-
+     /**
+     * Handles the action when the 'Return' button is clicked.
+     * Returns to the main enrollment panel.
+     * @param actionEvent The action event triggered by clicking the 'Return' button.
+     */
     @FXML
     protected void onReturnClick(ActionEvent actionEvent) {
         try {

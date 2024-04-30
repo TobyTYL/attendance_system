@@ -20,6 +20,10 @@ import java.util.stream.Collectors;
 import edu.duke.ece651.team1.data_access.Course.CourseDaoImp;
 import edu.duke.ece651.team1.shared.Course;
 import static edu.duke.ece651.team1.enrollmentApp.controller.UtilController.showAlert;
+/**
+ * Controller class for removing courses in the enrollment application.
+ * This controller manages the process of removing courses from the system.
+ */
 public class RemoveCourseController_javafx {
 
     @FXML
@@ -35,7 +39,11 @@ public class RemoveCourseController_javafx {
     private Button returnButton;
     private CourseDaoImp courseDao = new CourseDaoImp();
 
-    // Method called when the controller is instantiated
+    /**
+     * Initializes the controller.
+     * This method is automatically called when the FXML file is loaded.
+     * It populates the list of current courses.
+     */
     public void initialize() {
         List<Course> coursesFromDB = courseDao.getAllCourses();
 
@@ -44,7 +52,10 @@ public class RemoveCourseController_javafx {
         );
         listCurrCourses.setItems(courses);
     }
-
+    /**
+     * Handles the action when the 'Remove' button is clicked.
+     * Removes the selected course from the system.
+     */
     @FXML
     private void onRemoveClick() {
         // Get the selected course
@@ -70,7 +81,10 @@ public class RemoveCourseController_javafx {
         });
         
     }
-
+    /**
+     * Handles the action when the 'Return' button is clicked.
+     * Returns to the course management navigation panel.
+     */
     @FXML
     private void onReturnClick() {
         try {

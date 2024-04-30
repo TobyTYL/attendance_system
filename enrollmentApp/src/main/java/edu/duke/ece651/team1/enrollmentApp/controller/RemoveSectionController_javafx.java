@@ -25,7 +25,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
+/**
+ * Controller responsible for removing sections from a course.
+ * Allows the user to select a section from a list and remove it from the course.
+ */
 public class RemoveSectionController_javafx {
     @FXML
     private ListView<String> sectionListView;
@@ -33,6 +36,10 @@ public class RemoveSectionController_javafx {
     private CourseDaoImp courseDao = new CourseDaoImp();
     private ProfessorDaoImp professorDao = new ProfessorDaoImp();
     private UserDaoImp userDao = new UserDaoImp();
+     /**
+     * Initializes the controller. Retrieves sections associated with the selected course
+     * and populates the ListView with section details.
+     */
     @FXML
     private void initialize() {
         Course selectedCourse = Model.getSelectedCourse();
@@ -60,7 +67,9 @@ public class RemoveSectionController_javafx {
 
     sectionListView.setItems(FXCollections.observableArrayList(sectionDetails));
     }
-
+    /**
+     * Handles the action of removing a selected section from the course.
+     */
     @FXML
     private void onRemoveSection() {
          String selectedSection = sectionListView.getSelectionModel().getSelectedItem();
@@ -91,6 +100,9 @@ public class RemoveSectionController_javafx {
         }
     });
     }
+     /**
+     * Handles the action of returning to the previous screen.
+     */
      @FXML
     private void onReturn() {
         try {
@@ -103,6 +115,12 @@ public class RemoveSectionController_javafx {
             e.printStackTrace();
         }
     }
+    /**
+     * Parses the section ID from the section detail string.
+     * 
+     * @param sectionDetail The string containing section details.
+     * @return The parsed section ID.
+     */
     private int parseSectionId(String sectionDetail) {
         try {
             return Integer.parseInt(sectionDetail.replaceFirst("Section ", "").split(":")[0].trim());
@@ -111,6 +129,12 @@ public class RemoveSectionController_javafx {
             return -1;
         }
     }
+    /**
+     * Displays an alert with the specified title and content.
+     * 
+     * @param title   The title of the alert.
+     * @param content The content of the alert.
+     */
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

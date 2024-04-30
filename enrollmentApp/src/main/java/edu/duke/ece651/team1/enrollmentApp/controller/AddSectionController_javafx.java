@@ -36,18 +36,32 @@ public class AddSectionController_javafx {
     private CourseDao courseDao;
     private UserDao userDao;
     // Constructor that accepts DAOs
+    /**
+     * Default constructor that initializes DAOs with default implementations.
+     */
     public AddSectionController_javafx() {
         this.professorDao = new ProfessorDaoImp();
         this.sectionDao = new SectionDaoImpl();
         this.courseDao = new CourseDaoImp();
         this.userDao = new UserDaoImp();
     }
+    /**
+     * Constructor that accepts DAOs as parameters.
+     * @param professorDao The ProfessorDao implementation.
+     * @param sectionDao The SectionDao implementation.
+     * @param courseDao The CourseDao implementation.
+     * @param userDao The UserDao implementation.
+     */
     public AddSectionController_javafx(ProfessorDao professorDao, SectionDao sectionDao, CourseDao courseDao, UserDao userDao) {
         this.professorDao = professorDao;
         this.sectionDao = sectionDao;
         this.courseDao = courseDao;
         this.userDao = userDao;
     }
+    /**
+     * Initializes the controller.
+     * Populates the comboBox with professors retrieved from the database.
+     */
     @FXML void initialize() {
         // Populate the comboBox with professors (this should come from a database or similar source)
         List<Professor> professors = professorDao.findAllProfessors();
@@ -61,7 +75,11 @@ public class AddSectionController_javafx {
         }
         professorComboBox.setItems(FXCollections.observableArrayList(profNames));
     }
-
+    /**
+     * Handles the action when the user clicks the "Add Section" button.
+     * Attempts to add a new section to the selected course with the selected professor.
+     * Shows appropriate alerts for success or failure.
+     */
     @FXML void onAddSection() {
         String professorName = professorComboBox.getSelectionModel().getSelectedItem();
         try {
@@ -87,7 +105,10 @@ public class AddSectionController_javafx {
             showAlert(Alert.AlertType.ERROR, "Database Error", null, "Failed to add the section to the database.");
         }
     }
-
+    /**
+     * Handles the action when the user clicks the "Return" button.
+     * Returns to the main screen or the previous screen.
+     */
     @FXML void onReturn() {
         // Code to return to the main screen or previous screen
         try {

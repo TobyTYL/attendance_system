@@ -28,7 +28,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
-
+/**
+ * Controller class responsible for handling user interactions related to updating sections.
+ * Allows users to assign professors to sections of a course.
+ */
 public class UpdateSectionController_javafx {
     @FXML
     private ListView<String> sectionListView;
@@ -42,7 +45,11 @@ public class UpdateSectionController_javafx {
     private void initialize() {
         refreshSectionList();
     }
-
+    /**
+     * Handles the action of updating a section with a professor.
+     * Retrieves the selected section and professor from the UI components,
+     * then updates the section with the chosen professor.
+     */
     @FXML
     private void onUpdateSection() {
         String selectedSectionDetail = sectionListView.getSelectionModel().getSelectedItem();
@@ -79,6 +86,10 @@ public class UpdateSectionController_javafx {
             UtilController.showAlert(Alert.AlertType.WARNING, "Update Warning", "Selection Missing", "Please select a section and a professor to update.");
         }
     }
+    /**
+     * Handles the action of returning to the previous screen.
+     * Navigates back to the course choice view.
+     */
     @FXML
     private void onReturn() {
         // Code to return to the main screen or previous screen
@@ -92,6 +103,12 @@ public class UpdateSectionController_javafx {
             e.printStackTrace();
         }
     }
+    /**
+     * Parses the section ID from the section detail string.
+     * 
+     * @param sectionDetail The string representing the section detail.
+     * @return The parsed section ID, or -1 if parsing fails.
+     */
     private int parseSectionId(String sectionDetail) {
         // Assuming section details are in the format "Section 1: Prof. A"
         // Extracts the numeric part after "Section "
@@ -103,6 +120,9 @@ public class UpdateSectionController_javafx {
             return -1; // Return -1 as an indication of failure
         }
     }
+    /**
+     * Refreshes the section list and professor combo box.
+     */
     private void refreshSectionList(){
         Course selectedCourse = Model.getSelectedCourse();
         String courseName = selectedCourse.getName();
