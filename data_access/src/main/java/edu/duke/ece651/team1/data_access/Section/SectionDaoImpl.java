@@ -246,5 +246,17 @@ public class SectionDaoImpl implements SectionDao{
         }
         return -1; // Return an invalid value indicating not found
     }
-
+    public boolean existsSectionWithProfessor(int classId, int professorId) {
+        String sql = "SELECT 1 FROM sections WHERE classid = ? AND professorid = ?";
+        try (Connection conn = DB_connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, classId);
+            ps.setInt(2, professorId);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // If there's at least one result, the section exists
+        } catch (SQLException e) {
+            System.out.println("Error checking if section exists: " + e.getMessage());
+            return false; // Assume no section exists if there's an error
+        }
+    }
 }

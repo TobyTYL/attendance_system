@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.team1.enrollmentApp.controller.BatchStudentEnrollController_javafx">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+          <children>
+              <TextField fx:id="userInputText" layoutX="208.0" layoutY="176.0" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="176.0" />
+              <Label layoutX="188.0" layoutY="146.0" text="Please enter the Input CSV file name:" AnchorPane.leftAnchor="188.0" AnchorPane.topAnchor="146.0" />
+              <Button fx:id="importButton" layoutX="394.0" layoutY="176.0" mnemonicParsing="false" onAction="#onImportClick" text="Import" AnchorPane.leftAnchor="394.0" AnchorPane.topAnchor="176.0" />
+            <Button fx:id="returnButton" layoutX="488.0" layoutY="340.0" mnemonicParsing="false" onAction="#onReturnClick" text="Back" />
+          </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

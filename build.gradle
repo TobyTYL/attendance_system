@@ -91,6 +91,13 @@ project (':client'){
 //        testImplementation project(path: ':shared', configuration: "testPkg")
     }
 }
+project (':user_admin_app'){
+    dependencies {
+        implementation project(':shared')
+        implementation project(':data_access')
+    }
+}
+
 clover {
     report{
         xml=true

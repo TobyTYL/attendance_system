@@ -16,4 +16,5 @@ public interface SectionDao {
 //    void updateSectionProfessor(String className, int sectionID, String professorName) throws SQLException;
     void updateSectionProfessor(String className, int sectionID, Integer professorID) throws SQLException;
     int getClassIdBySectionId(int sectionId);
+    boolean existsSectionWithProfessor(int classId, int professorId);
 }
