@@ -20,6 +20,9 @@ public class TokenService {
         tokenStore.put(token, new TokenInfo(LocalDateTime.now()));
         return token;
     }
+    public int getTokenStoreSize(){
+        return tokenStore.size();
+    }
 
     public boolean validateToken(String token) {
         TokenInfo info = tokenStore.get(token);
@@ -33,8 +36,7 @@ public class TokenService {
 
     @Scheduled(fixedDelay = 60000)
     public void cleanupTokens() {
-        tokenStore.entrySet().removeIf(
-                entry -> Duration.between(entry.getValue().getTimestamp(), LocalDateTime.now()).toMinutes() >= 5);
+        tokenStore.keySet().removeIf(token -> !validateToken(token));
     }
 
     static class TokenInfo {

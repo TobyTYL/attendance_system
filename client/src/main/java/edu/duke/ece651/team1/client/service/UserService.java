@@ -21,8 +21,12 @@ public class UserService {
             UserSession.getInstance().setUsername(username);
             UserSession.getInstance().setSessionToken(response.getHeaders().getFirst("Set-Cookie"));
             return response.getBody();
-        } catch (HttpClientErrorException.Unauthorized e) {
-            return "loginFailed";
+        } catch (HttpClientErrorException e) {
+            System.out.println("Caught HttpClientErrorException: " + e.getClass() + " with status " + e.getStatusCode());
+            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+                return "loginFailed";
+            }
+            throw new RuntimeException("Unexpected error during login: " + e.getMessage(), e);
         } catch (RestClientException e) {
             throw new RuntimeException("Unexpected error during login: " + e.getMessage());
         }

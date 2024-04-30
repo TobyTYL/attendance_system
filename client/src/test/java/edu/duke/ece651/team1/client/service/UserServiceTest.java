@@ -15,6 +15,7 @@ import org.springframework.http.*;
 
 import edu.duke.ece651.team1.client.model.*;
 import org.springframework.web.client.*;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -48,17 +49,25 @@ public class UserServiceTest {
         assertEquals("Success", result);
     }
 
-    // @Test
-    // public void testAuthenticate_Failure() {
-    //     // Setup
-    //     String username = "user";
-    //     String password = "wrongpass";
-    //     String url = "http://localhost:8080/api/login";
-    //     when(restTemplate.exchange(eq(url), eq(HttpMethod.POST), any(HttpEntity.class), eq(String.class)))
-    //             .thenThrow(new HttpClientErrorException(HttpStatus.UNAUTHORIZED));
-    //     String result = userService.authenticate(username, password);
-    //     assertEquals("loginFailed", result);
-    // }
+    @Test
+    public void testAuthenticate_Failure() {
+        String username = "user";
+        String password = "wrongpass";
+        String url = "http://localhost:8080/api/login";
+        when(restTemplate.exchange(eq(url), eq(HttpMethod.POST), any(HttpEntity.class), eq(String.class)))
+                .thenThrow(new HttpClientErrorException(HttpStatus.UNAUTHORIZED));
+        String result = userService.authenticate(username, password);
+        assertEquals("loginFailed", result);
+    }
+    @Test
+    public void testAuthenticate_UnexpectedError_client() {
+        String username = "user";
+        String password = "wrongpass";
+        String url = "http://localhost:8080/api/login";
+        when(restTemplate.exchange(eq(url), eq(HttpMethod.POST), any(HttpEntity.class), eq(String.class)))
+                .thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        assertThrows(RuntimeException.class, () -> userService.authenticate(username, password));
+    }
 
     @Test
     public void testAuthenticate_UnexpectedError() {
