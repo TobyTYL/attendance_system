@@ -20,7 +20,9 @@ import java.io.IOException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import static java.lang.System.out;
-
+/**
+ * Controller class for managing professor-related operations in the JavaFX user admin application.
+ */
 public class ProfessorControllerJavaFX {
     ProfessorDao professorDao = new ProfessorDaoImp();
     UserDao userDao = new UserDaoImp();
@@ -39,6 +41,11 @@ public class ProfessorControllerJavaFX {
     TextField add_professor_name;
     @FXML
     TextField remove_professor_name;
+    /**
+     * Event handler for clicking the add professor button.
+     * Loads the add professor view.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void addProfessorButtonClicked(ActionEvent event) {
         try {
@@ -51,6 +58,12 @@ public class ProfessorControllerJavaFX {
             e.printStackTrace();
         }
     }
+    /**
+     * Event handler for confirming the addition of a professor.
+     * Adds a new professor and associated user to the database.
+     * Displays success or error message accordingly.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void addProfessorConfirmButtonClicked(ActionEvent event) {
         String professorName = add_professor_name.getText();
@@ -64,6 +77,11 @@ public class ProfessorControllerJavaFX {
         professorDao.addProfessor(newProfessor);
         AlertWindowController.showAlert(Alert.AlertType.INFORMATION, "Success", null, "Professor add Successful!");
     }
+    /**
+     * Event handler for clicking the remove professor button.
+     * Loads the remove professor view.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void removeProfessorButtonClicked(ActionEvent event) {
         try {
@@ -76,6 +94,12 @@ public class ProfessorControllerJavaFX {
             e.printStackTrace();
         }
     }
+    /**
+     * Event handler for confirming the removal of a professor.
+     * Retrieves the professor name from the text field, finds the associated user ID,
+     * removes the professor and user from the database if found, and displays success or error message accordingly.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void removeProfessorConfirmButtonClicked(ActionEvent event) {
         String professorName = remove_professor_name.getText();
@@ -89,16 +113,19 @@ public class ProfessorControllerJavaFX {
             AlertWindowController.showAlert(Alert.AlertType.ERROR, "Error", null, "Professor not found.");
         }
     }
+    /**
+     * Event handler for clicking the back button to return to the professor page.
+     * Retrieves the scene of the button, gets the stage from the scene,
+     * loads the professor view using FXMLLoader, and sets the scene to the loaded view.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void backProfessorPageButtonClicked(ActionEvent event) {
-        // 获取按钮所在的场景
         Scene buttonScene = button_back_to_professor_view.getScene();
         if (buttonScene != null) {
-            // 获取场景的舞台
             Stage stage = (Stage) buttonScene.getWindow();
             if (stage != null) {
                 try {
-                    // 加载新的场景并设置到舞台
                     FXMLLoader professorLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/Professor/professor-view.fxml"));
                     Parent root = professorLoader.load();
                     Scene scene = new Scene(root);
@@ -113,17 +140,19 @@ public class ProfessorControllerJavaFX {
             System.err.println("Scene is null!");
         }
     }
-
+    /**
+     * Event handler for clicking the back button to return to the main page.
+     * Retrieves the scene of the button, gets the stage from the scene,
+     * loads the main view using FXMLLoader, and sets the scene to the loaded view.
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     void backMainPageButtonClicked(ActionEvent event) {
-        // 获取按钮所在的场景
         Scene buttonScene = button_back_to_main_view.getScene();
         if (buttonScene != null) {
-            // 获取场景的舞台
             Stage stage = (Stage) buttonScene.getWindow();
             if (stage != null) {
                 try {
-                    // 加载新的场景并设置到舞台
                     FXMLLoader studentLoader = new FXMLLoader(getClass().getResource("/edu.duke.ece651.team1.user_admin_app/hello-view.fxml"));
                     Parent root = studentLoader.load();
                     Scene scene = new Scene(root);
