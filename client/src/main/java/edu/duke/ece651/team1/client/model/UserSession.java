@@ -9,6 +9,41 @@ public class UserSession {
     private String sessionToken;
     private String host;
     private String port;
+    private int uid;
+    private boolean isScaned;
+    private double threshold;
+   
+    public double getThreshold() {
+        return threshold;
+    }
+    public void setThreshold(double threshold) {
+        this.threshold = threshold;
+    }
+    public void setScaned(boolean isScaned) {
+        this.isScaned = isScaned;
+    }
+    public double getProfesssorLatitude() {
+        return professsorLatitude;
+    }
+    public void setProfesssorLatitude(double professsorLatitude) {
+        this.professsorLatitude = professsorLatitude;
+    }
+
+    private double professsorLatitude;
+    public double getProfessorLongitude() {
+        return professorLongitude;
+    }
+    public void setProfessorLongitude(double professorLongitude) {
+        this.professorLongitude = professorLongitude;
+    }
+
+    private double professorLongitude;
+    public int getUid() {
+        return uid;
+    }
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
     private UserSession() {
     }
     /**
@@ -50,5 +85,8 @@ public class UserSession {
 
     public void setPort(String port) {
         this.port = port;
+    }
+    public boolean isScaned() {
+        return isScaned;
     }
 }

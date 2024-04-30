@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.google.common.base.Optional;
+import java.util.*;
 import com.google.gson.Gson;
 import edu.duke.ece651.team1.data_access.Notification.*;
 import java.nio.file.Path;
@@ -155,6 +155,8 @@ public class AttendanceService {
         }
         return null;
     }
+
+    
 
     /**
      * Retrieves the attendance record entry for a student.
@@ -318,6 +320,28 @@ public class AttendanceService {
     public String getAttendanceReportForProfessor(int sectionId) throws SQLException{
         AttendanceManager manager = getAttendanceManager(sectionId);
         return manager.generateClassReport();
+    }
+
+    public void updateStudentAttendance(String sessionDate, int sectionId, int studentId) throws SQLException{
+        AttendanceRecord record = AttendanceRecordDAO.findAttendanceRecordBySectionIDAndSessionDate(sectionId,  LocalDate.parse(sessionDate));
+        Optional<Student> student = studentDao.findStudentByStudentID(studentId);
+        if(student.isPresent()){
+            Student foundStudent = findStudentByLegalName(record, student.get().getLegalName());
+            if(foundStudent!=null){
+                int studentID = foundStudent.getStudentId();
+                int recordID = record.getRecordId();
+                AttendanceEntryDAO.updateAttendanceEntry(recordID, studentID, AttendanceStatus.PRESENT.getStatus());
+                if(getNotificationPreference(sectionId, studentID)){
+                    sendMessage(foundStudent.getDisPlayName(), foundStudent.getEmail(), sessionDate,AttendanceStatus.PRESENT.getStatus());
+                }
+            }else{
+                throw new IllegalArgumentException("Student not in this section");
+            }
+        }else{
+            throw new NoSuchElementException("Student with ID " + studentId + " not found");
+        }
+
+
     }
 
 

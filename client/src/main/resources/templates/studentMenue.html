@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="/css/sider.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading bg-light ">Attendance Men</div>
+      <div class="list-group list-group-flush">
+        <a th:href="@{/notification/{classId}/{sectionId}(sectionId=${sectionId}, classId=${classId})}" class="list-group-item list-group-item-action">Setting</a>
+        <div class="list-group-item list-group-item-action dropdown">
+          <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Report
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/student/report/detail/{classId}/{sectionId}(sectionId=${sectionId}, classId =${classId})}">Detailed Report</a></li>
+            <li><a class="dropdown-item" th:href="@{/student/report/summary/{classId}/{sectionId}(sectionId=${sectionId}, classId =${classId})}">Summary</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/course/allcourses/Student/{id}(id=${uid})}">Courses</a>
+            </li>
+          
+      
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+          <div class="container-fluid">
+        <h1 class="mt-4" th:text="${className}"></h1>
+        <h2 >Welcome, Student</h2> 
+       
+        <p>Manage your class attendance efficiently and effortlessly. Use the sidebar to navigate through the attendance management tasks.</p>
+       
+      </div> 
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-rBXm4tuQ3+5zGzLG3w9b5/RYO5JpJ6+nq4Hj5p1t3FDz1WUsVXKcpIc/a6V9iIzT" crossorigin="anonymous"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

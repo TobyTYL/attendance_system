@@ -1,58 +1,33 @@
 package edu.duke.ece651.team1.client.controller;
 
-import java.io.BufferedReader;
-import java.io.PrintStream;
-import java.io.IOException;
-import edu.duke.ece651.team1.client.view.MainMenuView;
+import edu.duke.ece651.team1.client.model.UserSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
 /**
  * The MainMenuController class manages the main menu of the application.
- * It directs the user to different sections of the application based on their choice.
+ * It directs the user to different sections of the application based on their
+ * choice.
  */
-public class ProfessorMainMenuController {
-    private final int sectionId;
-    private final int classId;
-    private final String className;
-    BufferedReader inputReader;
-    final PrintStream out;
-    MainMenuView mainMenuView;
-    AttendanceController attendanceController;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
+public class ProfessorMainMenuController {
     /**
-     * Constructor initializing the controller with input/output facilities and controllers for other parts of the application.
-     * @param inputReader A BufferedReader for user input
-     * @param out A PrintStream for output
+     * Displays the menu for a professor based on the selected class name and
+     * section ID.
+     *
+     * @param classname the name of the class
+     * @param sectionId the ID of the section
+     * @param model     the Spring Model object to pass data to the view
+     * @return the name of the view to render
      */
-    public ProfessorMainMenuController(int sectionId,int classId,String className,BufferedReader inputReader, PrintStream out) {
-        this.sectionId = sectionId;
-        this.classId = classId;
-        this.className = className;
-        this.inputReader = inputReader;
-        this.out = out;
-        this.mainMenuView = new MainMenuView(inputReader, out);
-        this.attendanceController = new AttendanceController(inputReader, out, sectionId);
+    @GetMapping("/professor/class/{classname}/{sectionId}")
+    public String showCourseMenu(@PathVariable String classname, @PathVariable int sectionId, Model model) {
+        model.addAttribute("className", classname);
+        model.addAttribute("sectionId", sectionId);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
+        return "professormenue";
     }
-    /**
-     * Displays the main menu and handles user navigation to different functionalities of the application.
-     */
-    public void startMainMenu() {
-        while (true) {
-            try{
-                mainMenuView.showMainMenu();
-                String option =mainMenuView.readMainOption();
-                if(option.equals("attendance")){
-                  attendanceController.startAttendanceMenue();
-                    
-                }
-                else{
-                    return;
-                    
-                }
-            }catch(Exception e){
-                out.println("Main Menu error because "+e.getMessage());
-            }
-           
-    
-        }
-    }
-    
+
 }

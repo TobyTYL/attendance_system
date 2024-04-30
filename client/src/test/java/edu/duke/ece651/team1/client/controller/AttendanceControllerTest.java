@@ -1,167 +1,186 @@
 package edu.duke.ece651.team1.client.controller;
 
-import edu.duke.ece651.team1.shared.*;
-import edu.duke.ece651.team1.client.*;
-import edu.duke.ece651.team1.client.model.UserSession;
-import edu.duke.ece651.team1.client.view.AttendanceView;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.InjectMocks;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import edu.duke.ece651.team1.client.model.*;
+import edu.duke.ece651.team1.client.service.AttendanceService;
+import edu.duke.ece651.team1.client.service.QRCodeService;
+import edu.duke.ece651.team1.shared.AttendanceRecord;
+import edu.duke.ece651.team1.shared.Student;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.StringReader;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import javax.servlet.http.HttpServletResponse;
+@ContextConfiguration(classes = {AttendanceController.class})
+@ExtendWith(SpringExtension.class)
 class AttendanceControllerTest {
-    @Mock
-    private BufferedReader inputReader;
-
-    @Mock
-    private PrintStream out;
-
-    @Mock
-    private AttendanceView attendanceView;
-
-    private AttendanceController attendanceController;
-
-    private MockedStatic<ControllerUtils> utils;
-    @Mock
-    private UserSession userSession;
-    private int sectionId = 1;
+    @MockBean
+    private AttendanceService attendanceService;
+    @MockBean
+    private QRCodeService qrCodeService;
+    @Autowired
+    private AttendanceController controller;
+    int sectionId = 1;
+    List<Student> mockedStudents = List.of(new Student(1, "huidan", "huidan", "email", 2),
+            new Student(2, "zhecheng", "zhecngen", "email", 3));
+    Model model = new ExtendedModelMap();
+    RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
 
     @BeforeEach
-    void setUp() {
-        // Configure default behaviors for the mocked mainMenuView
-        userSession.setHost("localhost");
-        userSession.setPort("8080");
-        attendanceController = new AttendanceController(inputReader, out, sectionId);
-        attendanceController.attendanceView = attendanceView;
-        utils = Mockito.mockStatic(ControllerUtils.class);
-        String url_report = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/report/class/" + sectionId;
-        String url_roster = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/allStudents/" + sectionId;
-        String url_dates = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record-dates/" + sectionId;
-        String url_record = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record/" + sectionId + "/";
-        List<Student> mockedStudents = List.of(new Student(1, "huidan", "huidan", "email", 2),
-                new Student(2, "zhecheng", "zhecngen", "email", 3));
-        List<String> dates = List.of("2024-04-10");
-        AttendanceRecord record = new AttendanceRecord(LocalDate.parse("2024-04-10"));
-        record.initializeFromRoaster(mockedStudents);
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String recordStr = serializer.serialize(record);
-        when(ControllerUtils.executeGetRequest(eq(url_report), any(ParameterizedTypeReference.class)))
-                .thenReturn("class report");
-        when(ControllerUtils.executeGetRequest(eq(url_roster), any(ParameterizedTypeReference.class)))
-                .thenReturn(mockedStudents);
-        when(ControllerUtils.executeGetRequest(eq(url_dates), any(ParameterizedTypeReference.class)))
-                .thenReturn(dates);
-        when(ControllerUtils.executeGetRequest(contains("/api/attendance/record/"),
-                any(ParameterizedTypeReference.class)))
-                .thenReturn(recordStr);
-
-    }
-
-    @AfterEach
-    void tearDown() {
-        utils.close();
+    public void setup() {
+        when(attendanceService.getRoaster(sectionId)).thenReturn(mockedStudents);
     }
 
     @Test
-    void testStartAttendanceMenu_ReportOption() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenReturn("report", "back");
-        attendanceController.startAttendanceMenue();
-        verify(attendanceView).showClassReport(anyString());
+    public void testBeginTakeAttendanceMan() {
+        AttendanceController controller = new AttendanceController();
+        controller.attendanceService = attendanceService;
+        String view = controller.beginTakeAttendanceMan(sectionId, model);
+        assertEquals("takeAttendance", view);
+        assertEquals(mockedStudents, model.getAttribute("students"));
+        assertEquals(sectionId, model.getAttribute("sectionId"));
+        assertNotNull(model.getAttribute("uid"));
     }
 
     @Test
-    void testStartAttendanceMenu_Invalid() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenThrow(new IllegalArgumentException("Invalid option"))
-                .thenReturn("back");
-        attendanceController.startAttendanceMenue();
-        verify(out).println("Invalid option for Attendance Management Menue");
+    public void testSendAttendanceRecord() {
+        Map<String, String> params = new HashMap<>();
+        params.put("attendanceStatus[1]", "PRESENT");
+        params.put("attendanceStatus[2]", "ABSENT");
+        String redirectUrl = controller.sendAttendanceRecord(params, sectionId, redirectAttributes);
+        verify(attendanceService).sendAttendanceRecord(any(), eq(sectionId));
+        assertTrue(redirectAttributes.getFlashAttributes().containsKey("successMessage"));
+        assertTrue(redirectUrl.contains("/attendance/record/" + sectionId));
     }
 
     @Test
-    void testStartAttendanceMenu_TakeOption() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenReturn("take", "back");
-        when(attendanceView.promptForStudentAttendance(eq("huidan"), anyBoolean())).thenReturn("P");
-        when(attendanceView.promptForStudentAttendance(eq("zhecngen"), anyBoolean())).thenReturn("A");
-        attendanceController.startAttendanceMenue();
-        verify(attendanceView, times(2)).promptForStudentAttendance(anyString(), eq(true));
+    public void testShowRecord() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sessionDate = LocalDate.now().format(formatter).toString();
+        AttendanceRecord mockRecord = new AttendanceRecord();
+        when(attendanceService.getAttendanceRecord(sessionDate, sectionId)).thenReturn(mockRecord);
+        String view = controller.showRecord(sectionId, sessionDate, model);
+        assertEquals("attendanceRecord", view);
+        assertEquals(mockRecord, model.getAttribute("record"));
+        assertEquals(sectionId, model.getAttribute("sectionId"));
+        assertNotNull(model.getAttribute("uid"));
     }
 
     @Test
-    void testStartAttendanceMenue_ExportOption() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenReturn("export", "export", "export", "back");
-        when(attendanceView.readExportDateFromPrompt(anyList())).thenReturn("2024-04-10");
-        when(attendanceView.readFormtFromPrompt()).thenReturn("csv", "back", "json", "back", "xml", "back");
-        attendanceController.startAttendanceMenue();
-        verify(attendanceView).showExportSuccessMessage(contains(".csv"));
-        verify(attendanceView).showExportSuccessMessage(contains(".json"));
-        verify(attendanceView).showExportSuccessMessage(contains(".xml"));
-    }
-    @Test
-    void testStartModify_AllStudents() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenReturn("modify","back");
-        when(attendanceView.promptForDateSelection(anyList())).thenReturn("2024-04-10");
-        when(attendanceView.readModifyOption()).thenReturn("retake");
-        when(attendanceView.promptForStudentAttendance(eq("huidan"), anyBoolean())).thenReturn("T");
-        when(attendanceView.promptForStudentAttendance(eq("zhecngen"), anyBoolean())).thenReturn("A");
-        attendanceController.startAttendanceMenue();
-        verify(attendanceView).showModifyMenue();
-        verify(attendanceView, times(1)).promptForDateSelection(anyList());
-        verify(attendanceView, times(1)).readModifyOption();
-        verify(attendanceView, times(2)).promptForStudentAttendance(anyString(), eq(false));
-    }
-    @Test 
-    void testStartModify_SpecificStudent() throws IOException {
-        when(attendanceView.readAttendanceOption()).thenReturn("modify","back");
-        when(attendanceView.promptForDateSelection(anyList())).thenReturn("2024-04-10");
-        when(attendanceView.readModifyOption()).thenReturn("modify");
-        when(attendanceView.promptForStudentName(any(AttendanceRecord.class))).thenReturn("huidan");
-        when(attendanceView.promptForAttendanceStatus()).thenReturn(AttendanceStatus.TARDY);
-        attendanceController.startAttendanceMenue();
-        verify(attendanceView, times(1)).showModifyMenue();
-        verify(attendanceView, times(1)).promptForDateSelection(anyList());
-        verify(attendanceView, times(1)).readModifyOption();
-        verify(attendanceView, times(1)).promptForStudentName(any(AttendanceRecord.class));
-        verify(attendanceView, times(1)).promptForAttendanceStatus();
+    public void testGetRecordList() {
+        List<String> mockSessionDates = Arrays.asList("2023-04-01", "2023-04-02");
+        when(attendanceService.getRecordDates(sectionId)).thenReturn(mockSessionDates);
+        String view = controller.getrecordList(sectionId, model);
+        assertEquals("recordtable", view);
+        assertEquals(mockSessionDates, model.getAttribute("sessionDates"));
+        assertEquals(sectionId, model.getAttribute("sectionId"));
+        assertNotNull(model.getAttribute("uid"));
     }
 
+    @Test
+    public void testUpdateAttendanceRecord() {
+        String sessionDate = "2024-04-10";
+        Map<String, String> allParams = new HashMap<>();
+        allParams.put("attendanceStatus[1]", "PRESENT");
+        allParams.put("attendanceStatus[2]", "ABSENT");
+        AttendanceRecord mockRecord = new AttendanceRecord(LocalDate.parse("2024-04-10"));
+        mockRecord.initializeFromRoaster(mockedStudents);
+        when(attendanceService.getAttendanceRecord(sessionDate, sectionId)).thenReturn(mockRecord);
+        String redirectUrl = controller.updateAttendanceRecord(sectionId, sessionDate, allParams, redirectAttributes);
+        verify(attendanceService).updateAttendanceRecord(mockRecord, sectionId);
+        assertTrue(redirectAttributes.getFlashAttributes().containsKey("successMessage"));
+        assertEquals("redirect:/attendance/record/" + sectionId + "/" + sessionDate, redirectUrl);
+    }
+
+    @Test
+    public void testDownload() throws Exception {
+        String sessionDate = "2023-04-01";
+        String format = "xml";
+        HttpServletResponse mockResponse = mock(HttpServletResponse.class);
+        String redirectUrl = controller.dowonload(sectionId, sessionDate, format, redirectAttributes, mockResponse);
+        verify(attendanceService).exportRecord(sessionDate, sectionId, format, mockResponse);
+        assertTrue(redirectAttributes.getFlashAttributes().containsKey("successMessage"));
+        assertEquals("redirect:/attendance/records/" + sectionId, redirectUrl);
+    }
+
+    @Test
+    public void testGetClassReport() {
+        List<AttendanceSummary> mockSummaries = Arrays.asList(new AttendanceSummary(
+                "StudentName1: Attended 5/10 sessions (50.00% attendance rate), Tardy Count: 2."));
+        when(attendanceService.getAttendancestatistic(sectionId)).thenReturn(mockSummaries);
+        String view = controller.getClassReport(sectionId, model);
+        assertEquals("classReport", view);
+        assertEquals(mockSummaries, model.getAttribute("summaries"));
+        assertNotNull(model.getAttribute("uid"));
+    }
+
+    @Test
+    public void testBeginTakeAttendanceAuto() throws Exception {
+        Model model = new ExtendedModelMap();
+        controller.qrCodeService = mock(QRCodeService.class);
+        when(controller.qrCodeService.generateQRCodeImage(anyString(), eq(false))).thenReturn("qrCodeData");
+        String view = controller.beginTakeAttendanceAuto(sectionId, model);
+        assertEquals("takeAttendanceAuto", view);
+        assertEquals("qrCodeData", model.getAttribute("qr"));
+        assertEquals(sectionId, model.getAttribute("sectionId"));
+        assertNotNull(model.getAttribute("uid"));
+        verify(controller.qrCodeService).generateQRCodeImage(anyString(), eq(false));
+    }
+
+    @Test
+    public void testSendInitialAttendanceWhenScanned() {
+        double threshold = 10.0;
+        UserSession.getInstance().setScaned(true);
+        String redirectUrl = controller.sendInitialAttendance(threshold, sectionId, redirectAttributes);
+        verify(controller.attendanceService).sendAttendanceRecord(any(AttendanceRecord.class), eq(sectionId));
+        assertFalse(UserSession.getInstance().isScaned());
+        assertEquals(threshold, UserSession.getInstance().getThreshold());
+        assertEquals("redirect:/qrcode/" + sectionId, redirectUrl);
+    }
+
+    @Test
+    public void testSendInitialAttendanceWhenNotScanned() {
+        double threshold = 10.0;
+        UserSession.getInstance().setScaned(false);
+        String redirectUrl = controller.sendInitialAttendance(threshold, sectionId, redirectAttributes);
+        assertTrue(redirectAttributes.getFlashAttributes().containsKey("notScanned"));
+        assertEquals("redirect:/attendance/new/auto/" + sectionId, redirectUrl);
+    }
+
+    @Test
+    public void testSubmitLocation() {
+        double latitude = 35.0;
+        double longitude = -78.0;
+        String redirectUrl = controller.submitLocation(sectionId, latitude, longitude, redirectAttributes);
+        assertEquals(longitude, UserSession.getInstance().getProfessorLongitude(), 0);
+        assertEquals(latitude, UserSession.getInstance().getProfesssorLatitude(), 0);
+        assertTrue(UserSession.getInstance().isScaned());
+        assertTrue(redirectAttributes.getFlashAttributes().containsKey("message"));
+        assertEquals("redirect:/attendance/submitPosition/" + sectionId, redirectUrl);
+    }
 
 }

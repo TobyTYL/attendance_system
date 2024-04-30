@@ -1,358 +1,289 @@
 package edu.duke.ece651.team1.client.controller;
 
-import edu.duke.ece651.team1.client.model.UserSession;
-import edu.duke.ece651.team1.client.view.*;
-import edu.duke.ece651.team1.client.model.UserSession;
-import edu.duke.ece651.team1.shared.*;
-
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.security.PublicKey;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpServletResponse;
+
+import edu.duke.ece651.team1.client.model.AttendanceSummary;
+import edu.duke.ece651.team1.client.model.CourseDetail;
+import edu.duke.ece651.team1.client.model.UserSession;
+import edu.duke.ece651.team1.client.service.AttendanceService;
+import edu.duke.ece651.team1.client.service.CourseService;
+import edu.duke.ece651.team1.client.service.QRCodeService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import java.util.List;
-import java.util.Map;
+import org.springframework.stereotype.Controller;
+import org.checkerframework.checker.units.qual.min;
+import org.json.*;
+import org.springframework.ui.Model;
+import edu.duke.ece651.team1.shared.*;
+import org.slf4j.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- * The AttendanceController class manages the attendance functionality of the
- * application.
- * It handles operations such as taking attendance, modifying attendance
- * records, and exporting attendance data.
- * This controller interacts with the AttendanceView for user input and displays
- * and utilizes a RestTemplate
- * for HTTP requests to the backend service.
- */
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
+import edu.duke.ece651.team1.shared.*;
+import java.util.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+@Controller
+@RequestMapping("/attendance")
 public class AttendanceController {
-    int sectionId;
-    BufferedReader inputReader;
-    final PrintStream out;
-    AttendanceView attendanceView;
-
+    @Autowired
+    AttendanceService attendanceService;
+    @Autowired
+    QRCodeService qrCodeService;
+    private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     /**
-     * Constructor to initialize the AttendanceController with input and output
-     * streams.
+     * Initiates the attendance taking process manually.
      * 
-     * @param inputReader The BufferedReader to read user input.
-     * @param out         The PrintStream to output data to the user.
+     * @param sectionId the ID of the section for which attendance is to be taken
+     * @param model     the Spring Model object to pass data to the view
+     * @return the name of the view to render
      */
-    public AttendanceController(BufferedReader inputReader, PrintStream out, int sectionId) {
-        this.inputReader = inputReader;
-        this.out = out;
-        this.attendanceView = new AttendanceView(inputReader, out);
-        this.sectionId = sectionId;
+    @GetMapping("/new/{sectionId}")
+    public String beginTakeAttendanceMan(@PathVariable int sectionId, Model model) {
+        List<Student> students = attendanceService.getRoaster(sectionId);
+        model.addAttribute("students", students);
+        model.addAttribute("sectionId", sectionId);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
+        return "takeAttendance";
     }
 
-  
+    // student legal name : attendance status
     /**
-     * Displays the attendance management menu and handles user interaction for
-     * taking attendance,
-     * modifying attendance records, and exporting attendance data.
+     * Processes the submitted attendance records for a specific section.
      * 
-     * @throws IOException If an I/O error occurs during user interaction.
+     * @param allParams          a map containing all request parameters where key
+     *                           is the student ID prefixed with 'attendanceStatus['
+     *                           and suffixed with ']'
+     * @param sectionId          the ID of the section
+     * @param redirectAttributes attributes for a redirect scenario
+     * @return redirect path for the attendance record view
      */
-    public void startAttendanceMenue() throws IOException {
-        while (true) {
-            try {
-                attendanceView.showAttendanceManageOption();
-                String option = attendanceView.readAttendanceOption();
-                if (option.equals("take")) {
-                    startAttendance();
-                } else if (option.equals("modify")) {
-                    startModify();
-                } else if (option.equals("export")) {
-                    startExport();
-                } else if(option.equals("report")) {
-                    startReport();
-                }else{
-                    return;
-                }
-            } catch (IllegalArgumentException e) {
-                out.println("Invalid option for Attendance Management Menue");
-
-            }
-
-        }
-    }
-    /**
-     * Displays the class report.
-     */
-    public void startReport(){
-        String report = getClassReport();
-        attendanceView.showClassReport(report);
-    }
-
-    /**
-     * Fetches the roster of students from the backend service.
-     * 
-     * @return An iterable collection of Student objects.
-     */
-    protected Iterable<Student> getRoaster() {
-        ParameterizedTypeReference<List<Student>> responseType = new ParameterizedTypeReference<List<Student>>() {
-        };
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/allStudents/" + sectionId;
-        return ControllerUtils.executeGetRequest(url, responseType);
-    }
-    /**
-     * Fetches the class report from the backend service.
-     * @return
-     */
-    private String getClassReport(){
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/report/class/" + sectionId;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-       return ControllerUtils.executeGetRequest(url, responseType);   
-    }
-
-    
-
-    /**
-     * Fetches the list of dates for which attendance records are available.
-     * 
-     * @return A list of dates as strings.
-     */
-    private List<String> getRecordDates() {
-        ParameterizedTypeReference<List<String>> responseType = new ParameterizedTypeReference<List<String>>() {
-        };
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record-dates/" + sectionId;
-        return ControllerUtils.executeGetRequest(url, responseType);
-    }
-
-    /**
-     * Fetches an attendance record for a specific session date.
-     * 
-     * @param sessionDate The date of the session.
-     * @return An AttendanceRecord object.
-     */
-    private AttendanceRecord getAttendanceRecord(String sessionDate) {
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record/" + sectionId + "/" + sessionDate;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-                };
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String record = ControllerUtils.executeGetRequest(url,  responseType);
-        return serializer.deserialize(record);
-    }
-
-    /**
-     * Sends an attendance record to the backend service for storage.
-     * 
-     * @param record The AttendanceRecord to be sent.
-     */
-    private void sendAttendanceRecord(AttendanceRecord record) {
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record/" + sectionId;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-                };
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String recordToJsonString = serializer.serialize(record);
-        ControllerUtils.executePostPutRequest(url, recordToJsonString, responseType, true);
-    }
-    /**
-     * Updates an attendance record in the backend service.
-     * @param record
-     */
-    private void updateAttendanceRecord(AttendanceRecord record) {
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/record/" + sectionId;
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-        JsonAttendanceSerializer serializer = new JsonAttendanceSerializer();
-        String recordToJsonString = serializer.serialize(record);
-        ControllerUtils.executePostPutRequest(url, recordToJsonString, responseType, false);
-    }
-
-    /**
-     * Initiates the process of taking attendance for a session.
-     * 
-     * @throws IOException If an I/O error occurs during user interaction.
-     */
-    public void startAttendance() throws IOException {
-        Iterable<Student> students;
-        try {
-            students = getRoaster();
-           
-        } catch (IllegalArgumentException e) {
-            attendanceView.showNoRosterMessage();
-            return;
-        }
-
-        AttendanceRecord record = new AttendanceRecord(LocalDate.now());
-        attendanceView.showTakeAttendanceMenu(record.getSessionDate().toString());
+    @PostMapping("/new/{sectionId}")
+    public String sendAttendanceRecord(@RequestParam Map<String, String> allParams, @PathVariable int sectionId,
+            RedirectAttributes redirectAttributes) {
+        List<Student> students = attendanceService.getRoaster(sectionId);
+        AttendanceRecord record = new AttendanceRecord();
         record.initializeFromRoaster(students);
         for (Student s : students) {
-            while (true) {
-                try {
-                    String statusOption = attendanceView.promptForStudentAttendance(s.getDisPlayName(),true);
-                    if (statusOption.equals("P")) {
-                        record.markPresent(s);
-                        attendanceView.showMarkSuccessMessage(s.getDisPlayName(), "Present");
-                        break;
-                    } else if (statusOption.equals("A")) {
-                        record.markAbsent(s);
-                        attendanceView.showMarkSuccessMessage(s.getDisPlayName(), "Absent");
-                        break;
-                    } else {
-                        throw new IllegalArgumentException("That Attendance mark option is in valid,");
-                    }
-                } catch (IllegalArgumentException e) {
-                    out.println("Invalid option. Please select A for Absent or P for present.");
+            int sid = s.getStudentId();
+            String key = "attendanceStatus[" + sid + "]";
+            String attendanceStatus = allParams.get(key);
+            record.updateStudentStatus(s, AttendanceStatus.valueOf(attendanceStatus.toUpperCase()));
+        }
 
-                }
-            }
-        }
-        sendAttendanceRecord(record);
-        attendanceView.showAttenceFinishMessage(record);
+        attendanceService.sendAttendanceRecord(record, sectionId);
+        redirectAttributes.addFlashAttribute("successMessage", "You successfully submitted today's attendance record.");
+        return "redirect:/attendance/record/" + sectionId + "/" + record.getSessionDate().toString();
+    }
 
-    }
     /**
-     * Modifies the attendance record for a specific student.
-     * @param record
-     * @throws IOException
+     * Displays a specific attendance record.
+     * 
+     * @param sectionId   the section ID
+     * @param sessionDate the date of the session
+     * @param model       the Spring Model object to pass data to the view
+     * @return the name of the view to render
      */
-    public void modifyOneStudent(AttendanceRecord record) throws IOException {
-        if (record == null || record.getEntries().isEmpty()) {
-            out.println("No attendance record available for this date.");
-            return;
-        }
-        String selectedStudentName = attendanceView.promptForStudentName(record);
-        if ("back".equals(selectedStudentName)) {
-            return; // Exit if user wants to go back
-        }
-        // Prompt for new attendance status
-        AttendanceStatus newStatus = attendanceView.promptForAttendanceStatus();
-        try {
-            modifyAttendanceRecord(record.getSessionDate().toString(), selectedStudentName,
-                    newStatus);
-            attendanceView.showModifySuccessMessage(selectedStudentName, newStatus.toString());
-            // out.println(modifyResult); // Show success or error message from the server
-        } catch (Exception e) {
-            out.println("Failed to modify attendance record: " + e.getMessage());
-        }
+    @GetMapping("/record/{sectionId}/{sessionDate}")
+    public String showRecord(@PathVariable int sectionId, @PathVariable String sessionDate, Model model) {
+        AttendanceRecord record = attendanceService.getAttendanceRecord(sessionDate, sectionId);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
+        model.addAttribute("sectionId", sectionId);
+        model.addAttribute("record", record);
+        return "attendanceRecord";
     }
+
     /**
-     * Modifies the attendance record for all students.
-     * @param record
-     * @throws IOException
+     * Lists all attendance records for a particular section.
+     * 
+     * @param sectionId the section ID
+     * @param model     the Spring Model object to pass data to the view
+     * @return the name of the view to render
      */
-    public void modifyAllStudents(AttendanceRecord record) throws IOException {
+    @GetMapping("/records/{sectionId}")
+    public String getrecordList(@PathVariable int sectionId, Model model) {
+        List<String> sessionDates = attendanceService.getRecordDates(sectionId);
+        model.addAttribute("sessionDates", sessionDates);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
+        model.addAttribute("sectionId", sectionId);
+        return "recordtable";
+    }
+
+    /**
+     * Updates an existing attendance record.
+     * 
+     * @param sectionId          the section ID
+     * @param sessionDate        the date of the session
+     * @param allParams          a map of request parameters for attendance statuses
+     * @param redirectAttributes attributes for a redirect scenario
+     * @return redirect path for the updated attendance record view
+     */
+    @PostMapping("/record/{sectionId}/{sessionDate}")
+    public String updateAttendanceRecord(@PathVariable int sectionId, @PathVariable String sessionDate,
+            @RequestParam Map<String, String> allParams, RedirectAttributes redirectAttributes) {
+        AttendanceRecord record = attendanceService.getAttendanceRecord(sessionDate, sectionId);
         for (Map.Entry<Student, AttendanceStatus> entry : record.getSortedEntries()) {
             Student s = entry.getKey();
-            while (true) {
-                try {
-                    String statusOption = attendanceView.promptForStudentAttendance(s.getDisPlayName(),false);
-                    if (statusOption.equals("P")) {
-                        record.updateStudentStatus(s, AttendanceStatus.PRESENT);
-                        attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Present");
-                        break;
-                    } else if (statusOption.equals("T")) {
-                        record.updateStudentStatus(s, AttendanceStatus.TARDY);
-                        attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Tardy");
-                        break;
-                    } else {
-                        record.updateStudentStatus(s, AttendanceStatus.ABSENT);
-                        attendanceView.showUpdateSuccessMessage(s.getDisPlayName(), "Absent");
-                        break;
-                    }
-                } catch (IllegalArgumentException e) {
-                    out.println("Invalid option. Please select A for Absent or P for present.");
-
+            int sid = s.getStudentId();
+            String key = "attendanceStatus[" + sid + "]";
+            if (allParams.containsKey(key)) {
+                String attendanceStatus = allParams.get(key);
+                if (!attendanceStatus.isEmpty()) {
+                    record.updateStudentStatus(s, AttendanceStatus.valueOf(attendanceStatus.toUpperCase()));
                 }
             }
         }
-        updateAttendanceRecord(record);
-        attendanceView.showUpdateFinishMessage(record);
+        attendanceService.updateAttendanceRecord(record, sectionId);
+        redirectAttributes.addFlashAttribute("successMessage",
+                "You successfully modify " + sessionDate + "'s attendance record.");
+        return "redirect:/attendance/record/" + sectionId + "/" + record.getSessionDate().toString();
     }
 
     /**
-     * Initiates the process for modifying an existing attendance record.
+     * Allows the downloading of an attendance record in a specified format.
      * 
-     * @throws IOException If an I/O error occurs during user interaction.
+     * @param sectionId          the section ID
+     * @param sessionDate        the date of the session
+     * @param format             the file format for download (e.g., "csv", "xml")
+     * @param redirectAttributes attributes for a redirect scenario
+     * @param response           the HttpServletResponse object used to write the
+     *                           file data
+     * @return redirect path for the record download initiation
      */
-    public void startModify() throws IOException {
-        List<String> dates = getRecordDates();
-        if (dates.isEmpty()) {
-            out.println("No attendance records available. Please take attendance first.");
-            return;
-        }
+    @GetMapping("/record/download/{sectionId}/{sessionDate}")
+    public String dowonload(@PathVariable int sectionId, @PathVariable String sessionDate,
+            @RequestParam(value = "format") String format, RedirectAttributes redirectAttributes,
+            HttpServletResponse response) {
+        attendanceService.exportRecord(sessionDate, sectionId, format, response);
+        redirectAttributes.addFlashAttribute("successMessage",
+                "You successfully download file please check ");
+        return "redirect:/attendance/records/" + sectionId;
 
-        String selectedDate = attendanceView.promptForDateSelection(dates);
-        if ("back".equals(selectedDate)) {
-            return; // Exit if user wants to go back
-        }
-        // Fetch the attendance record for the selected date
-        AttendanceRecord record = getAttendanceRecord(selectedDate);
-        attendanceView.showModifyMenue();
-        String option = attendanceView.readModifyOption();
-        if(option.equals("retake")){
-            modifyAllStudents(record);
-        }else{
-            modifyOneStudent(record);
-        }
-    }
-    /**
-     * Modifies the attendance record for a specific student.
-     * @param sessionDate
-     * @param studentName
-     * @param newStatus
-     */
-    private void modifyAttendanceRecord(String sessionDate, String studentName, AttendanceStatus newStatus) {
-        String url = "http://" + UserSession.getInstance().getHost() + ":" + UserSession.getInstance().getPort()
-                + "/api/attendance/modification/" + sectionId + "/" + sessionDate;
-
-        // Construct the attendance entry JSON
-        String attendanceEntryJson = String.format("{\"Legal Name\":\"%s\", \"Attendance Status\":\"%s\"}",
-                studentName, newStatus.name());
-        ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
-        };
-        ControllerUtils.executePostPutRequest(url, attendanceEntryJson, responseType, true);
-       
     }
 
     /**
-     * Initiates the process for exporting attendance records in various formats.
+     * Fetches an attendance record for editing.
      * 
-     * @throws IOException If an I/O error occurs during user interaction.
+     * @param sectionId   the section ID
+     * @param sessionDate the date of the session
+     * @return ResponseEntity containing the attendance data
      */
-    public void startExport() throws IOException {
-        while (true) {
-            List<String> dates = getRecordDates();
-            String dateOrBack = attendanceView.readExportDateFromPrompt(dates);
-            if ("back".equals(dateOrBack)) {
-                return;
-            } else {
-                while (true) {
-                    // get record of that date
-                    AttendanceRecord record = getAttendanceRecord(dateOrBack);
-                    String formatOrBack = attendanceView.readFormtFromPrompt();
-                    if ("back".equals(formatOrBack)) {
-                        break;
-                    } else {
-                        AttendanceRecordExporterFactory factory = new AttendanceRecordExporterFactory();
-                        String filePath = "src/data/";
-                        String fileName = "Attendance-" + dateOrBack;
-                        AttendanceRecordExporter exporter;
-                        if (formatOrBack.equals("json")) {
-                            exporter = factory.createExporter("json");
-                        } else if (formatOrBack.equals("xml")) {
-                            exporter = factory.createExporter("xml");
-                        } else {
-                            exporter = factory.createExporter("csv");
-                        }
-                        exporter.exportToFile(record, fileName, filePath);
-                        attendanceView.showExportSuccessMessage(fileName + "." + formatOrBack);
-                    }
-                    return;
-                }
-            }
+    @GetMapping("/record/{sectionId}/{sessionDate}/edit")
+    @ResponseBody
+    public ResponseEntity<Map<Integer, Object>> getAttendanceRecordForEdit(@PathVariable int sectionId,
+            @PathVariable String sessionDate) {
+        AttendanceRecord record = attendanceService.getAttendanceRecord(sessionDate, sectionId);
+        Map<Integer, Object> responseData = new HashMap<>();
+        for (Map.Entry<Student, AttendanceStatus> entry : record.getSortedEntries()) {
+            Student s = entry.getKey();
+            Map<String, String> studentData = new HashMap<>();
+            studentData.put("displayName", s.getDisPlayName());
+            studentData.put("attendanceStatus", entry.getValue().toString());
+            responseData.put(s.getStudentId(), studentData);
         }
+        return ResponseEntity.ok(responseData);
     }
+
+    /**
+     * Generates a report of attendance summaries for a given class section.
+     * 
+     * @param sectionId the section ID
+     * @param model     the Spring Model object to pass data to the view
+     * @return the name of the view to render
+     */
+    @GetMapping("/record/report/class/{sectionId}")
+    public String getClassReport(@PathVariable int sectionId, Model model) {
+        List<AttendanceSummary> summaries = attendanceService.getAttendancestatistic(sectionId);
+        model.addAttribute("uid", UserSession.getInstance().getUid());
+        model.addAttribute("summaries", summaries);
+        return "classReport";
+    }
+
+    /**
+     * Initiates the automated attendance taking process using QR codes.
+     * 
+     * @param sectionId the section ID
+     * @param model     the Spring Model object to pass data to the view
+     * @return the name of the view to render
+     */
+    @GetMapping("/new/auto/{sectionId}")
+    public String beginTakeAttendanceAuto(@PathVariable int sectionId, Model model) {
+        try {
+            model.addAttribute("sectionId", sectionId);
+            model.addAttribute("uid", UserSession.getInstance().getUid());
+            String redirectUrl = "https://" + UserSession.getInstance().getHost() + ":" + "8081"
+                    + "/attendance/submitPosition/" + sectionId;
+            String qr = qrCodeService.generateQRCodeImage(redirectUrl, false);
+            model.addAttribute("qr", qr);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+
+        return "takeAttendanceAuto";
+    }
+
+    /**
+     * Handles the initial sending of attendance records for an automated process.
+     * 
+     * @param threshold          the distance threshold for considering attendance
+     * @param sectionId          the section ID
+     * @param redirectAttributes attributes for a redirect scenario
+     * @return redirect path for the QR code display
+     */
+    @PostMapping("/new/auto/{sectionId}")
+    public String sendInitialAttendance(@RequestParam("threshold") double threshold, @PathVariable int sectionId,
+            RedirectAttributes redirectAttributes) {
+
+        if (UserSession.getInstance().isScaned()) {
+            List<Student> students = attendanceService.getRoaster(sectionId);
+            AttendanceRecord attendance = new AttendanceRecord();
+            attendance.initializeFromRoaster(students);
+            attendanceService.sendAttendanceRecord(attendance, sectionId);
+            UserSession.getInstance().setScaned(false);
+            UserSession.getInstance().setThreshold(threshold);
+            System.out.println("thredshod:***" + threshold);
+            return "redirect:/qrcode/" + sectionId;
+        }
+        redirectAttributes.addFlashAttribute("notScanned", true);
+        return "redirect:/attendance/new/auto/" + sectionId;
+
+    }
+
+    /**
+     * Displays a page for submitting location coordinates.
+     * 
+     * @return the name of the view to render
+     */
+    @GetMapping("/submitPosition/{sectionId}")
+    public String showSubmitLocation() {
+        return "submitLocation";
+    }
+
+    /**
+     * Processes the submission of geographical location coordinates.
+     * 
+     * @param sectionId          the section ID
+     * @param latitude           the latitude coordinate
+     * @param longitude          the longitude coordinate
+     * @param redirectAttributes attributes for a redirect scenario
+     * @return redirect path for location submission confirmation
+     */
+    @PostMapping("/submitPosition/{sectionId}")
+    public String submitLocation(@PathVariable int sectionId, @RequestParam("latitude") double latitude,
+            @RequestParam("longitude") double longitude, RedirectAttributes redirectAttributes) {
+        UserSession.getInstance().setProfessorLongitude(longitude);
+        UserSession.getInstance().setProfesssorLatitude(latitude);
+        redirectAttributes.addFlashAttribute("message", "You successfully submit your location");
+        UserSession.getInstance().setScaned(true);
+        return "redirect:/attendance/submitPosition/" + sectionId;
+    }
+
 }

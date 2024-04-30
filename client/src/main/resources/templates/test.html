@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="/css/report.css" rel="stylesheet">
+  <link href="/css/sider.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading bg-light ">Attendance Men</div>
+      <div class="list-group list-group-flush">
+        <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
+        <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
+        <a th:href="@{/test/location/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Distance Measurement</a>
+        <div class="list-group-item list-group-item-action dropdown">
+          <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Take Attendance
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}">Manually</a></li>
+            <li><a class="dropdown-item" th:href="@{/attendance/new/auto/{sectionId}(sectionId=${sectionId})}">Automatically</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/course/allcourses/Professor/{id}(id=${uid})}">Courses</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="container mt-4">
+          <h2>Scan the QR Codes at different locations</h2>
+          <div>
+              <h4>Scan at the podium:</h4>
+              <img th:src="@{'data:image/png;base64,' + ${qr1}}" alt="QR Code1" />
+          </div>
+          <div>
+              <h4>Scan at the back of the classroom:</h4>
+              <img th:src="@{'data:image/png;base64,' + ${qr2}}" alt="QR Code2" />
+          </div>
+          <button id="calculateDistanceBtn" class="btn btn-primary">Calculate Distance</button>
+          <p id="result" class="mt-3"></p>
+      </div>
+      </div>
+      <!-- /#wrapper -->
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-rBXm4tuQ3+5zGzLG3w9b5/RYO5JpJ6+nq4Hj5p1t3FDz1WUsVXKcpIc/a6V9iIzT"
+        crossorigin="anonymous"></script>
+
+      <!-- Menu Toggle Script -->
+      <script>
+        $("#menu-toggle").click(function (e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+        document.getElementById('calculateDistanceBtn').addEventListener('click', function() {
+          fetch('/calculate-distance')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('result').innerText = data;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  document.getElementById('result').innerText = 'Error calculating distance. Make sure both locations are scanned.';
+              });
+      });
+      
+       
+
+      </script>
+</body>
+
+</html>

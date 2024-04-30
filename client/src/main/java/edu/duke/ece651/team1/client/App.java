@@ -3,48 +3,50 @@
  */
 package edu.duke.ece651.team1.client;
 
-import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.IOError;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.lang.ModuleLayer.Controller;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.IOException;
-import edu.duke.ece651.team1.shared.MyName;
-import edu.duke.ece651.team1.shared.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import edu.duke.ece651.team1.client.controller.*;
-// @SpringBootApplication
-import edu.duke.ece651.team1.client.model.UserSession;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import edu.duke.ece651.team1.client.model.*;
 import java.net.InetAddress;
 
+import javax.el.ELException;
+
+
+
 /**
- * The App class represents the main entry point of the client application.
- * It initializes the necessary components and starts the application.
+ * This class represents the main entry point of the Spring Boot application.
  */
+@SpringBootApplication
+@EnableScheduling
+@RestController
 public class App {
-   /**
-     * The main method of the application.
-     * Initializes components and starts the application.
+	/**
+     * Handles the root URL request.
      *
-     * @param args The command-line arguments passed to the application.
-     * @throws IOException If an I/O error occurs while reading user input.
+     * @return A greeting message.
      */
-  public static void main(String[] args) throws IOException{
-    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-    ApplicationController controller = new ApplicationController(inputReader, System.out);
-    InetAddress inetAddress = InetAddress.getLocalHost();
-    UserSession.getInstance().setHost(inetAddress.getHostName());
-    UserSession.getInstance().setPort("8080");
-    controller.startApplication();
-  }
+    @GetMapping("/")
+	public String index() {
+		return "Greetings from Spring Boot!";
+	}
+
+
+  	/**
+     * The main method that starts the Spring Boot application.
+     *
+     * @param args The command line arguments.
+     */
+	public static void main(String[] args)  {
+          try {
+               InetAddress inetAddress = InetAddress.getLocalHost();
+               UserSession.getInstance().setHost(inetAddress.getHostName());
+               UserSession.getInstance().setPort("8080");
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+		SpringApplication.run(App.class, args);
+	}
+
 }

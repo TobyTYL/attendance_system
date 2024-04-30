@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="/css/sider.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading bg-light ">Attendance Men</div>
+        <div class="list-group list-group-flush">
+          <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Previous Attendance</a>
+          <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Attendance Report</a>
+          <a th:href="@{/test/location/{sectionId}(sectionId=${sectionId})}" class="list-group-item list-group-item-action ">Distance Measurement</a>
+          <div class="list-group-item list-group-item-action dropdown">
+            <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Take Attendance
+            </span>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}">Manually</a></li>
+              <li><a class="dropdown-item" th:href="@{/attendance/new/auto/{sectionId}(sectionId=${sectionId})}">Automatically</a></li>
+            </ul>
+          </div>
+  
+        </div>
+      </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/course/allcourses/Professor/{id}(id=${uid})}">Courses</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <form class='container'  method="POST">
+            <h2>Take Attendance Manually Now</h2>
+            <table class="table table-striped mt-3">
+                <thead class='thead-dark'>
+                    <tr>
+                        <th scope="col">Student Id</th>
+                        <th scope="col">Display Name</th>
+                        <th scope="col">Attendance Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student : ${students}">
+                        <th scope="row" th:text="${student.studentId}"></th>
+                        <td th:text="${student.disPlayName}"></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-warning btn-sm absent" data-value="Absent" th:data-id="${student.studentId}">A</button>
+                            <button type="button" class="btn btn-outline-success btn-sm present" data-value="Present" th:data-id="${student.studentId}">P</button>
+                            <input type="hidden" th:name="'attendanceStatus[' + ${student.studentId} + ']'" th:value="${'attendanceStatus_' + student.studentId}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit Attendance</button>
+        </form>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap 5 Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-rBXm4tuQ3+5zGzLG3w9b5/RYO5JpJ6+nq4Hj5p1t3FDz1WUsVXKcpIc/a6V9iIzT" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $(".absent, .present").click(function() {
+            var studentId = $(this).data("id");
+            var statusValue = $(this).data("value");
+            $("input[name='attendanceStatus[" + studentId + "]']").val(statusValue);
+            
+            $(this).siblings().removeClass('active btn-success btn-danger');
+            if (statusValue === "Present") {
+                $(this).addClass('active btn-success');
+            } else if (statusValue === "Absent") {
+                $(this).addClass('active btn-danger');
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

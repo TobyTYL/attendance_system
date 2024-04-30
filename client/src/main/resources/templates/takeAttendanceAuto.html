@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="/css/report.css" rel="stylesheet">
+  <link href="/css/sider.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading bg-light ">Attendance Men</div>
+      <div class="list-group list-group-flush">
+        <a th:href="@{/attendance/records/{sectionId}(sectionId=${sectionId})}"
+          class="list-group-item list-group-item-action ">Previous Attendance</a>
+        <a th:href="@{/attendance/record/report/class/{sectionId}(sectionId=${sectionId})}"
+          class="list-group-item list-group-item-action ">Attendance Report</a>
+        <a th:href="@{/test/location/{sectionId}(sectionId=${sectionId})}"
+          class="list-group-item list-group-item-action ">Distance Measurement</a>
+        <div class="list-group-item list-group-item-action dropdown">
+          <span class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Take Attendance
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/attendance/new/{sectionId}(sectionId=${sectionId})}">Manually</a>
+            </li>
+            <li><a class="dropdown-item"
+                th:href="@{/attendance/new/auto/{sectionId}(sectionId=${sectionId})}">Automatically</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/course/allcourses/Professor/{id}(id=${uid})}">Courses</a>
+            </li>
+
+
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <h1>Take Attendance Automatically</h1>
+        <div>
+          <img th:src="@{'data:image/png;base64,' + ${qr}}" alt="QR Code" />
+          <p>First Scan the QR code with your mobile device to submit your location.</p>
+        </div>
+        <div>
+          <br>
+          <form id="Form" method="POST">
+            <div class="mb-3">
+              <label for="threshold" class="form-label">Select Threshold Distance (meters):</label>
+              <select class="form-select" id="threshold" name="threshold">
+                <option th:each="num : ${#numbers.sequence(10, 300, 10)}" th:value="${num}" th:selected="${num == 30}"
+                  th:text="${num}">30</option>
+              </select>
+              <div class="form-text">
+                We recommend selecting a larger threshold due to potential inaccuracies in location measurement.
+              </div>
+              <div class="form-text">
+                If you are unsure about the distances, feel free to use the <b>distance measurement</b> tool available
+                in the sidebar.
+              </div>
+            </div>
+          </form>
+          <div>
+            <button id="nextButton" type="submit" class="btn btn-primary">Begin Attendance</button>
+            <div th:if="${notScanned}" class="alert alert-warning" role="alert">
+              <strong>Warning!</strong> Please scan the QR code before starting attendance.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /#wrapper -->
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-rBXm4tuQ3+5zGzLG3w9b5/RYO5JpJ6+nq4Hj5p1t3FDz1WUsVXKcpIc/a6V9iIzT"
+        crossorigin="anonymous"></script>
+
+      <!-- Menu Toggle Script -->
+      <script>
+        $("#menu-toggle").click(function (e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+
+
+        document.getElementById('nextButton').addEventListener('click', function (event) {
+
+
+          document.getElementById('Form').submit();
+
+        });
+
+
+
+
+      </script>
+</body>
+
+</html>
