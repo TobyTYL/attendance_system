@@ -99,6 +99,17 @@ public class AttendanceService {
                 ApiService.executePostPutRequest(url, recordToJsonString, responseType, false);
         }
 
+        /**
+         * Exports an attendance record to a file in the specified format and sends it
+         * in the HTTP response.
+         *
+         * @param sessionDate the date of the attendance session
+         * @param sectionId   the identifier of the section for which the record is
+         *                    being exported
+         * @param format      the format of the file to export (json, xml, or csv)
+         * @param response    the HttpServletResponse object used to return the file to
+         *                    the client
+         */
         public void exportRecord(String sessionDate, int sectionId, String format, HttpServletResponse response) {
                 AttendanceRecord record = getAttendanceRecord(sessionDate, sectionId);
                 AttendanceRecordExporterFactory factory = new AttendanceRecordExporterFactory();
@@ -123,31 +134,45 @@ public class AttendanceService {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
-                try{
+                try {
                         Path path = Paths.get("src", "data", "Attendance-" + sessionDate + "." + format);
                         sendFileInResponse(path, response);
 
-                }catch(Exception e){
+                } catch (Exception e) {
                         e.printStackTrace();
                 }
 
         }
+
+        /**
+         * Sends a file in the HTTP response.
+         *
+         * @param filePath the path of the file to send
+         * @param response the HttpServletResponse object used to send the file
+         * @throws IOException if there is an error in input/output operations
+         */
         private void sendFileInResponse(Path filePath, HttpServletResponse response) throws IOException {
                 File file = filePath.toFile();
                 response.setContentType("application/octet-stream");
                 response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
                 response.setContentLength((int) file.length());
                 try (OutputStream out = response.getOutputStream();
-                     FileInputStream in = new FileInputStream(file)) {
-                    byte[] buffer = new byte[1024];
-                    int numBytesRead;
-                    while ((numBytesRead = in.read(buffer)) > 0) {
-                        out.write(buffer, 0, numBytesRead);
-                    }
+                                FileInputStream in = new FileInputStream(file)) {
+                        byte[] buffer = new byte[1024];
+                        int numBytesRead;
+                        while ((numBytesRead = in.read(buffer)) > 0) {
+                                out.write(buffer, 0, numBytesRead);
+                        }
                 }
-            }
-            
+        }
 
+        /**
+         * Retrieves a list of attendance summaries for a given section ID by parsing
+         * report data.
+         *
+         * @param sectionId the section ID for which to gather attendance statistics
+         * @return a list of AttendanceSummary objects representing the attendance data
+         */
         public List<AttendanceSummary> getAttendancestatistic(int sectionId) {
                 String report = getClassReport(sectionId);
                 String[] lines = report.split("\n");
@@ -159,6 +184,14 @@ public class AttendanceService {
                 return summaries;
         }
 
+        /**
+         * Updates the attendance record for a student on a given date.
+         *
+         * @param sectionId the section ID where the student is enrolled
+         * @param studentId the student's ID whose attendance is being marked
+         * @return a string indicating the result of the operation ("success" or an
+         *         error message)
+         */
         public String updateStudentAttendance(int sectionId, int studentId) {
                 LocalDate today = LocalDate.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -169,14 +202,12 @@ public class AttendanceService {
                                 sessionDate, studentId);
                 ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {
                 };
-                try{
+                try {
                         ApiService.executePostPutRequest(url, null, responseType, true);
                         return "success";
-                }catch(HttpClientErrorException e){
+                } catch (HttpClientErrorException e) {
                         return "Authen failed: You are not student in this class, Your attendance cannot be marked";
                 }
         }
-
-        
 
 }

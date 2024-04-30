@@ -6,6 +6,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+/**
+ * Service for managing student attendance reports. Provides functionality to retrieve both summary and detailed attendance reports.
+ */
+
 @Service
 public class StudentReportService {
      /**
