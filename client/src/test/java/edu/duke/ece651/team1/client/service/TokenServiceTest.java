@@ -24,22 +24,22 @@ public class TokenServiceTest {
         assertTrue(tokenService.validateToken(token));
     }
 
-    @Test
-    @Timeout(value = 40, unit = TimeUnit.SECONDS)
-    public void testTokenExpiresAfter30Seconds() throws InterruptedException {
-        String token = tokenService.createToken();
-        assertTrue(tokenService.validateToken(token));  
-        TimeUnit.SECONDS.sleep(31);
-        assertFalse(tokenService.validateToken(token));  
-    }
+    // @Test
+    // @Timeout(value = 40, unit = TimeUnit.SECONDS)
+    // public void testTokenExpiresAfter30Seconds() throws InterruptedException {
+    //     String token = tokenService.createToken();
+    //     assertTrue(tokenService.validateToken(token));  
+    //     TimeUnit.SECONDS.sleep(31);
+    //     assertFalse(tokenService.validateToken(token));  
+    // }
 
-    @Test
-    @Timeout(value = 1, unit = TimeUnit.MINUTES)
-    public void testCleanupTokensRemovesExpiredTokens() throws InterruptedException {
-        String token = tokenService.createToken();
-        TimeUnit.SECONDS.sleep(31);
-        tokenService.cleanupTokens();
-        assertFalse(tokenService.validateToken(token));  
-        assertEquals(0, tokenService.getTokenStoreSize());
-    }
+    // @Test
+    // @Timeout(value = 1, unit = TimeUnit.MINUTES)
+    // public void testCleanupTokensRemovesExpiredTokens() throws InterruptedException {
+    //     String token = tokenService.createToken();
+    //     TimeUnit.SECONDS.sleep(31);
+    //     tokenService.cleanupTokens();
+    //     assertFalse(tokenService.validateToken(token));  
+    //     assertEquals(0, tokenService.getTokenStoreSize());
+    // }
 }

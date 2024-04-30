@@ -45,16 +45,10 @@ javafx {
 }
 
 dependencies {
-    //implementation 'org.springframework.boot:spring-boot-starter-web'
-    // JSON processing dependency
+    
     implementation 'org.json:json:20210307'
-    implementation project(':data_access')
-    implementation project(':shared')
-    // JUnit Jupiter API for testing
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-
-    // Mockito for mocking in tests
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Use the latest version applicable
@@ -62,15 +56,12 @@ dependencies {
     testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-    // implementation 'org.openjfx:javafx-controls:15.0.1'
-    // implementation 'org.openjfx:javafx-swing:15.0.1'
     implementation 'org.openjfx:javafx-controls:17'
     implementation 'org.openjfx:javafx-swing:17'
     testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
     testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Use the latest version applicable
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
     testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
 
