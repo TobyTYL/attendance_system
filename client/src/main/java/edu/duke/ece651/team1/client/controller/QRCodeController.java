@@ -32,6 +32,8 @@ public class QRCodeController {
     AttendanceService attendanceService;
     @Autowired
     LocationService locationService;
+    @Autowired
+    CookieService cookieService;
 
     @GetMapping("/{sectionId}")
     public String getQRCode(@PathVariable int sectionId, Model model) {
@@ -61,7 +63,7 @@ public class QRCodeController {
             @RequestParam("password") String password,
             @RequestParam("token") String token,
             @RequestParam("latitude") double latitude,
-            @RequestParam("longitude") double longitude,
+            @RequestParam("longitude") double longitude, @RequestParam("cookieName") String cookieName,
             @PathVariable int sectionId,
             RedirectAttributes redirectAttributes) {
         AuthenticationResult authResult = authenticateUser(username, password, redirectAttributes);
@@ -74,6 +76,10 @@ public class QRCodeController {
         if (!validateLocation(latitude, longitude, redirectAttributes)) {
             return "redirect:/qrcode/markattendance/result";
         }
+        if(!validateDevice(cookieName, authResult.getMessage(), redirectAttributes)){
+            return "redirect:/qrcode/markattendance/result";
+        }
+       
         updateAttendance(sectionId,authResult.getMessage(), redirectAttributes);
         return "redirect:/qrcode/markattendance/result";
     }
@@ -92,6 +98,17 @@ public class QRCodeController {
         if (!tokenService.validateToken(token)) {
             redirectAttributes.addFlashAttribute("success", false);
             redirectAttributes.addFlashAttribute("message", "The QR code has been expired, Attendance mark Failed");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateDevice(String cookie,String response, RedirectAttributes redirectAttributes) {
+        JSONObject jsonObject = new JSONObject(response);
+        int studentId = jsonObject.getInt("id");
+        if (!cookieService.validateActivity(cookie,studentId)) {
+            redirectAttributes.addFlashAttribute("success", false);
+            redirectAttributes.addFlashAttribute("message", "This device has recently marked attendance for a different account.");
             return false;
         }
         return true;

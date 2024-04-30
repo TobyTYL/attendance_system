@@ -34,6 +34,8 @@ public class QRCodeControllerTest {
     private AttendanceService attendanceService;
     @MockBean
     private LocationService locationService;
+    @MockBean
+    private CookieService cookieService;
     @Autowired
     private QRCodeController controller;
     private Model model;
@@ -43,6 +45,8 @@ public class QRCodeControllerTest {
     String password = "pass";
     double latitude = 10.0;
     double longitude = 10.0;
+    String cookieName = "cookieId";
+
     @BeforeEach
     public void setUp() {
         model = new ExtendedModelMap();
@@ -66,7 +70,9 @@ public class QRCodeControllerTest {
         when(tokenService.validateToken(token)).thenReturn(true);
         when(locationService.validateLocation(latitude, longitude)).thenReturn(true);
         when(attendanceService.updateStudentAttendance(eq(sectionId), anyInt())).thenReturn("success");
-        String redirectUrl = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,
+        when(cookieService.validateActivity(anyString(), anyInt())).thenReturn(true);
+
+        String redirectUrl = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,cookieName,
                 sectionId, redirectAttributes);
         assertEquals("redirect:/qrcode/markattendance/result", redirectUrl);
         assertEquals(true, redirectAttributes.getFlashAttributes().get("success"));
@@ -88,7 +94,7 @@ public class QRCodeControllerTest {
     @Test
     public void testAuthenticationFails() {
         when(userService.authenticate(username, password)).thenReturn("loginFailed");
-        String view = controller.authenticateAndMarkAttendance(username, password, "token", 0, 0, 1,
+        String view = controller.authenticateAndMarkAttendance(username, password, "token", 0, 0,cookieName, 1,
                 redirectAttributes);
         assertEquals("redirect:/qrcode/markattendance/authenticate", view);
         assertEquals("Login failed", redirectAttributes.getFlashAttributes().get("loginError"));
@@ -99,7 +105,7 @@ public class QRCodeControllerTest {
         String token = "invalidToken";
         when(userService.authenticate(username, password)).thenReturn("authResponse");
         when(tokenService.validateToken(token)).thenReturn(false);
-        String view = controller.authenticateAndMarkAttendance(username, password, token, 0, 0, 1, redirectAttributes);
+        String view = controller.authenticateAndMarkAttendance(username, password, token, 0, 0,cookieName, 1, redirectAttributes);
         assertEquals("redirect:/qrcode/markattendance/result", view);
         assertEquals(false, redirectAttributes.getFlashAttributes().get("success"));
         assertEquals("The QR code has been expired, Attendance mark Failed",
@@ -112,7 +118,7 @@ public class QRCodeControllerTest {
         when(userService.authenticate(username, password)).thenReturn("{\"id\":123}");
         when(tokenService.validateToken(token)).thenReturn(true);
         when(locationService.validateLocation(latitude, longitude)).thenReturn(false);
-        String view = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,
+        String view = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,cookieName,
                 sectionId, redirectAttributes);
         assertEquals("redirect:/qrcode/markattendance/result", view);
         assertEquals(false, redirectAttributes.getFlashAttributes().get("success"));
@@ -127,11 +133,24 @@ public class QRCodeControllerTest {
         when(tokenService.validateToken(token)).thenReturn(true);
         when(locationService.validateLocation(latitude, longitude)).thenReturn(true);
         when(attendanceService.updateStudentAttendance(sectionId, 123)).thenReturn("error");
-        String view = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,
+        when(cookieService.validateActivity(anyString(), anyInt())).thenReturn(true);
+
+        String view = controller.authenticateAndMarkAttendance(username, password, token, latitude, longitude,cookieName,
                 sectionId, redirectAttributes);
         assertEquals("redirect:/qrcode/markattendance/result", view);
         assertEquals(false, redirectAttributes.getFlashAttributes().get("success"));
         assertEquals("error", redirectAttributes.getFlashAttributes().get("message"));
     }
 
+    @Test
+    public void testValidateDeviceFailure() {
+        when(userService.authenticate(username, password)).thenReturn("{\"id\":123}");
+        when(tokenService.validateToken("token")).thenReturn(true);
+        when(locationService.validateLocation(latitude, longitude)).thenReturn(true);
+        when(cookieService.validateActivity(cookieName, 123)).thenReturn(false);
+        String redirectUrl = controller.authenticateAndMarkAttendance(username, password, "token", latitude, longitude, cookieName, sectionId, redirectAttributes);
+        assertEquals("redirect:/qrcode/markattendance/result", redirectUrl);
+        assertEquals(false, redirectAttributes.getFlashAttributes().get("success"));
+        assertEquals("This device has recently marked attendance for a different account.", redirectAttributes.getFlashAttributes().get("message"));
+    }
 }

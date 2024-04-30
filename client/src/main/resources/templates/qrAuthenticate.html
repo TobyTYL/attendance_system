@@ -39,6 +39,8 @@
 								</div>
 								<input type="hidden" id="latitude" name="latitude">
 								<input type="hidden" id="longitude" name="longitude">
+								<input type="hidden" name="cookieName" value="">
+
 
 								<div class="d-flex align-items-center">
 									<button type="submit" class="btn btn-primary ms-auto">
@@ -63,6 +65,7 @@
 				navigator.geolocation.getCurrentPosition(function(position) {
 					document.getElementById('latitude').value = position.coords.latitude;
 					document.getElementById('longitude').value = position.coords.longitude;
+					document.getElementsByName('cookieName')[0].value = document.cookie;
 					console.log(position.coords.latitude);
 					console.log( position.coords.longitude);
 				});
