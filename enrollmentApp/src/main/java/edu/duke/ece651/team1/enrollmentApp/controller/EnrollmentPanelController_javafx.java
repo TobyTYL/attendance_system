@@ -29,7 +29,7 @@ public class EnrollmentPanelController_javafx {
             Parent batchEnrollRoot = loader.load();
 
             // Get the current stage (window) from one of the buttons
-            Stage stage = (Stage) batchEnrollButton.getScene().getWindow();
+            Stage stage = (Stage) manualEnrollButton.getScene().getWindow();
 
             // Create a new scene with the Batch Student Enroll layout
             Scene batchEnrollScene = new Scene(batchEnrollRoot);
